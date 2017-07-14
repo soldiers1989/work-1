@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.zz.tbMerchantTempMapper">
+    <select id="MerchanttempByMerchant_id" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        ${pageBegin}
+        SELECT count(*)
+        FROM tb_merchantid_temp
+        WHERE
+        MERCHANT_ID = #{MERCHANT_ID}
+        ${pageEnd}
+    </select>
+    
+    <insert id="CopyMerchant" parameterType="java.util.HashMap">
+        INSERT INTO tb_merchantid_temp (
+        MERCHANT_ID,MERCHANT_NAME,CREAT_TIME,CREATOR,OP_FLAG
+        ) VALUES(
+        #{MERCHANT_ID,jdbcType=VARCHAR},
+        #{MERCHANT_NAME,jdbcType=VARCHAR},
+        #{CREAT_TIME,jdbcType=VARCHAR},
+        #{CREATOR,jdbcType=VARCHAR},
+        #{OP_FLAG,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateMerchantTemp" parameterType="java.util.HashMap" >
+        UPDATE tb_merchantid_temp
+        SET MERCHANT_NAME = #{MERCHANT_NAME}
+        WHERE MERCHANT_ID = #{MERCHANT_ID}
+    </update>
+
+    <insert id="addMerchantTemp" parameterType="java.util.HashMap" >
+        INSERT INTO tb_merchantid_temp 
+            (MERCHANT_ID,MERCHANT_NAME,CREAT_TIME,CREATOR,OP_FLAG,FILLER1,FILLER2,FILLER3) 
+        VALUES 
+            (#{MERCHANT_ID,jdbcType=VARCHAR},#{MERCHANT_NAME,jdbcType=VARCHAR},#{CREATE_TIME,jdbcType=VARCHAR},
+            #{CREATOR,jdbcType=VARCHAR},#{OP_FLAG,jdbcType=VARCHAR},#{FILLER1,jdbcType=VARCHAR},
+            #{FILLER2,jdbcType=VARCHAR},#{FILLER3,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="queryMerchantTemp_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM TB_MERCHANTID_TEMP  
+         WHERE 1=1
+        <if test="MERCHANT_ID!=null &amp;&amp; !&quot;&quot;.equals(MERCHANT_ID)">
+            and MERCHANT_ID =#{MERCHANT_ID}
+        </if> 
+        <if test="MERCHANT_NAME!=null &amp;&amp; !&quot;&quot;.equals(MERCHANT_NAME)">
+            and MERCHANT_NAME  like CONCAT('%',CONCAT(REPLACE(#{MERCHANT_NAME},'%','\%'),'%'))
+        </if>  
+    </select>
+
+    <select id="queryMerchantTemp" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    ${pageBegin}
+        SELECT MERCHANT_ID,MERCHANT_NAME,CREAT_TIME,CREATOR,OP_FLAG
+        FROM TB_MERCHANTID_TEMP
+          WHERE 1=1
+        
+        <if test="MERCHANT_ID!=null &amp;&amp; !&quot;&quot;.equals(MERCHANT_ID)">
+            and MERCHANT_ID =#{MERCHANT_ID}
+        </if> 
+        <if test="MERCHANT_NAME!=null &amp;&amp; !&quot;&quot;.equals(MERCHANT_NAME)">
+            and MERCHANT_NAME  like CONCAT('%',CONCAT(REPLACE(#{MERCHANT_NAME},'%','\%'),'%'))
+        </if>
+    ${pageEnd} 
+    </select>
+    
+    <delete id="delMerchanttempByMerchant_ID" parameterType="java.util.HashMap">
+        DELETE 
+        FROM TB_MERCHANTID_TEMP
+        WHERE
+        MERCHANT_ID = #{MERCHANT_ID}
+    </delete>
+
+    <select id="queryMerchanttempByROLE_ID" parameterType="java.util.HashMap"
+        resultType="java.util.HashMap">
+        ${pageBegin}
+        SELECT MERCHANT_ID,MERCHANT_NAME,CREAT_TIME,CREATOR,OP_FLAG
+        FROM TB_MERCHANTID_TEMP
+        WHERE
+        MERCHANT_ID = #{MERCHANT_ID}
+        ${pageEnd}
+    </select>
+</mapper>

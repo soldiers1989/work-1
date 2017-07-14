@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.br.ConsumptioncMapper">
+    <insert id="insert" parameterType="java.util.HashMap">
+        INSERT INTO ZZ_CONSUMPTION_C VALUES(
+            #{MARKING_CODE,jdbcType=VARCHAR},#{CREATE_TIME,jdbcType=VARCHAR},
+            #{mail,jdbcType=VARCHAR},#{flag_consumption_c,jdbcType=VARCHAR},#{cons_cont,jdbcType=VARCHAR},
+            #{cons_time_recent,jdbcType=VARCHAR},#{cons_tot_m3_visits,jdbcType=VARCHAR},
+            #{cons_tot_m3_num,jdbcType=VARCHAR},#{cons_tot_m3_pay,jdbcType=VARCHAR},
+            #{cons_tot_m3_p_catenum,jdbcType=VARCHAR},#{cons_tot_m3_v_catenum,jdbcType=VARCHAR},
+            #{cons_tot_m12_visits,jdbcType=VARCHAR},#{cons_tot_m12_num,jdbcType=VARCHAR},
+            #{cons_tot_m12_pay,jdbcType=VARCHAR},#{cons_max_m12_paycate,jdbcType=VARCHAR},
+            #{cons_m3_rybh_num,jdbcType=VARCHAR},#{cons_m3_rybh_pay,jdbcType=VARCHAR},#{cons_m3_jydq_num,jdbcType=VARCHAR},
+            #{cons_m3_jydq_pay,jdbcType=VARCHAR},#{cons_m3_myyp_num,jdbcType=VARCHAR},
+            #{cons_m3_myyp_pay,jdbcType=VARCHAR},#{cons_m12_rybh_num,jdbcType=VARCHAR},
+            #{cons_m12_jydq_pay,jdbcType=VARCHAR},#{cons_m12_myyp_num,jdbcType=VARCHAR},
+            #{cons_m12_myyp_pay,jdbcType=VARCHAR},#{ids}
+            )
+    </insert>
+</mapper>

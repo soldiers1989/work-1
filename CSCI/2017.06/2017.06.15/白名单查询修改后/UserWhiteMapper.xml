@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.lt.UserWhiteMapper">
+    <!-- 插入白名单信息 -->
+    <insert id="insertUserWhite" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_USERWHITE
+        (
+            MARKING_CODE,TIME,STATUS,FRAUDSCORE,NAME_TYPE,CREDITSCORE,RESULT,NAMESCORE,NEGATIVE_SCORE,ERROR_DESC,ID,UPDATETIME,CODE
+        )  
+        VALUES(
+            #{MARKING_CODE,jdbcType=VARCHAR},#{TIME,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{FRAUDSCORE,jdbcType=VARCHAR},
+            #{NAMETYPE,jdbcType=VARCHAR},#{CREDITSCORE,jdbcType=VARCHAR},#{RESULT,jdbcType=VARCHAR},#{NAMESCORE,jdbcType=VARCHAR},#{NEGATIVE_SCORE,jdbcType=VARCHAR},#{ERRORDESC,jdbcType=VARCHAR},#{ID,jdbcType=VARCHAR},#{UPDATETIME,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR}
+        ) 
+    </insert>
+
+    <insert id="insertUserWhiteS" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_USERWHITE_S
+        (
+            MARKING_CODE,TIME,STATUS,FRAUDSCORE,NAME_TYPE,CREDITSCORE,RESULT,NAMESCORE,NEGATIVE_SCORE,ERROR_DESC,ID,UPDATETIME,CODE
+        )  
+        VALUES(
+            #{MARKING_CODE,jdbcType=VARCHAR},#{TIME,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{FRAUDSCORE,jdbcType=VARCHAR},
+            #{NAMETYPE,jdbcType=VARCHAR},#{CREDITSCORE,jdbcType=VARCHAR},#{RESULT,jdbcType=VARCHAR},#{NAMESCORE,jdbcType=VARCHAR},#{NEGATIVE_SCORE,jdbcType=VARCHAR},#{ERRORDESC,jdbcType=VARCHAR},#{ID,jdbcType=VARCHAR},#{UPDATETIME,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR}
+        )  
+    </insert>
+
+    <update id="updateUserWhiteS" parameterType="java.util.HashMap">
+        UPDATE
+            ZZ_USERWHITE_S
+        SET
+            MARKING_CODE=#{MARKING_CODE,jdbcType=VARCHAR},TIME=#{TIME,jdbcType=VARCHAR},STATUS=#{STATUS,jdbcType=VARCHAR},FRAUDSCORE=#{FRAUDSCORE,jdbcType=VARCHAR},
+            NAME_TYPE=#{NAMETYPE,jdbcType=VARCHAR},CREDITSCORE=#{CREDITSCORE,jdbcType=VARCHAR},RESULT=#{RESULT,jdbcType=VARCHAR},NAMESCORE=#{NAMESCORE,jdbcType=VARCHAR},NEGATIVE_SCORE=#{NEGATIVE_SCORE,jdbcType=VARCHAR},ERROR_DESC=#{ERRORDESC,jdbcType=VARCHAR},ID=#{ID,jdbcType=VARCHAR},UPDATETIME=#{UPDATETIME,jdbcType=VARCHAR},CODE=#{CODE,jdbcType=VARCHAR}
+        WHERE
+            MARKING_CODE = #{MARKING_CODE,jdbcType=VARCHAR}
+    </update>
+
+    <!-- 根据markingCode查询数据实时表 -->
+    <select id="selectByCode" parameterType="String" resultType="java.util.HashMap">
+        SELECT
+            MARKING_CODE,TIME,STATUS,FRAUDSCORE,NAME_TYPE,CREDITSCORE,RESULT,NAMESCORE,NEGATIVE_SCORE,ERROR_DESC,ID,UPDATETIME,CODE
+        FROM
+            ZZ_USERWHITE_S
+        WHERE
+            MARKING_CODE = #{marking_cod}
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.lt.GxminWorkMapper">
+    <!-- 插入地址确认信息 -->
+    <insert id="insert" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_GXMINWORK
+        (
+            SEND_TEL_NO,LONGITUDE,LATITUDE,ORG_CODE,CUR_TIME,ORG_SEQ,SEQUENCE,STATUS,CODE,ERROR_DESC,WORK_DISTANCE,SID
+        )  
+        VALUES(
+            #{SEND_TEL_NO,jdbcType=VARCHAR},#{LONGITUDE,jdbcType=VARCHAR},#{LATITUDE,jdbcType=VARCHAR},
+            #{ORG_CODE,jdbcType=VARCHAR},#{CUR_TIME,jdbcType=VARCHAR},#{ORG_SEQ,jdbcType=VARCHAR},
+            #{SEQUENCE,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR},#{ERROR_DESC,jdbcType=VARCHAR},
+            #{WORK_DISTANCE,jdbcType=VARCHAR},#{SID,jdbcType=VARCHAR}
+        ) 
+    </insert>
+</mapper>

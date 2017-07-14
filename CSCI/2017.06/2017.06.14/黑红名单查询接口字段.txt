@@ -1,0 +1,27 @@
+手机号码    SEND_TEL_NO   必填  STRING  
+发送机构代码  ORG_CODE 必填  STRING  联通分配：如  10001
+共用参数
+当前时间    CUR_TIME 必填  STRING  YYYYMMDDHHMMSS
+共用参数
+发送机构密钥序列    ORG_SEQ  必填  STRING  如：MD5 32位大写(用户手机号_机构代码_机构密码_ YYYYMMDDHHMMSS_SEQUENCE) 机构密码由联通分配
+则MD5 32位大写
+(18612455900_10001_10001PWD_20140930121111_123ABC45)
+最终传递值
+692FCE904EFD7520E8352479AC644DE6
+此种加密序列方式主要防止网络中的探嗅器
+共用参数
+新增序列号   SEQUENCE    必填  STRING  8位长度字母和数字的组合，要求每次请求都不重复，区分大小写
+共用参数
+
+1.3输出参数
+USERIDENTITYVO 对象
+中文名 英文名 属性  类型  备注
+STATUS  状态码     STRING  1：成功
+2：失败
+CODE    错误编码        STRING  14：非测试号码
+ERROR_DESC   错误原因            
+NAME_TYPE    名单类型            W:白名单  N:其他  B:黑名单
+UPDATE_TIME  评估时间            YYYYMM
+
+表名：
+ZZ_USERWHITE

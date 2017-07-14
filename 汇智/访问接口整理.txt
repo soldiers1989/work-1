@@ -1,0 +1,101 @@
+1、 通知管理 GET
+http://222.73.203.71:8080/Notification/1/10?timer=时间
+{"total":0,"result":[],"page":1,"pagesize":10}
+
+http://222.73.203.71:8080/Notification/ReplyList/1/10
+{"total":0,"result":[],"page":1,"pagesize":10}
+
+2、 修改手机号 POST
+http://222.73.203.71:8080/Setting/User/ChangePhone
+参数
+username    用户登录名   string
+phone   手机号码    string
+code
+
+3、 发送手机验证码GET
+http://222.73.203.71:8080/Public/Phone/SendCode/{phone}/{code}
+{"success":true,"msg":"发送成功"}
+4.修改密码POST（密码需要加密）
+222.73.203.71:8080/Setting/User/ChangePassword
+参数：
+password    新密码［8-12］   string
+oldpassword 旧密码 string
+username    用户登录名   string
+新密码：kufu1111
+
+5、 我的信息
+http://222.73.203.71:8080/Setting/User/MyInfo?timestamp=1499523191977&_=1499523191653
+
+7、 我的小智GET
+http://222.73.203.71:8080/workflow/api/processinstances/my_apply/list/
+http://222.73.203.71:8080/workflow/api/processinstances/my_apply/list/1/10
+/workflow/api/processinstances/my_apply/list/{page}/{pageSize}
+
+
+8、 图形验证码
+http://222.73.203.71:8080/Public/Phone/SendCode/18721367130/AKRTSP
+
+/Setting/User/MyInfo
+
+9、 交易明细查询POST
+/BizPayment/QueryTransDetails
+http://222.73.203.71:8080/BizPayment/QueryTransDetails
+merchantNo=000006666666666
+&cardNo=00199000008989
+&endDate= 
+&memberNo=ptyh
+&queryNum=    
+&startDate=   
+&tranType=01
+
+响应列表：
+success true
+msg "test"
+
+10、 我的服务GET
+http://222.73.203.71:8080/Setting/ServiceInfo/1/10
+
+11、 账户金额显示
+http://222.73.203.71:8080/BizPayment/QueryCardBalance?time='+ new Date()
+edBalance   主账户余额   string
+memberNo        string
+epBalance   电子钱包余额  string
+cardNo      string
+code    0000 本次通信正常 2000 业务操作异常 2001 参数有误   string
+merchantNo      string
+msg     string
+
+merchantNo  "000006666666666"
+cardNo  "00199000008989"
+memberNo    "2"
+
+
+12、 //有效红包列表(接口可用)
+http://222.73.203.71:8080/RedPacket/User/Valid/List
+
+14、 过期红包列表（接口可用）   
+http://222.73.203.71:8080/RedPacket/User/Invalid/List
+
+13、 未读消息总数（接口可用）
+http://222.73.203.71:8080/Notification/Total/GetUnReadCount?_=1499656674064
+
+invalidRedPAcketUrl:commonUrl+"RedPacket/User/Invalid/List",//过期和已使用红包
+
+validRedPacketUrl:commonUrl+"RedPacket/User/Valid/List",//可用红包
+
+14、图片上传接口
+http://222.73.203.71:8080/FileUpload/UploadImgComm
+
+15、修改头像（POST）上传成功返回URL
+/Setting/User/ChangeUserFace/
+
+16、获取头像（GET）
+/Setting/User/UserFace/
+
+
+http://222.73.203.71:8080/ActivityCenter/ActivityMain/List/2/4?isBan=1
+http://222.73.203.71:8080/ActivityCenter/ActivityMain/List/3/4?isBan=1
+http://222.73.203.71:8080/ActivityCenter/ActivityMain/List/4/4?isBan=1
+
+http://222.73.203.71:8080/ActivityCenter/ActivityMain/List/1/4?isBan=1
+http://222.73.203.71:8080/ActivityCenter/ActivityMain/List/page/pageSize?isBan=1

@@ -1,0 +1,11 @@
+https://localhost:8443/ZXpreposition/ltCtl/GxminWork?sendTelNo=13122323358&longitude=31.1439900000&latitude=121.4245700000&merchantId=ZZTEST0516
+
+返回样例：
+{"code":"1000","msg":"查询成功","flag":"1","data":{"input":{"sendTelNo":"13122323358","longitude":"33.1439900000","latitude":"123.4245700000","orgCode":"zonzhen_soP9I","orgPwd":"BGpA7n+mngyI3mmG"},"output":{"MARKING_CODE":"a5699b19af844994aa16374e9d3ca446","TIME":"2017-06-15 14:05:16","ID":"14211a3ae63443f29b4e460866e95b92","STATUS":"1","ERROR_DESC":"查询成功","WORK_DISTANCE":"5143","CODE":"00"}}}0
+
+
+https://localhost:8443/ZXpreposition/ltCtl/GxminWork?sendTelNo=13011111111&longitude=31.1439900000&latitude=121.4245700000&merchantId=ZZTEST0516
+
+https://localhost:8443/ZXpreposition/ltCtl/GxminWork?sendTelNo=13022222222&longitude=31.1439900000&latitude=121.4245700000&merchantId=ZZTEST0516
+
+{"code":"1000","msg":"查询成功","flag":"1","data":{"input":{"sendTelNo":"13022222222","longitude":"31.1439900000","latitude":"121.4245700000","orgCode":"zonzhen_soP9I","orgPwd":"BGpA7n+mngyI3mmG"},"output":{"MARKING_CODE":"b4e3619d51cc4b9c9729175d2a1f3fa3","TIME":"2017-06-19 10:25:36","ID":"62a1c03c69644f1ab3a4dae328239ed5","STATUS":"1","ERROR_DESC":"查询成功","WORK_DISTANCE":"5137","CODE":"00"}}}137

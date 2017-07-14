@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.lt.GxminWorkMapper">
+    <!-- 插入地址确认信息 -->
+    <insert id="insertGxminWork" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_GXMINWORK
+        (
+            TIME,STATUS,CODE,ERROR_DESC,WORK_DISTANCE,ID,MARKING_CODE
+        )  
+        VALUES(
+            #{TIME,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR},#{ERRORDESC,jdbcType=VARCHAR},
+            #{WORKDISTANCE,jdbcType=VARCHAR},#{ID,jdbcType=VARCHAR},#{MARKING_CODE,jdbcType=VARCHAR}
+        ) 
+    </insert>
+
+    <insert id="insertGxminWorkS" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_GXMINWORK_S
+        (
+            TIME,STATUS,CODE,ERROR_DESC,WORK_DISTANCE,ID,MARKING_CODE
+        )  
+        VALUES(
+            #{TIME,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR},#{ERRORDESC,jdbcType=VARCHAR},
+            #{WORKDISTANCE,jdbcType=VARCHAR},#{ID,jdbcType=VARCHAR},#{MARKING_CODE,jdbcType=VARCHAR}
+        ) 
+    </insert>
+
+    <update id="updateGxminWorkS" parameterType="java.util.HashMap">
+        UPDATE
+            ZZ_GXMINWORK_S
+        SET
+            TIME=#{TIME,jdbcType=VARCHAR},STATUS=#{STATUS,jdbcType=VARCHAR},CODE=#{CODE,jdbcType=VARCHAR},
+            ERROR_DESC=#{ERRORDESC,jdbcType=VARCHAR},WORK_DISTANCE=#{WORKDISTANCE,jdbcType=VARCHAR},
+            ID=#{ID,jdbcType=VARCHAR},MARKING_CODE=#{MARKING_CODE,jdbcType=VARCHAR}
+        WHERE
+            MARKING_CODE = #{MARKING_CODE,jdbcType=VARCHAR}
+    </update>
+
+    <!-- 根据markingCode查询数据实时表 -->
+    <select id="selectByCode" parameterType="String" resultType="java.util.HashMap">
+        SELECT
+            TIME,STATUS,CODE,ERROR_DESC,WORK_DISTANCE,ID,MARKING_CODE
+        FROM
+            ZZ_GXMINWORK_S
+        WHERE
+            MARKING_CODE = #{marking_cod}
+    </select>
+</mapper>

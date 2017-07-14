@@ -1,0 +1,13 @@
+手机号码    SEND_TEL_NO   必填
+所在经度    LONGITUDE   必填
+所在纬度    LATITUDE    必填
+发送机构代码  ORG_CODE 必填
+当前时间    CUR_TIME 必填
+发送机构密钥序列    ORG_SEQ  必填
+新增序列号   SEQUENCE    必填
+状态码 STATUS  必填
+错误状态码   CODE    可空
+错误原因    ERROR_DESC   可空
+工作地距离   WORK_DISTANCE    必填
+
+表名ZZ_GXMINWORK

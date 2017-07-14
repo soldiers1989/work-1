@@ -1,0 +1,3 @@
+https://localhost:8443/ZXpreposition/bRCtl/EduLevel?id=362204199301108420&cell=18682049910&merchantId=ZZTEST0516&name=刘萃
+
+{"swift_number":"3000659_20170622140541_9091","code":600000,"product":{"api_status":{"code":"0000","description":"查询成功","serial_no":"8e3c4c364f6f452584c390b202a9f4fe","status":true},"data":{"info":{"identity_code":"362204199301108420","identity_name":"刘萃","graduate":"厦门大学","enrolDate":"2013","specialityName":"统计学","graduateTime":"2016","educationDegree":"硕士研究生","studyStyle":"研究生","studyResult":"毕业","photo":"","schoolCategory":"综合","createDate":"1921-04-06","schoolCity":"厦门","schoolTrade":"985、211工程院校"},"result":"match","status":true},"costTime":186},"flag":{"flag_edulevel":1}}373

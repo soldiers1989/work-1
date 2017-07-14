@@ -1,0 +1,25 @@
+1、交易明细查询
+http://222.73.203.71:8080/BizPayment/QueryTransDetails
+startDate: '2017-06-21',
+      cardNo: '00199000008989',
+      endDate:'2017-07-10',
+      memberNo:'ptyh',
+      queryNum:'10',
+      tranType:'1'
+返回：
+msg:"test"
+success:true
+
+2、余额查询
+http://222.73.203.71:8080/BizPayment/QueryCardBalance
+参数：
+cardNo: '00199000008989',
+memberNo: 'ptyh'
+
+返回：data:""
+
+3、我的服务
+还差渲染问题
+4、我的申请
+没找到接口
+5、

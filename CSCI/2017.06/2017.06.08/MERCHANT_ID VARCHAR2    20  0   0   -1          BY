@@ -1,0 +1,9 @@
+MERCHANT_ID VARCHAR2    20  0   0   -1          BYTE        
+MERCHANT_NAME   VARCHAR2    100 0   -1  0           BYTE        
+CREAT_TIME  VARCHAR2    30  0   -1  0           BYTE        
+CREATOR VARCHAR2    30  0   -1  0           BYTE        
+CHECK_TLRNO VARCHAR2    32  0   -1  0       审核人 BYTE        
+CHECK_TIME  VARCHAR2    14  0   -1  0       审核时间    BYTE        
+FILLER1 VARCHAR2    60  0   -1  0       预留字段1   BYTE        
+FILLER2 VARCHAR2    60  0   -1  0       预留字段2   BYTE        
+FILLER3 VARCHAR2    60  0   -1  0       预留字段3   BYTE        

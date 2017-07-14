@@ -1,0 +1,14 @@
+工作地验证返回结果值
+{MARKING_CODE=a5699b19af844994aa16374e9d3ca446, TIME=2017-06-15 10:28:55, errordesc=查询成功, status=1, ID=6d89daf9add844819ab6ac9d38097cee, workdistance=5139, code=00}
+
+{MARKING_CODE=a5699b19af844994aa16374e9d3ca446, PARAMETER4=BGpA7n+mngyI3mmG, PARAMETER3=zonzhen_soP9I, CREATE_TIME=2017-06-15 10:48:48, INTERFACE_NAME=GxminWork, PARAMETER2=121.4245700000, PARAMETER1=31.1439900000, ID=b04f962f577d4744bb457dd55c55cbbd, PARAMETER0=13122323358, REMARK=sendTelNo=13122323358,longitude=31.1439900000,latitude=121.4245700000,orgCode=zonzhen_soP9I,orgPwd=BGpA7n+mngyI3mmG,, type=2}
+
+ZZ_GXMINWORK ZZ_GXMINWORK_S
+
+TIME    VARCHAR2    32  0   -1  0       当前时间    BYTE        
+STATUS  VARCHAR2    10  0   -1  0       状态码 BYTE        
+CODE    VARCHAR2    10  0   -1  0       错误状态码   BYTE        
+ERROR_DESC  VARCHAR2    50  0   -1  0       错误原因    BYTE        
+WORK_DISTANCE   VARCHAR2    20  0   -1  0       工作地距离   BYTE        
+ID  VARCHAR2    32  0   0   -1      主键  BYTE        
+MARKING_CODE    VARCHAR2    32  0   -1  0       编码  BYTE        

@@ -1,0 +1,5 @@
+https://localhost:8443/ZXpreposition/bCCtl/VehInsurance?carNO=苏FB9Z90&cityCode=11&merchantId=ZZTEST0516
+
+ZZ_VEHINSURANCE_S
+
+{"carNO":"苏FB9Z90","cityCode":"11","userName":"","certCode":"","carCode":"","carDriverNO":""}

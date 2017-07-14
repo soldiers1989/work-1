@@ -1,0 +1,36 @@
+https://localhost:8443/ZXpreposition/tDKYCCtl/PopulationTag?id=3c9251ecc0dc1cf2cec477354516d9c8c&type=tdid&merchantId=ZZTEST0516
+
+https://localhost:8443/ZXpreposition/tDKYCCtl/PreferenceTag?id=3c9251ecc0dc1cf2cec477354516d9c8c&type=tdid&merchantId=ZZTEST0516
+
+
+94  KYC23   KYC线下消费偏好标签查询服务                                 KYCPreferenceTag            0
+
+121  KYC24   KYC人口属性标签查询服务                                 KYCPopulationTag            0
+
+122  ZZ63    人口属性标签查询服务                                    PopulationTag           0
+
+{RAID=74413a9641c243dbb4e8a02bab83a2d0, API=PopulationTag, MERCHANT_ID=ZZTEST0516, TYPE=1, REQ_PARAM={"merchantId":"ZZTEST0516","id":"3c9251ecc0dc1cf2cec477354516d9c8c","type":"tdid"}}
+
+{"code":2001,"msg":"ok","data":{"tags":[{"weight":"90.0","name":"性别-男","label":"030101"},{"weight":"100.0","name":"年龄-26-35岁","label":"030208"}],"tdid":"3c9251ecc0dc1cf2cec477354516d9c8c"},"seq":"b3763aeb68b74fbe87f1fe0e5da18346"}
+
+{MSG=ok, TAGS="weight":"90.0","name":"性别-男","label":"030101";"weight":"100.0","name":"年龄-26-35岁","label":"030208", ID=3c9251ecc0dc1cf2cec477354516d9c8c, UUID=74413a9641c243dbb4e8a02bab83a2d0, SEQ=b3763aeb68b74fbe87f1fe0e5da18346, DATA={"tags":[{"weight":"90.0","name":"性别-男","label":"030101"},{"weight":"100.0","name":"年龄-26-35岁","label":"030208"}],"tdid":"3c9251ecc0dc1cf2cec477354516d9c8c"}, TYPE=tdid, TDID=3c9251ecc0dc1cf2cec477354516d9c8c, CODE=2001}
+
+{listC=tags, FID=11fc0f7f9e4546f4a4fd0ed03e0d2801, NAME=性别-男, parentKey=tags, WEIGHT=90.0, ID=adc9bd6e78c04749810d7c4732f22ea1, LABEL=030101
+
+{"code":2001,"msg":"ok","data":{"tags":[{"weight":"90.0","name":"性别-男","label":"030101"},{"weight":"100.0","name":"年龄-26-35岁","label":"030208"}],"tdid":"3c9251ecc0dc1cf2cec477354516d9c8c"},"seq":"c90d72d760d24a248fdf4671438bc544"}
+
+ZZ_POPULATIONTAG
+ID  VARCHAR2    50  0   -1  0                   
+CODE    VARCHAR2    50  0   -1  0                   
+MSG VARCHAR2    50  0   -1  0                   
+TDID    NUMBER  50  0   -1  0                   
+SEQ VARCHAR2    50  0   -1  0                   
+UUID    VARCHAR2    50  0   0   -1                  
+TYPE    VARCHAR2    50  0   -1  0      
+
+ZZ_POPULATIONTAG_TAG
+WEIGHT  VARCHAR2    100 0   -1  0                   
+NAME    VARCHAR2    100 0   -1  0                   
+LABEL   VARCHAR2    100 0   -1  0                   
+FID VARCHAR2    40  0   -1  0                   
+ID  VARCHAR2    40  0   0   -1                  

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.zz.tbMerchantTemp">
+    <select id="MerchanttempByMerchant_id" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    ${pageBegin}
+        SELECT count(*)
+        FROM tb_merchantid_temp
+        WHERE
+        MERCHANT_ID = #{MERCHANT_ID}
+    ${pageEnd} 
+    </select> 
+    <insert id="CopyMercahnt" parameterType="java.util.HashMap">
+        INSERT INTO tb_role_temp (
+        MERCHANT_ID
+        MERCHANT_NAME
+        CREAT_TIME
+        CREATOR
+        OP_FLAG
+        ) VALUES(
+        #{MERCHANT_ID,jdbcType=VARCHAR},
+        #{MERCHANT_NAME,jdbcType=VARCHAR},
+        #{CREAT_TIME,jdbcType=VARCHAR},
+        #{CREATOR,jdbcType=VARCHAR},
+        #{OP_FLAG,jdbcType=VARCHAR}
+        )
+    </insert>
+</mapper>

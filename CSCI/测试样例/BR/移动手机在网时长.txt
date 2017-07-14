@@ -1,0 +1,41 @@
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=362430198008220017&cell=13613096710&merchantId=ZZTEST0516&name=刘重
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=31011519871112064X&cell=13661645763&merchantId=ZZTEST0516&name=吕文静
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=210202198309033214&cell=15566835192&merchantId=ZZTEST0516&name=贺旭东
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=43010319940908201X&cell=13817458702&merchantId=ZZTEST0516&name=王久玖
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=410204198211254035&cell=13823533185&merchantId=ZZTEST0516&name=王洋
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=440921198510310017&cell=13632756431&merchantId=ZZTEST0516&name=赖官平
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=120104198112151239&cell=13823372570&merchantId=ZZTEST0516&name=曲靖
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=420525199212300026&cell=13510681230&merchantId=ZZTEST0516&name=邵乐琪
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=21062319891122069X&cell=13924606320&merchantId=ZZTEST0516&name=孙龙阁
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=362424199204104424&cell=13632547820&merchantId=ZZTEST0516&name=郑万佳
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=440784199008143312&cell=13866117238&merchantId=ZZTEST0516&name=李醒民
+
+https://localhost:8443/ZXpreposition/bRCtl/TelPeriodCMCCf?id=440301198507043714&cell=13798025821&merchantId=ZZTEST0516&name=倪力超
+
+
+
+
+IDENTI_ID   CELL    IDENTI_NAME FLAG_TELP_CMCCF RESULT  MSG VAL COSTTIME    TTIME
+362430198008220017  13613096710 刘重  1   1       >24 73  123200
+31011519871112064X  13661645763 吕文静 1   1       >24 65  130623
+210202198309033214  15566835192 贺旭东                     130725
+
+43010319940908201X  13817458702 王久玖 1   1       >24 67  130910
+410204198211254035  13823533185 王洋  1   1       >24 69  131148
+440921198510310017  13632756431 赖官平 1   1       >24 65  131226
+120104198112151239  13823372570 曲靖  1   1       >24 65  161818
+420525199212300026  13510681230 邵乐琪 1   1       12-18   74  161857
+21062319891122069X  13924606320 孙龙阁 1   1       >24 82  161939
+362424199204104424  13632547820 郑万佳 1   1       18-24   1   122647
+440784199008143312  13866117238 李醒民 1   1       >24 1   122735
+440301198507043714  13798025821 倪力超 1   1       >24 78  122925

@@ -1,0 +1,47 @@
+http://222.73.203.71:8080/j_spring_security_check?j_password=&j_username=&lgtp=front
+
+http://222.73.203.71:8080/UserRepair?applicant=ptyh&contact=18516518312&company=上海浦东软件园股份有限公司&mobile=&parkId=1&buildingId=46&address=dgdfgdgdgdfgdfg&repairTypeParent=223&repairType=403&photoUrl=&description=sfsdfsdfsdf&memo=sdfsdfsdfsdfsdf
+
+
+applicant=ptyh&contact=18516518312&company=上海浦东软件园股份有限公司&mobile=12324324&parkId=1&buildingId=46&address=32432423424&repairTypeParent=310&repairType=414&photoUrl=&description=234242424&memo=234234324
+
+
+applicant=ptyh&contact=18516518312&company=上海浦东软件园股份有限公司&mobile=&parkId=1&buildingId=46&address=1111111111&repairTypeParent=223&repairType=403&photoUrl=&description=1213213213&memo=
+
+applicant=ptyh&contact=18516518312&company=%E4%B8%8A%E6%B5%B7%E6%B5%A6%E4%B8%9C%E8%BD%AF%E4%BB%B6%E5%9B%AD%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&mobile=&parkId=1&buildingId=46&address=1111111111&repairTypeParent=223&repairType=403&photoUrl=&description=111111111111a&memo=111111111111c
+
+contact=234 2532 5435&company=453453453453&mobile=453 4543 5345&parkId=祖冲之路&buildingId=A座&address=3453453454353&repairTypeParent=照明&repairType=其他&description=4353454354&memo=35435345435345
+
+http://222.73.203.71:8080/UserRepair/Add
+
+http://222.73.203.71:8080/UserRepair/Add?contact=18516518312&company=453453453453&mobile =18516518312&parkId=祖冲之路&buildingId=A座&address=3453453454353&repairTypeParent=照明&repairType=其他&description=4353454354&memo=35435345435345
+
+//通知管理
+/Notification/ReplyList/
+
+url: '/Notification/1/10?timer='+new Date().getTime(),
+
+ url: '/Notification/' + page_index  + '/' + size,
+
+ url: '/Notification/SetReadStatus/' + objectid,
+
+ url: "/Notification/GetUnReadCount?timer="+new Date().getTime(),
+
+ url: "/Notification/GetUnReadCount?timer="+new Date().getTime(),
+
+ url: "/Notification/ReplyList/GetUnReadCount?timer="+new Date().getTime(),
+
+ url: '/Notification/SetReadStatus/' + objectid,
+
+ url: "/Notification/ReplyList/GetUnReadCount?timer="+new Date().getTime()
+
+ url: '/Notification/ReplyList/1/10'
+
+ url: '/Notification/ReplyList/' + page_index + '/' + size
+
+//修改手机号
+ /Setting/User/ChangePhone
+post
+ username   用户登录名   string
+phone   手机号码    string
+code

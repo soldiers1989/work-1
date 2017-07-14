@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.br.TelStateCTCCyMapper">
+    <!-- 电信手机在网状态 -->
+    <insert id="insert" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_TELSTATECTCC_Y 
+        (
+            SID,MARKING_CODE,CREATE_TIME,FLAG_TELSTATECTCC_Y,CODE,MESSAGE,STATUS,TIME,TRACE,COSTTIME,VAL,EVAL
+        )
+        VALUES(
+            #{SID},#{MARKING_CODE,jdbcType=VARCHAR},#{CREATE_TIME,jdbcType=VARCHAR},#{FLAG_TELSTATECTCC_Y,jdbcType=VARCHAR},
+            #{CODE,jdbcType=VARCHAR},#{MESSAGE,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{TIME,jdbcType=VARCHAR},
+            #{TRACE,jdbcType=VARCHAR},#{COSTTIME,jdbcType=VARCHAR},#{VAL,jdbcType=VARCHAR},#{EVAL,jdbcType=VARCHAR}
+        ) 
+    </insert>
+
+    <insert id="insertS" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_TELSTATECTCC_Y_S
+        (
+            SID,MARKING_CODE,CREATE_TIME,FLAG_TELSTATECTCC_Y,CODE,MESSAGE,STATUS,TIME,TRACE,COSTTIME,VAL,EVAL
+        )
+        VALUES(
+            #{SID},#{MARKING_CODE,jdbcType=VARCHAR},#{CREATE_TIME,jdbcType=VARCHAR},#{FLAG_TELSTATECTCC_Y,jdbcType=VARCHAR},
+            #{CODE,jdbcType=VARCHAR},#{MESSAGE,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{TIME,jdbcType=VARCHAR},
+            #{TRACE,jdbcType=VARCHAR},#{COSTTIME,jdbcType=VARCHAR},#{VAL,jdbcType=VARCHAR},#{EVAL,jdbcType=VARCHAR}
+        ) 
+    </insert>
+    
+    <update id="updateS" parameterType="java.util.HashMap">
+        UPDATE
+            ZZ_TELSTATECTCC_Y_S
+        SET
+            SID=#{SID},MARKING_CODE=#{MARKING_CODE,jdbcType=VARCHAR},CREATE_TIME=#{CREATE_TIME,jdbcType=VARCHAR},FLAG_TELSTATECTCC_Y=#{FLAG_TELSTATECTCC_Y,jdbcType=VARCHAR},CODE=#{CODE,jdbcType=VARCHAR},MESSAGE=#{MESSAGE,jdbcType=VARCHAR},STATUS=#{STATUS,jdbcType=VARCHAR},TIME=#{TIME,jdbcType=VARCHAR},TRACE=#{TRACE,jdbcType=VARCHAR},COSTTIME=#{COSTTIME,jdbcType=VARCHAR},VAL=#{VAL,jdbcType=VARCHAR},EVAL=#{EVAL,jdbcType=VARCHAR}
+        WHERE
+            MARKING_CODE = #{MARKING_CODE,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByCode" parameterType="String" resultType="java.util.HashMap">
+        SELECT
+             SID,MARKING_CODE,CREATE_TIME,FLAG_TELSTATECTCC_Y,CODE,MESSAGE,STATUS,TIME,TRACE,COSTTIME,VAL,EVAL
+        FROM
+            ZZ_TELSTATECTCC_Y_S
+        WHERE
+            MARKING_CODE = #{marking_cod}
+    </select>
+</mapper>

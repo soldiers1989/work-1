@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.br.ExecutionMapper">
+    <insert id="insert" parameterType="java.util.HashMap">
+    INSERT INTO ZZ_EXECUTION VALUES(
+        #{MARKING_CODE},#{CREATE_TIME}, #{flag_execution,jdbcType=VARCHAR},#{ex_bad1_name,jdbcType=VARCHAR}, #{ex_bad1_cid,jdbcType=VARCHAR}, 
+        #{ex_bad1_cidtype,jdbcType=VARCHAR},#{ex_bad1_datatime,jdbcType=VARCHAR}, #{ex_bad1_datatypeid,jdbcType=VARCHAR}, 
+        #{ex_bad1_datatype,jdbcType=VARCHAR}, #{ex_bad1_leader,jdbcType=VARCHAR}, #{ex_bad1_address,jdbcType=VARCHAR}, 
+        #{ex_bad1_court,jdbcType=VARCHAR}, #{ex_bad1_time,jdbcType=VARCHAR}, 
+        #{ex_bad1_casenum,jdbcType=VARCHAR},#{ex_bad1_money,jdbcType=VARCHAR},#{ex_bad1_base,jdbcType=VARCHAR}, 
+        #{ex_bad1_basecompany,jdbcType=VARCHAR},#{ex_bad1_obligation,jdbcType=VARCHAR},#{ex_bad1_lasttime,jdbcType=VARCHAR},
+        #{ex_bad1_performance,jdbcType=VARCHAR},#{ex_bad1_concretesituation,jdbcType=VARCHAR},#{ex_bad1_breaktime,jdbcType=VARCHAR}, 
+        #{ex_bad1_posttime,jdbcType=VARCHAR},#{ex_bad1_performedpart,jdbcType=VARCHAR},#{ex_bad1_unperformpart,jdbcType=VARCHAR}, 
+        #{ex_execut1_name,jdbcType=VARCHAR},#{ex_execut1_cid,jdbcType=VARCHAR},#{ex_execut1_cidtype,jdbcType=VARCHAR}, 
+        #{ex_execut1_datatime,jdbcType=VARCHAR},#{ex_execut1_datatypeid,jdbcType=VARCHAR}, 
+        #{ex_execut1_datatype,jdbcType=VARCHAR},#{ex_execut1_court,jdbcType=VARCHAR},#{ex_execut1_time,jdbcType=VARCHAR}, 
+        #{ex_execut1_casenum,jdbcType=VARCHAR},#{ex_execut1_money,jdbcType=VARCHAR},#{ex_execut1_statute,jdbcType=VARCHAR}, 
+        #{ex_execut1_basic,jdbcType=VARCHAR},#{ex_execut1_basiccourt,jdbcType=VARCHAR},#{id_card},#{identification})                        
+    </insert>
+</mapper>

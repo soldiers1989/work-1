@@ -1,0 +1,29 @@
+MARKING_CODE    VARCHAR2    32  0   -1  0       标识编码    BYTE        
+CREATE_TIME VARCHAR2    20  0   -1  0       创建时间    BYTE        
+MAIL    VARCHAR2    20  0   -1  0       邮箱  BYTE        
+FLAG_CONSUMPTION_C  VARCHAR2    100 0   -1  0       商品消费评估产品输出标识    BYTE        
+CONS_CONT   VARCHAR2    100 0   -1  0       过去3/6/12个月内持续消费情况   BYTE        
+CONS_TIME_RECENT    VARCHAR2    30  0   -1  0       最近一次消费距离现在的时间   BYTE        
+CONS_TOT_M3_VISITS  VARCHAR2    100 0   -1  0       近3个月浏览类目类别数 BYTE        
+CONS_TOT_M3_NUM VARCHAR2    100 0   -1  0       近3个月消费次数总和  BYTE        
+CONS_TOT_M3_PAY VARCHAR2    30  0   -1  0       近3个月消费金额总和  BYTE        
+CONS_TOT_M3_P_CATENUM   VARCHAR2    100 0   -1  0       近3个月消费金额>0类目类别数 BYTE        
+CONS_TOT_M3_V_CATENUM   VARCHAR2    100 0   -1  0       近3个月浏览类目类别数 BYTE        
+CONS_TOT_M12_VISITS VARCHAR2    100 0   -1  0       近12个月浏览次数总和 BYTE        
+CONS_TOT_M12_NUM    VARCHAR2    100 0   -1  0       近12个月消费次数总和 BYTE        
+CONS_TOT_M12_PAY    VARCHAR2    30  0   -1  0       近12个月消费金额总和 BYTE        
+CONS_MAX_M12_PAYCATE    VARCHAR2    100 0   -1  0       近12个月最大单类目消费金额的类目   BYTE        
+CONS_M3_RYBH_NUM    VARCHAR2    100 0   -1  0       近3个月日用百货类商品总消费次数    BYTE        
+CONS_M3_RYBH_PAY    VARCHAR2    30  0   -1  0       近3个月日用百货类商品总消费金额    BYTE        
+CONS_M3_JYDQ_NUM    VARCHAR2    100 0   -1  0       近3个月家用电器类商品总消费次数    BYTE        
+CONS_M3_JYDQ_PAY    VARCHAR2    30  0   -1  0       近3个月家用电器类商品总消费金额    BYTE        
+CONS_M3_MYYP_NUM    VARCHAR2    100 0   -1  0       近3个月母婴用品类商品总消费次数    BYTE        
+CONS_M3_MYYP_PAY    VARCHAR2    30  0   -1  0       近3个月母婴用品类商品总消费金额    BYTE        
+CONS_M12_RYBH_NUM   VARCHAR2    100 0   -1  0       近12个月日用百货类商品总消费金额   BYTE        
+CONS_M12_JYDQ_PAY   VARCHAR2    30  0   -1  0       近12个月家用电器类商品总消费金额   BYTE        
+CONS_M12_MYYP_NUM   VARCHAR2    100 0   -1  0       近12个月母婴用品类商品总消费次数   BYTE        
+CONS_M12_MYYP_PAY   VARCHAR2    30  0   -1  0       近12个月母婴用品类商品总消费金额   BYTE        
+IDS VARCHAR2    32  0   0   -1          BYTE        
+
+
+ZZ_CONSUMPTION_C_S

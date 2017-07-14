@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.br.BankFourProMapper">
+    <insert id="insert" parameterType="java.util.HashMap">
+    INSERT INTO ZZ_BANKFOURPRO
+    (
+        ID,CELL,NAME,BANKCARD,RESULT,MSG,COSTTIME,SID,MARKING_CODE,CREATE_TIME,SWIFT_NUMBER,FLAG_BANKFOURPRO,CODE,IS_FEE
+    )
+    VALUES(
+        #{ID,jdbcType=VARCHAR}, #{CELL,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, #{BANKCARD,jdbcType=VARCHAR}, #{RESULT,jdbcType=VARCHAR}, #{MSG,jdbcType=VARCHAR}, #{COSTTIME,jdbcType=VARCHAR}, #{SID,jdbcType=VARCHAR}, #{MARKING_CODE,jdbcType=VARCHAR}, #{CREATE_TIME,jdbcType=VARCHAR}, #{SWIFT_NUMBER,jdbcType=VARCHAR}, #{FLAG_BANKFOURPRO,jdbcType=VARCHAR}, #{CODE,jdbcType=VARCHAR}, #{IS_FEE,jdbcType=VARCHAR}
+        )                        
+    </insert>
+
+    <insert id="insertS" parameterType="java.util.HashMap">
+    INSERT INTO ZZ_BANKFOURPRO_S
+    (
+        ID,CELL,NAME,BANKCARD,RESULT,MSG,COSTTIME,SID,MARKING_CODE,CREATE_TIME,SWIFT_NUMBER,FLAG_BANKFOURPRO,CODE,IS_FEE
+    )
+    VALUES(
+        #{ID,jdbcType=VARCHAR}, #{CELL,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, #{BANKCARD,jdbcType=VARCHAR}, #{RESULT,jdbcType=VARCHAR}, #{MSG,jdbcType=VARCHAR}, #{COSTTIME,jdbcType=VARCHAR}, #{SID,jdbcType=VARCHAR}, #{MARKING_CODE,jdbcType=VARCHAR}, #{CREATE_TIME,jdbcType=VARCHAR}, #{SWIFT_NUMBER,jdbcType=VARCHAR}, #{FLAG_BANKFOURPRO,jdbcType=VARCHAR}, #{CODE,jdbcType=VARCHAR}, #{IS_FEE,jdbcType=VARCHAR}
+        )                        
+    </insert>
+
+    <update id="updateS" parameterType="java.util.HashMap">
+        UPDATE
+            ZZ_BANKFOURPRO_S
+        SET
+            ID=#{ID,jdbcType=VARCHAR}, CELL=#{CELL,jdbcType=VARCHAR}, NAME=#{NAME,jdbcType=VARCHAR}, BANKCARD=#{BANKCARD,jdbcType=VARCHAR}, RESULT=#{RESULT,jdbcType=VARCHAR}, MSG=#{MSG,jdbcType=VARCHAR}, COSTTIME=#{COSTTIME,jdbcType=VARCHAR}, SID=#{SID,jdbcType=VARCHAR}, MARKING_CODE=#{MARKING_CODE,jdbcType=VARCHAR}, CREATE_TIME=#{CREATE_TIME,jdbcType=VARCHAR}, SWIFT_NUMBER=#{SWIFT_NUMBER,jdbcType=VARCHAR}, FLAG_BANKFOURPRO=#{FLAG_BANKFOURPRO,jdbcType=VARCHAR}, CODE=#{CODE,jdbcType=VARCHAR}, IS_FEE=#{IS_FEE,jdbcType=VARCHAR}
+        WHERE
+            MARKING_CODE = #{MARKING_CODE,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByCode" parameterType="String" resultType="java.util.HashMap">
+        SELECT
+             ID,CELL,NAME,BANKCARD,RESULT,MSG,COSTTIME,SID,MARKING_CODE,CREATE_TIME,SWIFT_NUMBER,FLAG_BANKFOURPRO,CODE,IS_FEE
+        FROM
+            ZZ_BANKFOURPRO_S
+        WHERE
+            MARKING_CODE = #{marking_cod}
+    </select>
+</mapper>

@@ -1,0 +1,20 @@
+NAME    String   失信人姓名／名称
+ CARDNUM    String   身份证号码／组织机构代码
+ SEX_NAME    String   性别（结果为自然人返回，类型为企业机构不返回）
+ AGE    String   年龄（结果为自然人返回，类型为企业机构不返回）
+ CASE_CODE    String   案号
+ COURT_NAME    String   执行法院
+ GIST_CID    String   执行依据文号
+ GIST_UNIT    String   作出执行依据单位
+ REG_DATE    String   立案时间(格式为YYYY-MM-DD)
+ PUBLISH_DATE    String   发布时间(格式为YYYY-MM-DD)
+ PERFORMANCE    String   被执行人的履行情况
+ DISREPUT_TYPE_NAME    String   失信被执行人具体情形
+ AREA_NAME    String   省份
+ DUTY    String   法律生效文书确定的义务
+ TYPE    String   标识自然人或企业法人(0 自然人1 企业机构)
+CREATE_TIME
+ MARKING_CODE
+ID
+
+ ZZ_DISRUPTINFO

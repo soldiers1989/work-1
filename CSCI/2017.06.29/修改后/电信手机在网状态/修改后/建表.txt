@@ -1,0 +1,47 @@
+ZZ_TELSTATECTCC_Y_S
+
+
+
+
+
+
+
+
+
+{
+    MARKING_CODE=a70538061a584946b2f36c243342ece6,
+    TIME=2017-06-0617: 37: 26,
+    CREATE_TIME=2017-06-2817: 39: 46,
+    EVAL=1,
+    code=600000,
+    PRODUCT={
+        "message": [
+            
+        ],
+        "time": "2017-06-06 17:37:26",
+        "status": "SUCCEED",
+        "trace": [
+            
+        ],
+        "data": [
+            [
+                "value",
+                "1"
+            ]
+        ],
+        "code": "200",
+        "costTime": 29
+    },
+    STATUS=SUCCEED,
+    TRACE=,
+    SID=d039126e612b4458933cf355d91807ed,
+    MESSAGE=,
+    VAL=value,
+    SWIFT_NUMBER=3000659_20170628173950_8901,
+    FLAG_TELSTATECTCC_Y=1,
+    FLAG={
+        "flag_telstatectcc_y": 1
+    },
+    COSTTIME=29,
+    CODE=200
+}

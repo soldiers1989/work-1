@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.bc.BCVehInsuranceMapper">
+    <!-- 插入车辆续保信息 -->
+    <insert id="insert" parameterType="java.util.HashMap">
+        INSERT INTO 
+            zz_vehinsurance
+        VALUES(
+            #{FLAG_VEHINSURANCE,jdbcType=VARCHAR},#{SUCCESS,jdbcType=VARCHAR},#{RESULT,jdbcType=VARCHAR},
+            #{BUSINESSSTATUS,jdbcType=VARCHAR},#{STATUSMESSAGE,jdbcType=VARCHAR},#{CARUSEDTYPE,jdbcType=VARCHAR},
+            #{LICENSENO,jdbcType=VARCHAR},#{LICENSEOWNER,jdbcType=VARCHAR},#{POSTEDNAME,jdbcType=VARCHAR},
+            #{INSUREDNAME,jdbcType=VARCHAR},#{PURCHASEPRICE,jdbcType=VARCHAR},#{IDTYPE,jdbcType=VARCHAR},#{CREDENTISLASNUM,jdbcType=VARCHAR},
+            #{CITYCODE,jdbcType=VARCHAR},#{ENGINENO,jdbcType=VARCHAR},#{REGISTERDATE,jdbcType=VARCHAR},
+            #{CARVIN,jdbcType=VARCHAR},#{FORCEEXPIREDATE,jdbcType=VARCHAR},#{BUSINESSEXPIREDATE,jdbcType=VARCHAR},
+            #{NEXTFORCESTARTDATE,jdbcType=VARCHAR},#{NEXTBUSINESSSTARTDATE,jdbcType=VARCHAR},#{SEATCOUNT,jdbcType=VARCHAR},
+            #{INSUREDIDCARD,jdbcType=VARCHAR},#{INSUREDIDTYPE,jdbcType=VARCHAR},#{INSUREDMOBILE,jdbcType=VARCHAR},
+            #{HOLDERIDCARD,jdbcType=VARCHAR},#{HOLDERIDTYPE,jdbcType=VARCHAR},#{HOLDERMOBILE,jdbcType=VARCHAR},
+            #{RATEFACTOR1,jdbcType=VARCHAR},#{RATEFACTOR2,jdbcType=VARCHAR},#{RATEFACTOR3,jdbcType=VARCHAR},#{RATEFACTOR4,jdbcType=VARCHAR},
+            #{FUELTYPE,jdbcType=VARCHAR},#{PROOFTYPE,jdbcType=VARCHAR},#{CLAUSETYPE,jdbcType=VARCHAR},#{LICENSECOLOR,jdbcType=VARCHAR},
+            #{RUNREGION,jdbcType=VARCHAR},#{ISPUBLIC,jdbcType=VARCHAR},#{BIZNO,jdbcType=VARCHAR},#{FORCENO,jdbcType=VARCHAR},#{SOURCE,jdbcType=VARCHAR},
+            #{CHESUN,jdbcType=VARCHAR},#{SANZHE,jdbcType=VARCHAR},#{DAOQIANG,jdbcType=VARCHAR},#{SIJI,jdbcType=VARCHAR},#{CHENGKE,jdbcType=VARCHAR},
+            #{BOLI,jdbcType=VARCHAR},#{HUAHEN,jdbcType=VARCHAR},#{BUJIMIANCHESUN,jdbcType=VARCHAR},#{BUJIMIANSANZHE,jdbcType=VARCHAR},
+            #{BUJIMIANDAOQIANG,jdbcType=VARCHAR},#{SHESHUI,jdbcType=VARCHAR},#{ZIRAN,jdbcType=VARCHAR},#{BUJIMIANCHENGKE,jdbcType=VARCHAR},
+            #{BUJIMIANSIJI,jdbcType=VARCHAR},#{BUJIMIANHUAHEN,jdbcType=VARCHAR},#{BUJIMIANSHESHUI,jdbcType=VARCHAR},#{BUJIMIANZIRAN,jdbcType=VARCHAR},
+            #{BUJIMIANJINGSHENSUNSHI,jdbcType=VARCHAR},#{HCSANFANGTEYUE,jdbcType=VARCHAR},#{HCJINGSHENSUNSHI,jdbcType=VARCHAR},#{CRATETIME,jdbcType=VARCHAR},
+            #{UID,jdbcType=VARCHAR},#{MODLENAME,jdbcType=VARCHAR}
+        ) 
+    </insert>
+</mapper>

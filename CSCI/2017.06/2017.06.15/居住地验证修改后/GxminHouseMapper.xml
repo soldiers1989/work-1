@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.lt.GxminHouseMapper">
+    <!-- 插入居住地验证确认信息 -->
+    <insert id="insertGxminHouse" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_GxminHouse
+        (
+            MARKING_CODE,TIME,HOUSE_DISTANCE,ERRO_RDESC,ID,STATUS,CODE
+        )  
+        VALUES(
+            #{MARKING_CODE,jdbcType=VARCHAR},#{TIME,jdbcType=VARCHAR},#{HOUSEDISTANCE,jdbcType=VARCHAR},#{ERRORDESC,jdbcType=VARCHAR},
+            #{ID,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR}
+        ) 
+    </insert>
+
+    <insert id="insertGxminHouseS" parameterType="java.util.HashMap">
+        INSERT INTO 
+            ZZ_GxminHouse_S
+        (
+            MARKING_CODE,TIME,HOUSE_DISTANCE,ERRO_RDESC,ID,STATUS,CODE
+        )  
+        VALUES(
+            #{MARKING_CODE,jdbcType=VARCHAR},#{TIME,jdbcType=VARCHAR},#{HOUSEDISTANCE,jdbcType=VARCHAR},#{ERRORDESC,jdbcType=VARCHAR},
+            #{ID,jdbcType=VARCHAR},#{STATUS,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR}
+        ) 
+    </insert>
+
+    <update id="updateGxminHouseS" parameterType="java.util.HashMap">
+        UPDATE
+            ZZ_GxminHouse_S
+        SET
+            MARKING_CODE=#{MARKING_CODE,jdbcType=VARCHAR},TIME=#{TIME,jdbcType=VARCHAR},HOUSE_DISTANCE=#{HOUSEDISTANCE,jdbcType=VARCHAR},ERRO_RDESC=#{ERRORDESC,jdbcType=VARCHAR},
+            ID=#{ID,jdbcType=VARCHAR},STATUS=#{STATUS,jdbcType=VARCHAR},CODE=#{CODE,jdbcType=VARCHAR}
+        WHERE
+            MARKING_CODE = #{MARKING_CODE,jdbcType=VARCHAR}
+    </update>
+
+    <!-- 根据markingCode查询数据实时表 -->
+    <select id="selectByCode" parameterType="String" resultType="java.util.HashMap">
+        SELECT
+            MARKING_CODE,TIME,HOUSE_DISTANCE,ERRO_RDESC,ID,STATUS,CODE
+        FROM
+            ZZ_GxminHouse_S
+        WHERE
+            MARKING_CODE = #{marking_cod}
+    </select>
+</mapper>

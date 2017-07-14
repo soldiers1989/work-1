@@ -1,0 +1,48 @@
+.RedPacket_img {
+  width: 100%;
+  height: auto
+}
+
+.RedPacket_left {
+  display: flex;
+  text-align: center;
+  height: 5rem;
+  background-color: #fff
+}
+
+.packet {
+  display: block;
+  text-align: center;
+  height: 1.5rem;
+  width: 6rem;
+  background-color: #f00;
+  margin: auto  ;
+}
+
+.packet_money {
+  text-align: center;
+  height: 1rem;
+  width: 6rem;
+  margin-Top: 20px
+}
+
+.big{
+  color: #fff;
+  font-size: 0.5rem;
+  line-height: 65px;
+}
+
+.yuan {
+  color: #fff;
+  font-size: 0.4rem;
+  line-height: 65px;
+  //margin-left: 30px
+}
+
+.packet_time {
+  text-align: center;
+  height: 0.4rem;
+  width: 6rem;
+  padding: 0px 10px 8px;
+  line-height: 25px
+}

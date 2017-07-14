@@ -1,0 +1,11 @@
+ NAME   String  失信被执行人姓名／名称
+ CARDNUM   String  身份证号码／组织机构代码
+ CASE_CODE   String  案号
+ COURT_NAME   String  执行法院
+ REG_DATE   String  立案时间(格式为YYYY-MM-DD)
+ EXEC_MONEY   String  执行标的
+
+ MARKING_CODE
+ID
+CREATE_TIME
+ZZ_UNDERTAKER

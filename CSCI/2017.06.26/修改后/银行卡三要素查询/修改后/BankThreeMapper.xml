@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.br.BankThreeMapper">
+    <insert id="insert" parameterType="java.util.HashMap">
+    INSERT INTO ZZ_BANKTHREE
+    (
+        ID,NAME,RESPCODE,COSTTIME,RESMSG,SID,BANKCARD,SWIFT_NUMBER,FLAG_BANKTHREE,
+        CODE,CREATE_TIME,MARKING_CODE
+    )
+    VALUES(
+        #{ID,jdbcType=VARCHAR},#{NAME,jdbcType=VARCHAR},#{RESPCODE,jdbcType=VARCHAR},
+        #{COSTTIME,jdbcType=VARCHAR},#{RESMSG,jdbcType=VARCHAR},#{SID,jdbcType=VARCHAR},
+        #{BANKCARD,jdbcType=VARCHAR},#{SWIFT_NUMBER,jdbcType=VARCHAR},#{FLAG_BANKTHREE,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR},#{CREATE_TIME,jdbcType=VARCHAR},#{MARKING_CODE,jdbcType=VARCHAR}
+        )                        
+    </insert>
+
+    <insert id="insertS" parameterType="java.util.HashMap">
+    INSERT INTO ZZ_BANKTHREE_S
+    (
+        ID,NAME,RESPCODE,COSTTIME,RESMSG,SID,BANKCARD,SWIFT_NUMBER,FLAG_BANKTHREE,CODE,CREATE_TIME,MARKING_CODE
+    )
+    VALUES(
+        #{ID,jdbcType=VARCHAR},#{NAME,jdbcType=VARCHAR},#{RESPCODE,jdbcType=VARCHAR},#{COSTTIME,jdbcType=VARCHAR},#{RESMSG,jdbcType=VARCHAR},#{SID,jdbcType=VARCHAR},#{BANKCARD,jdbcType=VARCHAR},#{SWIFT_NUMBER,jdbcType=VARCHAR},#{FLAG_BANKTHREE,jdbcType=VARCHAR},#{CODE,jdbcType=VARCHAR},#{CREATE_TIME,jdbcType=VARCHAR},#{MARKING_CODE,jdbcType=VARCHAR}
+        )                        
+    </insert>
+
+    <update id="updateS" parameterType="java.util.HashMap">
+        UPDATE
+            ZZ_BANKTHREE_S
+        SET
+            ID=#{ID,jdbcType=VARCHAR},NAME=#{NAME,jdbcType=VARCHAR},RESPCODE=#{RESPCODE,jdbcType=VARCHAR},
+            COSTTIME=#{COSTTIME,jdbcType=VARCHAR},RESMSG=#{RESMSG,jdbcType=VARCHAR},
+            SID=#{SID,jdbcType=VARCHAR},BANKCARD=#{BANKCARD,jdbcType=VARCHAR},
+            SWIFT_NUMBER=#{SWIFT_NUMBER,jdbcType=VARCHAR},FLAG_BANKTHREE=#{FLAG_BANKTHREE,jdbcType=VARCHAR},
+            CODE=#{CODE,jdbcType=VARCHAR},CREATE_TIME=#{CREATE_TIME,jdbcType=VARCHAR},
+            MARKING_CODE=#{MARKING_CODE,jdbcType=VARCHAR}
+        WHERE
+            MARKING_CODE = #{MARKING_CODE,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByCode" parameterType="String" resultType="java.util.HashMap">
+        SELECT
+             ID,NAME,RESPCODE,COSTTIME,RESMSG,SID,BANKCARD,SWIFT_NUMBER,FLAG_BANKTHREE,
+             CODE,CREATE_TIME,MARKING_CODE
+        FROM
+            ZZ_BANKTHREE_S
+        WHERE
+            MARKING_CODE = #{marking_cod}
+    </select>
+</mapper>

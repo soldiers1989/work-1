@@ -1,0 +1,91 @@
+
+https://cool-srv.com:9443/svn/spsp/src/
+
+
+git上的一个例子，只有一小部分，最初了解可以看看
+https://github.com/dvajs/dva
+
+
+
+
+
+ant-mobile的各种控件
+https://mobile.ant.design/components/list-view-cn/
+
+
+
+查看接口文档的网站
+http://222.73.202.237:8080/org/index.do          登录名和密码   wisetest/111111
+
+
+
+
+pc端的东西，也是接口
+222.73.203.71:8080      账号 ptyh/11111111
+qwwer qwer qwer 
+
+
+react全家桶
+http://blog.csdn.net/awaw00/article/details/54706052
+
+
+SVG条形码插件
+npm install jsbarcode --save
+二维码插件
+npm install --save qr-image
+
+npm install --save svgpath
+
+npm i json-server -g
+
+王亚娟 2017/7/4 15:28:03
+npm init
+2017/7/4 15:29:03
+王亚娟 2017/7/4 15:29:03
+npm run test
+
+npm install crypto
+
+//从缓存中读取
+// userInfo = sessionStorage.obj;
+//json转换为Object对象
+// reData = JSON.parse(userInfo);
+
+
+//图片上传
+npm install react react-dropzone superagent --save
+npm install Cropper 
+
+//获取控件里的时间
+var date = repairInfo.date1._d;
+date = date.toISOString().slice(0,10);
+console.log(date);
+
+
+this.props.location.pathname
+
+image:""
+
+npm install react-native-swRefresh
+
+npm install react-native
+
+15251739371
+data
+:
+Object
+msg
+:
+"保存成功"
+success
+:
+true
+
+this.props.form.resetFields();
+
+
+
+汇智APP账号：
+
+qwer1111    qwer1111
+qwer1234    qwer1234

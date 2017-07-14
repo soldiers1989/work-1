@@ -1,0 +1,33 @@
+https://localhost:8443/ZXpreposition/ltCtl/GxminHouse?sendTelNo=13122323358&longitude=31.1439900000&latitude=121.4245700000&merchantId=ZZTEST0516
+
+返回样例：
+
+{"code":"1000","msg":"查询成功","flag":"1","data":{"input":{"sendTelNo":"13122323358","longitude":"31.1439900000","latitude":"121.4245700000","orgCode":"zonzhen_soP9I","orgPwd":"BGpA7n+mngyI3mmG"},"output":{"MARKING_CODE":"a5699b19af844994aa16374e9d3ca446","TIME":"2017-06-15 18:11:19","ERRO_RDESC":"查询成功","ID":"8631a7f1ce0947798fe72cfb87f7ae68","STATUS":"1","HOUSE_DISTANCE":"5144","CODE":"00"}}}144
+{"code":"1000","msg":"查询成功","flag":"1","data":{"input":{"sendTelNo":"18616329213","longitude":"31.1439900000","latitude":"121.4245700000","orgCode":"zonzhen_soP9I","orgPwd":"BGpA7n+mngyI3mmG"},"output":{"MARKING_CODE":"b810bb62842f46c2ad16df63b29a8625","TIME":"2017-06-15 18:17:00","ERRO_RDESC":"查询成功","ID":"bb4e5b508e6b428aa5474efffb0788b1","STATUS":"1","HOUSE_DISTANCE":"5148","CODE":"00"}}}148
+{"merchantId":"ZZTEST0516","sendTelNo":"13122323358","longitude":"31.1439900000","latitude":"121.4245700000"}
+
+{RAID=ee88a91b232049e4b22f034705be68cc, API=GxminHouse, MERCHANT_ID=ZZTEST0516, TYPE=1, REQ_PARAM={"merchantId":"ZZTEST0516","sendTelNo":"13122323358","longitude":"31.1439900000","latitude":"121.4245700000"}}
+
+{"status":"1","code":"00","errorDesc":"查询成功","houseDistance":"5"}371
+
+{MARKING_CODE=a5699b19af844994aa16374e9d3ca446, TIME=2017-06-15 17:44:02, HOUSEDISTANCE=5371, ERRORDESC=查询成功, ID=ee88a91b232049e4b22f034705be68cc, STATUS=1, CODE=00}
+
+{
+    MARKING_CODE=a5699b19af844994aa16374e9d3ca446,
+    TIME=2017-06-1517: 44: 02,
+    HOUSEDISTANCE=5371,
+    ERRORDESC=查询成功,
+    ID=ee88a91b232049e4b22f034705be68cc,
+    STATUS=1,
+    CODE=00
+}
+
+表名：ZZ_GXMINHOUSE，ZZ_GXMINHOUSE_S
+
+MARKING_CODE
+TIME
+HOUSE_DISTANCE
+ERRO_RDESC
+ID
+STATUS
+CODE

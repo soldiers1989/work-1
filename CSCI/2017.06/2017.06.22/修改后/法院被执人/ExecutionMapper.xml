@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orm.mapper.zz.br.ExecutionMapper">
+    <insert id="insert" parameterType="java.util.HashMap">
+    INSERT INTO ZZ_EXECUTION VALUES(
+        #{MARKING_CODE},#{CREATE_TIME}, #{FLAG_EXECUTION,jdbcType=VARCHAR},#{EX_BAD1_NAME,jdbcType=VARCHAR}, #{EX_BAD1_CID,jdbcType=VARCHAR}, 
+        #{EX_BAD1_CIDTYPE,jdbcType=VARCHAR},#{EX_BAD1_DATATIME,jdbcType=VARCHAR}, #{EX_BAD1_DATATYPEID,jdbcType=VARCHAR}, 
+        #{EX_BAD1_DATATYPE,jdbcType=VARCHAR}, #{EX_BAD1_LEADER,jdbcType=VARCHAR}, #{EX_BAD1_ADDRESS,jdbcType=VARCHAR}, 
+        #{EX_BAD1_COURT,jdbcType=VARCHAR}, #{EX_BAD1_TIME,jdbcType=VARCHAR}, 
+        #{EX_BAD1_CASENUM,jdbcType=VARCHAR},#{EX_BAD1_MONEY,jdbcType=VARCHAR},#{EX_BAD1_BASE,jdbcType=VARCHAR}, 
+        #{EX_BAD1_BASECOMPANY,jdbcType=VARCHAR},#{EX_BAD1_OBLIGATION,jdbcType=VARCHAR},#{EX_BAD1_LASTTIME,jdbcType=VARCHAR},
+        #{EX_BAD1_PERFORMANCE,jdbcType=VARCHAR},#{EX_BAD1_CONCRETESITUATION,jdbcType=VARCHAR},#{EX_BAD1_BREAKTIME,jdbcType=VARCHAR}, 
+        #{EX_BAD1_POSTTIME,jdbcType=VARCHAR},#{EX_BAD1_PERFORMEDPART,jdbcType=VARCHAR},#{EX_BAD1_UNPERFORMPART,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_NAME,jdbcType=VARCHAR},#{EX_EXECUT1_CID,jdbcType=VARCHAR},#{EX_EXECUT1_CIDTYPE,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_DATATIME,jdbcType=VARCHAR},#{EX_EXECUT1_DATATYPEID,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_DATATYPE,jdbcType=VARCHAR},#{EX_EXECUT1_COURT,jdbcType=VARCHAR},#{EX_EXECUT1_TIME,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_CASENUM,jdbcType=VARCHAR},#{EX_EXECUT1_MONEY,jdbcType=VARCHAR},#{EX_EXECUT1_STATUTE,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_BASIC,jdbcType=VARCHAR},#{EX_EXECUT1_BASICCOURT,jdbcType=VARCHAR},#{id_card},#{identification})                        
+    </insert>
+
+    <delete id="deleteExecutionS" parameterType="java.util.HashMap">
+        DELETE 
+        FROM ZZ_EXECUTION_S  
+        WHERE MARKING_CODE = #{MARKING_CODE}                       
+    </delete>
+
+    <insert id="insertExecutionS" parameterType="java.util.HashMap">
+    INSERT INTO ZZ_EXECUTION_S VALUES(
+        #{MARKING_CODE},#{CREATE_TIME}, #{FLAG_EXECUTION,jdbcType=VARCHAR},#{EX_BAD1_NAME,jdbcType=VARCHAR}, #{EX_BAD1_CID,jdbcType=VARCHAR}, 
+        #{EX_BAD1_CIDTYPE,jdbcType=VARCHAR},#{EX_BAD1_DATATIME,jdbcType=VARCHAR}, #{EX_BAD1_DATATYPEID,jdbcType=VARCHAR}, 
+        #{EX_BAD1_DATATYPE,jdbcType=VARCHAR}, #{EX_BAD1_LEADER,jdbcType=VARCHAR}, #{EX_BAD1_ADDRESS,jdbcType=VARCHAR}, 
+        #{EX_BAD1_COURT,jdbcType=VARCHAR}, #{EX_BAD1_TIME,jdbcType=VARCHAR}, 
+        #{EX_BAD1_CASENUM,jdbcType=VARCHAR},#{EX_BAD1_MONEY,jdbcType=VARCHAR},#{EX_BAD1_BASE,jdbcType=VARCHAR}, 
+        #{EX_BAD1_BASECOMPANY,jdbcType=VARCHAR},#{EX_BAD1_OBLIGATION,jdbcType=VARCHAR},#{EX_BAD1_LASTTIME,jdbcType=VARCHAR},
+        #{EX_BAD1_PERFORMANCE,jdbcType=VARCHAR},#{EX_BAD1_CONCRETESITUATION,jdbcType=VARCHAR},#{EX_BAD1_BREAKTIME,jdbcType=VARCHAR}, 
+        #{EX_BAD1_POSTTIME,jdbcType=VARCHAR},#{EX_BAD1_PERFORMEDPART,jdbcType=VARCHAR},#{EX_BAD1_UNPERFORMPART,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_NAME,jdbcType=VARCHAR},#{EX_EXECUT1_CID,jdbcType=VARCHAR},#{EX_EXECUT1_CIDTYPE,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_DATATIME,jdbcType=VARCHAR},#{EX_EXECUT1_DATATYPEID,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_DATATYPE,jdbcType=VARCHAR},#{EX_EXECUT1_COURT,jdbcType=VARCHAR},#{EX_EXECUT1_TIME,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_CASENUM,jdbcType=VARCHAR},#{EX_EXECUT1_MONEY,jdbcType=VARCHAR},#{EX_EXECUT1_STATUTE,jdbcType=VARCHAR}, 
+        #{EX_EXECUT1_BASIC,jdbcType=VARCHAR},#{EX_EXECUT1_BASICCOURT,jdbcType=VARCHAR},#{id_card},#{identification})                        
+    </insert>
+
+    <select id="selectByCode" parameterType="String" resultType="java.util.HashMap">
+        SELECT * FROM
+            ZZ_EXECUTION_S
+        WHERE
+            MARKING_CODE = #{marking_cod}
+    </select>
+</mapper>

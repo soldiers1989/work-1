@@ -1,0 +1,3 @@
+https://localhost:8443/ZXpreposition/bRCtl/getIdTwo_photo?id=32058219810425261X&cell=13812380009&merchantId=ZZTEST0516&name=赵建国
+
+https://localhost:8443/ZXpreposition/bRCtl/getIdTwo_photo?id=362233199502270514&cell=18721367130&merchantId=ZZTEST0516&name=李应
