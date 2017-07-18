@@ -1,0 +1,42 @@
+import axios from 'axios';
+import Qs from 'qs';
+import crypto from  'crypto';
+
+ axios.get(config.validRedPacketUrl).then(function(response){//从配置文件中读取url，GET请求
+      console.log(config.validRedPacketUrl);
+      console.log("validRedPacketUrl response",response);
+      validInfoList = [];
+      var dataList = response.data;
+      for (var i=0; i<dataList.length; i++){
+        validInfoList.push(dataList[i]);
+      }
+      console.log("validInfoList",validInfoList);
+
+    });
+
+    var data = {
+      cardNo: '00199000008989',
+      memberNo: 'ptyh'
+    };
+    axios.post(config.cardBalanceUrl,Qs.stringify(data)).then(function(response){//从配置文件中读取url，GET请求
+      console.log("cardBalanceUrl response",response);
+    //   var dataList = response.data.result;
+    //   console.log("infoList",infoList);
+    //   for (var i=0; i<dataList.length; i++){
+    //     infoList.push(dataList[i]);
+    //   }
+    });
+
+
+    //MD5加密
+        var sign = crypto.createHash('md5').update(pwd,'').digest('hex');
+
+        componentDidMount(){
+    console.log("componentDidMount",infoList);
+    this.setState({
+      infoList: infoList
+    })
+  }
+  componentDidUpdate(){
+    console.log("componentDidUpdate",this.state.infoList);
+  }

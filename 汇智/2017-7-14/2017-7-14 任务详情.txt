@@ -21,4 +21,61 @@
 10、交易明细
 （已完成接口测试）
 
-11
+11、引导页飘红
+（已解决）
+
+12、物业报修/IT报修
+
+区域：
+
+园区：
+http://222.73.203.71:8080/Setting/Park/0/0
+
+楼宇：
+http://222.73.203.71:8080/Setting/Building/BuildingByParkId/0/0/1
+
+报修类型：
+
+物业报修：
+
+父类：
+http://222.73.203.71:8080/Setting/SettingDict/ParentIdExceptTop/List/0/0?type=repairsCommFlag
+
+子类：
+http://222.73.203.71:8080/Setting/SettingDict/ParentId/0/0/231
+
+IT报修：
+
+父类：
+http://222.73.203.71:8080/Setting/SettingDict/ParentIdExceptTop/List/0/0?type=ITrepairsFlag
+
+提交地址：
+http://222.73.203.71:8080/UserRepair/Add
+
+
+repairType  报修类型    number
+photo_url   图片路径    string
+descriptionConfm    描述修正    string
+company 公司名称    string
+description 描述  string
+address 报修地址    string
+parkId  所属园区ID  string
+appointDate 预约时间    string
+repairTypeConfm 受理人确认的报修类型  number
+contact 座机电话    number
+mobile  手机号码    string
+applicant   报修申请人ID string
+memo    备注  string
+voice_url   声音文件地址  string
+buildingId  楼宇ID    string
+createDate  报修时间    number
+acceptDate  受理时间    number
+typeId 报修类型ID  string
+
+Object{
+    contact: "18516518312",
+    company: "kufu",
+    fixedPhone: "121 2323 2233",
+    area: Array(2),
+    address: undefined…
+}address: undefinedarea: Array(2)company: "kufu"contact: "18516518312"date1: Momentdescription: "qwqwwewewrw"fixedPhone: "121 2323 2233"memo: "12132131231"repairType: Array(2)0: 2231: 403

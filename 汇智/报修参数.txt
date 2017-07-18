@@ -1,0 +1,33 @@
+repairType  报修类型    number
+photo_url   图片路径    string
+    descriptionConfm    描述修正    string
+company 公司名称    string
+description 描述  string
+address 报修地址    string
+parkId  所属园区ID  string
+appointDate 预约时间    string
+    repairTypeConfm 受理人确认的报修类型  number
+contact 座机电话    number
+mobile  手机号码    string
+applicant   报修申请人ID string
+memo    备注  string
+voice_url   声音文件地址  string
+buildingId  楼宇ID    string
+    createDate  报修时间    number
+    acceptDate  受理时间    number
+typeId  报修类型ID  string
+
+repairType: repairType,
+company: company,
+description:description,
+address:address,
+parkId:parkId,
+buildingId:buildingId,
+repairTypeParent:repairTypeParent,
+contact:fixPhone,
+mobile:phone,
+applicant:applicant,
+memo:memo,
+typeId:typeId,
+appointDate:appointDate,
+photo_url:''

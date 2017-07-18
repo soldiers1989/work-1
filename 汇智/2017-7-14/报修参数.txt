@@ -1,0 +1,67 @@
+repairType  报修类型    number
+photo_url   图片路径    string
+descriptionConfm    描述修正    string
+company 公司名称    string
+description 描述  string
+address 报修地址    string
+parkId  所属园区ID  string
+appointDate 预约时间    string
+repairTypeConfm 受理人确认的报修类型  number
+contact 座机电话    number
+mobile  手机号码    string
+applicant   报修申请人ID string
+memo    备注  string
+voice_url   声音文件地址  string
+buildingId  楼宇ID    string
+createDate  报修时间    number
+acceptDate  受理时间    number
+typeId 报修类型ID  string
+
+repairType: repairType,
+company: company,
+description:description,
+address:address,
+parkId:parkId,
+buildingId:buildingId,
+repairTypeConfm:repairTypeConfm,
+contact:fixPhone,
+mobile:phone,
+applicant:applicant,
+memo:memo,
+createDate:createDate,
+typeId:typeId,
+acceptDate:'',
+voice_url:'',
+appointDate:'',
+descriptionConfm:'',
+photo_url:''
+
+repairType: "403",
+company: "上海浦东软件园股份有限公司",
+description:"啊啊啊",
+address:"啊啊啊",
+parkId:"1",
+buildingId:"46",
+repairTypeParent:"223",
+contact:"11111111",
+mobile:"11111111111",
+applicant:"ptyh",
+memo:"",
+typeId:"1",
+appointDate:"2017/7/16+16:19:24",
+photo_url:""
+
+repairType: repairType,
+company: company,
+description:description,
+address:address,
+parkId:parkId,
+buildingId:buildingId,
+repairTypeParent:repairTypeParent,
+contact:fixPhone,
+mobile:phone,
+applicant:applicant,
+memo:memo,
+typeId:typeId,
+appointDate:createDate,
+photo_url:''
