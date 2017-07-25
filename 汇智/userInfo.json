@@ -3,11 +3,11 @@
     "name": "传说中的秒杀一切（后台获取）",
     "realName": "普通用户",
     "createDate": "2016-08-24 09:00:00",
-    "updateDate": "2017-07-18 13:43:07",
-    "sex": 1,
+    "updateDate": "2017-07-20 16:39:24",
+    "sex": 2,
     "birthday": "2017-07-17",
     "enterpriseInput": "kufu",
-    "workYears": 0,
+    "workYears": 5,
     "settingNation": {
         "objectid": 6,
         "name": "中国",
@@ -69,7 +69,7 @@
     },
     "education": 353,
     "marital": 1,
-    "cardid": "009900001037",
+    "cardid": "0000019900000378",
     "phone": "11111111111",
     "email": null,
     "memberCode": "814987924531250124",
@@ -77,20 +77,14 @@
     "userFace": "/static/uploads/images/20170718/cut20170718102857835.jpg",
     "roleList": [
         {
-            "rolename": "TeneAdmin",
-            "name": "物业管理员",
-            "memo": "物业管理员",
+            "rolename": "Common",
+            "name": "普通用户",
+            "memo": "普通用户",
             "permissionList": [
                 {
-                    "objectid": 205,
-                    "name": "服务设置",
-                    "url": "/admin/serviceSetting.html",
-                    "memo": ""
-                },
-                {
-                    "objectid": 491,
-                    "name": "报修类型数据字典",
-                    "url": "/Setting/SettingDict/ParentIdExceptTop/List",
+                    "objectid": 390,
+                    "name": "查看后台商户优惠信息",
+                    "url": "/Setting/MerchantSale/Edit",
                     "memo": ""
                 },
                 {
@@ -100,120 +94,45 @@
                     "memo": ""
                 },
                 {
-                    "objectid": 100,
-                    "name": "查看数据字典列表",
-                    "url": "/Setting/SettingDict",
-                    "memo": "后台、前台-配置管理"
-                },
-                {
-                    "objectid": 515,
-                    "name": "按部门搜索维修人员",
-                    "url": "/Setting/SettingMaintainer/Role/List",
+                    "objectid": 438,
+                    "name": "显示历史审批意见",
+                    "url": "/workflow/api/taskinstances/history/opinion/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 76,
-                    "name": "查看维修人员信息",
-                    "url": "/Setting/SettingMaintainer/List",
-                    "memo": "后台、前台-维修人员块管理"
-                }
-            ],
-            "permissionArray": null,
-            "isShow": 1
-        },
-        {
-            "rolename": "Common",
-            "name": "普通用户",
-            "memo": "普通用户",
-            "permissionList": [
-                {
-                    "objectid": 348,
-                    "name": "删除入驻申请信息",
-                    "url": "/Setting/EnterApply/Delete",
-                    "memo": ""
+                    "objectid": 139,
+                    "name": "普通用户忘记密码第一步",
+                    "url": "/Setting/User/ForgetPasswordStepOne",
+                    "memo": "前台-会员中心"
                 },
                 {
-                    "objectid": 356,
-                    "name": "查看登录信息",
-                    "url": "/Setting/LoginLog/Edit",
-                    "memo": ""
+                    "objectid": 18,
+                    "name": "添加通知",
+                    "url": "/Notification/Add",
+                    "memo": "前台-通知管理"
                 },
                 {
-                    "objectid": 486,
-                    "name": "通知得到未读数量",
-                    "url": "/Notification/GetUnReadCount",
-                    "memo": ""
+                    "objectid": 33,
+                    "name": "删除报修",
+                    "url": "/UserRepair/Delete",
+                    "memo": "前台-报修管理"
                 },
                 {
-                    "objectid": 321,
-                    "name": "更新职位",
-                    "url": "/Jobs/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 492,
-                    "name": "显示当前审批意见",
-                    "url": "/workflow/api/taskinstances/curent",
-                    "memo": ""
-                },
-                {
-                    "objectid": 503,
-                    "name": "商户统计",
-                    "url": "/Setting/Merchant/StatisticsGraphData",
-                    "memo": ""
-                },
-                {
-                    "objectid": 445,
-                    "name": "入驻申请更新",
-                    "url": "/Setting/EnterApply/Special/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 167,
-                    "name": "新增业务",
-                    "url": "/workflow/api/create",
-                    "memo": null
-                },
-                {
-                    "objectid": 468,
-                    "name": "是否完善资料",
-                    "url": "/Setting/User/IsCompleteInfo",
-                    "memo": ""
-                },
-                {
-                    "objectid": 340,
-                    "name": "查看可用会议室列表",
-                    "url": "/Mettingroom/Mettingroom/Enable/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 366,
-                    "name": "列表商户评价互动信息",
-                    "url": "/Setting/MerchantComment/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 598,
-                    "name": "汇智卡公告查看",
-                    "url": "/Payment/Annoucement/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 42,
-                    "name": "查询楼宇",
-                    "url": "/Setting/Building/getBuildingByParkId",
+                    "objectid": 94,
+                    "name": "城市信息列表",
+                    "url": "/Setting/SettingCity",
                     "memo": "后台-配置管理"
                 },
                 {
-                    "objectid": 152,
-                    "name": "绑定企业",
-                    "url": "/Setting/User/IsBindEnterprise",
-                    "memo": null
+                    "objectid": 115,
+                    "name": "查看富文本",
+                    "url": "/Setting/RichText/Edit",
+                    "memo": "后台-富文本管理"
                 },
                 {
-                    "objectid": 399,
-                    "name": "查看须知信息",
-                    "url": "/Setting/Readme/Type/Edit",
+                    "objectid": 402,
+                    "name": "删除须知信息",
+                    "url": "/Setting/Readme/Delete",
                     "memo": ""
                 },
                 {
@@ -223,309 +142,27 @@
                     "memo": ""
                 },
                 {
-                    "objectid": 23,
-                    "name": "校验验证码",
-                    "url": "/Public/Phone/Validate",
-                    "memo": "公用-验证码"
-                },
-                {
-                    "objectid": 436,
-                    "name": "新增优惠信息",
-                    "url": "/Setting/MerchantSale/Add",
+                    "objectid": 528,
+                    "name": "通知回应未读数",
+                    "url": "/Notification/ReplyList/GetUnReadCount",
                     "memo": ""
                 },
                 {
-                    "objectid": 556,
-                    "name": "服务次数统计",
-                    "url": "/workflow/api/pistatbytype",
+                    "objectid": 360,
+                    "name": "列表后台管理菜单信息",
+                    "url": "/Setting/MenuAdmin/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 297,
-                    "name": "更新猎聘申请",
-                    "url": "/Headhunting/UserHeadhunting/Update",
+                    "objectid": 245,
+                    "name": "删除教室",
+                    "url": "/Classroom/UserClassroomApply/Delete",
                     "memo": ""
                 },
                 {
-                    "objectid": 177,
-                    "name": "逾期统计-总数",
-                    "url": "/workflow/api/duestatcount",
-                    "memo": null
-                },
-                {
-                    "objectid": 249,
-                    "name": "更新教室申请",
-                    "url": "/Classroom/UserClassroom/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 355,
-                    "name": "删除登录信息",
-                    "url": "/Setting/LoginLog/Del",
-                    "memo": ""
-                },
-                {
-                    "objectid": 505,
-                    "name": "后台商户审核列表",
-                    "url": "/Setting/Merchant/Auth/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 346,
-                    "name": "查看教室确认列表",
-                    "url": "/Mettingroom/UserMeetingroomVerify/Itinerary/Find",
-                    "memo": ""
-                },
-                {
-                    "objectid": 376,
-                    "name": "删除商户点评信息",
-                    "url": "/Setting/MerchantEvaluate/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 576,
-                    "name": "汇智卡企业申请查看",
-                    "url": "/CardApply/Enterprise/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 169,
-                    "name": "执行流转",
-                    "url": "/workflow/api/newTransfer",
-                    "memo": null
-                },
-                {
-                    "objectid": 314,
-                    "name": "查看孵化注册预约列表",
-                    "url": "/Incubator/UserIncubator/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 311,
-                    "name": "沉寂卡总数统计",
-                    "url": "/Payment/SleepCardStatistic",
-                    "memo": ""
-                },
-                {
-                    "objectid": 315,
-                    "name": "我的孵化注册预约列表",
-                    "url": "/Incubator/UserIncubator/My/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 319,
-                    "name": "编辑孵化预约",
-                    "url": "/Incubator/UserIncubator/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 466,
-                    "name": "查看自动评价更新",
-                    "url": "/Setting/SettingAutoComment/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 243,
-                    "name": "查看教室申请列表",
-                    "url": "/Classroom/UserClassroomApply/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 541,
-                    "name": "首页静态生成",
-                    "url": "/Setting/Index/Create",
-                    "memo": ""
-                },
-                {
-                    "objectid": 370,
-                    "name": "删除后台商户管理信息",
-                    "url": "/Setting/Merchant/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 172,
-                    "name": "获取下一步所有任务节点",
-                    "url": "/workflow/api/tasks/next/list",
-                    "memo": null
-                },
-                {
-                    "objectid": 428,
-                    "name": "绑定邮箱",
-                    "url": "/SysEmail/SendAuthEmail",
-                    "memo": "前台-安全设置"
-                },
-                {
-                    "objectid": 139,
-                    "name": "普通用户忘记密码第一步",
-                    "url": "/Setting/User/ForgetPasswordStepOne",
-                    "memo": "前台-会员中心"
-                },
-                {
-                    "objectid": 437,
-                    "name": "商户信息",
-                    "url": "/Setting/Merchant/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 91,
-                    "name": "查看服务信息",
-                    "url": "/Setting/SettingAbout",
-                    "memo": "后台、前台-服务信息块管理"
-                },
-                {
-                    "objectid": 251,
-                    "name": "删除教室申请",
-                    "url": "/Classroom/UserClassroom/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 266,
-                    "name": "添加课程",
-                    "url": "/Cultivate/Course/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 257,
-                    "name": "编辑教室",
-                    "url": "/Classroom/UserClassroomVerify/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 310,
-                    "name": "电子钱包统计",
-                    "url": "/Payment/EWalletStatistic",
-                    "memo": ""
-                },
-                {
-                    "objectid": 448,
-                    "name": "帮助中心列表",
-                    "url": "/Setting/SettingHelps",
-                    "memo": ""
-                },
-                {
-                    "objectid": 387,
-                    "name": "添加商户广告管理信息",
-                    "url": "/Setting/MerchantReplySet/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 361,
-                    "name": "添加后台管理菜单信息",
-                    "url": "/Setting/MenuAdmin/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 395,
-                    "name": "列表后台商户优惠缩略图信息",
-                    "url": "/Setting/MerchantSaleThumbs/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 26,
-                    "name": "查看派工",
-                    "url": "/UserRepairAssign",
-                    "memo": "后台-报修管理"
-                },
-                {
-                    "objectid": 403,
-                    "name": "查看须知信息",
-                    "url": "/Setting/Readme/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 454,
-                    "name": "生成验证码",
-                    "url": "/WiseAuth/AuthImageServlet",
-                    "memo": ""
-                },
-                {
-                    "objectid": 388,
-                    "name": "获取商户优惠搜索菜单",
-                    "url": "/Setting/MerchantSale/GetSearchMenu",
-                    "memo": ""
-                },
-                {
-                    "objectid": 571,
-                    "name": "汇智卡个人申请更新",
-                    "url": "/CardApply/Person/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 260,
-                    "name": "更新著作权登记",
-                    "url": "/Copyright/UserCopyright/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 409,
-                    "name": "添加测试申请",
-                    "url": "/TestApplyfor/UserTestApplyfor/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 393,
-                    "name": "删除后台商户优惠缩略图信息",
-                    "url": "/Setting/MerchantSaleThumbs/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 18,
-                    "name": "添加通知",
-                    "url": "/Notification/Add",
-                    "memo": "前台-通知管理"
-                },
-                {
-                    "objectid": 13,
-                    "name": "查看评论",
-                    "url": "/Comment/Info",
-                    "memo": "前台-评论管理"
-                },
-                {
-                    "objectid": 540,
-                    "name": "微信端更新头像",
-                    "url": "/Setting/User/UpdateAvar",
-                    "memo": ""
-                },
-                {
-                    "objectid": 162,
-                    "name": "新增短信模板",
-                    "url": "/workflow/api/messagetemplates/",
-                    "memo": null
-                },
-                {
-                    "objectid": 11,
-                    "name": "删除评论",
-                    "url": "/Comment/Delete",
-                    "memo": "前台-评论管理"
-                },
-                {
-                    "objectid": 465,
-                    "name": "查看自动评价详情",
-                    "url": "/Setting/SettingAutoComment/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 65,
-                    "name": "新增流程完成信息",
-                    "url": "/Setting/RepairCompleteInfo/Add",
-                    "memo": "前台-流程"
-                },
-                {
-                    "objectid": 4,
-                    "name": "添加附件",
-                    "url": "/Attachment/Add",
-                    "memo": "前台-附件管理"
-                },
-                {
-                    "objectid": 20,
-                    "name": "删除通知",
-                    "url": "/Notification/Delete",
-                    "memo": "前台-通知管理"
-                },
-                {
-                    "objectid": 411,
-                    "name": "编辑测试申请",
-                    "url": "/TestApplyfor/UserTestApplyfor/Edit",
+                    "objectid": 354,
+                    "name": "列表商户广告管理信息",
+                    "url": "/Setting/LivingCenterAdver/List",
                     "memo": ""
                 },
                 {
@@ -535,82 +172,52 @@
                     "memo": "前台-通知管理"
                 },
                 {
-                    "objectid": 577,
-                    "name": "汇智卡企业申请更新",
-                    "url": "/CardApply/Enterprise/Update",
+                    "objectid": 608,
+                    "name": "游船取消预约",
+                    "url": "/HuizhiBoat/BoatApply/Del",
                     "memo": ""
                 },
                 {
-                    "objectid": 10,
-                    "name": "更新评论",
-                    "url": "/Comment/Update",
-                    "memo": "前台-评论管理"
-                },
-                {
-                    "objectid": 279,
-                    "name": "查看企业培训申请列表",
-                    "url": "/EnterpriseCultivate/EnterpriseCultivate/List",
+                    "objectid": 447,
+                    "name": "查看商户回应列表",
+                    "url": "/Notification/ReplyList",
                     "memo": ""
                 },
                 {
-                    "objectid": 296,
-                    "name": "查看猎聘申请列表",
-                    "url": "/Headhunting/UserHeadhunting/List",
+                    "objectid": 229,
+                    "name": "查看广告服务申请列表",
+                    "url": "/Commercialize/UserCommercialize/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 230,
-                    "name": "查看我的广告服务申请列表",
-                    "url": "/Commercialize/UserCommercialize/My/List",
+                    "objectid": 146,
+                    "name": "新增用户申请",
+                    "url": "/Setting/UserEnterpriseApplyInfo/Add",
+                    "memo": "前台-用户中心"
+                },
+                {
+                    "objectid": 248,
+                    "name": "查看教室申请列表",
+                    "url": "/Classroom/UserClassroom/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 349,
-                    "name": "查看入驻申请信息",
-                    "url": "/Setting/EnterApply/Edit",
+                    "objectid": 303,
+                    "name": "添加房间",
+                    "url": "/House/Add",
                     "memo": ""
                 },
                 {
-                    "objectid": 213,
-                    "name": "查看著作权登记申请",
-                    "url": "/Copyright/UserCopyright/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 55,
-                    "name": "编辑企业",
-                    "url": "/Setting/Enterprise/EnterpriseInfo",
-                    "memo": "后台-企业管理"
-                },
-                {
-                    "objectid": 575,
-                    "name": "汇智卡企业申请列表",
-                    "url": "/CardApply/Enterprise/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 160,
-                    "name": "我的业务",
-                    "url": "/workflow/api/processinstances/my_apply/list",
+                    "objectid": 179,
+                    "name": "退回上一步",
+                    "url": "/workflow/api/sendback",
                     "memo": null
                 },
                 {
-                    "objectid": 323,
-                    "name": "删除职位",
-                    "url": "/Jobs/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 242,
-                    "name": "查看可用教室列表",
-                    "url": "/Classroom/Classroom/Enable/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 580,
-                    "name": "汇智卡本企业申请列表",
-                    "url": "/CardApply/Enterprise/Me/List",
-                    "memo": ""
+                    "objectid": 21,
+                    "name": "编辑通知",
+                    "url": "/Notification/Edit",
+                    "memo": "前台-通知管理"
                 },
                 {
                     "objectid": 164,
@@ -619,21 +226,255 @@
                     "memo": null
                 },
                 {
-                    "objectid": 482,
-                    "name": "商户回复",
-                    "url": "/Setting/MerchantReply/Add",
+                    "objectid": 486,
+                    "name": "通知得到未读数量",
+                    "url": "/Notification/GetUnReadCount",
                     "memo": ""
                 },
                 {
-                    "objectid": 254,
-                    "name": "查看教室确认列表",
-                    "url": "/Classroom/UserClassroomVerify/List",
+                    "objectid": 171,
+                    "name": "获取下一步处理人员",
+                    "url": "/workflow/api/user/task/list",
+                    "memo": null
+                },
+                {
+                    "objectid": 407,
+                    "name": "查看测试申请列表",
+                    "url": "/TestApplyfor/UserTestApplyfor/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 555,
-                    "name": "职位申请全部列表",
-                    "url": "/Jobs/UserJobs/Apply/All/List",
+                    "objectid": 565,
+                    "name": "用户有效红包列表",
+                    "url": "/RedPacket/User/Valid/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 556,
+                    "name": "服务次数统计",
+                    "url": "/workflow/api/pistatbytype",
+                    "memo": ""
+                },
+                {
+                    "objectid": 65,
+                    "name": "新增流程完成信息",
+                    "url": "/Setting/RepairCompleteInfo/Add",
+                    "memo": "前台-流程"
+                },
+                {
+                    "objectid": 319,
+                    "name": "编辑孵化预约",
+                    "url": "/Incubator/UserIncubator/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 267,
+                    "name": "删除课程",
+                    "url": "/Cultivate/Course/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 77,
+                    "name": "新增维修人员",
+                    "url": "/Setting/SettingMaintainer/Add",
+                    "memo": "后台、前台-维修人员块管理"
+                },
+                {
+                    "objectid": 452,
+                    "name": "添加入驻项目经理处理信息",
+                    "url": "/Setting/EnterApplyBusiness/Discuss/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 509,
+                    "name": "新版汇智卡支付",
+                    "url": "/BizPayment/CardReCharge",
+                    "memo": ""
+                },
+                {
+                    "objectid": 491,
+                    "name": "报修类型数据字典",
+                    "url": "/Setting/SettingDict/ParentIdExceptTop/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 165,
+                    "name": "我的经办",
+                    "url": "/workflow/api/processinstances/my_done/list",
+                    "memo": null
+                },
+                {
+                    "objectid": 314,
+                    "name": "查看孵化注册预约列表",
+                    "url": "/Incubator/UserIncubator/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 369,
+                    "name": "获取商户搜索菜单",
+                    "url": "/Setting/Merchant/GetSearchLivingMenu",
+                    "memo": ""
+                },
+                {
+                    "objectid": 97,
+                    "name": "根据parentID查询城市列表",
+                    "url": "/Setting/SettingCity/ParentId",
+                    "memo": "前台-城市信息列表"
+                },
+                {
+                    "objectid": 329,
+                    "name": "更新职位申请",
+                    "url": "/Jobs/UserJobs/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 448,
+                    "name": "帮助中心列表",
+                    "url": "/Setting/SettingHelps",
+                    "memo": ""
+                },
+                {
+                    "objectid": 301,
+                    "name": "查看房间列表",
+                    "url": "/House/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 175,
+                    "name": "服务统计",
+                    "url": "/workflow/api/pistatcount",
+                    "memo": null
+                },
+                {
+                    "objectid": 159,
+                    "name": "楼宇列表",
+                    "url": "/Setting/Building/BuildingByParkId",
+                    "memo": null
+                },
+                {
+                    "objectid": 136,
+                    "name": "企业管理员删除内部用户",
+                    "url": "/Setting/User/EnterpriseBind/Delete",
+                    "memo": "企业管理-用户管理"
+                },
+                {
+                    "objectid": 288,
+                    "name": "删除企业培训项目申请",
+                    "url": "/EnterpristCultivate/EnterpristCultivateProject/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 554,
+                    "name": "课程全部报名列表",
+                    "url": "/Cultivate/UserCultivate/Apply/All/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 234,
+                    "name": "编辑广告服务申请",
+                    "url": "/Commercialize/UserCommercialize/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 492,
+                    "name": "显示当前审批意见",
+                    "url": "/workflow/api/taskinstances/curent",
+                    "memo": ""
+                },
+                {
+                    "objectid": 264,
+                    "name": "查看课程列表",
+                    "url": "/Cultivate/Course/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 169,
+                    "name": "执行流转",
+                    "url": "/workflow/api/newTransfer",
+                    "memo": null
+                },
+                {
+                    "objectid": 287,
+                    "name": "添加企业培训项目申请",
+                    "url": "/EnterpristCultivate/EnterpristCultivateProject/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 405,
+                    "name": "查看培训需求项目数据字典列表",
+                    "url": "/Setting/SettingDict/cultivateProject/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 126,
+                    "name": "所有注册用户数",
+                    "url": "/Setting/User/TotalUser",
+                    "memo": "前台-数据统计"
+                },
+                {
+                    "objectid": 289,
+                    "name": "编辑企业培训项目申请",
+                    "url": "/EnterpristCultivate/EnterpristCultivateProject/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 411,
+                    "name": "编辑测试申请",
+                    "url": "/TestApplyfor/UserTestApplyfor/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 553,
+                    "name": "导出全部报名情况",
+                    "url": "/Cultivate/UserCultivate/Export/List/All",
+                    "memo": ""
+                },
+                {
+                    "objectid": 133,
+                    "name": "用户修改头像",
+                    "url": "/Setting/User/UpdateUserFace",
+                    "memo": "公共-用户中心"
+                },
+                {
+                    "objectid": 215,
+                    "name": "查看猎聘职位详情",
+                    "url": "/Headhunting/HeadhuntingJobs/HeadhuntingJobs/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 484,
+                    "name": "数据字典顶级菜单",
+                    "url": "/Setting/SettingDict/Top/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 381,
+                    "name": "查看商户回复互动信息",
+                    "url": "/Setting/MerchantReply/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 374,
+                    "name": "商户热度",
+                    "url": "/Setting/Merchant/Activity",
+                    "memo": ""
+                },
+                {
+                    "objectid": 26,
+                    "name": "查看派工",
+                    "url": "/UserRepairAssign",
+                    "memo": "后台-报修管理"
+                },
+                {
+                    "objectid": 69,
+                    "name": "更新报修信息",
+                    "url": "/Setting/SettingRepairComment/Update",
+                    "memo": "后台、前台-报修信息块管理"
+                },
+                {
+                    "objectid": 370,
+                    "name": "删除后台商户管理信息",
+                    "url": "/Setting/Merchant/Delete",
                     "memo": ""
                 },
                 {
@@ -643,15 +484,1611 @@
                     "memo": "后台、前台-配置管理"
                 },
                 {
+                    "objectid": 393,
+                    "name": "删除后台商户优惠缩略图信息",
+                    "url": "/Setting/MerchantSaleThumbs/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 375,
+                    "name": "查看后台商户状态信息",
+                    "url": "/Setting/Merchant/Status",
+                    "memo": ""
+                },
+                {
+                    "objectid": 298,
+                    "name": "添加猎聘申请",
+                    "url": "/Headhunting/UserHeadhunting/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 331,
+                    "name": "删除职位申请",
+                    "url": "/Jobs/UserJobs/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 167,
+                    "name": "新增业务",
+                    "url": "/workflow/api/create",
+                    "memo": null
+                },
+                {
+                    "objectid": 511,
+                    "name": "新版汇智卡余额查询",
+                    "url": "/BizPayment/QueryCardBalance",
+                    "memo": ""
+                },
+                {
+                    "objectid": 386,
+                    "name": "列表商户广告管理信息",
+                    "url": "/Setting/MerchantReplySet/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 445,
+                    "name": "入驻申请更新",
+                    "url": "/Setting/EnterApply/Special/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 340,
+                    "name": "查看可用会议室列表",
+                    "url": "/Mettingroom/Mettingroom/Enable/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 155,
+                    "name": "企业管理员",
+                    "url": "/Setting/User/EnterpriseAdminShowUser",
+                    "memo": null
+                },
+                {
+                    "objectid": 436,
+                    "name": "新增优惠信息",
+                    "url": "/Setting/MerchantSale/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 482,
+                    "name": "商户回复",
+                    "url": "/Setting/MerchantReply/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 261,
+                    "name": "添加著作权登记",
+                    "url": "/Copyright/UserCopyright/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 304,
+                    "name": "删除房间",
+                    "url": "/House/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 257,
+                    "name": "编辑教室",
+                    "url": "/Classroom/UserClassroomVerify/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 184,
+                    "name": "富文本",
+                    "url": "/Setting/RichText/Special",
+                    "memo": null
+                },
+                {
+                    "objectid": 73,
+                    "name": "查看单个报修自动分配信息",
+                    "url": "/Setting/SettingAutoDispatch/Edit",
+                    "memo": "后台、前台-报修自动分配信息块管理"
+                },
+                {
+                    "objectid": 135,
+                    "name": "用户绑定企业",
+                    "url": "/Setting/User/BindingEnterprise",
+                    "memo": "公共-用户中心"
+                },
+                {
+                    "objectid": 68,
+                    "name": "查看报修信息",
+                    "url": "/Setting/SettingRepairComment/Edit",
+                    "memo": "后台、前台-报修信息块管理"
+                },
+                {
+                    "objectid": 330,
+                    "name": "添加职位申请",
+                    "url": "/Jobs/UserJobs/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 517,
+                    "name": "汇智卡充值折扣接口",
+                    "url": "/BizPayment/CardReChargeDiscount",
+                    "memo": ""
+                },
+                {
+                    "objectid": 335,
+                    "name": "更新会议室",
+                    "url": "/Mettingroom/Mettingroom/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 476,
+                    "name": "商户点评",
+                    "url": "/Setting/MerchantEvaluate/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 510,
+                    "name": "新版汇智卡交易明细",
+                    "url": "/BizPayment/QueryTransDetails",
+                    "memo": ""
+                },
+                {
+                    "objectid": 468,
+                    "name": "是否完善资料",
+                    "url": "/Setting/User/IsCompleteInfo",
+                    "memo": ""
+                },
+                {
+                    "objectid": 9,
+                    "name": "添加评论",
+                    "url": "/Comment/Add",
+                    "memo": "前台-评论管理"
+                },
+                {
+                    "objectid": 368,
+                    "name": "获取商户搜索菜单",
+                    "url": "/Setting/Merchant/GetSearchMenu",
+                    "memo": ""
+                },
+                {
+                    "objectid": 598,
+                    "name": "汇智卡公告查看",
+                    "url": "/Payment/Annoucement/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 247,
+                    "name": "根据申请id查看申请教室列表",
+                    "url": "/Classroom/UserClassroomApply/UserClassroom/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 327,
+                    "name": "查看职位申请列表",
+                    "url": "/Jobs/UserJobs/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 79,
+                    "name": "更新维修人员",
+                    "url": "/Setting/SettingMaintainer/Update",
+                    "memo": "后台、前台-维修人员管理"
+                },
+                {
+                    "objectid": 279,
+                    "name": "查看企业培训申请列表",
+                    "url": "/EnterpriseCultivate/EnterpriseCultivate/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 339,
+                    "name": "禁用启用职位",
+                    "url": "/Mettingroom/Mettingroom/Enable/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 291,
+                    "name": "API上传文档",
+                    "url": "/FileUpload/SimpleUploadDocFile",
+                    "memo": ""
+                },
+                {
+                    "objectid": 302,
+                    "name": "更新房间",
+                    "url": "/House/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 268,
+                    "name": "编辑课程",
+                    "url": "/Cultivate/Course/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 348,
+                    "name": "删除入驻申请信息",
+                    "url": "/Setting/EnterApply/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 239,
+                    "name": "删除教室",
+                    "url": "/Classroom/Classroom/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 170,
+                    "name": "执行流转",
+                    "url": "/workflow/api/HadTransfer",
+                    "memo": null
+                },
+                {
+                    "objectid": 275,
+                    "name": "删除个人培训",
+                    "url": "/Cultivate/UserCultivate/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 282,
+                    "name": "删除企业培训申请",
+                    "url": "/EnterpriseCultivate/EnterpriseCultivate/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 313,
+                    "name": "查询余额兼绑定汇智卡",
+                    "url": "/Payment/QueryBindCard",
+                    "memo": ""
+                },
+                {
+                    "objectid": 547,
+                    "name": "汇智卡移动绑定通知接口",
+                    "url": "/BizPayment/Mobile/BindCardNotify",
+                    "memo": ""
+                },
+                {
+                    "objectid": 4,
+                    "name": "添加附件",
+                    "url": "/Attachment/Add",
+                    "memo": "前台-附件管理"
+                },
+                {
+                    "objectid": 379,
+                    "name": "商户回复禁用",
+                    "url": "/Setting/MerchantReply/BlockReply",
+                    "memo": ""
+                },
+                {
+                    "objectid": 383,
+                    "name": "添加商户广告管理信息",
+                    "url": "/Setting/MerchantReplySet/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 51,
+                    "name": "查询企业",
+                    "url": "/Setting/Enterprise",
+                    "memo": "后台-企业管理"
+                },
+                {
+                    "objectid": 93,
+                    "name": "查看服务信息",
+                    "url": "/Setting/SettingAbout/Edit",
+                    "memo": "后台、前台-服务信息块管理"
+                },
+                {
+                    "objectid": 254,
+                    "name": "查看教室确认列表",
+                    "url": "/Classroom/UserClassroomVerify/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 356,
+                    "name": "查看登录信息",
+                    "url": "/Setting/LoginLog/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 278,
+                    "name": "填写个人培训页面",
+                    "url": "/Cultivate/UserCultivate/UserTrainApply/Page/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 571,
+                    "name": "汇智卡个人申请更新",
+                    "url": "/CardApply/Person/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 30,
+                    "name": "查看报修",
+                    "url": "/UserRepair",
+                    "memo": "前台-报修管理"
+                },
+                {
+                    "objectid": 384,
+                    "name": "删除商户广告管理信息",
+                    "url": "/Setting/MerchantReplySet/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 501,
+                    "name": "综合账单列表",
+                    "url": "/Setting/ClmSearchLog/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 312,
+                    "name": "金额预警提醒",
+                    "url": "/Payment/AlertInfomation",
+                    "memo": ""
+                },
+                {
+                    "objectid": 297,
+                    "name": "更新猎聘申请",
+                    "url": "/Headhunting/UserHeadhunting/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 357,
+                    "name": "列表登录信息",
+                    "url": "/Setting/LoginLog/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 346,
+                    "name": "查看教室确认列表",
+                    "url": "/Mettingroom/UserMeetingroomVerify/Itinerary/Find",
+                    "memo": ""
+                },
+                {
+                    "objectid": 569,
+                    "name": "汇智卡个人申请列表",
+                    "url": "/CardApply/Person/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 172,
+                    "name": "获取下一步所有任务节点",
+                    "url": "/workflow/api/tasks/next/list",
+                    "memo": null
+                },
+                {
+                    "objectid": 376,
+                    "name": "删除商户点评信息",
+                    "url": "/Setting/MerchantEvaluate/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 343,
+                    "name": "添加会议室申请",
+                    "url": "/Mettingroom/UserMeetingroom/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 134,
+                    "name": "更改用户头像",
+                    "url": "/Setting/User/ChangeUserFace",
+                    "memo": "公用-头像管理"
+                },
+                {
+                    "objectid": 344,
+                    "name": "删除会议室申请",
+                    "url": "/Mettingroom/UserMeetingroom/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 514,
+                    "name": "汇智卡充值通知接口",
+                    "url": "/BizPayment/RechargeCardNotify",
+                    "memo": ""
+                },
+                {
+                    "objectid": 462,
+                    "name": "会议室申请确认",
+                    "url": "/Mettingroom/UserMeetingroomVerify/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 551,
+                    "name": "图像裁剪上传",
+                    "url": "/FileUpload/SimpleUploadFileByCut",
+                    "memo": ""
+                },
+                {
+                    "objectid": 156,
+                    "name": "根据用户查询评论",
+                    "url": "/Comment/ByUser",
+                    "memo": null
+                },
+                {
+                    "objectid": 602,
+                    "name": "游船预定列表",
+                    "url": "/HuizhiBoat/BoatApply/Me/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 293,
+                    "name": "更新猎聘职位",
+                    "url": "/Headhunting/HeadhuntingJobs/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 548,
+                    "name": "汇智卡移动充值通知接口",
+                    "url": "/BizPayment/Mobile/RechargeCardNotify",
+                    "memo": ""
+                },
+                {
+                    "objectid": 80,
+                    "name": "删除维修人员",
+                    "url": "/Setting/SettingMaintainer/Delete",
+                    "memo": "后台、前台-维修人员块管理"
+                },
+                {
+                    "objectid": 238,
+                    "name": "添加教室",
+                    "url": "/Classroom/Classroom/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 249,
+                    "name": "更新教室申请",
+                    "url": "/Classroom/UserClassroom/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 271,
+                    "name": "查看个人培训列表",
+                    "url": "/Cultivate/UserCultivate/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 503,
+                    "name": "商户统计",
+                    "url": "/Setting/Merchant/StatisticsGraphData",
+                    "memo": ""
+                },
+                {
+                    "objectid": 362,
+                    "name": "获取后台管理菜单信息",
+                    "url": "/Setting/MenuAdmin/GetRoleMenu",
+                    "memo": ""
+                },
+                {
+                    "objectid": 377,
+                    "name": "查看商户点评信息",
+                    "url": "/Setting/MerchantEvaluate/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 326,
+                    "name": "查看可用职位列表",
+                    "url": "/Jobs/Enable/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 78,
+                    "name": "编辑维修人员",
+                    "url": "/Setting/SettingMaintainer/Edit",
+                    "memo": "后台、前台-维修人员块管理"
+                },
+                {
                     "objectid": 70,
                     "name": "查看报修信息",
                     "url": "/Setting/SettingRepairValidDate/Edit",
                     "memo": "后台、前台-报修信息块管理"
                 },
                 {
-                    "objectid": 553,
-                    "name": "导出全部报名情况",
-                    "url": "/Cultivate/UserCultivate/Export/List/All",
+                    "objectid": 315,
+                    "name": "我的孵化注册预约列表",
+                    "url": "/Incubator/UserIncubator/My/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 466,
+                    "name": "查看自动评价更新",
+                    "url": "/Setting/SettingAutoComment/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 251,
+                    "name": "删除教室申请",
+                    "url": "/Classroom/UserClassroom/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 611,
+                    "name": "会员码",
+                    "url": "/Setting/User/getMemberBarcode",
+                    "memo": ""
+                },
+                {
+                    "objectid": 193,
+                    "name": "简易的文件上传",
+                    "url": "/FileUpload/SimpleUploadFile",
+                    "memo": null
+                },
+                {
+                    "objectid": 467,
+                    "name": "更新商户",
+                    "url": "/Setting/Merchant/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 345,
+                    "name": "编辑会议室申请",
+                    "url": "/Mettingroom/UserMeetingroom/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 55,
+                    "name": "编辑企业",
+                    "url": "/Setting/Enterprise/EnterpriseInfo",
+                    "memo": "后台-企业管理"
+                },
+                {
+                    "objectid": 470,
+                    "name": "查看业务",
+                    "url": "/workflow/api/get",
+                    "memo": ""
+                },
+                {
+                    "objectid": 428,
+                    "name": "绑定邮箱",
+                    "url": "/SysEmail/SendAuthEmail",
+                    "memo": "前台-安全设置"
+                },
+                {
+                    "objectid": 352,
+                    "name": "删除商户广告管理信息",
+                    "url": "/Setting/LivingCenterAdver/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 2,
+                    "name": "登录",
+                    "url": "/j_spring_security_check",
+                    "memo": null
+                },
+                {
+                    "objectid": 353,
+                    "name": "查看商户广告管理信息",
+                    "url": "/Setting/LivingCenterAdver/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 140,
+                    "name": "普通用户忘记密码第二步",
+                    "url": "/Setting/User/ForgetPasswordStepTwo",
+                    "memo": "前台-会员中心"
+                },
+                {
+                    "objectid": 66,
+                    "name": "查看报修信息",
+                    "url": "/Setting/SettingRepairBase/Edit",
+                    "memo": "后台、前台-报修信息块管理"
+                },
+                {
+                    "objectid": 461,
+                    "name": "导出简历",
+                    "url": "/Jobs/UserJobs/DownloadResume",
+                    "memo": ""
+                },
+                {
+                    "objectid": 151,
+                    "name": "工作流",
+                    "url": "/workflow/api/processinstances/my_apply/list",
+                    "memo": "工作流路径"
+                },
+                {
+                    "objectid": 317,
+                    "name": "添加孵化预约",
+                    "url": "/Incubator/UserIncubator/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 573,
+                    "name": "汇智卡个人申请添加",
+                    "url": "/CardApply/Person/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 8,
+                    "name": "查看评论",
+                    "url": "/Comment",
+                    "memo": "前台-评论管理"
+                },
+                {
+                    "objectid": 365,
+                    "name": "查看商户评价互动信息",
+                    "url": "/Setting/MerchantComment/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 380,
+                    "name": "删除商户回复互动信息",
+                    "url": "/Setting/MerchantReply/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 574,
+                    "name": "汇智卡本人申请列表",
+                    "url": "/CardApply/Person/Me/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 72,
+                    "name": "查看报修自动分配信息",
+                    "url": "/Setting/SettingAutoDispatch/List",
+                    "memo": "后台、前台-报修自动分配信息块管理"
+                },
+                {
+                    "objectid": 600,
+                    "name": "汇智卡公告决断",
+                    "url": "/Payment/Annoucement/Judge",
+                    "memo": ""
+                },
+                {
+                    "objectid": 328,
+                    "name": "查看职位申请列表",
+                    "url": "/Jobs/UserJobs/My/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 337,
+                    "name": "删除会议室",
+                    "url": "/Mettingroom/Mettingroom/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 10,
+                    "name": "更新评论",
+                    "url": "/Comment/Update",
+                    "memo": "前台-评论管理"
+                },
+                {
+                    "objectid": 265,
+                    "name": "更新课程",
+                    "url": "/Cultivate/Course/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 310,
+                    "name": "电子钱包统计",
+                    "url": "/Payment/EWalletStatistic",
+                    "memo": ""
+                },
+                {
+                    "objectid": 382,
+                    "name": "列表商户回复互动信息",
+                    "url": "/Setting/MerchantReply/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 296,
+                    "name": "查看猎聘申请列表",
+                    "url": "/Headhunting/UserHeadhunting/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 429,
+                    "name": "测试配置",
+                    "url": "/TestApplyfor/UserTestApplyforConfig/Edit",
+                    "memo": "前台-测试申请"
+                },
+                {
+                    "objectid": 392,
+                    "name": "添加后台商户优惠缩略图信息",
+                    "url": "/Setting/MerchantSaleThumbs/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 67,
+                    "name": "更新报修信息",
+                    "url": "/Setting/SettingRepairBase/Update",
+                    "memo": "后台、前台-报修信息块管理"
+                },
+                {
+                    "objectid": 320,
+                    "name": "查看职位列表",
+                    "url": "/Jobs/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 502,
+                    "name": "评价数据统计",
+                    "url": "/Comment/StatisticsNumber",
+                    "memo": ""
+                },
+                {
+                    "objectid": 570,
+                    "name": "汇智卡个人申请查看",
+                    "url": "/CardApply/Person/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 306,
+                    "name": "查询汇智卡交易明细",
+                    "url": "/Payment/QueryTransaction",
+                    "memo": ""
+                },
+                {
+                    "objectid": 274,
+                    "name": "添加个人培训",
+                    "url": "/Cultivate/UserCultivate/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 183,
+                    "name": "修改密码",
+                    "url": "/Setting/User/ChangePassword",
+                    "memo": null
+                },
+                {
+                    "objectid": 342,
+                    "name": "更新会议室申请",
+                    "url": "/Mettingroom/UserMeetingroom/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 385,
+                    "name": "查看商户广告管理信息",
+                    "url": "/Setting/MerchantReplySet/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 244,
+                    "name": "更新教室",
+                    "url": "/Classroom/UserClassroomApply/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 12,
+                    "name": "编辑评论",
+                    "url": "/Comment/Edit",
+                    "memo": "前台-评论管理"
+                },
+                {
+                    "objectid": 425,
+                    "name": "问卷调查",
+                    "url": "/questionnaire/list",
+                    "memo": ""
+                },
+                {
+                    "objectid": 603,
+                    "name": "游船详情",
+                    "url": "/HuizhiBoat/BoatApply/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 286,
+                    "name": "更新企业培训项目申请",
+                    "url": "/EnterpristCultivate/EnterpristCultivateProject/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 367,
+                    "name": "添加商户评价互动信息",
+                    "url": "/Setting/MerchantComment/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 138,
+                    "name": "统计注册用户数据",
+                    "url": "/Setting/User/StatisticsData",
+                    "memo": "后台-数据统计"
+                },
+                {
+                    "objectid": 513,
+                    "name": "汇智卡绑定通知接口",
+                    "url": "/BizPayment/BindCardNotify",
+                    "memo": ""
+                },
+                {
+                    "objectid": 350,
+                    "name": "列表入驻申请信息",
+                    "url": "/Setting/EnterApply/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 334,
+                    "name": "查看会议室列表",
+                    "url": "/Mettingroom/Mettingroom/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 323,
+                    "name": "删除职位",
+                    "url": "/Jobs/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 477,
+                    "name": "撤回",
+                    "url": "/workflow/api/usercallback",
+                    "memo": ""
+                },
+                {
+                    "objectid": 539,
+                    "name": "根据企业名称绑定",
+                    "url": "/Setting/User/BindingEnterpriseByName",
+                    "memo": ""
+                },
+                {
+                    "objectid": 123,
+                    "name": "获取用户头像",
+                    "url": "/Setting/User/UserFace",
+                    "memo": "公共-用户中心"
+                },
+                {
+                    "objectid": 533,
+                    "name": "获取通知未读总数",
+                    "url": "/Notification/Total/GetUnReadCount",
+                    "memo": ""
+                },
+                {
+                    "objectid": 62,
+                    "name": "查看园区信息",
+                    "url": "/Setting/Park/Edit",
+                    "memo": "后台-配置信息管理"
+                },
+                {
+                    "objectid": 119,
+                    "name": "用户变更手机号码",
+                    "url": "/Setting/User/ChangePhone",
+                    "memo": "公共-用户中心"
+                },
+                {
+                    "objectid": 473,
+                    "name": "获取商户类别",
+                    "url": "/Setting/Merchant/GetMenuList",
+                    "memo": ""
+                },
+                {
+                    "objectid": 6,
+                    "name": "删除附件",
+                    "url": "/Attachment/Delete",
+                    "memo": "前台-附件管理"
+                },
+                {
+                    "objectid": 256,
+                    "name": "删除教室",
+                    "url": "/Classroom/UserClassroomVerify/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 358,
+                    "name": "删除后台管理菜单信息",
+                    "url": "/Setting/MenuAdmin/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 403,
+                    "name": "查看须知信息",
+                    "url": "/Setting/Readme/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 311,
+                    "name": "沉寂卡总数统计",
+                    "url": "/Payment/SleepCardStatistic",
+                    "memo": ""
+                },
+                {
+                    "objectid": 173,
+                    "name": "错发回收",
+                    "url": "/workflow/api/taskinstanceslist/Retrieve",
+                    "memo": null
+                },
+                {
+                    "objectid": 273,
+                    "name": "更新个人培训",
+                    "url": "/Cultivate/UserCultivate/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 233,
+                    "name": "删除广告服务申请",
+                    "url": "/Commercialize/UserCommercialize/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 58,
+                    "name": "查看园区信息",
+                    "url": "/Setting/Park",
+                    "memo": "后台-配置信息管理"
+                },
+                {
+                    "objectid": 161,
+                    "name": "新增工作流过程定义",
+                    "url": "/workflow/api/process",
+                    "memo": null
+                },
+                {
+                    "objectid": 22,
+                    "name": "发送短信验证码",
+                    "url": "/Public/Phone/SendCode",
+                    "memo": "公共-用户注册"
+                },
+                {
+                    "objectid": 409,
+                    "name": "添加测试申请",
+                    "url": "/TestApplyfor/UserTestApplyfor/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 277,
+                    "name": "查看职位申请列表",
+                    "url": "/Cultivate/UserCultivate/Apply/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 237,
+                    "name": "更新教室",
+                    "url": "/Classroom/Classroom/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 395,
+                    "name": "列表后台商户优惠缩略图信息",
+                    "url": "/Setting/MerchantSaleThumbs/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 129,
+                    "name": "个人信息",
+                    "url": "/Setting/User/MyInfo",
+                    "memo": "前台-用户管理"
+                },
+                {
+                    "objectid": 519,
+                    "name": "汇智卡充值发验证码接口",
+                    "url": "/BizPayment/SendRechargePhoneMessage",
+                    "memo": ""
+                },
+                {
+                    "objectid": 131,
+                    "name": "用户修改完善个人资料",
+                    "url": "/Setting/User/CompleteUserInfo",
+                    "memo": "公共-用户中心"
+                },
+                {
+                    "objectid": 389,
+                    "name": "删除后台商户优惠信息",
+                    "url": "/Setting/MerchantSale/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 34,
+                    "name": "编辑报修",
+                    "url": "/UserRepair/Edit",
+                    "memo": "前台-报修管理"
+                },
+                {
+                    "objectid": 272,
+                    "name": "查看个人培训列表",
+                    "url": "/Cultivate/UserCultivate/My/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 410,
+                    "name": "删除测试申请",
+                    "url": "/TestApplyfor/UserTestApplyfor/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 141,
+                    "name": "企业内部用户离开企业",
+                    "url": "/Setting/User/LeaveEnterprise",
+                    "memo": "前台-会员中心"
+                },
+                {
+                    "objectid": 37,
+                    "name": "查看维修记录",
+                    "url": "/UserRepairRecode",
+                    "memo": "后台-报修管理"
+                },
+                {
+                    "objectid": 121,
+                    "name": "发送短信验证码",
+                    "url": "/Setting/User/SendCode",
+                    "memo": "公共-用户注册"
+                },
+                {
+                    "objectid": 270,
+                    "name": "查看可用课程列表",
+                    "url": "/Cultivate/Course/Enable/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 17,
+                    "name": "查看通知",
+                    "url": "/Notification",
+                    "memo": "前台-通知管理"
+                },
+                {
+                    "objectid": 236,
+                    "name": "查看教室列表",
+                    "url": "/Classroom/Classroom/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 450,
+                    "name": "查看入驻项目经理处理信息",
+                    "url": "/Setting/EnterApplyBusiness/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 566,
+                    "name": "用户无效红包列表",
+                    "url": "/RedPacket/User/Invalid/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 178,
+                    "name": "服务统计-时间段",
+                    "url": "/workflow/api/pistatdate",
+                    "memo": null
+                },
+                {
+                    "objectid": 325,
+                    "name": "禁用启用职位",
+                    "url": "/Jobs/Enable/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 437,
+                    "name": "商户信息",
+                    "url": "/Setting/Merchant/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 168,
+                    "name": "编辑业务",
+                    "url": "/workflow/api/edit",
+                    "memo": null
+                },
+                {
+                    "objectid": 508,
+                    "name": "新版汇智卡绑定",
+                    "url": "/BizPayment/BindUnBindCard",
+                    "memo": ""
+                },
+                {
+                    "objectid": 469,
+                    "name": "邮箱验证成功页面",
+                    "url": "/web/verifyEmail.html",
+                    "memo": ""
+                },
+                {
+                    "objectid": 153,
+                    "name": "企业管理员",
+                    "url": "/Setting/User/IsEnterpriseAdminUser",
+                    "memo": null
+                },
+                {
+                    "objectid": 11,
+                    "name": "删除评论",
+                    "url": "/Comment/Delete",
+                    "memo": "前台-评论管理"
+                },
+                {
+                    "objectid": 162,
+                    "name": "新增短信模板",
+                    "url": "/workflow/api/messagetemplates/",
+                    "memo": null
+                },
+                {
+                    "objectid": 252,
+                    "name": "编辑教室申请",
+                    "url": "/Classroom/UserClassroom/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 396,
+                    "name": "添加后台商户优惠缩略图信息",
+                    "url": "/Setting/MerchantSaleThumbs/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 13,
+                    "name": "查看评论",
+                    "url": "/Comment/Info",
+                    "memo": "前台-评论管理"
+                },
+                {
+                    "objectid": 408,
+                    "name": "更新测试申请",
+                    "url": "/TestApplyfor/UserTestApplyfor/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 451,
+                    "name": "添加入驻项目经理处理信息",
+                    "url": "/Setting/EnterApplyBusiness/Manager/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 616,
+                    "name": "判断是否登录",
+                    "url": "/Login/LoginOrNot",
+                    "memo": null
+                },
+                {
+                    "objectid": 373,
+                    "name": "获取商户历史信息",
+                    "url": "/Setting/Merchant/History/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 250,
+                    "name": "添加教室申请",
+                    "url": "/Classroom/UserClassroom/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 180,
+                    "name": "流程跟踪",
+                    "url": "/workflow/api/processinstances",
+                    "memo": null
+                },
+                {
+                    "objectid": 176,
+                    "name": "逾期统计-时间段",
+                    "url": "/workflow/api/duestatdate",
+                    "memo": null
+                },
+                {
+                    "objectid": 529,
+                    "name": "新版汇智卡绑定",
+                    "url": "/BizPayment/Mobile/BindUnBindCard",
+                    "memo": ""
+                },
+                {
+                    "objectid": 321,
+                    "name": "更新职位",
+                    "url": "/Jobs/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 341,
+                    "name": "查看会议室申请列表",
+                    "url": "/Mettingroom/UserMeetingroom/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 489,
+                    "name": "可用企业列表",
+                    "url": "/Setting/Enterprise/Available/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 349,
+                    "name": "查看入驻申请信息",
+                    "url": "/Setting/EnterApply/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 481,
+                    "name": "优惠审核禁用",
+                    "url": "/Setting/MerchantSale/BanSet",
+                    "memo": ""
+                },
+                {
+                    "objectid": 372,
+                    "name": "列表后台商户管理信息",
+                    "url": "/Setting/Merchant/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 14,
+                    "name": "普通上传图片",
+                    "url": "/FileUpload/UploadImgComm",
+                    "memo": "公用-普通上传图片"
+                },
+                {
+                    "objectid": 253,
+                    "name": "查看教室确认列表",
+                    "url": "/Classroom/UserClassroomVerify/Itinerary/Find",
+                    "memo": ""
+                },
+                {
+                    "objectid": 42,
+                    "name": "查询楼宇",
+                    "url": "/Setting/Building/getBuildingByParkId",
+                    "memo": "后台-配置管理"
+                },
+                {
+                    "objectid": 363,
+                    "name": "添加商户评价互动信息",
+                    "url": "/Setting/MerchantComment/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 309,
+                    "name": "汇智卡主帐户统计",
+                    "url": "/Payment/PrimeCardStatistic",
+                    "memo": ""
+                },
+                {
+                    "objectid": 364,
+                    "name": "删除商户评价互动信息",
+                    "url": "/Setting/MerchantComment/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 577,
+                    "name": "汇智卡企业申请更新",
+                    "url": "/CardApply/Enterprise/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 259,
+                    "name": "查看著作权登记列表",
+                    "url": "/Copyright/UserCopyright/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 5,
+                    "name": "更新附件",
+                    "url": "/Attachment/Update",
+                    "memo": "前台-附件管理"
+                },
+                {
+                    "objectid": 154,
+                    "name": "企业用户信息",
+                    "url": "/Setting/UserEnterpriseApplyInfo/ApplyList",
+                    "memo": null
+                },
+                {
+                    "objectid": 575,
+                    "name": "汇智卡企业申请列表",
+                    "url": "/CardApply/Enterprise/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 285,
+                    "name": "查看企业培训申请项目列表",
+                    "url": "/EnterpristCultivate/EnterpristCultivateProject/ByEnterpriseCultivateId/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 276,
+                    "name": "编辑个人培训",
+                    "url": "/Cultivate/UserCultivate/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 398,
+                    "name": "查看须知信息列表",
+                    "url": "/Setting/Readme/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 242,
+                    "name": "查看可用教室列表",
+                    "url": "/Classroom/Classroom/Enable/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 324,
+                    "name": "编辑职位",
+                    "url": "/Jobs/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 549,
+                    "name": "获取商户分类前4条优惠数据",
+                    "url": "/Setting/Merchant/GetClassifiedProducts",
+                    "memo": ""
+                },
+                {
+                    "objectid": 318,
+                    "name": "取消孵化预约",
+                    "url": "/Incubator/UserIncubator/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 530,
+                    "name": "新版汇智卡支付",
+                    "url": "/BizPayment/Mobile/CardReCharge",
+                    "memo": ""
+                },
+                {
+                    "objectid": 71,
+                    "name": "更新报修信息",
+                    "url": "/Setting/SettingRepairValidDate/Update",
+                    "memo": "后台、前台-报修信息块管理"
+                },
+                {
+                    "objectid": 471,
+                    "name": "服务列表",
+                    "url": "/workflow/api/business",
+                    "memo": ""
+                },
+                {
+                    "objectid": 230,
+                    "name": "查看我的广告服务申请列表",
+                    "url": "/Commercialize/UserCommercialize/My/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 446,
+                    "name": "会议室申请详情",
+                    "url": "/Mettingroom/UserMeetingroomApply/UserMeetingroom/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 128,
+                    "name": "今日注册用户数",
+                    "url": "/Setting/User/TodayUser",
+                    "memo": "前台-数据统计"
+                },
+                {
+                    "objectid": 148,
+                    "name": "新增用户申请",
+                    "url": "/Setting/UserEnterpriseApplyInfo/EnableEnterpriseApply",
+                    "memo": "前台-用户中心"
+                },
+                {
+                    "objectid": 336,
+                    "name": "添加会议室",
+                    "url": "/Mettingroom/Mettingroom/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 579,
+                    "name": "汇智卡企业申请添加",
+                    "url": "/CardApply/Enterprise/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 160,
+                    "name": "我的业务",
+                    "url": "/workflow/api/processinstances/my_apply/list",
+                    "memo": null
+                },
+                {
+                    "objectid": 505,
+                    "name": "后台商户审核列表",
+                    "url": "/Setting/Merchant/Auth/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 157,
+                    "name": "是否可以报修",
+                    "url": "/Setting/CheerDay/IsRepairEnable",
+                    "memo": ""
+                },
+                {
+                    "objectid": 361,
+                    "name": "添加后台管理菜单信息",
+                    "url": "/Setting/MenuAdmin/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 307,
+                    "name": "汇智卡支付",
+                    "url": "/Payment/PayTransaction",
+                    "memo": ""
+                },
+                {
+                    "objectid": 378,
+                    "name": "列表商户点评信息",
+                    "url": "/Setting/MerchantEvaluate/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 613,
+                    "name": "APP端首页广告栏列表",
+                    "url": "/Setting/HomepageAdver/App/List",
+                    "memo": null
+                },
+                {
+                    "objectid": 498,
+                    "name": "导出课程报名情况",
+                    "url": "/Cultivate/UserCultivate/Export/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 583,
+                    "name": "移动端充值是否启用打折",
+                    "url": "/BizPayment/Mobile/CardReChargeEnableDiscount",
+                    "memo": ""
+                },
+                {
+                    "objectid": 260,
+                    "name": "更新著作权登记",
+                    "url": "/Copyright/UserCopyright/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 564,
+                    "name": "用户红包查看",
+                    "url": "/RedPacket/User/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 580,
+                    "name": "汇智卡本企业申请列表",
+                    "url": "/CardApply/Enterprise/Me/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 483,
+                    "name": "商户点击量",
+                    "url": "/Setting/Merchant/Hit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 103,
+                    "name": "根据parentID查询数据字典",
+                    "url": "/Setting/SettingDict/ParentId",
+                    "memo": "前台-数据字典"
+                },
+                {
+                    "objectid": 453,
+                    "name": "邮箱验证",
+                    "url": "/SysEmail/DoAuthEmail",
+                    "memo": ""
+                },
+                {
+                    "objectid": 232,
+                    "name": "添加广告服务申请",
+                    "url": "/Commercialize/UserCommercialize/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 531,
+                    "name": "新版汇智卡交易明细",
+                    "url": "/BizPayment/Mobile/QueryTransDetails",
+                    "memo": ""
+                },
+                {
+                    "objectid": 20,
+                    "name": "删除通知",
+                    "url": "/Notification/Delete",
+                    "memo": "前台-通知管理"
+                },
+                {
+                    "objectid": 269,
+                    "name": "禁用启用职位",
+                    "url": "/Cultivate/Course/Enable/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 266,
+                    "name": "添加课程",
+                    "url": "/Cultivate/Course/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 532,
+                    "name": "新版汇智卡余额查询",
+                    "url": "/BizPayment/Mobile/QueryCardBalance",
+                    "memo": ""
+                },
+                {
+                    "objectid": 166,
+                    "name": "逾期",
+                    "url": "/workflow/api/taskinstanceslist/due/list",
+                    "memo": null
+                },
+                {
+                    "objectid": 332,
+                    "name": "编辑职位申请",
+                    "url": "/Jobs/UserJobs/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 550,
+                    "name": "获取商户分类前4条数据",
+                    "url": "/Setting/Merchant/GetClassifiedMerchant",
+                    "memo": ""
+                },
+                {
+                    "objectid": 463,
+                    "name": "查看教室确认详情",
+                    "url": "/Classroom/UserClassroomVerify/UserClassroom/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 243,
+                    "name": "查看教室申请列表",
+                    "url": "/Classroom/UserClassroomApply/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 614,
+                    "name": "上传视频文件",
+                    "url": "/FileUpload/UploadVideoComm",
+                    "memo": ""
+                },
+                {
+                    "objectid": 388,
+                    "name": "获取商户优惠搜索菜单",
+                    "url": "/Setting/MerchantSale/GetSearchMenu",
+                    "memo": ""
+                },
+                {
+                    "objectid": 371,
+                    "name": "查看后台商户管理信息",
+                    "url": "/Setting/Merchant/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 604,
+                    "name": "预定游船",
+                    "url": "/HuizhiBoat/BoatApply/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 338,
+                    "name": "编辑会议室",
+                    "url": "/Mettingroom/Mettingroom/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 322,
+                    "name": "添加职位",
+                    "url": "/Jobs/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 177,
+                    "name": "逾期统计-总数",
+                    "url": "/workflow/api/duestatcount",
+                    "memo": null
+                },
+                {
+                    "objectid": 454,
+                    "name": "生成验证码",
+                    "url": "/WiseAuth/AuthImageServlet",
+                    "memo": ""
+                },
+                {
+                    "objectid": 555,
+                    "name": "职位申请全部列表",
+                    "url": "/Jobs/UserJobs/Apply/All/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 241,
+                    "name": "禁用启用职位",
+                    "url": "/Classroom/Classroom/Enable/Delete",
+                    "memo": ""
+                },
+                {
+                    "objectid": 576,
+                    "name": "汇智卡企业申请查看",
+                    "url": "/CardApply/Enterprise/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 294,
+                    "name": "添加猎聘职位",
+                    "url": "/Headhunting/HeadhuntingJobs/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 541,
+                    "name": "首页静态生成",
+                    "url": "/Setting/Index/Create",
+                    "memo": ""
+                },
+                {
+                    "objectid": 359,
+                    "name": "查看后台管理菜单信息",
+                    "url": "/Setting/MenuAdmin/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 32,
+                    "name": "更新报修",
+                    "url": "/UserRepair/Update",
+                    "memo": "前台-报修管理"
+                },
+                {
+                    "objectid": 591,
+                    "name": "活动中心报名",
+                    "url": "/ActivityCenter/ActivityJoin/List",
                     "memo": ""
                 },
                 {
@@ -667,1431 +2104,27 @@
                     "memo": null
                 },
                 {
-                    "objectid": 368,
-                    "name": "获取商户搜索菜单",
-                    "url": "/Setting/Merchant/GetSearchMenu",
-                    "memo": ""
-                },
-                {
-                    "objectid": 365,
-                    "name": "查看商户评价互动信息",
-                    "url": "/Setting/MerchantComment/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 77,
-                    "name": "新增维修人员",
-                    "url": "/Setting/SettingMaintainer/Add",
-                    "memo": "后台、前台-维修人员块管理"
-                },
-                {
-                    "objectid": 324,
-                    "name": "编辑职位",
-                    "url": "/Jobs/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 286,
-                    "name": "更新企业培训项目申请",
-                    "url": "/EnterpristCultivate/EnterpristCultivateProject/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 508,
-                    "name": "新版汇智卡绑定",
-                    "url": "/BizPayment/BindUnBindCard",
-                    "memo": ""
-                },
-                {
-                    "objectid": 502,
-                    "name": "评价数据统计",
-                    "url": "/Comment/StatisticsNumber",
-                    "memo": ""
-                },
-                {
-                    "objectid": 93,
-                    "name": "查看服务信息",
-                    "url": "/Setting/SettingAbout/Edit",
-                    "memo": "后台、前台-服务信息块管理"
-                },
-                {
-                    "objectid": 68,
-                    "name": "查看报修信息",
-                    "url": "/Setting/SettingRepairComment/Edit",
-                    "memo": "后台、前台-报修信息块管理"
-                },
-                {
-                    "objectid": 141,
-                    "name": "企业内部用户离开企业",
-                    "url": "/Setting/User/LeaveEnterprise",
-                    "memo": "前台-会员中心"
-                },
-                {
-                    "objectid": 400,
-                    "name": "更新须知信息",
-                    "url": "/Setting/Readme/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 304,
-                    "name": "删除房间",
-                    "url": "/House/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 407,
-                    "name": "查看测试申请列表",
-                    "url": "/TestApplyfor/UserTestApplyfor/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 181,
-                    "name": "流程跟踪",
-                    "url": "/workflow/api/processinstances/my_apply/done",
-                    "memo": null
-                },
-                {
-                    "objectid": 32,
-                    "name": "更新报修",
-                    "url": "/UserRepair/Update",
-                    "memo": "前台-报修管理"
-                },
-                {
-                    "objectid": 37,
-                    "name": "查看维修记录",
-                    "url": "/UserRepairRecode",
-                    "memo": "后台-报修管理"
-                },
-                {
-                    "objectid": 121,
-                    "name": "发送短信验证码",
-                    "url": "/Setting/User/SendCode",
-                    "memo": "公共-用户注册"
-                },
-                {
-                    "objectid": 389,
-                    "name": "删除后台商户优惠信息",
-                    "url": "/Setting/MerchantSale/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 357,
-                    "name": "列表登录信息",
-                    "url": "/Setting/LoginLog/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 511,
-                    "name": "新版汇智卡余额查询",
-                    "url": "/BizPayment/QueryCardBalance",
-                    "memo": ""
-                },
-                {
-                    "objectid": 602,
-                    "name": "游船预定列表",
-                    "url": "/HuizhiBoat/BoatApply/Me/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 281,
-                    "name": "添加企业培训申请",
-                    "url": "/EnterpriseCultivate/EnterpriseCultivate/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 501,
-                    "name": "综合账单列表",
-                    "url": "/Setting/ClmSearchLog/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 259,
-                    "name": "查看著作权登记列表",
-                    "url": "/Copyright/UserCopyright/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 386,
-                    "name": "列表商户广告管理信息",
-                    "url": "/Setting/MerchantReplySet/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 396,
-                    "name": "添加后台商户优惠缩略图信息",
-                    "url": "/Setting/MerchantSaleThumbs/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 67,
-                    "name": "更新报修信息",
-                    "url": "/Setting/SettingRepairBase/Update",
-                    "memo": "后台、前台-报修信息块管理"
-                },
-                {
-                    "objectid": 421,
-                    "name": "添加入驻申请",
-                    "url": "/Setting/EnterApply/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 463,
-                    "name": "查看教室确认详情",
-                    "url": "/Classroom/UserClassroomVerify/UserClassroom/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 344,
-                    "name": "删除会议室申请",
-                    "url": "/Mettingroom/UserMeetingroom/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 128,
-                    "name": "今日注册用户数",
-                    "url": "/Setting/User/TodayUser",
-                    "memo": "前台-数据统计"
-                },
-                {
-                    "objectid": 374,
-                    "name": "商户热度",
-                    "url": "/Setting/Merchant/Activity",
-                    "memo": ""
-                },
-                {
-                    "objectid": 473,
-                    "name": "获取商户类别",
-                    "url": "/Setting/Merchant/GetMenuList",
-                    "memo": ""
-                },
-                {
-                    "objectid": 528,
-                    "name": "通知回应未读数",
-                    "url": "/Notification/ReplyList/GetUnReadCount",
-                    "memo": ""
-                },
-                {
-                    "objectid": 157,
-                    "name": "是否可以报修",
-                    "url": "/Setting/CheerDay/IsRepairEnable",
-                    "memo": ""
-                },
-                {
-                    "objectid": 350,
-                    "name": "列表入驻申请信息",
-                    "url": "/Setting/EnterApply/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 610,
-                    "name": "汇智卡游船导出预订列表",
-                    "url": "/HuizhiBoat/BoatApply/Export/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 253,
-                    "name": "查看教室确认列表",
-                    "url": "/Classroom/UserClassroomVerify/Itinerary/Find",
-                    "memo": ""
-                },
-                {
-                    "objectid": 215,
-                    "name": "查看猎聘职位详情",
-                    "url": "/Headhunting/HeadhuntingJobs/HeadhuntingJobs/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 94,
-                    "name": "城市信息列表",
-                    "url": "/Setting/SettingCity",
-                    "memo": "后台-配置管理"
-                },
-                {
-                    "objectid": 295,
-                    "name": "编辑猎聘职位",
-                    "url": "/Headhunting/HeadhuntingJobs/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 318,
-                    "name": "取消孵化预约",
-                    "url": "/Incubator/UserIncubator/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 394,
-                    "name": "查看后台商户优惠缩略图信息",
-                    "url": "/Setting/MerchantSaleThumbs/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 264,
-                    "name": "查看课程列表",
-                    "url": "/Cultivate/Course/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 587,
-                    "name": "PC端解挂挂失",
-                    "url": "/BizPayment/LostHangCard",
-                    "memo": ""
-                },
-                {
-                    "objectid": 343,
-                    "name": "添加会议室申请",
-                    "url": "/Mettingroom/UserMeetingroom/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 31,
-                    "name": "添加报修",
-                    "url": "/UserRepair/Add",
-                    "memo": "前台-报修管理"
-                },
-                {
-                    "objectid": 12,
-                    "name": "编辑评论",
-                    "url": "/Comment/Edit",
-                    "memo": "前台-评论管理"
-                },
-                {
-                    "objectid": 384,
-                    "name": "删除商户广告管理信息",
-                    "url": "/Setting/MerchantReplySet/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 499,
-                    "name": "后台预定教室",
-                    "url": "/Classroom/UserClassroom/Admin/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 240,
-                    "name": "编辑教室",
-                    "url": "/Classroom/Classroom/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 299,
-                    "name": "删除猎聘申请",
-                    "url": "/Headhunting/UserHeadhunting/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 134,
-                    "name": "更改用户头像",
-                    "url": "/Setting/User/ChangeUserFace",
-                    "memo": "公用-头像管理"
-                },
-                {
-                    "objectid": 73,
-                    "name": "查看单个报修自动分配信息",
-                    "url": "/Setting/SettingAutoDispatch/Edit",
-                    "memo": "后台、前台-报修自动分配信息块管理"
-                },
-                {
-                    "objectid": 247,
-                    "name": "根据申请id查看申请教室列表",
-                    "url": "/Classroom/UserClassroomApply/UserClassroom/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 161,
-                    "name": "新增工作流过程定义",
-                    "url": "/workflow/api/process",
-                    "memo": null
-                },
-                {
-                    "objectid": 551,
-                    "name": "图像裁剪上传",
-                    "url": "/FileUpload/SimpleUploadFileByCut",
-                    "memo": ""
-                },
-                {
-                    "objectid": 477,
-                    "name": "撤回",
-                    "url": "/workflow/api/usercallback",
-                    "memo": ""
-                },
-                {
-                    "objectid": 514,
-                    "name": "汇智卡充值通知接口",
-                    "url": "/BizPayment/RechargeCardNotify",
-                    "memo": ""
-                },
-                {
-                    "objectid": 408,
-                    "name": "更新测试申请",
-                    "url": "/TestApplyfor/UserTestApplyfor/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 363,
-                    "name": "添加商户评价互动信息",
-                    "url": "/Setting/MerchantComment/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 34,
-                    "name": "编辑报修",
-                    "url": "/UserRepair/Edit",
-                    "memo": "前台-报修管理"
-                },
-                {
-                    "objectid": 530,
-                    "name": "新版汇智卡支付",
-                    "url": "/BizPayment/Mobile/CardReCharge",
-                    "memo": ""
-                },
-                {
-                    "objectid": 284,
-                    "name": "查看企业培训申请项目列表",
-                    "url": "/EnterpristCultivate/EnterpristCultivateProject/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 446,
-                    "name": "会议室申请详情",
-                    "url": "/Mettingroom/UserMeetingroomApply/UserMeetingroom/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 256,
-                    "name": "删除教室",
-                    "url": "/Classroom/UserClassroomVerify/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 583,
-                    "name": "移动端充值是否启用打折",
-                    "url": "/BizPayment/Mobile/CardReChargeEnableDiscount",
-                    "memo": ""
-                },
-                {
-                    "objectid": 484,
-                    "name": "数据字典顶级菜单",
-                    "url": "/Setting/SettingDict/Top/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 287,
-                    "name": "添加企业培训项目申请",
-                    "url": "/EnterpristCultivate/EnterpristCultivateProject/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 611,
-                    "name": "会员码",
-                    "url": "/Setting/User/getMemberBarcode",
-                    "memo": ""
-                },
-                {
-                    "objectid": 519,
-                    "name": "汇智卡充值发验证码接口",
-                    "url": "/BizPayment/SendRechargePhoneMessage",
-                    "memo": ""
-                },
-                {
-                    "objectid": 591,
-                    "name": "活动中心报名",
-                    "url": "/ActivityCenter/ActivityJoin/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 276,
-                    "name": "编辑个人培训",
-                    "url": "/Cultivate/UserCultivate/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 308,
-                    "name": "汇智卡总数统计",
-                    "url": "/Payment/TotalCardStatistic",
-                    "memo": ""
-                },
-                {
-                    "objectid": 338,
-                    "name": "编辑会议室",
-                    "url": "/Mettingroom/Mettingroom/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 133,
-                    "name": "用户修改头像",
-                    "url": "/Setting/User/UpdateUserFace",
-                    "memo": "公共-用户中心"
-                },
-                {
-                    "objectid": 337,
-                    "name": "删除会议室",
-                    "url": "/Mettingroom/Mettingroom/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 371,
-                    "name": "查看后台商户管理信息",
-                    "url": "/Setting/Merchant/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 439,
-                    "name": "活动列表",
-                    "url": "/ActivityCenter/ActivityMain/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 21,
-                    "name": "编辑通知",
-                    "url": "/Notification/Edit",
-                    "memo": "前台-通知管理"
-                },
-                {
-                    "objectid": 298,
-                    "name": "添加猎聘申请",
-                    "url": "/Headhunting/UserHeadhunting/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 531,
-                    "name": "新版汇智卡交易明细",
-                    "url": "/BizPayment/Mobile/QueryTransDetails",
-                    "memo": ""
-                },
-                {
-                    "objectid": 429,
-                    "name": "测试配置",
-                    "url": "/TestApplyfor/UserTestApplyforConfig/Edit",
-                    "memo": "前台-测试申请"
-                },
-                {
-                    "objectid": 498,
-                    "name": "导出课程报名情况",
-                    "url": "/Cultivate/UserCultivate/Export/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 135,
-                    "name": "用户绑定企业",
-                    "url": "/Setting/User/BindingEnterprise",
-                    "memo": "公共-用户中心"
-                },
-                {
-                    "objectid": 126,
-                    "name": "所有注册用户数",
-                    "url": "/Setting/User/TotalUser",
-                    "memo": "前台-数据统计"
-                },
-                {
-                    "objectid": 131,
-                    "name": "用户修改完善个人资料",
-                    "url": "/Setting/User/CompleteUserInfo",
-                    "memo": "公共-用户中心"
-                },
-                {
-                    "objectid": 362,
-                    "name": "获取后台管理菜单信息",
-                    "url": "/Setting/MenuAdmin/GetRoleMenu",
-                    "memo": ""
-                },
-                {
-                    "objectid": 268,
-                    "name": "编辑课程",
-                    "url": "/Cultivate/Course/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 353,
-                    "name": "查看商户广告管理信息",
-                    "url": "/Setting/LivingCenterAdver/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 532,
-                    "name": "新版汇智卡余额查询",
-                    "url": "/BizPayment/Mobile/QueryCardBalance",
-                    "memo": ""
-                },
-                {
-                    "objectid": 608,
-                    "name": "游船取消预约",
-                    "url": "/HuizhiBoat/BoatApply/Del",
-                    "memo": ""
-                },
-                {
-                    "objectid": 62,
-                    "name": "查看园区信息",
-                    "url": "/Setting/Park/Edit",
-                    "memo": "后台-配置信息管理"
-                },
-                {
-                    "objectid": 151,
-                    "name": "工作流",
-                    "url": "/workflow/api/processinstances/my_apply/list",
-                    "memo": "工作流路径"
-                },
-                {
-                    "objectid": 123,
-                    "name": "获取用户头像",
-                    "url": "/Setting/User/UserFace",
-                    "memo": "公共-用户中心"
-                },
-                {
-                    "objectid": 175,
-                    "name": "服务统计",
-                    "url": "/workflow/api/pistatcount",
-                    "memo": null
-                },
-                {
-                    "objectid": 360,
-                    "name": "列表后台管理菜单信息",
-                    "url": "/Setting/MenuAdmin/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 241,
-                    "name": "禁用启用职位",
-                    "url": "/Classroom/Classroom/Enable/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 271,
-                    "name": "查看个人培训列表",
-                    "url": "/Cultivate/UserCultivate/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 464,
-                    "name": "查看会议室确认详情",
-                    "url": "/Mettingroom/UserMeetingroomVerify/UserMeetingroom/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 301,
-                    "name": "查看房间列表",
-                    "url": "/House/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 405,
-                    "name": "查看培训需求项目数据字典列表",
-                    "url": "/Setting/SettingDict/cultivateProject/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 6,
-                    "name": "删除附件",
-                    "url": "/Attachment/Delete",
-                    "memo": "前台-附件管理"
-                },
-                {
-                    "objectid": 491,
-                    "name": "报修类型数据字典",
-                    "url": "/Setting/SettingDict/ParentIdExceptTop/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 589,
-                    "name": "移动端解挂挂失",
-                    "url": "/BizPayment/Mobile/LostHangCard",
-                    "memo": ""
-                },
-                {
-                    "objectid": 146,
-                    "name": "新增用户申请",
-                    "url": "/Setting/UserEnterpriseApplyInfo/Add",
-                    "memo": "前台-用户中心"
-                },
-                {
-                    "objectid": 382,
-                    "name": "列表商户回复互动信息",
-                    "url": "/Setting/MerchantReply/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 489,
-                    "name": "可用企业列表",
-                    "url": "/Setting/Enterprise/Available/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 476,
-                    "name": "商户点评",
-                    "url": "/Setting/MerchantEvaluate/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 140,
-                    "name": "普通用户忘记密码第二步",
-                    "url": "/Setting/User/ForgetPasswordStepTwo",
-                    "memo": "前台-会员中心"
-                },
-                {
-                    "objectid": 280,
-                    "name": "更新企业培训申请",
-                    "url": "/EnterpriseCultivate/EnterpriseCultivate/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 180,
-                    "name": "流程跟踪",
-                    "url": "/workflow/api/processinstances",
-                    "memo": null
-                },
-                {
-                    "objectid": 339,
-                    "name": "禁用启用职位",
-                    "url": "/Mettingroom/Mettingroom/Enable/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 452,
-                    "name": "添加入驻项目经理处理信息",
-                    "url": "/Setting/EnterApplyBusiness/Discuss/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 352,
-                    "name": "删除商户广告管理信息",
-                    "url": "/Setting/LivingCenterAdver/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 483,
-                    "name": "商户点击量",
-                    "url": "/Setting/Merchant/Hit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 527,
-                    "name": "业务是否完成",
-                    "url": "/Setting/MainBusiness/IsComplete/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 309,
-                    "name": "汇智卡主帐户统计",
-                    "url": "/Payment/PrimeCardStatistic",
-                    "memo": ""
-                },
-                {
-                    "objectid": 291,
-                    "name": "API上传文档",
-                    "url": "/FileUpload/SimpleUploadDocFile",
-                    "memo": ""
-                },
-                {
-                    "objectid": 500,
-                    "name": "后台预定会议室",
-                    "url": "/Mettingroom/UserMeetingroom/Admin/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 127,
-                    "name": "本月注册用户数",
-                    "url": "/Setting/User/MonthUser",
-                    "memo": "前台-数据统计"
-                },
-                {
-                    "objectid": 313,
-                    "name": "查询余额兼绑定汇智卡",
-                    "url": "/Payment/QueryBindCard",
-                    "memo": ""
-                },
-                {
-                    "objectid": 312,
-                    "name": "金额预警提醒",
-                    "url": "/Payment/AlertInfomation",
-                    "memo": ""
-                },
-                {
-                    "objectid": 170,
-                    "name": "执行流转",
-                    "url": "/workflow/api/HadTransfer",
-                    "memo": null
-                },
-                {
-                    "objectid": 262,
-                    "name": "删除著作权登记",
-                    "url": "/Copyright/UserCopyright/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 325,
-                    "name": "禁用启用职位",
-                    "url": "/Jobs/Enable/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 546,
-                    "name": "新版汇智卡充值折扣",
-                    "url": "/BizPayment/Mobile/CardReChargeDiscount",
-                    "memo": ""
-                },
-                {
-                    "objectid": 244,
-                    "name": "更新教室",
-                    "url": "/Classroom/UserClassroomApply/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 285,
-                    "name": "查看企业培训申请项目列表",
-                    "url": "/EnterpristCultivate/EnterpristCultivateProject/ByEnterpriseCultivateId/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 178,
-                    "name": "服务统计-时间段",
-                    "url": "/workflow/api/pistatdate",
-                    "memo": null
-                },
-                {
-                    "objectid": 481,
-                    "name": "优惠审核禁用",
-                    "url": "/Setting/MerchantSale/BanSet",
-                    "memo": ""
-                },
-                {
-                    "objectid": 307,
-                    "name": "汇智卡支付",
-                    "url": "/Payment/PayTransaction",
-                    "memo": ""
-                },
-                {
-                    "objectid": 9,
-                    "name": "添加评论",
-                    "url": "/Comment/Add",
-                    "memo": "前台-评论管理"
-                },
-                {
-                    "objectid": 402,
-                    "name": "删除须知信息",
-                    "url": "/Setting/Readme/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 330,
-                    "name": "添加职位申请",
-                    "url": "/Jobs/UserJobs/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 510,
-                    "name": "新版汇智卡交易明细",
-                    "url": "/BizPayment/QueryTransDetails",
-                    "memo": ""
-                },
-                {
-                    "objectid": 475,
-                    "name": "根据标题查看富文本详情",
-                    "url": "/Setting/RichText/ByTitle/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 171,
-                    "name": "获取下一步处理人员",
-                    "url": "/workflow/api/user/task/list",
-                    "memo": null
-                },
-                {
-                    "objectid": 600,
-                    "name": "汇智卡公告决断",
-                    "url": "/Payment/Annoucement/Judge",
-                    "memo": ""
-                },
-                {
-                    "objectid": 336,
-                    "name": "添加会议室",
-                    "url": "/Mettingroom/Mettingroom/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 245,
-                    "name": "删除教室",
-                    "url": "/Classroom/UserClassroomApply/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 278,
-                    "name": "填写个人培训页面",
-                    "url": "/Cultivate/UserCultivate/UserTrainApply/Page/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 331,
-                    "name": "删除职位申请",
-                    "url": "/Jobs/UserJobs/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 333,
-                    "name": "查看职位申请列表",
-                    "url": "/Jobs/UserJobs/Apply/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 328,
-                    "name": "查看职位申请列表",
-                    "url": "/Jobs/UserJobs/My/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 316,
-                    "name": "更新孵化预约",
-                    "url": "/Incubator/UserIncubator/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 378,
-                    "name": "列表商户点评信息",
-                    "url": "/Setting/MerchantEvaluate/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 548,
-                    "name": "汇智卡移动充值通知接口",
-                    "url": "/BizPayment/Mobile/RechargeCardNotify",
-                    "memo": ""
-                },
-                {
-                    "objectid": 153,
-                    "name": "企业管理员",
-                    "url": "/Setting/User/IsEnterpriseAdminUser",
-                    "memo": null
-                },
-                {
-                    "objectid": 275,
-                    "name": "删除个人培训",
-                    "url": "/Cultivate/UserCultivate/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 1,
-                    "name": "查看所有用户",
-                    "url": "/Setting/user",
-                    "memo": null
-                },
-                {
-                    "objectid": 574,
-                    "name": "汇智卡本人申请列表",
-                    "url": "/CardApply/Person/Me/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 513,
-                    "name": "汇智卡绑定通知接口",
-                    "url": "/BizPayment/BindCardNotify",
-                    "memo": ""
-                },
-                {
-                    "objectid": 277,
-                    "name": "查看职位申请列表",
-                    "url": "/Cultivate/UserCultivate/Apply/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 293,
-                    "name": "更新猎聘职位",
-                    "url": "/Headhunting/HeadhuntingJobs/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 150,
-                    "name": "注销",
-                    "url": "j_spring_security_logout",
-                    "memo": "注销"
-                },
-                {
-                    "objectid": 265,
-                    "name": "更新课程",
-                    "url": "/Cultivate/Course/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 214,
-                    "name": "查看猎聘申请",
-                    "url": "/Headhunting/UserHeadhunting/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 274,
-                    "name": "添加个人培训",
-                    "url": "/Cultivate/UserCultivate/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 7,
-                    "name": "编辑附件",
-                    "url": "/Attachment/Edit",
-                    "memo": "前台-附件管理"
-                },
-                {
-                    "objectid": 385,
-                    "name": "查看商户广告管理信息",
-                    "url": "/Setting/MerchantReplySet/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 438,
-                    "name": "显示历史审批意见",
-                    "url": "/workflow/api/taskinstances/history/opinion/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 451,
-                    "name": "添加入驻项目经理处理信息",
-                    "url": "/Setting/EnterApplyBusiness/Manager/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 485,
-                    "name": "通知设置已读",
-                    "url": "/Notification/SetReadStatus",
-                    "memo": ""
-                },
-                {
-                    "objectid": 367,
-                    "name": "添加商户评价互动信息",
-                    "url": "/Setting/MerchantComment/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 272,
-                    "name": "查看个人培训列表",
-                    "url": "/Cultivate/UserCultivate/My/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 447,
-                    "name": "查看商户回应列表",
-                    "url": "/Notification/ReplyList",
-                    "memo": ""
-                },
-                {
-                    "objectid": 306,
-                    "name": "查询汇智卡交易明细",
-                    "url": "/Payment/QueryTransaction",
-                    "memo": ""
-                },
-                {
-                    "objectid": 165,
-                    "name": "我的经办",
-                    "url": "/workflow/api/processinstances/my_done/list",
-                    "memo": null
-                },
-                {
-                    "objectid": 373,
-                    "name": "获取商户历史信息",
-                    "url": "/Setting/Merchant/History/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 261,
-                    "name": "添加著作权登记",
-                    "url": "/Copyright/UserCopyright/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 176,
-                    "name": "逾期统计-时间段",
-                    "url": "/workflow/api/duestatdate",
-                    "memo": null
-                },
-                {
-                    "objectid": 469,
-                    "name": "邮箱验证成功页面",
-                    "url": "/web/verifyEmail.html",
-                    "memo": ""
-                },
-                {
-                    "objectid": 236,
-                    "name": "查看教室列表",
-                    "url": "/Classroom/Classroom/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 391,
-                    "name": "列表后台商户优惠信息",
-                    "url": "/Setting/MerchantSale/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 554,
-                    "name": "课程全部报名列表",
-                    "url": "/Cultivate/UserCultivate/Apply/All/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 97,
-                    "name": "根据parentID查询城市列表",
-                    "url": "/Setting/SettingCity/ParentId",
-                    "memo": "前台-城市信息列表"
-                },
-                {
                     "objectid": 431,
                     "name": "未评价",
                     "url": "/Setting/MainBusiness/noComment/List",
                     "memo": "前台-我的小智"
                 },
                 {
-                    "objectid": 234,
-                    "name": "编辑广告服务申请",
-                    "url": "/Commercialize/UserCommercialize/Edit",
+                    "objectid": 305,
+                    "name": "编辑房间",
+                    "url": "/House/Edit",
                     "memo": ""
                 },
                 {
-                    "objectid": 392,
-                    "name": "添加后台商户优惠缩略图信息",
-                    "url": "/Setting/MerchantSaleThumbs/Update",
+                    "objectid": 449,
+                    "name": "帮助中心详情",
+                    "url": "/Setting/SettingHelps/Edit",
                     "memo": ""
                 },
                 {
-                    "objectid": 467,
-                    "name": "更新商户",
-                    "url": "/Setting/Merchant/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 182,
-                    "name": "未评价",
-                    "url": "/UserRepair/noComment",
-                    "memo": null
-                },
-                {
-                    "objectid": 401,
-                    "name": "新增须知信息",
-                    "url": "/Setting/Readme/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 211,
-                    "name": "查看企业培训项目申请",
-                    "url": "/EnterpriseCultivate/EnterpriseCultivate/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 601,
-                    "name": "汇智卡游船预订时段表",
-                    "url": "/HuizhiBoat/BoatApply/GetTimeList",
-                    "memo": ""
-                },
-                {
-                    "objectid": 517,
-                    "name": "汇智卡充值折扣接口",
-                    "url": "/BizPayment/CardReChargeDiscount",
-                    "memo": ""
-                },
-                {
-                    "objectid": 129,
-                    "name": "个人信息",
-                    "url": "/Setting/User/MyInfo",
-                    "memo": "前台-用户管理"
-                },
-                {
-                    "objectid": 183,
-                    "name": "修改密码",
-                    "url": "/Setting/User/ChangePassword",
-                    "memo": null
-                },
-                {
-                    "objectid": 239,
-                    "name": "删除教室",
-                    "url": "/Classroom/Classroom/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 14,
-                    "name": "普通上传图片",
-                    "url": "/FileUpload/UploadImgComm",
-                    "memo": "公用-普通上传图片"
-                },
-                {
-                    "objectid": 462,
-                    "name": "会议室申请确认",
-                    "url": "/Mettingroom/UserMeetingroomVerify/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 148,
-                    "name": "新增用户申请",
-                    "url": "/Setting/UserEnterpriseApplyInfo/EnableEnterpriseApply",
-                    "memo": "前台-用户中心"
-                },
-                {
-                    "objectid": 358,
-                    "name": "删除后台管理菜单信息",
-                    "url": "/Setting/MenuAdmin/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 381,
-                    "name": "查看商户回复互动信息",
-                    "url": "/Setting/MerchantReply/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 345,
-                    "name": "编辑会议室申请",
-                    "url": "/Mettingroom/UserMeetingroom/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 425,
-                    "name": "问卷调查",
-                    "url": "/questionnaire/list",
-                    "memo": ""
-                },
-                {
-                    "objectid": 550,
-                    "name": "获取商户分类前4条数据",
-                    "url": "/Setting/Merchant/GetClassifiedMerchant",
-                    "memo": ""
-                },
-                {
-                    "objectid": 603,
-                    "name": "游船详情",
-                    "url": "/HuizhiBoat/BoatApply/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 248,
-                    "name": "查看教室申请列表",
-                    "url": "/Classroom/UserClassroom/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 159,
-                    "name": "楼宇列表",
-                    "url": "/Setting/Building/BuildingByParkId",
-                    "memo": null
-                },
-                {
-                    "objectid": 326,
-                    "name": "查看可用职位列表",
-                    "url": "/Jobs/Enable/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 233,
-                    "name": "删除广告服务申请",
-                    "url": "/Commercialize/UserCommercialize/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 322,
-                    "name": "添加职位",
-                    "url": "/Jobs/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 604,
-                    "name": "预定游船",
-                    "url": "/HuizhiBoat/BoatApply/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 173,
-                    "name": "错发回收",
-                    "url": "/workflow/api/taskinstanceslist/Retrieve",
-                    "memo": null
-                },
-                {
-                    "objectid": 156,
-                    "name": "根据用户查询评论",
-                    "url": "/Comment/ByUser",
-                    "memo": null
-                },
-                {
-                    "objectid": 450,
-                    "name": "查看入驻项目经理处理信息",
-                    "url": "/Setting/EnterApplyBusiness/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 267,
-                    "name": "删除课程",
-                    "url": "/Cultivate/Course/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 78,
-                    "name": "编辑维修人员",
-                    "url": "/Setting/SettingMaintainer/Edit",
-                    "memo": "后台、前台-维修人员块管理"
-                },
-                {
-                    "objectid": 564,
-                    "name": "用户红包查看",
-                    "url": "/RedPacket/User/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 136,
-                    "name": "企业管理员删除内部用户",
-                    "url": "/Setting/User/EnterpriseBind/Delete",
-                    "memo": "企业管理-用户管理"
-                },
-                {
-                    "objectid": 79,
-                    "name": "更新维修人员",
-                    "url": "/Setting/SettingMaintainer/Update",
-                    "memo": "后台、前台-维修人员管理"
-                },
-                {
-                    "objectid": 335,
-                    "name": "更新会议室",
-                    "url": "/Mettingroom/Mettingroom/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 566,
-                    "name": "用户无效红包列表",
-                    "url": "/RedPacket/User/Invalid/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 250,
-                    "name": "添加教室申请",
-                    "url": "/Classroom/UserClassroom/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 33,
-                    "name": "删除报修",
-                    "url": "/UserRepair/Delete",
-                    "memo": "前台-报修管理"
-                },
-                {
-                    "objectid": 8,
-                    "name": "查看评论",
-                    "url": "/Comment",
-                    "memo": "前台-评论管理"
-                },
-                {
-                    "objectid": 372,
-                    "name": "列表后台商户管理信息",
-                    "url": "/Setting/Merchant/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 252,
-                    "name": "编辑教室申请",
-                    "url": "/Classroom/UserClassroom/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 341,
-                    "name": "查看会议室申请列表",
-                    "url": "/Mettingroom/UserMeetingroom/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 509,
-                    "name": "新版汇智卡支付",
-                    "url": "/BizPayment/CardReCharge",
-                    "memo": ""
-                },
-                {
-                    "objectid": 529,
-                    "name": "新版汇智卡绑定",
-                    "url": "/BizPayment/Mobile/BindUnBindCard",
-                    "memo": ""
-                },
-                {
-                    "objectid": 334,
-                    "name": "查看会议室列表",
-                    "url": "/Mettingroom/Mettingroom/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 58,
-                    "name": "查看园区信息",
-                    "url": "/Setting/Park",
-                    "memo": "后台-配置信息管理"
-                },
-                {
-                    "objectid": 302,
-                    "name": "更新房间",
-                    "url": "/House/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 390,
-                    "name": "查看后台商户优惠信息",
-                    "url": "/Setting/MerchantSale/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 282,
-                    "name": "删除企业培训申请",
-                    "url": "/EnterpriseCultivate/EnterpriseCultivate/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 320,
-                    "name": "查看职位列表",
-                    "url": "/Jobs/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 51,
-                    "name": "查询企业",
-                    "url": "/Setting/Enterprise",
-                    "memo": "后台-企业管理"
-                },
-                {
-                    "objectid": 66,
-                    "name": "查看报修信息",
-                    "url": "/Setting/SettingRepairBase/Edit",
-                    "memo": "后台、前台-报修信息块管理"
-                },
-                {
-                    "objectid": 472,
-                    "name": "发起人撤销",
-                    "url": "/workflowapi/usercallback",
-                    "memo": ""
-                },
-                {
-                    "objectid": 69,
-                    "name": "更新报修信息",
-                    "url": "/Setting/SettingRepairComment/Update",
-                    "memo": "后台、前台-报修信息块管理"
-                },
-                {
-                    "objectid": 570,
-                    "name": "汇智卡个人申请查看",
-                    "url": "/CardApply/Person/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 327,
-                    "name": "查看职位申请列表",
-                    "url": "/Jobs/UserJobs/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 461,
-                    "name": "导出简历",
-                    "url": "/Jobs/UserJobs/DownloadResume",
-                    "memo": ""
-                },
-                {
-                    "objectid": 380,
-                    "name": "删除商户回复互动信息",
-                    "url": "/Setting/MerchantReply/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 80,
-                    "name": "删除维修人员",
-                    "url": "/Setting/SettingMaintainer/Delete",
-                    "memo": "后台、前台-维修人员块管理"
-                },
-                {
-                    "objectid": 329,
-                    "name": "更新职位申请",
-                    "url": "/Jobs/UserJobs/Update",
+                    "objectid": 213,
+                    "name": "查看著作权登记申请",
+                    "url": "/Copyright/UserCopyright/Edit",
                     "memo": ""
                 },
                 {
@@ -2101,285 +2134,9 @@
                     "memo": ""
                 },
                 {
-                    "objectid": 288,
-                    "name": "删除企业培训项目申请",
-                    "url": "/EnterpristCultivate/EnterpristCultivateProject/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 269,
-                    "name": "禁用启用职位",
-                    "url": "/Cultivate/Course/Enable/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 533,
-                    "name": "获取通知未读总数",
-                    "url": "/Notification/Total/GetUnReadCount",
-                    "memo": ""
-                },
-                {
-                    "objectid": 166,
-                    "name": "逾期",
-                    "url": "/workflow/api/taskinstanceslist/due/list",
-                    "memo": null
-                },
-                {
-                    "objectid": 478,
-                    "name": "查看账单",
-                    "url": "/Buiness/CLMBusiness/CheckTheBill/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 30,
-                    "name": "查看报修",
-                    "url": "/UserRepair",
-                    "memo": "前台-报修管理"
-                },
-                {
-                    "objectid": 569,
-                    "name": "汇智卡个人申请列表",
-                    "url": "/CardApply/Person/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 479,
-                    "name": "富文本上传附件",
-                    "url": "/FileUpload/AccessoryUploadImgSpecial",
-                    "memo": ""
-                },
-                {
-                    "objectid": 470,
-                    "name": "查看业务",
-                    "url": "/workflow/api/get",
-                    "memo": ""
-                },
-                {
-                    "objectid": 179,
-                    "name": "退回上一步",
-                    "url": "/workflow/api/sendback",
-                    "memo": null
-                },
-                {
-                    "objectid": 303,
-                    "name": "添加房间",
-                    "url": "/House/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 379,
-                    "name": "商户回复禁用",
-                    "url": "/Setting/MerchantReply/BlockReply",
-                    "memo": ""
-                },
-                {
-                    "objectid": 168,
-                    "name": "编辑业务",
-                    "url": "/workflow/api/edit",
-                    "memo": null
-                },
-                {
-                    "objectid": 398,
-                    "name": "查看须知信息列表",
-                    "url": "/Setting/Readme/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 229,
-                    "name": "查看广告服务申请列表",
-                    "url": "/Commercialize/UserCommercialize/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 369,
-                    "name": "获取商户搜索菜单",
-                    "url": "/Setting/Merchant/GetSearchLivingMenu",
-                    "memo": ""
-                },
-                {
-                    "objectid": 410,
-                    "name": "删除测试申请",
-                    "url": "/TestApplyfor/UserTestApplyfor/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 22,
-                    "name": "发送短信验证码",
-                    "url": "/Public/Phone/SendCode",
-                    "memo": "公共-用户注册"
-                },
-                {
-                    "objectid": 471,
-                    "name": "服务列表",
-                    "url": "/workflow/api/business",
-                    "memo": ""
-                },
-                {
-                    "objectid": 614,
-                    "name": "上传视频文件",
-                    "url": "/FileUpload/UploadVideoComm",
-                    "memo": ""
-                },
-                {
-                    "objectid": 2,
-                    "name": "登录",
-                    "url": "/j_spring_security_check",
-                    "memo": null
-                },
-                {
-                    "objectid": 155,
-                    "name": "企业管理员",
-                    "url": "/Setting/User/EnterpriseAdminShowUser",
-                    "memo": null
-                },
-                {
-                    "objectid": 579,
-                    "name": "汇智卡企业申请添加",
-                    "url": "/CardApply/Enterprise/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 504,
-                    "name": "企业孵化预约查询",
-                    "url": "/Incubator/UserIncubator/Search/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 270,
-                    "name": "查看可用课程列表",
-                    "url": "/Cultivate/Course/Enable/List",
-                    "memo": ""
-                },
-                {
-                    "objectid": 364,
-                    "name": "删除商户评价互动信息",
-                    "url": "/Setting/MerchantComment/Delete",
-                    "memo": ""
-                },
-                {
-                    "objectid": 294,
-                    "name": "添加猎聘职位",
-                    "url": "/Headhunting/HeadhuntingJobs/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 273,
-                    "name": "更新个人培训",
-                    "url": "/Cultivate/UserCultivate/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 238,
-                    "name": "添加教室",
-                    "url": "/Classroom/Classroom/Add",
-                    "memo": ""
-                },
-                {
-                    "objectid": 103,
-                    "name": "根据parentID查询数据字典",
-                    "url": "/Setting/SettingDict/ParentId",
-                    "memo": "前台-数据字典"
-                },
-                {
-                    "objectid": 184,
-                    "name": "富文本",
-                    "url": "/Setting/RichText/Special",
-                    "memo": null
-                },
-                {
-                    "objectid": 71,
-                    "name": "更新报修信息",
-                    "url": "/Setting/SettingRepairValidDate/Update",
-                    "memo": "后台、前台-报修信息块管理"
-                },
-                {
-                    "objectid": 449,
-                    "name": "帮助中心详情",
-                    "url": "/Setting/SettingHelps/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 383,
-                    "name": "添加商户广告管理信息",
-                    "url": "/Setting/MerchantReplySet/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 72,
-                    "name": "查看报修自动分配信息",
-                    "url": "/Setting/SettingAutoDispatch/List",
-                    "memo": "后台、前台-报修自动分配信息块管理"
-                },
-                {
-                    "objectid": 5,
-                    "name": "更新附件",
-                    "url": "/Attachment/Update",
-                    "memo": "前台-附件管理"
-                },
-                {
-                    "objectid": 119,
-                    "name": "用户变更手机号码",
-                    "url": "/Setting/User/ChangePhone",
-                    "memo": "公共-用户中心"
-                },
-                {
-                    "objectid": 375,
-                    "name": "查看后台商户状态信息",
-                    "url": "/Setting/Merchant/Status",
-                    "memo": ""
-                },
-                {
-                    "objectid": 332,
-                    "name": "编辑职位申请",
-                    "url": "/Jobs/UserJobs/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 359,
-                    "name": "查看后台管理菜单信息",
-                    "url": "/Setting/MenuAdmin/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 377,
-                    "name": "查看商户点评信息",
-                    "url": "/Setting/MerchantEvaluate/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 549,
-                    "name": "获取商户分类前4条优惠数据",
-                    "url": "/Setting/Merchant/GetClassifiedProducts",
-                    "memo": ""
-                },
-                {
-                    "objectid": 193,
-                    "name": "简易的文件上传",
-                    "url": "/FileUpload/SimpleUploadFile",
-                    "memo": null
-                },
-                {
-                    "objectid": 237,
-                    "name": "更新教室",
-                    "url": "/Classroom/Classroom/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 115,
-                    "name": "查看富文本",
-                    "url": "/Setting/RichText/Edit",
-                    "memo": "后台-富文本管理"
-                },
-                {
-                    "objectid": 539,
-                    "name": "根据企业名称绑定",
-                    "url": "/Setting/User/BindingEnterpriseByName",
-                    "memo": ""
-                },
-                {
-                    "objectid": 547,
-                    "name": "汇智卡移动绑定通知接口",
-                    "url": "/BizPayment/Mobile/BindCardNotify",
+                    "objectid": 281,
+                    "name": "添加企业培训申请",
+                    "url": "/EnterpriseCultivate/EnterpriseCultivate/Add",
                     "memo": ""
                 },
                 {
@@ -2389,28 +2146,130 @@
                     "memo": "后台-企业管理"
                 },
                 {
-                    "objectid": 232,
-                    "name": "添加广告服务申请",
-                    "url": "/Commercialize/UserCommercialize/Add",
+                    "objectid": 391,
+                    "name": "列表后台商户优惠信息",
+                    "url": "/Setting/MerchantSale/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 305,
-                    "name": "编辑房间",
-                    "url": "/House/Edit",
+                    "objectid": 610,
+                    "name": "汇智卡游船导出预订列表",
+                    "url": "/HuizhiBoat/BoatApply/Export/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 154,
-                    "name": "企业用户信息",
-                    "url": "/Setting/UserEnterpriseApplyInfo/ApplyList",
+                    "objectid": 478,
+                    "name": "查看账单",
+                    "url": "/Buiness/CLMBusiness/CheckTheBill/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 601,
+                    "name": "汇智卡游船预订时段表",
+                    "url": "/HuizhiBoat/BoatApply/GetTimeList",
+                    "memo": ""
+                },
+                {
+                    "objectid": 479,
+                    "name": "富文本上传附件",
+                    "url": "/FileUpload/AccessoryUploadImgSpecial",
+                    "memo": ""
+                },
+                {
+                    "objectid": 589,
+                    "name": "移动端解挂挂失",
+                    "url": "/BizPayment/Mobile/LostHangCard",
+                    "memo": ""
+                },
+                {
+                    "objectid": 500,
+                    "name": "后台预定会议室",
+                    "url": "/Mettingroom/UserMeetingroom/Admin/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 316,
+                    "name": "更新孵化预约",
+                    "url": "/Incubator/UserIncubator/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 280,
+                    "name": "更新企业培训申请",
+                    "url": "/EnterpriseCultivate/EnterpriseCultivate/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 182,
+                    "name": "未评价",
+                    "url": "/UserRepair/noComment",
                     "memo": null
                 },
                 {
-                    "objectid": 289,
-                    "name": "编辑企业培训项目申请",
-                    "url": "/EnterpristCultivate/EnterpristCultivateProject/Edit",
+                    "objectid": 150,
+                    "name": "注销",
+                    "url": "j_spring_security_logout",
+                    "memo": "注销"
+                },
+                {
+                    "objectid": 401,
+                    "name": "新增须知信息",
+                    "url": "/Setting/Readme/Add",
                     "memo": ""
+                },
+                {
+                    "objectid": 333,
+                    "name": "查看职位申请列表",
+                    "url": "/Jobs/UserJobs/Apply/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 439,
+                    "name": "活动列表",
+                    "url": "/ActivityCenter/ActivityMain/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 295,
+                    "name": "编辑猎聘职位",
+                    "url": "/Headhunting/HeadhuntingJobs/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 7,
+                    "name": "编辑附件",
+                    "url": "/Attachment/Edit",
+                    "memo": "前台-附件管理"
+                },
+                {
+                    "objectid": 504,
+                    "name": "企业孵化预约查询",
+                    "url": "/Incubator/UserIncubator/Search/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 475,
+                    "name": "根据标题查看富文本详情",
+                    "url": "/Setting/RichText/ByTitle/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 366,
+                    "name": "列表商户评价互动信息",
+                    "url": "/Setting/MerchantComment/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 472,
+                    "name": "发起人撤销",
+                    "url": "/workflowapi/usercallback",
+                    "memo": ""
+                },
+                {
+                    "objectid": 127,
+                    "name": "本月注册用户数",
+                    "url": "/Setting/User/MonthUser",
+                    "memo": "前台-数据统计"
                 },
                 {
                     "objectid": 231,
@@ -2419,45 +2278,87 @@
                     "memo": ""
                 },
                 {
-                    "objectid": 354,
-                    "name": "列表商户广告管理信息",
-                    "url": "/Setting/LivingCenterAdver/List",
+                    "objectid": 399,
+                    "name": "查看须知信息",
+                    "url": "/Setting/Readme/Type/Edit",
                     "memo": ""
                 },
                 {
-                    "objectid": 573,
-                    "name": "汇智卡个人申请添加",
-                    "url": "/CardApply/Person/Add",
+                    "objectid": 262,
+                    "name": "删除著作权登记",
+                    "url": "/Copyright/UserCopyright/Delete",
                     "memo": ""
                 },
                 {
-                    "objectid": 138,
-                    "name": "统计注册用户数据",
-                    "url": "/Setting/User/StatisticsData",
-                    "memo": "后台-数据统计"
-                },
-                {
-                    "objectid": 565,
-                    "name": "用户有效红包列表",
-                    "url": "/RedPacket/User/Valid/List",
+                    "objectid": 546,
+                    "name": "新版汇智卡充值折扣",
+                    "url": "/BizPayment/Mobile/CardReChargeDiscount",
                     "memo": ""
                 },
                 {
-                    "objectid": 342,
-                    "name": "更新会议室申请",
-                    "url": "/Mettingroom/UserMeetingroom/Update",
+                    "objectid": 181,
+                    "name": "流程跟踪",
+                    "url": "/workflow/api/processinstances/my_apply/done",
+                    "memo": null
+                },
+                {
+                    "objectid": 284,
+                    "name": "查看企业培训申请项目列表",
+                    "url": "/EnterpristCultivate/EnterpristCultivateProject/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 453,
-                    "name": "邮箱验证",
-                    "url": "/SysEmail/DoAuthEmail",
+                    "objectid": 91,
+                    "name": "查看服务信息",
+                    "url": "/Setting/SettingAbout",
+                    "memo": "后台、前台-服务信息块管理"
+                },
+                {
+                    "objectid": 240,
+                    "name": "编辑教室",
+                    "url": "/Classroom/Classroom/Edit",
                     "memo": ""
                 },
                 {
-                    "objectid": 317,
-                    "name": "添加孵化预约",
-                    "url": "/Incubator/UserIncubator/Add",
+                    "objectid": 31,
+                    "name": "添加报修",
+                    "url": "/UserRepair/Add",
+                    "memo": "前台-报修管理"
+                },
+                {
+                    "objectid": 214,
+                    "name": "查看猎聘申请",
+                    "url": "/Headhunting/UserHeadhunting/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 540,
+                    "name": "微信端更新头像",
+                    "url": "/Setting/User/UpdateAvar",
+                    "memo": ""
+                },
+                {
+                    "objectid": 499,
+                    "name": "后台预定教室",
+                    "url": "/Classroom/UserClassroom/Admin/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 465,
+                    "name": "查看自动评价详情",
+                    "url": "/Setting/SettingAutoComment/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 485,
+                    "name": "通知设置已读",
+                    "url": "/Notification/SetReadStatus",
+                    "memo": ""
+                },
+                {
+                    "objectid": 299,
+                    "name": "删除猎聘申请",
+                    "url": "/Headhunting/UserHeadhunting/Delete",
                     "memo": ""
                 },
                 {
@@ -2467,14 +2368,133 @@
                     "memo": ""
                 },
                 {
-                    "objectid": 17,
-                    "name": "查看通知",
-                    "url": "/Notification",
-                    "memo": "前台-通知管理"
+                    "objectid": 464,
+                    "name": "查看会议室确认详情",
+                    "url": "/Mettingroom/UserMeetingroomVerify/UserMeetingroom/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 152,
+                    "name": "绑定企业",
+                    "url": "/Setting/User/IsBindEnterprise",
+                    "memo": null
+                },
+                {
+                    "objectid": 23,
+                    "name": "校验验证码",
+                    "url": "/Public/Phone/Validate",
+                    "memo": "公用-验证码"
+                },
+                {
+                    "objectid": 1,
+                    "name": "查看所有用户",
+                    "url": "/Setting/user",
+                    "memo": null
+                },
+                {
+                    "objectid": 387,
+                    "name": "添加商户广告管理信息",
+                    "url": "/Setting/MerchantReplySet/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 587,
+                    "name": "PC端解挂挂失",
+                    "url": "/BizPayment/LostHangCard",
+                    "memo": ""
+                },
+                {
+                    "objectid": 308,
+                    "name": "汇智卡总数统计",
+                    "url": "/Payment/TotalCardStatistic",
+                    "memo": ""
+                },
+                {
+                    "objectid": 394,
+                    "name": "查看后台商户优惠缩略图信息",
+                    "url": "/Setting/MerchantSaleThumbs/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 421,
+                    "name": "添加入驻申请",
+                    "url": "/Setting/EnterApply/Add",
+                    "memo": ""
+                },
+                {
+                    "objectid": 400,
+                    "name": "更新须知信息",
+                    "url": "/Setting/Readme/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 355,
+                    "name": "删除登录信息",
+                    "url": "/Setting/LoginLog/Del",
+                    "memo": ""
+                },
+                {
+                    "objectid": 527,
+                    "name": "业务是否完成",
+                    "url": "/Setting/MainBusiness/IsComplete/Edit",
+                    "memo": ""
                 }
             ],
             "permissionArray": null,
             "isShow": 0
+        },
+        {
+            "rolename": "TeneAccept1Admin",
+            "name": "物业领导",
+            "memo": "物业领导",
+            "permissionList": [],
+            "permissionArray": null,
+            "isShow": 0
+        },
+        {
+            "rolename": "TeneAdmin",
+            "name": "物业管理员",
+            "memo": "物业管理员",
+            "permissionList": [
+                {
+                    "objectid": 211,
+                    "name": "查看企业培训项目申请",
+                    "url": "/EnterpriseCultivate/EnterpriseCultivate/Edit",
+                    "memo": ""
+                },
+                {
+                    "objectid": 205,
+                    "name": "服务设置",
+                    "url": "/admin/serviceSetting.html",
+                    "memo": ""
+                },
+                {
+                    "objectid": 515,
+                    "name": "按部门搜索维修人员",
+                    "url": "/Setting/SettingMaintainer/Role/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 100,
+                    "name": "查看数据字典列表",
+                    "url": "/Setting/SettingDict",
+                    "memo": "后台、前台-配置管理"
+                },
+                {
+                    "objectid": 76,
+                    "name": "查看维修人员信息",
+                    "url": "/Setting/SettingMaintainer/List",
+                    "memo": "后台、前台-维修人员块管理"
+                },
+                {
+                    "objectid": 491,
+                    "name": "报修类型数据字典",
+                    "url": "/Setting/SettingDict/ParentIdExceptTop/List",
+                    "memo": ""
+                }
+            ],
+            "permissionArray": null,
+            "isShow": 1
         },
         {
             "rolename": "boatHandler",
@@ -2492,36 +2512,10 @@
             "isShow": 1
         },
         {
-            "rolename": "TeneAccept1Admin",
-            "name": "物业领导",
-            "memo": "物业领导",
-            "permissionList": [],
-            "permissionArray": null,
-            "isShow": 0
-        },
-        {
             "rolename": "HzCardApplyAdmin",
             "name": "汇智卡申请管理员",
             "memo": "汇智卡申请管理员",
             "permissionList": [
-                {
-                    "objectid": 584,
-                    "name": "汇智卡申请管理",
-                    "url": "/admin/hzCardMgt.html",
-                    "memo": ""
-                },
-                {
-                    "objectid": 576,
-                    "name": "汇智卡企业申请查看",
-                    "url": "/CardApply/Enterprise/Edit",
-                    "memo": ""
-                },
-                {
-                    "objectid": 573,
-                    "name": "汇智卡个人申请添加",
-                    "url": "/CardApply/Person/Add",
-                    "memo": ""
-                },
                 {
                     "objectid": 570,
                     "name": "汇智卡个人申请查看",
@@ -2529,21 +2523,15 @@
                     "memo": ""
                 },
                 {
-                    "objectid": 580,
-                    "name": "汇智卡本企业申请列表",
-                    "url": "/CardApply/Enterprise/Me/List",
+                    "objectid": 579,
+                    "name": "汇智卡企业申请添加",
+                    "url": "/CardApply/Enterprise/Add",
                     "memo": ""
                 },
                 {
-                    "objectid": 577,
-                    "name": "汇智卡企业申请更新",
-                    "url": "/CardApply/Enterprise/Update",
-                    "memo": ""
-                },
-                {
-                    "objectid": 593,
-                    "name": "汇智卡企业申请审核",
-                    "url": "/CardApply/Enterprise/Status/Update",
+                    "objectid": 573,
+                    "name": "汇智卡个人申请添加",
+                    "url": "/CardApply/Person/Add",
                     "memo": ""
                 },
                 {
@@ -2559,15 +2547,21 @@
                     "memo": ""
                 },
                 {
+                    "objectid": 584,
+                    "name": "汇智卡申请管理",
+                    "url": "/admin/hzCardMgt.html",
+                    "memo": ""
+                },
+                {
                     "objectid": 569,
                     "name": "汇智卡个人申请列表",
                     "url": "/CardApply/Person/List",
                     "memo": ""
                 },
                 {
-                    "objectid": 579,
-                    "name": "汇智卡企业申请添加",
-                    "url": "/CardApply/Enterprise/Add",
+                    "objectid": 576,
+                    "name": "汇智卡企业申请查看",
+                    "url": "/CardApply/Enterprise/Edit",
                     "memo": ""
                 },
                 {
@@ -2577,9 +2571,27 @@
                     "memo": ""
                 },
                 {
+                    "objectid": 580,
+                    "name": "汇智卡本企业申请列表",
+                    "url": "/CardApply/Enterprise/Me/List",
+                    "memo": ""
+                },
+                {
+                    "objectid": 593,
+                    "name": "汇智卡企业申请审核",
+                    "url": "/CardApply/Enterprise/Status/Update",
+                    "memo": ""
+                },
+                {
                     "objectid": 571,
                     "name": "汇智卡个人申请更新",
                     "url": "/CardApply/Person/Update",
+                    "memo": ""
+                },
+                {
+                    "objectid": 577,
+                    "name": "汇智卡企业申请更新",
+                    "url": "/CardApply/Enterprise/Update",
                     "memo": ""
                 }
             ],
@@ -2588,7 +2600,7 @@
         }
     ],
     "roleArray": null,
-    "signature": "adascasc",
+    "signature": "2017/7/20 9:41 test",
     "deleteFlag": 1,
     "enterprise": {
         "objectid": 5,
