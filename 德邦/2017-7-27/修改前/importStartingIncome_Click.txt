@@ -1,0 +1,150 @@
+Private Sub importStartingIncome_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long, j As Long, length1 As Long, length2 As Long 'iÎªÓ³Éä¹ØÏµ.xslxÖÐÓªÒµ²¿Êý¾Ý¿ªÊ¼Î»ÖÃ£¬jÎª±¾sheetÒ³ÖÐÊý¾Ý¿ªÊ¼Î»ÖÃ£¬lengthÎªÓªÒµ²¿Êý¾Ý×ÜÌõÊý
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        'Ñ¡¶¨»î¶¯Ò³
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        j = 3
+        length1 = Application.CountA(sh1.Range("A:A")) 'length1Îªµ±Ç°±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        length2 = Application.CountA(sh2.Range("A:A")) 'length2Îª³ö·¢ÊÕÈë±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        MsgBox length1
+        MsgBox length2
+        For i = 2 To length2
+            sh1.Cells(j, 10) = sh2.Cells(i, 1)
+            sh1.Cells(j, 8) = sh2.Cells(i, 2)
+            sh1.Cells(j, 9) = sh2.Cells(i, 3)
+            j = j + 1
+        Next
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub
+
+Private Sub importStartingIncome_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long, j As Long, length1 As Long, length2 As Long 'iÎªÓ³Éä¹ØÏµ.xslxÖÐÓªÒµ²¿Êý¾Ý¿ªÊ¼Î»ÖÃ£¬jÎª±¾sheetÒ³ÖÐÊý¾Ý¿ªÊ¼Î»ÖÃ£¬lengthÎªÓªÒµ²¿Êý¾Ý×ÜÌõÊý
+    Dim y As Long
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        'Ñ¡¶¨»î¶¯Ò³
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        j = 3
+        length1 = Application.CountA(sh1.Range("A:A")) 'length1Îªµ±Ç°±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        length2 = Application.CountA(sh2.Range("A:A")) 'length2Îª³ö·¢ÊÕÈë±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        MsgBox length1
+        MsgBox length2
+        y = WorksheetFunction.VLookup(sh1.Cells(4109, 1), sh2.Range("A:B"), 2, 0)
+        MsgBox y
+        y = WorksheetFunction.VLookup(sh1.Cells(4109, 1), sh2.Range("A:C"), 3, 0)
+        MsgBox y
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub
+
+Private Sub importStartingIncome_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long, j As Long, length1 As Long, length2 As Long 'iÎªÓ³Éä¹ØÏµ.xslxÖÐÓªÒµ²¿Êý¾Ý¿ªÊ¼Î»ÖÃ£¬jÎª±¾sheetÒ³ÖÐÊý¾Ý¿ªÊ¼Î»ÖÃ£¬lengthÎªÓªÒµ²¿Êý¾Ý×ÜÌõÊý
+    Dim y As Long
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        'Ñ¡¶¨»î¶¯Ò³
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        j = 3
+        length1 = Application.CountA(sh1.Range("A:A")) 'length1Îªµ±Ç°±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        length2 = Application.CountA(sh2.Range("A:A")) 'length2Îª³ö·¢ÊÕÈë±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        For j = 3 To length1
+            sh1.Cells(j, 10) = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A"), 1, 0)
+            sh1.Cells(j, 8) = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:B"), 2, 0)
+            sh1.Cells(j, 9) = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:C"), 3, 0)
+        Next
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub
+
+Private Sub importStartingIncome_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long, j As Long, length1 As Long, length2 As Long 'iÎªÓ³Éä¹ØÏµ.xslxÖÐÓªÒµ²¿Êý¾Ý¿ªÊ¼Î»ÖÃ£¬jÎª±¾sheetÒ³ÖÐÊý¾Ý¿ªÊ¼Î»ÖÃ£¬lengthÎªÓªÒµ²¿Êý¾Ý×ÜÌõÊý
+    Dim y As Long
+    Dim value_j As String, value_h As Double, value_i As Double
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        'Ñ¡¶¨»î¶¯Ò³
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        j = 3
+        length1 = Application.CountA(sh1.Range("A:A")) 'length1Îªµ±Ç°±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        length2 = Application.CountA(sh2.Range("A:A")) 'length2Îª³ö·¢ÊÕÈë±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        For j = 3 To 5
+            value_j = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:A"), 1, 0)
+            value_h = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:B"), 2, 0)
+            value_i = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:C"), 3, 0)
+            sh1.Cells(j, 10) = value_j
+            sh1.Cells(j, 8) = value_h
+           sh1.Cells(j, 9) = value_i
+        Next
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub 
+
+Private Sub importStartingIncome_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long, j As Long, length1 As Long, length2 As Long 'iÎªÓ³Éä¹ØÏµ.xslxÖÐÓªÒµ²¿Êý¾Ý¿ªÊ¼Î»ÖÃ£¬jÎª±¾sheetÒ³ÖÐÊý¾Ý¿ªÊ¼Î»ÖÃ£¬lengthÎªÓªÒµ²¿Êý¾Ý×ÜÌõÊý
+    Dim y As Long
+    Dim value_j As String, value_h As Double, value_i As Double
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        'Ñ¡¶¨»î¶¯Ò³
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        j = 3
+        length1 = Application.CountA(sh1.Range("A:A")) 'length1Îªµ±Ç°±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        length2 = Application.CountA(sh2.Range("A:A")) 'length2Îª³ö·¢ÊÕÈë±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+        For j = 3 To length1
+            value_j = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:A"), 1, 0)
+            value_h = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:B"), 2, 0)
+            value_i = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:C"), 3, 0)
+            sh1.Cells(j, 10) = value_j
+            sh1.Cells(j, 8) = value_h
+           sh1.Cells(j, 9) = value_i
+        Next
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub
