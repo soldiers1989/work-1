@@ -1,0 +1,16 @@
+Private Sub importInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=2, Title:="请选择文件")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        Set sh2 = Sheets("6月")
+        MsgBox sh2.Range("A" & 2)
+        wk2.Close savechanges:=False
+        MsgBox "数据导入成功！"
+    End If
+End Sub

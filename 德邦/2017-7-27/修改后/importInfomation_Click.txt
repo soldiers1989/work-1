@@ -1,0 +1,99 @@
+Private Sub importInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        For i = 2 To 50
+            sh1.Cells(i + 1, 1) = sh2.Cells(i, 2)
+            sh1.Cells(i + 1, 2) = sh2.Cells(i, 5)
+        Next
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub
+Private Sub importInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        For i = 2 To 50
+            If sh2.Cells(i, 9) = "1" And sh2.Cells(i, 12) = "1" Then
+                sh1.Cells(i + 1, 1) = sh2.Cells(i, 2)
+                sh1.Cells(i + 1, 2) = sh2.Cells(i, 5)
+            End If
+        Next
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub
+
+Private Sub importInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long, j As Long
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        j = 3
+        For i = 2 To 50
+            If sh2.Cells(i, 9) = "1" And sh2.Cells(i, 12) = "1" Then
+                sh1.Cells(j, 1) = sh2.Cells(i, 2)
+                sh1.Cells(j, 2) = sh2.Cells(i, 5)
+                j = j + 1
+            End If
+        Next
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub
+
+Private Sub importInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long, j As Long, length As Long
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        Set wk2 = ActiveWorkbook
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        j = 3
+        length = Application.CountA(sh2.Range("A:A"))
+        MsgBox length
+        For i = 2 To length
+            If sh2.Cells(i, 9) = "1" And sh2.Cells(i, 12) = "1" Then
+                sh1.Cells(j, 1) = sh2.Cells(i, 2)
+                sh1.Cells(j, 2) = sh2.Cells(i, 5)
+                j = j + 1
+            End If
+        Next
+        wk2.Close savechanges:=False
+        MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+    End If
+End Sub
+
