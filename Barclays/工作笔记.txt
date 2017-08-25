@@ -1,0 +1,51 @@
+一、工作内容
+    将AML二次补录中，写在.java文件中的两个按钮提取出来，放到view文件中
+
+二、流程
+    1、view中添加控件
+    2、.java中表明各个控件之间的关系（自动生成）
+    3、cust.java中添加绑定事件
+
+三、两个按钮
+    1、添加email附件 btnAcc  在btnlayout下
+        1.1、fieldsqueryDatasetAcc   在fields下
+        1.2、detailBtnLayoutAcc
+        1.3、detailBtnLayoutAccTop
+        1.4、formActionAcc
+        1.5、detailWindowAcc 添加email附件时弹出的窗口
+    2、延迟上报  btnDelay    在btnlayout下
+
+
+包含关系：
+    detailWindowAcc > detailLayoutAcc > formActionAcc  (dataset:dsResultAccTop) （end）
+                                      > detailBtnLayoutAccTop > uploadLayout > uploadLayout2 > uploadEditor   (end)
+                                                              > btnUpload     (end)
+                                      
+                                      > innerlayout2    >   tableResultAccUp  ("dataset", "dsResultTBAcc" 未完成)  （end）
+                                      > detailBtnLayoutAcc >    btnView     （end）
+                                                           >    btnDownload (end)
+                                                           >    btnRefresh  (end)
+
+四、添加绑定事件
+
+
+
+五、其它
+
+queryDatasetAcc
+dsResultTBAcc
+dsResultAccTop
+
+queryCommandAcc
+insertCmdAcc
+checkDateCmd
+updateCmdAcc
+checkdelayCmd
+delayCmd
+
+detailWindowAcc 
+uploadEditor
+btnDownload
+btnRefresh
+btnView
+btnDelay

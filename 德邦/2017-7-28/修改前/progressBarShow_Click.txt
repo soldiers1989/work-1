@@ -1,0 +1,17 @@
+Private Sub showProcessBar_Click()
+    progressBarForm.Show 0
+    Application.ScreenUpdating = False
+    For i = 0 To 100 Step 1
+        progressBarForm.lblprogress.Width = progressBarForm.lblBack.Width / 100 * i
+        progressBarForm.percert = Format(i / 100 * i, "0") & "%"
+        progressBarForm.Repaint
+        For j = 0 To 1000 Step 1
+            For k = 1 To 1000
+                m = 1
+            Next k
+        Next j
+    Next i
+    Unload progressBarForm
+    MsgBox "数据导入成功！"
+End Sub
+

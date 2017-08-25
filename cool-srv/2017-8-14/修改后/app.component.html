@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>酷服信息科技有限公司</title>
+  <!--<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">-->
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--<script async type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=mZOtu61Mq63WC0j8uZ7GDBZSXDYFmToB"></script>-->
+  <!--<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>-->
+
+  <script src="../assets/jquery/jquery-2.1.1.min.js"></script>
+  <!--<script  src="../assets/bootstrap/bootstrap.min.js"></script>-->
+  <!--<script  src="../assets/bootstrap/ui-bootstrap.min.js"></script>-->
+  <!--<script src="../assets/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>-->
+  <!--<link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">-->
+  <!--<link rel="stylesheet" href="../assets/bootstrap/bootstrap.css">-->
+  <!--<script type="text/javascript" src="./assets/js/map.js"></script>-->
+</head>
+<!--头部-->
+<div class="container" >
+  <div class="head-left">
+    <img src="{{companyintros.dataList[0].homeBanner[1].URL}}" width=80%>
+  </div>
+  <div class="head-right">
+    <a href="#">员工登录</a>
+  </div>
+</div>
+<!--导航栏 -->
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target="#example-navbar-collapse">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="color:#3f85c3;">酷服信科</a>
+    </div>
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+      <ul  id="mytab" class="nav  navbar-nav " role="tablist">
+        <li role="presentation" ><a id="dianji"  (click)="showMsg()" routerLink="/index" routerLinkActive="active">首页</a></li>
+        <li role="presentation"><a  routerLink="/jsyfw" routerLinkActive="active">技术与服务</a></li>
+        <li role="presentation"><a routerLink="/cp" routerLinkActive="active">产品</a></li>
+        <li role="presentation"><a  routerLink="/about" routerLinkActive="active">关于酷服</a></li>
+        <li role="presentation"><a routerLink="/dt" routerLinkActive="active">公司动态</a></li>
+        <li role="presentation"><a routerLink="/employ" routerLinkActive="active">招纳贤士</a></li>
+        <li role="presentation"><a routerLink="/contact" routerLinkActive="active">联系我们</a></li>
+      </ul>
+    </div>
+  </div>
+
+</nav>
+
+  <!--<app-root></app-root>-->
+  <router-outlet></router-outlet>
+
+  <app-root3></app-root3>

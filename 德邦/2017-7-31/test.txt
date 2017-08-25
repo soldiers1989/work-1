@@ -1,0 +1,70 @@
+
+背景：有时候我们会遇到这样的问题，简单的查找问题，但是数据太多几万条，像例子中 25000条，用函数会很卡，用VBA也有好几种不同方法，它们的效率差别也会很大，看下面这个例子
+说明：其中字典+数组是最快的，第一次写入字典后，待查询的时候直接读是不是有对应的关键字，省去了很多次循环查找的时间.菜鸟练手，供大家参考，大神可以直接忽略哈！
+  另外：如果有朋友空余时间较多--会excel可以找我--一起赚点零花钱哈
+Option Explicit
+Sub test()
+Dim Dic As Object, i As Long, arr(), brr(), crr(), k, kk, t, tt
+t = Timer: k = 0: kk = 0: [c1] = k: [c2] = kk
+If [a3] = "" Then Exit Sub
+Set Dic = CreateObject("scripting.dictionary")
+arr = Sheets(2).Range("a1:a" & Sheets(2).Cells(Rows.Count, 1).End(xlUp).Row).Value
+For i = 1 To UBound(arr)
+Dic(arr(i, 1)) = ""
+Next i
+brr = Sheets(1).Range("a3:a" & Cells(Rows.Count, 1).End(xlUp).Row).Value
+ReDim crr(1 To UBound(brr), 1 To 1)
+For i = 1 To UBound(brr)
+If Dic.exists(brr(i, 1)) Then
+k = k + 1
+crr(i, 1) = "合格"
+Else
+kk = kk + 1
+crr(i, 1) = "无效"
+End If
+Next i
+Range("b3:b" & Cells(Rows.Count, 1).End(xlUp).Row).Clear
+Range("b3").Resize(UBound(brr), 1) = crr
+tt = Format(Timer - t, "0.0000s")
+[c1:c2].ClearContents
+[c1] = k: [c2] = kk
+MsgBox "字典数组已完成,共计有:" & vbCrLf & "1---" & k & "个合格" & vbCrLf & "2---" & kk & "个无效" & vbCrLf & "3---" & "共用时" & tt & "秒", vbOKOnly, "温馨提示"
+End Sub
+Sub arrfa()
+Dim ResArr(), DataArr(), irow As Long, krow As Long, k As Long, kk As Long, t, tt
+t = Timer: k = 0: kk = 0: [c1] = k: [c2] = kk
+If [a3] = "" Then Exit Sub
+Range("b3:b65535").ClearContents
+DataArr = Sheets(2).Range("a1:a" & Sheets(2).Cells(Rows.Count, 1).End(xlUp).Row).Value
+ResArr() = Sheets(1).Range("a3:b" & Cells(Rows.Count, 1).End(xlUp).Row).Value
+For irow = LBound(ResArr) To UBound(ResArr)
+For krow = LBound(DataArr) To UBound(DataArr)
+If ResArr(irow, 1) = DataArr(krow, 1) Then
+k = k + 1
+ResArr(irow, 2) = "合格"
+End If
+Next krow
+If ResArr(irow, 2) = "" Then ResArr(irow, 2) = "无效": kk = kk + 1
+Next irow
+Range("a3").Resize(UBound(ResArr, 1), 2) = ResArr
+tt = Format(Timer - t, "0.0000s")
+MsgBox "纯数组已完成,共计有:" & vbCrLf & "1---" & k & "个合格" & vbCrLf & "2---" & kk & "个无效" & vbCrLf & "3---" & "共用时" & tt & "秒", vbOKOnly, "温馨提示"
+End Sub
+Option Explicit
+Sub danyuange()
+Dim EndRow_1 As Long, EndRow_2 As Long, i As Long, k, kk, irow, krow, t, tt
+EndRow_1 = Sheets(1).Cells(Rows.Count, 1).End(xlUp).Row
+EndRow_2 = Sheets(2).Cells(Rows.Count, 1).End(xlUp).Row
+t = Timer: k = 0: kk = 0: [c1] = k: [c2] = kk
+Sheets(1).Range("b3:b65535").ClearContents
+For irow = 3 To EndRow_1
+For krow = 1 To EndRow_2
+If Sheets(1).Cells(irow, 2) = Sheets(2).Cells(krow, 1) Then
+Sheets(1).Cells(irow, 2) = "合格": k = k + 1
+End If
+Next krow
+If Sheets(2).Cells(irow, 1) = "" Then Sheets(2).Cells(irow, 1) = "无效": kk = kk + 1
+Next irow
+tt = Format(Timer - t, "0.0000s")
+MsgBox "单元格已完成,共计有:" & vbCrLf & "1---" & k & "个合格" & vbCrLf & "2---" & kk & "个无效" & vbCrLf & "3---" & "共用时" & tt & "秒", vbOKOnly, "温馨提示"
+End Sub

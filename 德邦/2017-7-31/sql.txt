@@ -1,0 +1,13 @@
+
+Sub test()
+    
+      Dim T As Object
+
+      Set T = CreateObject("ADODB.Connection")
+      T.Open "provider=microsoft.jet.oledb.4.0;extended properties=excel 8.0;data source=" & ThisWorkbook.FullName
+      Sql = "select [sheet1$].编号 ,[sheet1$].金额-[data$].金额 from [sheet1$],[data$]  where [sheet1$].编号=[data$].编号"
+      Sheets("sheet1").[D2].CopyFromRecordset T.Execute(Sql)
+      T.Close
+      Set T = Nothing
+      
+End Sub

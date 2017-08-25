@@ -1,0 +1,101 @@
+/* app css stylesheet */
+html{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;}
+
+
+
+.navbar-default[_ngcontent-c0] .navbar-nav[_ngcontent-c0] > li[_ngcontent-c0] > a[_ngcontent-c0]:hover{
+  color: black;
+}
+
+.navbar-default[_ngcontent-c0] .navbar-nav[_ngcontent-c0] > li[_ngcontent-c0] > a[_ngcontent-c0]:active{
+  color: black;
+}
+.navbar-default[_ngcontent-c0] .navbar-nav[_ngcontent-c0] > li[_ngcontent-c0] > a[_ngcontent-c0]:active{
+  color: black;
+}
+/*头部*/
+.head-left{float: left;}
+.head-right{float: right;}
+.head-right a{line-height: 50px;display: block; color: #333;text-decoration: none;}
+/*导航*/
+
+.navbar{  margin-bottom:0px;  border-radius:0px;  border: 0px;  }
+.navbar-default{  background-color: #3f85c3;  border-color: #3f85c3;  }
+.navbar-default .navbar-nav>li>a {  color: #fff;  }
+.navbar-default .navbar-nav>li>a.selected{background-color: #e7e7e7;color:#333;}
+.navbar-default .navbar-toggle .icon-bar {  background-color: #fff;  }
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a.dianji {  color: #333;  background-color: #e7e7e7;  }
+.carousel-control{line-height: 330px}
+
+/*业务介绍*/
+.projects .thumbnail {  display: block;  margin-left: auto;  margin-right: auto;  text-align: center;  max-width: 293px;  margin-bottom: 30px;  border-radius: 0;  }
+.thumbnail {  display: block;  margin-left: auto;  margin-right: auto;  text-align: center;  max-width: 510px;  margin-bottom: 30px;  border-radius: 0;}
+.projects-header {  width: 60%;  text-align: center;  margin: 60px 0 10px;  font-weight: 200;  margin-bottom: 40px;  display: block;  margin-left: auto;  margin-right: auto;  }
+.projects .thumbnail .caption {  height: 50px;  line-height:50px;  overflow-y: hidden;  color: #555;  background:#ddd;  }
+.projects .thumbnail .caption h3 {  margin-top:0px;  }
+.projects .thumbnail img {  max-width: 100%;  height: auto;  }
+
+/*公司介绍*/
+img.fr-dib {  margin: auto;  display: block;  float: none;  vertical-align: top;  }
+.btn{border-radius:0px;background:#3f85c3;border:0px;width:150px;height:40px; color:#fff;}
+/*公司动态*/
+.gsdt-box a{color:#333;text-decoration: none;cursor: pointer;}
+.img-box img {  height: auto;  max-width: 100%;  }
+.img-box img {  width: 100%;  }
+p { font-size: 1.1em;  line-height: 2;  }
+
+.blank5 {  height: 5px;  width: auto;  display: block;  overflow: hidden;  font-size: 0px;  line-height: 0px;  text-indent: -99999px;  }
+.dotted_line {  padding: 0;  margin: 15px 0 15px 0;  width: 100%;  height: 1px;  border-bottom: 1px dotted #d7d7d7;  }
+h4.list-group-item-heading a {  color:#333;  }
+/*合作伙伴*/
+.partner-p {  text-align:right;  font-size:14px;  }
+/*底部*/
+.list-unstyled {  padding-left: 0;  list-style: none;  }
+.list-unstyled  li {  margin-bottom:10px;  }
+.list-unstyled  li a {  color:#666;  }
+.footer{background:#efefef;padding-top:20px;}
+
+/*底部备案号*/
+
+.dibu{background:#114f85;text-align:center;height:40px;line-height:40px;color:#fff;}
+.dibu p{ line-height:40px;margin-bottom:0px;font-size:14px;}
+
+
+/*技术与服务人事外包*/
+.sidebar {  display: block;  padding: 20px;  background-color: #f5f5f5;  border-right: 1px solid #eee;  font-family: "Microsoft YaHei";  font-weight: 500;  }
+.nav-box {  font-size: 16px;  }
+.nav-box li {  line-height: 40px;  border-bottom: 1px #3f85c3 dotted;  text-align: center;  }
+.nav-box li a {  color:#333;  }
+.nav-box li a:hover {  color: #3f85c3;  }
+.bread{border-bottom:1px #ddd dashed;}
+.bread-head{display: inline-block;margin-top:14px;}
+.bread-head div{ width:5px;height:20px; display: inline-block;background: #3f85c3; vertical-align: middle;margin-right:10px;}
+.bread-head h4{ display: inline-block;vertical-align: middle;}
+.breadcrumb{background: transparent;margin-top:16px;}
+.item active{ }
+/*产品*/
+
+.panel-group{max-height:3000px;overflow: hidden;}
+.leftMenu{margin:10px;margin-top:5px; border: none;border-radius: 0px;}
+.leftMenu .panel-heading{background:#c4c4c4;font-size:14px;padding-top:16px;height:50px;line-height:50px;color:#fff;position:relative;cursor:pointer;border-radius: 0px;text-align: center;}
+.leftMenu .panel-heading span{position:absolute;right:10px;top:12px;}
+.leftMenu .menu-item-left{padding: 0px; background: transparent; border:none;width:100%;outline: none;}
+.leftMenu .menu-item-left:hover{ color:#3f85c3;outline: none;}
+.list-group{list-style:none;border:1px solid #ddd;}
+.list-group li{height:50px; line-height:50px; text-align:center;     border-bottom:1px solid #ddd;padding:0px;}
+.cp-box{border:1px solid #ddd;list-style: none;padding:0;margin:0; padding-top: 20px;}
+.cp-box li{border-bottom: 1px solid #ddd;}
+
+
+/*公司动态列表*/
+.news-box{list-style: none;padding:0;margin:0;}
+.news-box li{border-bottom: 1px #ddd dotted;background: url("../../assets/img/fangkuang.jpg") no-repeat left center;}
+.news-box li a{padding:15px 15px;text-decoration: none;color:#333;display: inline-block;}
+.news-box li span{color:#999;margin-left:45%;}
+
+
+
+/*联系我们*/
+label{max-width: none;}

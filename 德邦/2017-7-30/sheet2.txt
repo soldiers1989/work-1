@@ -1,0 +1,45 @@
+Private Sub clearInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet
+    Set wk1 = ThisWorkbook
+    Set sh1 = wk1.ActiveSheet
+    sh1.Range("a2", Cells(Rows.Count, 2)).Clear
+    MsgBox "数据清除成功！"
+End Sub
+
+Private Sub importInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim i As Long, j As Long, length As Long 'i为映射关系.xslx中营业部数据开始位置，j为本sheet页中数据开始位置，length为营业部数据总条数
+    Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="请选择文件")
+    If Filename = False Then
+    Else
+        Workbooks.Open (Filename)
+        Set wk1 = ThisWorkbook
+        Set sh1 = wk1.ActiveSheet
+        sh1.Range("a2", Cells(Rows.Count, 2)).Clear
+        Set wk2 = ActiveWorkbook
+        '选定活动页
+        wk2.Sheets(1).Activate
+        Set sh2 = ActiveSheet
+        j = 2
+        length = Application.CountA(sh2.Range("A:A")) 'length为营业部数据的行数
+        progressBarForm.Show 0
+        For i = 2 To length
+            progressBarForm.lblprogress.Width = progressBarForm.lblBack.Width / length * i
+            progressBarForm.percert = Format(i / length, "0.0%")
+            progressBarForm.Repaint
+            '判断数据是否为#N/A
+            If Application.IsNA(sh2.Cells(i, 9)) <> True And Application.IsNA(sh2.Cells(i, 12)) <> True Then
+                If sh2.Cells(i, 9) = "1" And sh2.Cells(i, 12) = "1" Then
+                    sh1.Cells(j, 1) = sh2.Cells(i, 5)
+                    sh1.Cells(j, 2) = sh2.Cells(i, 2)
+                    j = j + 1
+                End If
+            End If
+        Next
+        wk2.Close savechanges:=False
+        Unload progressBarForm
+        MsgBox "数据导入成功！"
+    End If
+End Sub

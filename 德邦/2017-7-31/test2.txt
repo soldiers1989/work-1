@@ -1,0 +1,38 @@
+Sub test()
+  Dim r%, i%
+  Dim arr, brr
+  Dim dv As New Dictionary
+  Dim dh As New Dictionary
+  Dim ws As Worksheet
+  With Worksheets("变动明细表")
+    r = .Cells(.Rows.Count, 4).End(xlUp).Row
+    c = .Cells(2, .Columns.Count).End(xlToLeft).Column
+    .Range("i3").Resize(r - 2, c - 8).ClearContents
+    arr = .Range("a2").Resize(r - 1, c)
+    For i = 2 To UBound(arr)
+      dv(arr(i, 4)) = i
+    Next
+    For j = 10 To UBound(arr, 2)
+      dh(arr(1, j)) = j
+    Next
+  End With
+  For Each ws In Worksheets
+    If dh.Exists(ws.Name) Then
+      n = dh(ws.Name)
+      With ws
+        r = .Cells(.Rows.Count, 2).End(xlUp).Row
+        brr = .Range("b2:g" & r)
+        For i = 1 To UBound(brr)
+          If dv.Exists(brr(i, 1)) Then
+            m = dv(brr(i, 1))
+            arr(m, n) = arr(m, n) + brr(i, 6)
+            arr(m, 9) = arr(m, 9) + arr(m, n)
+          End If
+        Next
+      End With
+    End If
+  Next
+  With Worksheets("变动明细表")
+    .Range("a2").Resize(UBound(arr), UBound(arr, 2)) = arr
+  End With
+End Sub

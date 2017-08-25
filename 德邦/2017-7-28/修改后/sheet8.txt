@@ -1,0 +1,45 @@
+Private Sub clearInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet
+    Set wk1 = ThisWorkbook
+    Set sh1 = wk1.ActiveSheet
+    sh1.Range("g2", Cells(Rows.Count, 9)).Clear
+    MsgBox "数据清除成功！"
+End Sub
+
+Private Sub importStartingIncome_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim j As Long, length1 As Long 'j为本sheet页中数据开始位置，length1为营业部数据总条数
+    Dim value_j As String, value_h As Double, value_i As Double
+    Set wk1 = ThisWorkbook
+    Set sh1 = wk1.ActiveSheet
+    length1 = Application.CountA(sh1.Range("A:A")) 'length1为当前表格，营业部数据的行数
+    '判断是否导入了点部和营业部信息
+    If length1 > 0 Then
+        Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="请选择文件")
+        If Filename = False Then
+        Else
+            Workbooks.Open (Filename)
+            Set wk2 = ActiveWorkbook
+            '选定活动页
+            wk2.Sheets(1).Activate
+            Set sh2 = ActiveSheet
+            For j = 1 To length1
+                '判断出发收入表中是否包含了该营业部信息
+                 If WorksheetFunction.CountIf(sh2.Range("A:A"), sh1.Cells(j, 1)) > 0 Then
+                     value_j = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:A"), 1, 0)
+                     value_h = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:B"), 2, 0)
+                     value_i = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:C"), 3, 0)
+                     sh1.Cells(j, 7) = value_j
+                     sh1.Cells(j, 8) = value_h
+                     sh1.Cells(j, 9) = value_i
+                End If
+            Next
+            wk2.Close savechanges:=False
+            MsgBox "数据导入成功！"
+        End If
+    Else
+        MsgBox "请先导入点部和营业部数据！"
+    End If
+End Sub

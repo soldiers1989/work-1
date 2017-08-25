@@ -1,0 +1,28 @@
+一、工作内容
+    将AML二次补录审核中，写在.java文件中的添加email附件按钮提取出来，放到view文件中
+
+二、流程
+    1、view中添加控件
+    2、.java中表明各个控件之间的关系（自动生成）
+    3、cust.java中添加绑定事件
+
+三、一个按钮
+    1、email附件 btnCheckAcc （已添加）
+
+包含关系：
+    
+四、添加绑定事件
+    1、 btnLayout > btnCheckAcc
+    2、 detailWindowCheckAcc > detailLayoutCheckAcc  > innerlayout > tableResultAcc(包含：dsResultTBAcc)
+                                                     > detailBtnLayoutAcc > btnView
+                                                                          > btnDownload
+                                                                          > btnRefresh
+
+
+五、其它
+dsResultUploadED  （未用到）
+dsQueryAcc  （已添加）
+dsResultTBAcc  select_flag  （已添加）
+
+queryCmdAcc （已添加）
+updateCmdAcc  （已添加）

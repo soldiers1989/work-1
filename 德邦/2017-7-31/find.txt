@@ -1,0 +1,56 @@
+Private Sub clearInfomation_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet
+    Set wk1 = ThisWorkbook
+    Set sh1 = wk1.ActiveSheet
+    sh1.Range("g2", Cells(Rows.Count, 9)).Clear
+    MsgBox "Êý¾ÝÇå³ý³É¹¦£¡"
+End Sub
+
+Private Sub importStartingIncome_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, wk2 As Workbook, sh2 As Worksheet
+    Dim j As Long, length1 As Long 'jÎª±¾sheetÒ³ÖÐÊý¾Ý¿ªÊ¼Î»ÖÃ£¬length1ÎªÓªÒµ²¿Êý¾Ý×ÜÌõÊý
+    Dim value_j As String, value_h As Double, value_i As Double
+    Set wk1 = ThisWorkbook
+    Set sh1 = wk1.ActiveSheet
+    length1 = Application.CountA(sh1.Range("A:A")) 'length1Îªµ±Ç°±í¸ñ£¬ÓªÒµ²¿Êý¾ÝµÄÐÐÊý
+    'ÅÐ¶ÏÊÇ·ñµ¼ÈëÁËµã²¿ºÍÓªÒµ²¿ÐÅÏ¢
+    If length1 > 0 Then
+        Filename = Application.GetOpenFilename(fileFilter:="Excel File (*.xlsx), *.xlsx,Excel File(*.xls), *.xls", FilterIndex:=1, Title:="ÇëÑ¡ÔñÎÄ¼þ")
+        If Filename = False Then
+        Else
+            Workbooks.Open (Filename)
+            Set wk2 = ActiveWorkbook
+            'Ñ¡¶¨»î¶¯Ò³
+            wk2.Sheets(1).Activate
+            Set sh2 = ActiveSheet
+            'progressBarForm.Show 0
+            'length1 = 10
+            For j = 1 To length1
+                  'progressBarForm.lblprogress.Width = progressBarForm.lblBack.Width / length1 * j
+                  'progressBarForm.percert = Format(j / length1, "0.0%")
+                  'progressBarForm.Repaint
+                'ÅÐ¶Ï³ö·¢ÊÕÈë±íÖÐÊÇ·ñ°üº¬ÁË¸ÃÓªÒµ²¿ÐÅÏ¢
+                 If WorksheetFunction.CountIf(sh2.Range("A:A"), sh1.Cells(j, 1)) > 0 Then
+                     'value_j = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:A"), 1, 0)
+                     'value_h = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:B"), 2, 0)
+                     'value_i = WorksheetFunction.VLookup(sh1.Cells(j, 1), sh2.Range("A:C"), 3, 0)
+                     k = sh2.Range("A:A").Find(sh1.Cells(j, 1)).Row
+                     sh1.Cells(j, 7) = sh2.Cells(k, 1)
+                     sh1.Cells(j, 8) = sh2.Cells(k, 2)
+                     sh1.Cells(j, 9) = sh2.Cells(k, 3)
+                     
+                     'sh1.Cells(j, 7) = value_j
+                     'sh1.Cells(j, 8) = value_h
+                     'sh1.Cells(j, 9) = value_i
+                End If
+            Next
+            wk2.Close savechanges:=False
+           ' Unload progressBarForm
+            MsgBox "Êý¾Ýµ¼Èë³É¹¦£¡"
+        End If
+    Else
+        MsgBox "ÇëÏÈµ¼Èëµã²¿ºÍÓªÒµ²¿Êý¾Ý£¡"
+    End If
+End Sub

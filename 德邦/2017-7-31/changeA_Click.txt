@@ -1,0 +1,15 @@
+Private Sub changeA_Click()
+    Application.ScreenUpdating = False
+    Dim wk1 As Workbook, sh1 As Worksheet, sh2 As Worksheet
+    Dim i As Long, j As Long, length As Long
+    Dim number As String
+    Set wk1 = ThisWorkbook
+    Set sh1 = wk1.ActiveSheet
+    Set sh2 = wk1.Sheets(2)
+    length = Application.CountA(sh1.Range("A:A"))
+    number = InputBox("请输入拼接字符串", "字符串拼接")
+    For i = 1 To length
+        sh2.Cells(i, 1) = sh1.Cells(i, 1) & number '拼接一个字符串
+    Next
+    MsgBox "修改成功"
+End Sub
