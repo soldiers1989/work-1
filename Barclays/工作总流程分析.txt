@@ -1,0 +1,11 @@
+1、修改数据库
+
+    4、AML_DATASOURCE    √
+    5、AML_ANALYSISRESULT    √
+
+2、数据字典修改
+    
+    8——15   √
+
+3、功能修改
+
