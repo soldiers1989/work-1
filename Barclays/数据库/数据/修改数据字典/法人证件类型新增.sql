@@ -1,0 +1,6 @@
+insert into TB_DICT(BANK,APPLICATION,GROUP_CODE,GROUP_NAME,META_VAL,META_NAME,ENABLE,MOD_ABLE)
+	  values('0000','RPT','1304','法人身份证件类型','110003','临时居民身份证','1','1')
+insert into TB_DICT(BANK,APPLICATION,GROUP_CODE,GROUP_NAME,META_VAL,META_NAME,ENABLE,MOD_ABLE)
+	  values('0000','RPT','1304','法人身份证件类型','110009','中国人民武装警察身份证件','1','1')
+insert into TB_DICT(BANK,APPLICATION,GROUP_CODE,GROUP_NAME,META_VAL,META_NAME,ENABLE,MOD_ABLE)
+	  values('0000','RPT','1304','法人身份证件类型','129999','其他类境外个人身份有效证件','1','1')

@@ -1,0 +1,1 @@
+alter table BI_OTHERACCOUNT add  CTPY_IC_OTHER_TYPE varchar(6);

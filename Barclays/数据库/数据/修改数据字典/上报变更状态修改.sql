@@ -1,0 +1,3 @@
+update TB_DICT 
+set META_NAME = '修改'
+WHERE GROUP_CODE = '2112' AND META_VAL = '03'

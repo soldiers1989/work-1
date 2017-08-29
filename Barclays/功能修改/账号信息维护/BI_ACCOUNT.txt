@@ -1,0 +1,5 @@
+序号  字段名称    字段类型    说明  操作  备注
+1   CARD_TYPE   Varchar(2)  客户银行卡类型 新增  
+2   CARD_OTHER_TYPE Varchar(2)  客户银行卡其它类型   新增  
+3   CARD_NO Varchar(64) 客户银行卡号  新增  
+4   ACCT_TYPE   Varchar(8)  账户类型    修改  

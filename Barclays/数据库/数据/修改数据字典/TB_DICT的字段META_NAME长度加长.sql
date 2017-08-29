@@ -1,0 +1,1 @@
+alter table TB_DICT alter column META_NAME varchar(1000);

@@ -1,0 +1,4 @@
+序号  字段名称    字段类型    说明  操作  备注
+1   CTPY_IC_TYPE    Varchar(6)  交易对手身份证件/证明文件类型 修改  
+2   CTPY_IC_OTHER_TYPE  Varchar(6)  交易对手其他身份证件/证明文件类型   新增  
+3   CTPY_ACCT_TYPE    Varchar(8)  交易对手账号类型    修改  

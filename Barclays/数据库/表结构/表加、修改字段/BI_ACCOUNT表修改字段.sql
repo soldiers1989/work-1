@@ -1,0 +1,1 @@
+alter table BI_ACCOUNT alter column ACCT_TYPE varchar(8);

@@ -1,0 +1,7 @@
+update TB_DICT 
+set META_NAME = '修改'
+WHERE GROUP_CODE = '2110' AND META_VAL = 'C'
+
+update TB_DICT 
+set META_NAME = '新增'
+WHERE GROUP_CODE = '2110' AND META_VAL = 'N'
