@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.aif.rpt.bas.server.BaseServiceSql">    
+ 
+    
+    <select id="savecountryInfo" parameterType="java.util.HashMap">
+    	insert into BI_NATIONREGION
+    	
+    	(NATIONREGION_CODE,
+    	NATIONREGION_NAME,
+    	NATIONREGION_NUMBER,
+    	RATING,CREATOR,
+    	CREATE_DATE) values
+    	(#{countryCode,jdbcType=VARCHAR},
+    	#{countryName,jdbcType=VARCHAR},
+    	#{countryNum,jdbcType=VARCHAR},
+    	#{countryLevel,jdbcType=VARCHAR},
+    	#{lastModPerson,jdbcType=VARCHAR},
+    	#{lastModDate,jdbcType=VARCHAR})
+    </select>
+    
+    <select id="updatecountryInfo" parameterType="java.util.HashMap">
+    	update BI_NATIONREGION 
+    	set
+    	 NATIONREGION_NAME=#{countryName,jdbcType=VARCHAR},
+    	 NATIONREGION_NUMBER=#{countryNum,jdbcType=VARCHAR},
+    	 RATING=#{countryLevel,jdbcType=VARCHAR},
+    	 CREATOR=#{lastModPerson,jdbcType=VARCHAR},
+    	 CREATE_DATE=#{lastModDate,jdbcType=VARCHAR} 
+    	 where NATIONREGION_CODE=#{countryCode,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="deletecountryInfo" parameterType="java.util.HashMap">
+    	delete from BI_NATIONREGION where NATIONREGION_CODE=#{countryCode,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="countByParam" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_NATIONREGION where NATIONREGION_CODE=#{countryCode}
+    </select>
+    
+    <select id="countAll"  resultType="java.lang.Integer" >
+    	select count(*) from BI_NATIONREGION
+    </select>
+    
+    <select id="listGroupCode"  resultType="java.lang.String" >
+    	select distinct NATIONREGION_CODE as "countryCode" from BI_NATIONREGION
+    </select>
+    
+    <!--  
+    <select id="listNationregionCode"  resultType="java.util.HashMap" >
+    	select NATIONREGION_CODE as "nationregionCode",NATIONREGION_NAME as "nationregionName"  from BI_NATIONREGION where length(NATIONREGION_CODE)=3
+    </select>
+    -->
+ 
+    
+    <select id="selectCurrencyByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_CURRENCY where 1=1 
+      	<if test="CURRENCY_CODE!=null">
+      		and CUR_CODE like #{CURRENCY_CODE}
+      	</if>
+      	<if test="CURRENCY_NAME!=null">
+      		and CUR_NAME like #{CURRENCY_NAME}
+      	</if>	
+      	<if test="bizSql!=null">
+      		and ${bizSql}
+      	</if>	
+    </select>
+    
+    <select id="saveCurrencyInfo" parameterType="java.util.HashMap">
+    	insert into BI_CURRENCY(CUR_CODE,CUR_NAME,CREATOR,CREATE_DATE)values(#{CURRENCY_CODE,jdbcType=VARCHAR},#{CURRENCY_NAME,jdbcType=VARCHAR},#{CREATOR,jdbcType=VARCHAR},#{CREATE_DATE,jdbcType=VARCHAR})
+    </select>
+    
+    <select id="updateCurrencyInfo" parameterType="java.util.HashMap">
+    	update BI_CURRENCY set CUR_NAME=#{CURRENCY_NAME,jdbcType=VARCHAR},CREATOR=#{CREATOR,jdbcType=VARCHAR},CREATE_DATE=#{CREATE_DATE,jdbcType=VARCHAR} where CUR_CODE=#{CURRENCY_CODE}
+    </select>
+    
+    <select id="deleteCurrencyInfo" parameterType="java.util.HashMap">
+    	delete from BI_CURRENCY where CUR_CODE=#{CURRENCY_CODE,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="countCurrencyByParam" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_CURRENCY where CUR_CODE=#{CURRENCY_CODE}  and CUR_NAME=#{CURRENCY_NAME}
+    </select>
+    
+    <select id="countCurrencyAll"  resultType="java.lang.Integer" >
+    	select count(*) from BI_CURRENCY
+    </select>
+    
+    <select id="countById" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_CURRENCY where CUR_CODE=#{CURRENCY_CODE}
+    </select>
+    
+    <select id="listCurrencyGroupCode"  resultType="java.lang.String" >
+    	select distinct CUR_CODE as CURRENCY_CODE from BI_CURRENCY
+    </select>
+    
+    
+    
+    <insert id="saveCustomer" parameterType="java.util.HashMap">
+    INSERT INTO BI_CUSTOMER
+		  (CLIENT_ID,
+		   PCODE,
+		   DEPART_ID,
+		   CLIENT_TYPE,
+		   IC_TYPE,
+		   IC_TYPE_MEMO,
+		   IC_NO,
+		   NAME,
+		   ENGLISH_NAME,
+		   NATIONALITY,
+		   PHONE,
+		   ADDRESS,
+		   OTHER_CONTACT,
+		   INDUSTRY_TYPE,
+		   REGISTERED_CAPITAL,
+		   REP_NAME,
+		   REP_IC_TYPE,
+		   REP_IC_TYPE_MEMO,
+		   REP_IC_NO,
+		   FI_FLAG,
+		   BONDED_ZONE_TYPE,
+		   FX_CLIENT_TYPE,
+		   OPEN_DATE)
+		VALUES
+		  (#{CLIENT_ID,jdbcType=VARCHAR},
+		   #{PCODE,jdbcType=VARCHAR},
+		   #{DEPART_ID,jdbcType=VARCHAR},
+		   #{CLIENT_TYPE,jdbcType=VARCHAR},
+		   #{IC_TYPE,jdbcType=VARCHAR},
+		   #{IC_TYPE_MEMO,jdbcType=VARCHAR},
+		   #{IC_NO,jdbcType=VARCHAR},
+		   #{NAME,jdbcType=VARCHAR},
+		   #{ENGLISH_NAME,jdbcType=VARCHAR},
+		   #{NATIONALITY,jdbcType=VARCHAR},
+		   #{PHONE,jdbcType=VARCHAR},
+		   #{ADDRESS,jdbcType=VARCHAR},
+		   #{OTHER_CONTACT,jdbcType=VARCHAR},
+		   #{INDUSTRY_TYPE,jdbcType=VARCHAR},
+		   #{REGISTERED_CAPITAL,jdbcType=VARCHAR},
+		   #{REP_NAME,jdbcType=VARCHAR},
+		   #{REP_IC_TYPE,jdbcType=VARCHAR},
+		   #{REP_IC_TYPE_MEMO,jdbcType=VARCHAR},
+		   #{REP_IC_NO,jdbcType=VARCHAR},
+		   #{FI_FLAG,jdbcType=VARCHAR},
+		   #{BONDED_ZONE_TYPE,jdbcType=VARCHAR},
+		   #{FX_CLIENT_TYPE,jdbcType=VARCHAR},
+		   #{OPEN_DATE,jdbcType=VARCHAR}
+		   )
+    </insert>
+    
+    <update id="updateCustomer" parameterType="java.util.HashMap">
+    	update BI_Customer
+		set PCODE=#{PCODE,jdbcType=VARCHAR},
+		    DEPART_ID=#{DEPART_ID,jdbcType=VARCHAR},
+		    CLIENT_TYPE=#{CLIENT_TYPE,jdbcType=VARCHAR},
+		    IC_TYPE=#{IC_TYPE,jdbcType=VARCHAR},
+		    IC_TYPE_MEMO=#{IC_TYPE_MEMO,jdbcType=VARCHAR},
+		    IC_NO=#{IC_NO,jdbcType=VARCHAR},
+		    NAME=#{NAME,jdbcType=VARCHAR},
+		    ENGLISH_NAME=#{ENGLISH_NAME,jdbcType=VARCHAR},
+		    NATIONALITY=#{NATIONALITY,jdbcType=VARCHAR},
+		    ADDRESS=#{ADDRESS,jdbcType=VARCHAR},
+		    PHONE=#{PHONE,jdbcType=VARCHAR},
+		    OTHER_CONTACT=#{OTHER_CONTACT,jdbcType=VARCHAR},
+		    INDUSTRY_TYPE=#{INDUSTRY_TYPE,jdbcType=VARCHAR},
+		    REGISTERED_CAPITAL=#{REGISTERED_CAPITAL,jdbcType=VARCHAR},
+		    REP_NAME=#{REP_NAME,jdbcType=VARCHAR},
+		    REP_IC_TYPE=#{REP_IC_TYPE,jdbcType=VARCHAR},
+		    REP_IC_TYPE_MEMO=#{REP_IC_TYPE_MEMO,jdbcType=VARCHAR},
+		    REP_IC_NO=#{REP_IC_NO,jdbcType=VARCHAR},
+		    FI_FLAG=#{FI_FLAG,jdbcType=VARCHAR},
+		    BONDED_ZONE_TYPE=#{BONDED_ZONE_TYPE,jdbcType=VARCHAR},
+		    FX_CLIENT_TYPE=#{FX_CLIENT_TYPE,jdbcType=VARCHAR},
+		    OPEN_DATE=#{OPEN_DATE,jdbcType=VARCHAR}
+		where CLIENT_ID=#{CLIENT_ID}
+    </update>
+    
+    <delete id="deleteCustomer" parameterType="java.util.HashMap">
+    	delete from bi_customer where CLIENT_ID=#{CLIENT_ID,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="countCustomerId" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from bi_customer where CLIENT_ID=#{CLIENT_ID,jdbcType=VARCHAR}
+    </select>
+    
+
+    
+ 
+    
+    <insert id="saveOtherAccount" parameterType="java.util.HashMap">
+		INSERT INTO BI_OTHERACCOUNT
+		 (CTPY_ACCT_ID,
+		   CTPY_ACCT_TYPE,
+		   CTPY_IC_TYPE_MEMO,
+		   CTPY_IC_TYPE,
+		   CTPY_IC_CODE,
+		   CTPY_NATIONALITY,
+		   CTPY_TYPE,
+		   CTPY_NAME)
+		VALUES
+		  (#{CTPY_ACCT_ID,jdbcType=VARCHAR},
+		   #{CTPY_ACCT_TYPE,jdbcType=VARCHAR},
+		   #{CTPY_IC_TYPE_MEMO,jdbcType=VARCHAR},
+		   #{CTPY_IC_TYPE,jdbcType=VARCHAR},
+		   #{CTPY_IC_CODE,jdbcType=VARCHAR},
+		   #{CTPY_NATIONALITY,jdbcType=VARCHAR},
+		   #{CTPY_TYPE,jdbcType=VARCHAR},
+		   #{CTPY_NAME,jdbcType=VARCHAR}
+		   )
+    </insert>
+    
+     <update id="updateOtherAccount" parameterType="java.util.HashMap">
+    	update BI_OTHERACCOUNT
+		set CTPY_ACCT_ID=#{CTPY_ACCT_ID,jdbcType=VARCHAR},
+		    CTPY_ACCT_TYPE=#{CTPY_ACCT_TYPE,jdbcType=VARCHAR},
+		    CTPY_IC_TYPE_MEMO=#{CTPY_IC_TYPE_MEMO,jdbcType=VARCHAR},
+		    CTPY_IC_TYPE=#{CTPY_IC_TYPE,jdbcType=VARCHAR},
+		    CTPY_IC_CODE=#{CTPY_IC_CODE,jdbcType=VARCHAR},
+		    CTPY_NATIONALITY=#{CTPY_NATIONALITY,jdbcType=VARCHAR},
+		    CTPY_TYPE=#{CTPY_TYPE,jdbcType=VARCHAR},
+		    CTPY_NAME=#{CTPY_NAME,jdbcType=VARCHAR}
+		where CTPY_ACCT_ID=#{CTPY_ACCT_ID}
+    </update>
+    
+    <select id="deleteOtherAccount" parameterType="java.util.HashMap">
+    	delete from BI_OTHERACCOUNT where CTPY_ACCT_ID=#{CTPY_ACCT_ID,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="countOtherAccountById" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_OTHERACCOUNT where CTPY_ACCT_ID=#{CTPY_ACCT_ID,jdbcType=VARCHAR}
+    </select>
+    
+     <insert id="saveRiskAreas" parameterType="java.util.HashMap">
+		INSERT INTO BI_RISKAREAS (AREA_CODE, AREA_NAME, MEMO)
+		VALUES (#{AREA_CODE,jdbcType=VARCHAR}, #{AREA_NAME,jdbcType=VARCHAR}, #{MEMO,jdbcType=VARCHAR})
+    </insert>
+    
+     <update id="updateRiskAreas" parameterType="java.util.HashMap">
+		update BI_RISKAREAS
+		set AREA_CODE=#{AREA_CODE,jdbcType=VARCHAR},
+		    AREA_NAME=#{AREA_NAME,jdbcType=VARCHAR},
+		    MEMO=#{MEMO,jdbcType=VARCHAR}
+		where AREA_CODE=#{AREA_CODE}
+    </update>
+    
+     <select id="deleteRiskAreas" parameterType="java.util.HashMap">
+    	delete from BI_RISKAREAS where AREA_CODE=#{AREA_CODE,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="countRiskAreasById" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_RISKAREAS where AREA_CODE=#{AREA_CODE,jdbcType=VARCHAR}
+    </select>  
+    
+    <select id="saveAccount" parameterType="java.util.HashMap">
+    INSERT INTO BI_ACCOUNT
+  	  (DEPART_ID,
+  	   ACCT_ID,
+       ACCT_CUR,
+       CLIENT_ID,
+       ACCT_TYPE,
+       FX_ACCT_TYPE,
+       CLOSE_DATE,
+       OPEN_DATE,
+       ACCT_CATA,
+       LIMIT_TYPE,
+       LIMIT,
+       PBOC_NUM_ACCT,
+       FILE_NUM,
+       ACC_STATUS,
+       CREDIT_AMT,
+       DEBIT_AMT,
+       BALANCE_AMT)
+	VALUES
+  	  (#{DEPART_ID},
+       #{ACCT_ID},
+       #{ACCT_CUR},
+       #{CLIENT_ID},
+       #{ACCT_TYPE},
+       #{FX_ACCT_TYPE},
+       #{CLOSE_TIME},
+       #{OPEN_DATE},
+       #{ACCT_CATA},
+       #{LIMIT_TYPE},
+       #{LIMIT},
+       #{PBOC_NUM_ACCT},
+       #{FILE_NUM},
+       #{ACC_STATUS},     
+       #{CREDIT_AMT},      
+       #{DEBIT_AMT},      
+       #{BALANCE_AMT}                                     
+   )
+    </select>
+    
+    <select id="updateAccount" parameterType="java.util.HashMap">
+    	update BI_ACCOUNT
+   set CLIENT_ID=#{CLIENT_ID},
+       ACCT_TYPE=#{ACCT_TYPE},
+       FX_ACCT_TYPE=#{FX_ACCT_TYPE},
+       CLOSE_DATE=#{CLOSE_TIME},
+       OPEN_DATE=#{OPEN_DATE},
+       ACCT_CATA=#{ACCT_CATA},
+       LIMIT_TYPE=#{LIMIT_TYPE},
+       LIMIT=#{LIMIT},
+       PBOC_NUM_ACCT=#{PBOC_NUM_ACCT},
+       FILE_NUM=#{FILE_NUM},    
+       ACC_STATUS=#{ACC_STATUS},
+       CREDIT_AMT=#{CREDIT_AMT}, 
+       DEBIT_AMT=#{DEBIT_AMT},
+       BALANCE_AMT=#{BALANCE_AMT}         
+   where ACCT_ID=#{ACCT_ID} AND DEPART_ID=#{DEPART_ID} AND ACCT_CUR=#{ACCT_CUR}
+    </select>
+    
+    <select id="deleteAccount" parameterType="java.util.HashMap">
+    	delete from BI_ACCOUNT where ACCT_ID=#{ACCT_ID} AND DEPART_ID=#{DEPART_ID} AND ACCT_CUR=#{ACCT_CUR}
+    </select>
+    
+    <select id="CloseAccount" parameterType="java.util.HashMap">
+        UPDATE BI_ACCOUNT
+   			SET CLOSE_DATE =#{CLOSE_DATE},
+       			ACC_STATUS = '13'
+ 		WHERE ACCT_ID = #{ACCT_ID}
+   			AND DEPART_ID = #{DEPART_ID}
+   			AND ACCT_CUR = #{ACCT_CUR}
+    </select>
+    
+    <select id="countAccountById" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_ACCOUNT where ACCT_ID=#{ACCT_ID} AND DEPART_ID=#{DEPART_ID} AND ACCT_CUR=#{ACCT_CUR}
+    </select>
+    
+    <select id="countCustomerById" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_CUSTOMER where CLIENT_ID=#{CLIENT_ID}
+    </select>
+    
+ 
+    
+    <select id="deleteOtherOrganization" parameterType="java.util.HashMap">
+        delete BI_OTHERORGANIZATION where CTPY_FI_CODE=#{CTPY_FI_CODE}
+    </select>
+    
+    <select id="countOtherOrganizationById" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+       select count(*) from BI_OTHERORGANIZATION where CTPY_FI_CODE=#{CTPY_FI_CODE}
+    </select>
+    
+    <select id="saveOtherOrganization" parameterType="java.util.HashMap">
+INSERT INTO BI_OTHERORGANIZATION
+  (CTPY_FI_CODE,
+   CTPY_FI_PCODE,
+   CTPY_FI_NAME,
+   CTPY_FI_TYPE,
+   CTPY_FI_COUNTRY,
+   CTPY_FI_REGION_CODE,
+   CREATOR,
+   CREATE_DATE)
+VALUES
+  (#{CTPY_FI_CODE,jdbcType=VARCHAR},
+   #{CTPY_FI_PCODE,jdbcType=VARCHAR},
+   #{CTPY_FI_NAME,jdbcType=VARCHAR},
+   #{CTPY_FI_TYPE,jdbcType=VARCHAR},
+   #{CTPY_FI_COUNTRY,jdbcType=VARCHAR},
+   #{CTPY_FI_REGION_CODE,jdbcType=VARCHAR},
+   #{CREATOR,jdbcType=VARCHAR},
+   #{CREATE_DATE,jdbcType=VARCHAR}
+   )    
+    </select>
+    
+    <select id="updateOtherOrganization" parameterType="java.util.HashMap">
+UPDATE BI_OTHERORGANIZATION
+       set CTPY_FI_PCODE=#{CTPY_FI_PCODE,jdbcType=VARCHAR},
+           CTPY_FI_NAME=#{CTPY_FI_NAME,jdbcType=VARCHAR},
+           CTPY_FI_TYPE=#{CTPY_FI_TYPE,jdbcType=VARCHAR},
+           CTPY_FI_COUNTRY=#{CTPY_FI_COUNTRY,jdbcType=VARCHAR},
+           CTPY_FI_REGION_CODE=#{CTPY_FI_REGION_CODE,jdbcType=VARCHAR},
+           CREATOR=#{CREATOR,jdbcType=VARCHAR},
+           CREATE_DATE=#{CREATE_DATE,jdbcType=VARCHAR}
+        where  CTPY_FI_CODE=#{CTPY_FI_CODE}
+    </select>
+    
+    <select id="saveExchangeRate" parameterType="java.util.HashMap">
+    INSERT INTO BI_DAYEXCHANGERATE
+  (CUR_CODE,
+   CUR_UNIT,
+   RATE_DATE,
+   RATE_MIDPRICE)
+VALUES
+  (#{CUR_CODE,jdbcType=VARCHAR},
+   #{CUR_UNIT,jdbcType=VARCHAR},
+   #{RATE_DATE,jdbcType=VARCHAR},
+   #{RATE_MIDPRICE,jdbcType=VARCHAR}
+   )
+    </select>
+    
+    <select id="saveExchangeRateMonth" parameterType="java.util.HashMap">
+  INSERT INTO BI_MONTHEXCHANGERATE
+  (CUR_CODE,
+   CUR_UNIT,
+   RATE_MONTH,
+   RATE_MIDPRICE)
+  VALUES
+  (#{CUR_CODE,jdbcType=VARCHAR},
+   #{CUR_UNIT,jdbcType=VARCHAR},
+   #{RATE_MONTH,jdbcType=VARCHAR},
+   #{RATE_MIDPRICE,jdbcType=VARCHAR}
+   )
+    </select>
+    
+    <select id="updateExchangeRate" parameterType="java.util.HashMap">
+    	update BI_DAYEXCHANGERATE
+   set CUR_UNIT=#{CUR_UNIT,jdbcType=VARCHAR},
+       RATE_MIDPRICE=#{RATE_MIDPRICE,jdbcType=VARCHAR}
+   where CUR_CODE=#{CUR_CODE} and RATE_DATE=#{RATE_DATE}
+    </select>
+    
+    <select id="updateExchangeRateMonth" parameterType="java.util.HashMap">
+    	update BI_MONTHEXCHANGERATE
+   set CUR_UNIT=#{CUR_UNIT,jdbcType=VARCHAR},
+       RATE_MIDPRICE=#{RATE_MIDPRICE,jdbcType=VARCHAR}
+   where CUR_CODE=#{CUR_CODE} and RATE_MONTH=#{RATE_MONTH}
+    </select>
+    
+    <select id="deleteExchangeRate" parameterType="java.util.HashMap">
+    	delete from BI_DAYEXCHANGERATE where CUR_CODE=#{CUR_CODE} and RATE_DATE=#{RATE_DATE}
+    </select>
+    
+    <select id="deleteExchangeRateMonth" parameterType="java.util.HashMap">
+    	delete from BI_MONTHEXCHANGERATE where CUR_CODE=#{CUR_CODE} and RATE_MONTH=#{RATE_MONTH}
+    </select>
+    
+    <select id="countExchangeRateById" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_DAYEXCHANGERATE where CUR_CODE=#{CUR_CODE} and RATE_DATE=#{RATE_DATE}
+    </select>
+    
+    <select id="countExchangeRateMonthById" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_MONTHEXCHANGERATE where CUR_CODE=#{CUR_CODE} and RATE_MONTH=#{RATE_MONTH}
+    </select>
+    
+    <!--  测试报表模版导入  -->
+    <select id="insertReportFormat" parameterType="java.util.HashMap">
+    INSERT INTO RE_REPORT_FORMAT
+  (REPORTID,
+   CORDTYPE,
+   ROW_S,
+   COLUMN_S,
+   ROWE,
+   COLUMNE,
+   ROWMAX,
+   COLUMNMAX,
+   VALUETYPE,
+   VALUE,
+   FIELD_ID,
+   PRIOR_FIELD_ID,
+   BORDER,
+   COLUMNWIDTH,
+   ROWHEIGHT,
+   FORMULA,
+   VERIFICATION,
+   FORMULANUM,
+   VERIFICATIONNUM)
+VALUES
+  (#{REPORTID,jdbcType=VARCHAR},
+   #{CORDTYPE,jdbcType=VARCHAR},
+   #{ROW_S,jdbcType=VARCHAR},
+   #{COLUMN_S,jdbcType=VARCHAR},
+   #{ROWE,jdbcType=VARCHAR},
+   #{COLUMNE,jdbcType=VARCHAR},
+   #{ROWMAX,jdbcType=VARCHAR},
+   #{COLUMNMAX,jdbcType=VARCHAR},
+   #{VALUETYPE,jdbcType=VARCHAR},
+   #{VALUE,jdbcType=VARCHAR},
+   #{FIELD_ID,jdbcType=VARCHAR},
+   #{PRIOR_FIELD_ID,jdbcType=VARCHAR},
+   #{BORDER,jdbcType=VARCHAR},
+   #{COLUMNWIDTH,jdbcType=VARCHAR},
+   #{ROWHEIGHT,jdbcType=VARCHAR},
+   #{FORMULA,jdbcType=VARCHAR},
+   #{VERIFICATION,jdbcType=VARCHAR},
+   #{FORMULANUM,jdbcType=VARCHAR},
+   #{VERIFICATIONNUM,jdbcType=VARCHAR})
+   </select>
+   
+   <select id="deleteReportFormat" parameterType="java.util.HashMap">
+    	delete RE_REPORT_FORMAT where REPORTID=#{REPORTID}
+    </select>
+    
+    <select id="deleteReportFormatExt" parameterType="java.util.HashMap">
+    	delete RE_REPORT_FORMAT_EXT where REPORTID=#{REPORTID}
+    </select>
+    
+    <select id="insertReportFormatExt" parameterType="java.util.HashMap">
+    INSERT INTO RE_REPORT_FORMAT_EXT
+  (REPORTID,
+   CLOUMN_NUM,
+   CLOUMN_WIDTH)
+VALUES
+  (#{REPORTID},
+   #{CLOUMN_NUM},
+   #{CLOUMN_WIDTH})
+   </select>
+	
+</mapper>

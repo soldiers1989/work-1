@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.aif.rpt.bas.server.BaseServiceSql">    
+  <select id="selectCountryByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    ${pageBegin}
+    	select NATIONREGION_CODE as "countryCode",
+    	NATIONREGION_NAME as "countryName",
+    	NATIONREGION_NUMBER as "countryNum",
+    	RATING as "countryLevel",
+    	CREATOR as "lastModPerson",
+    	CREATE_DATE as "lastModDate",
+    	CREATE_DATE  as "toCreateDate" 
+    	from BI_NATIONREGION 
+    	where 1=1 
+    	<if test="countryCode!=null  &amp;&amp; !&quot;&quot;.equals(countryCode.trim())">
+			and NATIONREGION_CODE like '%'+#{countryCode}+'%'
+		</if>
+		<if test="countryName!=null  &amp;&amp; !&quot;&quot;.equals(countryName.trim())">
+			and NATIONREGION_NAME like '%'+#{countryName}+'%'
+		</if>
+      	<if test="bizSql!=null">
+      		and ${bizSql}
+      	</if>
+    ${pageEnd}
+    </select>
+    
+    <select id="selectCountryByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_NATIONREGION where 1=1 
+      	<if test="countryCode!=null  &amp;&amp; !&quot;&quot;.equals(countryCode.trim())">
+			and NATIONREGION_CODE like '%'+#{countryCode}+'%'
+		</if>
+		<if test="countryName!=null  &amp;&amp; !&quot;&quot;.equals(countryName.trim())">
+			and NATIONREGION_NAME like '%'+#{countryName}+'%'
+		</if>
+		<if test="bizSql!=null">
+      		and ${bizSql}
+      	</if>
+    </select>
+
+    <select id="selectCurrencyByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+    	select CUR_CODE as CURRENCY_CODE,CUR_NAME as CURRENCY_NAME,CREATOR,CREATE_DATE from BI_CURRENCY where 1=1 
+    	<if test="CURRENCY_CODE!=null  &amp;&amp; !&quot;&quot;.equals(CURRENCY_CODE.trim())">
+			and CUR_CODE like '%'+#{CURRENCY_CODE}+'%'
+		</if>
+		<if test="CURRENCY_NAME!=null  &amp;&amp; !&quot;&quot;.equals(CURRENCY_NAME.trim())">
+			and CUR_NAME like '%'+#{CURRENCY_NAME}+'%'
+		</if>
+      	<if test="bizSql!=null">
+      		and ${bizSql}
+      	</if>	
+     ${pageEnd}
+    </select>
+
+    <select id="selectCustomerByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+    	select t.CLIENT_ID,
+       t.PCODE,
+       t.DEPART_ID,
+       t.CLIENT_TYPE,
+       t.IC_TYPE,
+       t.IC_TYPE_MEMO,
+       t.IC_NO,
+       t.NAME,
+       t.ENGLISH_NAME,
+       t.NATIONALITY,
+       t.ADDRESS,
+       t.PHONE,
+       t.OTHER_CONTACT,
+       t.INDUSTRY_TYPE,
+       t.REGISTERED_CAPITAL,
+       t.REP_NAME,
+       t.REP_IC_TYPE,
+       t.REP_IC_TYPE_MEMO,
+       t.REP_IC_NO,
+       t.FI_FLAG,
+       t.BONDED_ZONE_TYPE,
+       t.FX_CLIENT_TYPE,
+       t.OPEN_DATE
+  from BI_Customer t
+    	where 1=1 
+    	<if test="CLIENT_ID!=null  &amp;&amp; !&quot;&quot;.equals(CLIENT_ID.trim())">
+			and CLIENT_ID like '%'+#{CLIENT_ID}+'%'
+		</if>
+		<if test="PCODE!=null  &amp;&amp; !&quot;&quot;.equals(PCODE.trim())">
+			and PCODE like '%'+#{PCODE}+'%'
+		</if>
+    	
+     ${pageEnd}
+    </select>
+
+    <select id="selectCustomerByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_Customer where 1=1 
+    	<if test="CLIENT_ID!=null  &amp;&amp; !&quot;&quot;.equals(CLIENT_ID.trim())">
+			and CLIENT_ID like '%'+#{CLIENT_ID}+'%'
+		</if>
+		<if test="PCODE!=null  &amp;&amp; !&quot;&quot;.equals(PCODE.trim())">
+			and PCODE like '%'+#{PCODE}+'%'
+		</if>
+    </select>
+
+
+     <select id="selectOtherAccountByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_OTHERACCOUNT where 1=1 
+    	<if test="CTPY_ACCT_ID!=null  &amp;&amp; !&quot;&quot;.equals(CTPY_ACCT_ID.trim())">
+			and CTPY_ACCT_ID like '%'+#{CTPY_ACCT_ID}+'%'
+		</if>
+		<if test="CTPY_NAME!=null  &amp;&amp; !&quot;&quot;.equals(CTPY_NAME.trim())">
+			and CTPY_NAME like '%'+#{CTPY_NAME}+'%'
+		</if>
+    </select>
+
+    
+    <select id="selectAccountByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+    	SELECT DEPART_ID,
+               ACCT_ID,
+      		   ACCT_CUR,
+       		   CLIENT_ID,
+       		   ACCT_TYPE,
+       		   FX_ACCT_TYPE,
+       		   CLOSE_DATE AS CLOSE_TIME,
+       		   OPEN_DATE,
+       		   ACCT_CATA,
+       		   LIMIT_TYPE,
+       		   LIMIT,
+       		   PBOC_NUM_ACCT,
+       		   FILE_NUM,
+       		   ACC_STATUS,
+       		   CREDIT_AMT,
+       		   DEBIT_AMT,
+       		   BALANCE_AMT
+  		FROM BI_ACCOUNT 
+    	where 1=1 
+    	<if test="ACCT_ID!=null  &amp;&amp; !&quot;&quot;.equals(ACCT_ID.trim())">
+			and ACCT_ID like '%'+#{ACCT_ID}+'%'
+		</if>
+		<if test="CLIENT_ID!=null  &amp;&amp; !&quot;&quot;.equals(CLIENT_ID.trim())">
+			and CLIENT_ID like '%'+#{CLIENT_ID}+'%'
+		</if>
+    	
+     ${pageEnd}
+    </select>
+    
+    <select id="selectAccountByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_ACCOUNT where 1=1 
+    	<if test="ACCOUNT_ID!=null  &amp;&amp; !&quot;&quot;.equals(ACCOUNT_ID.trim())">
+			and ACCT_ID like '%'+#{ACCOUNT_ID}+'%'
+		</if>
+		<if test="CLIENT_ID!=null  &amp;&amp; !&quot;&quot;.equals(CLIENT_ID.trim())">
+			and CLIENT_ID like '%'+#{CLIENT_ID}+'%'
+		</if>
+    </select>
+    
+    <select id="selectExchangeRateByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+    	select t.CUR_CODE,
+				  t.CUR_UNIT,
+                  t.RATE_DATE,
+                  t.RATE_MIDPRICE 
+from BI_DAYEXCHANGERATE t
+    	where 1=1 
+    	<if test="CUR_CODE!=null  &amp;&amp; !&quot;&quot;.equals(CUR_CODE.trim())">
+			and CUR_CODE like '%'+#{CURRENCY_CODE}+'%'
+		</if>
+		<if test="RATE_DATE!=null  &amp;&amp; !&quot;&quot;.equals(RATE_DATE.trim())">
+			and RATE_DATE=#{RATE_DATE}
+		</if>
+    	
+     ${pageEnd}
+    </select>
+    
+    <select id="selectExchangeRateByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_DAYEXCHANGERATE where 1=1 
+    	<if test="CUR_CODE!=null  &amp;&amp; !&quot;&quot;.equals(CUR_CODE.trim())">
+			and CUR_CODE like '%'+#{CUR_CODE}+'%'
+		</if>
+		<if test="RATE_DATE!=null  &amp;&amp; !&quot;&quot;.equals(RATE_DATE.trim())">
+			and RATE_DATE=#{RATE_DATE}
+		</if>
+    </select>
+    
+    <select id="selectExchangeRateMonthByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+    	select t.CUR_CODE,
+				  t.CUR_UNIT,
+                  t.RATE_MONTH,
+                  t.RATE_MIDPRICE 
+        from BI_MONTHEXCHANGERATE t
+    	where 1=1 
+    	<if test="CUR_CODE!=null  &amp;&amp; !&quot;&quot;.equals(CUR_CODE.trim())">
+			and CUR_CODE like '%'+#{CUR_CODE}+'%'
+		</if>
+		<if test="RATE_MONTH!=null  &amp;&amp; !&quot;&quot;.equals(RATE_MONTH.trim())">
+			and RATE_MONTH=#{RATE_MONTH}
+		</if>	
+     ${pageEnd}
+    </select>
+
+    <select id="selectExchangeRateMonthByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_MONTHEXCHANGERATE where 1=1 
+    	<if test="CUR_CODE!=null  &amp;&amp; !&quot;&quot;.equals(CUR_CODE.trim())">
+			and CUR_CODE like '%'+#{CUR_CODE}+'%'
+		</if>
+		<if test="RATE_MONTH!=null  &amp;&amp; !&quot;&quot;.equals(RATE_MONTH.trim())">
+			and RATE_MONTH=#{RATE_MONTH}
+		</if>
+    </select>
+    
+     <select id="selectOtherOrganizationByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+    	select t.CTPY_FI_CODE,
+				  t.CTPY_FI_PCODE,
+                  t.CTPY_FI_NAME,
+                  t.CTPY_FI_TYPE,
+                  t.CTPY_FI_COUNTRY,
+                  t.CTPY_FI_REGION_CODE
+        from BI_OTHERORGANIZATION t
+    	where 1=1 
+    	<if test="CTPY_FI_CODE!=null  &amp;&amp; !&quot;&quot;.equals(CTPY_FI_CODE.trim())">
+			and CTPY_FI_CODE like '%'+#{CTPY_FI_CODE}+'%'
+		</if>
+		<if test="CTPY_FI_NAME!=null  &amp;&amp; !&quot;&quot;.equals(CTPY_FI_NAME.trim())">
+			and CTPY_FI_NAME like '%'+#{CTPY_FI_NAME}+'%'
+		</if>	
+     ${pageEnd}
+    </select>
+    
+    <select id="selectOtherOrganizationByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_OTHERORGANIZATION where 1=1 
+    	<if test="CTPY_FI_CODE!=null  &amp;&amp; !&quot;&quot;.equals(CTPY_FI_CODE.trim())">
+			and CTPY_FI_CODE like '%'+#{CTPY_FI_CODE}+'%'
+		</if>
+		<if test="CTPY_FI_NAME!=null  &amp;&amp; !&quot;&quot;.equals(CTPY_FI_NAME.trim())">
+			and CTPY_FI_NAME like '%'+#{CTPY_FI_NAME}+'%'
+		</if>
+    </select>
+    
+<!-- 
+    <select id="selectCountryList"  parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    ${pageBegin}
+    	select 
+    	NATIONREGION_CODE as countryCode,
+    	NATIONREGION_NAME as countryName 
+    	from BI_NATIONREGION
+    	where LEN(NATIONREGION_CODE) = 3
+    	<if test="countryCode!=null  &amp;&amp; !&quot;&quot;.equals(countryCode.trim())">
+			and NATIONREGION_CODE like '%'+#{countryCode}+'%'
+		</if>
+		<if test="countryName!=null  &amp;&amp; !&quot;&quot;.equals(countryName.trim())">
+			and NATIONREGION_NAME like '%'+#{countryName}+'%'
+		</if>
+	${pageEnd}
+    </select>
+  
+    <select id="selectCountryList_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_NATIONREGION where LEN(NATIONREGION_CODE) = 3
+      	<if test="countryCode!=null  &amp;&amp; !&quot;&quot;.equals(countryCode.trim())">
+			and NATIONREGION_CODE like '%'+#{countryCode}+'%'
+		</if>
+		<if test="countryName!=null  &amp;&amp; !&quot;&quot;.equals(countryName.trim())">
+			and NATIONREGION_NAME like '%'+#{countryName}+'%'
+		</if>
+    </select>
+    
+    <select id="selectRegionList"  parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    ${pageBegin}
+    	select 
+    	NATIONREGION_CODE as regionCode,
+    	NATIONREGION_NAME as regionName 
+    	from BI_NATIONREGION
+    	where LEN(NATIONREGION_CODE) = 6
+    	<if test="regionCode!=null  &amp;&amp; !&quot;&quot;.equals(regionCode.trim())">
+			and NATIONREGION_CODE like '%'+#{regionCode}+'%'
+		</if>
+		<if test="regionName!=null  &amp;&amp; !&quot;&quot;.equals(regionName.trim())">
+			and NATIONREGION_NAME like '%'+#{regionName}+'%'
+		</if>
+	${pageEnd}
+    </select>
+    
+    <select id="selectRegionList_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_NATIONREGION where LEN(NATIONREGION_CODE) = 6
+      	<if test="regionCode!=null  &amp;&amp; !&quot;&quot;.equals(regionCode.trim())">
+			and NATIONREGION_CODE like '%'+#{regionCode}+'%'
+		</if>
+		<if test="regionName!=null  &amp;&amp; !&quot;&quot;.equals(regionName.trim())">
+			and NATIONREGION_NAME like '%'+#{regionName}+'%'
+		</if>
+    </select>
+    -->
+    
+     <select id="selectOtherAccountByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+    	select 
+       t.CTPY_ACCT_ID,
+       t.CTPY_ACCT_TYPE,
+       t.CTPY_IC_TYPE_MEMO,
+       t.CTPY_IC_TYPE,
+       t.CTPY_IC_CODE,
+       t.CTPY_NATIONALITY,
+       t.CTPY_TYPE,
+       t.CTPY_NAME       
+  from BI_OTHERACCOUNT t
+    	where 1=1 
+    	<if test="CTPY_ACCT_ID!=null  &amp;&amp; !&quot;&quot;.equals(CTPY_ACCT_ID.trim())">
+			and CTPY_ACCT_ID like '%'+#{CTPY_ACCT_ID}+'%'
+		</if>
+		<if test="CTPY_NAME!=null  &amp;&amp; !&quot;&quot;.equals(CTPY_NAME.trim())">
+			and CTPY_NAME like '%'+#{CTPY_NAME}+'%'
+		</if>
+    	
+     ${pageEnd}
+    </select>
+    
+    
+     <select id="selectRiskAreasByParam" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+    	select 
+       t.AREA_CODE,
+       t.AREA_NAME,
+       t.MEMO    
+  from BI_RISKAREAS t
+    	where 1=1 
+    	<if test="AREA_CODE!=null  &amp;&amp; !&quot;&quot;.equals(AREA_CODE.trim())">
+			and AREA_CODE like '%'+#{AREA_CODE}+'%'
+		</if>
+		<if test="AREA_NAME!=null  &amp;&amp; !&quot;&quot;.equals(AREA_NAME.trim())">
+			and AREA_NAME like '%'+#{AREA_NAME}+'%'
+		</if>
+    	
+     ${pageEnd}
+    </select>
+    
+     <select id="selectRiskAreasByParam_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    	select count(*) from BI_RISKAREAS where 1=1 
+    	<if test="AREA_CODE!=null  &amp;&amp; !&quot;&quot;.equals(AREA_CODE.trim())">
+			and AREA_CODE like '%'+#{AREA_CODE}+'%'
+		</if>
+		<if test="AREA_NAME!=null  &amp;&amp; !&quot;&quot;.equals(AREA_NAME.trim())">
+			and AREA_NAME like '%'+#{AREA_NAME}+'%'
+		</if>
+    </select>
+     <select id="checkRiskAreasByParam" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+    	select count(*) from BI_NATIONREGION where NATIONREGION_CODE like #{AREA_CODE,jdbcType=VARCHAR}+'%'  
+    </select> 
+</mapper>
