@@ -1,31 +1,58 @@
 7、AML二次补录、AML二次补录审核
-（1）手工新增 去除5天交易判断是否补报，取消补报状态
+（1）手工新增 去除5天交易判断是否补报，取消补报状态 （未完成）
 （2）大额补录、审核
 删除交易去向国家、去向地区栏位    （目前只删除界面中的栏位，数据库中尚未删除）
 新增以下栏位信息的维护及录入校验
 
     字段                  形式
-    客户其它证件类型    文本框 CLIENT_IC_OTHER_TYPE（已添加）
-    客户与金融机构的关系  下拉框 editBankRelationship    BANK_RELATIONSHIP   RPT8428 （已添加）
-    客户法定代表人其他身份证件/证明文件类型    文本框     REP_IC_OTHER_TYPE （已添加）
-    交易代办人其他身份证件/证明文件类型  文本框 AGENT_IC_OTHER_TYPE （已添加）
-    收付款方匹配号类型   下拉框 REC_PAY_TYPE（已添加）
-    收付款方匹配号 文本框 REC_PAY_NO（已添加）
-    非柜台交易方式 下拉框 TRADE_UNCOUNTER_TYPE（已添加）
-    其他非柜台交易方式   文本框 TRADE_UNCOUNTER_OTHER_TYPE（已添加）
-    非柜台交易方式的设备代码    文本框 TRADE_UNCOUNTER_NO（已添加）
-    银行与支付机构之间的业务交易编码    文本框 TRADE_BPTC（已添加）
-    交易金额（折人民币）  文本框 RMB_AMT（已添加）
-    交易信息备注1    文本框 REMARK1（已添加）
-    交易信息备注2    文本框 REMARK2（已添加）
+    客户其它证件类型    文本框 CLIENT_IC_OTHER_TYPE    （已添加）
+    客户与金融机构的关系  下拉框 editBankRelationship    BANK_RELATIONSHIP   RPT8428     （已添加）
+    客户法定代表人其他身份证件/证明文件类型    文本框     REP_IC_OTHER_TYPE   （已添加）
+    交易代办人其他身份证件/证明文件类型  文本框 AGENT_IC_OTHER_TYPE     （已添加）
+    收付款方匹配号类型   下拉框 REC_PAY_TYPE    （已添加）
+    收付款方匹配号 文本框 REC_PAY_NO  （已添加）
+    非柜台交易方式 下拉框 TRADE_UNCOUNTER_TYPE    （已添加）
+    其他非柜台交易方式   文本框 TRADE_UNCOUNTER_OTHER_TYPE  （已添加）
+    非柜台交易方式的设备代码    文本框 TRADE_UNCOUNTER_NO  （已添加）
+    银行与支付机构之间的业务交易编码    文本框 TRADE_BPTC  （已添加）
+    交易金额（折人民币）  文本框 RMB_AMT （已添加）
+    交易信息备注1    文本框 REMARK1  （已添加）
+    交易信息备注2    文本框 REMARK2  （已添加）
 
     流程：
         修改SQL查询语句，（selectAMLSecondMakeup,）
         修改dsResult，dsResult1,
         修改页面
+        修改insert和update语句
 
 （3）可疑补录、审核
 删除以下栏位：
-  可疑程度、可疑行为描述、采取措施
+  可疑程度、可疑行为描述、采取措施      （目前只删除界面中的栏位，数据库中尚未删除）
 
 新增以下栏位的录入和校验
+    
+    字段                  形式
+    4、AML_DATASOURCE 
+    客户其它证件类型    文本框     CLIENT_IC_OTHER_TYPE
+    客户与金融机构的关系  下拉框     BANK_RELATIONSHIP
+    客户法定代表人其他身份证件/证明文件类型    文本框     REP_IC_OTHER_TYPE
+    交易代办人其他身份证件/证明文件类型  文本框     AGENT_IC_OTHER_TYPE 
+    收付款方匹配号类型   下拉框     REC_PAY_TYPE
+    收付款方匹配号 文本框     REC_PAY_NO
+    非柜台交易方式 下拉框     TRADE_UNCOUNTER_TYPE
+    其他非柜台交易方式   文本框     TRADE_UNCOUNTER_OTHER_TYPE
+    非柜台交易方式的设备代码    文本框     TRADE_UNCOUNTER_NO
+    银行与支付机构之间的业务交易编码    文本框     TRADE_BPTC
+    交易金额（折人民币）  文本框     RMB_AMT
+    交易信息备注 1    文本框     REMARK1
+    交易信息备注 2    文本框     REMARK2
+    5、AML_ANALYSISRESULT
+    可疑交易报告紧急程度  下拉框     BS_DETR
+    报送方向    下拉框     BS_DORP
+    其他报送方向  文本框     BS_ODRP
+    可疑交易报告触发点   下拉框     BS_TPTR
+    其他可疑交易报告触发点 文本框     BS_OTPR 
+    资金交易及客户行为情况 文本框     BS_STCB
+    疑点分析    文本框     BS_AOSP
+    疑似涉罪类型  多选下拉框      BS_TOSC
+    人工补正标识  文本框     BS_MIRS
