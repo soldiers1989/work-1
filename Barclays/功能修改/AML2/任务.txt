@@ -5,19 +5,19 @@
 新增以下栏位信息的维护及录入校验
 
     字段                  形式
-    客户其它证件类型    文本框 CLIENT_IC_OTHER_TYPE    （已添加）
+    客户其它证件类型    文本框 IC_OTHER_TYPE  CLIENT_IC_OTHER_TYPE  （已添加）
     客户与金融机构的关系  下拉框 editBankRelationship    BANK_RELATIONSHIP   RPT8428     （已添加）
-    客户法定代表人其他身份证件/证明文件类型    文本框     REP_IC_OTHER_TYPE   （已添加）
-    交易代办人其他身份证件/证明文件类型  文本框 AGENT_IC_OTHER_TYPE     （已添加）
+    客户法定代表人其他身份证件/证明文件类型    文本框     REP_IC_OTHER_TYPE   （已添加）   [@N]
+    交易代办人其他身份证件/证明文件类型  文本框 AGENT_IC_OTHER_TYPE     （已添加）   [@N]
     收付款方匹配号类型   下拉框 REC_PAY_TYPE    （已添加）
-    收付款方匹配号 文本框 REC_PAY_NO  （已添加）
+    收付款方匹配号 文本框 REC_PAY_NO  （已添加）   ()
     非柜台交易方式 下拉框 TRADE_UNCOUNTER_TYPE    （已添加）
-    其他非柜台交易方式   文本框 TRADE_UNCOUNTER_OTHER_TYPE  （已添加）
-    非柜台交易方式的设备代码    文本框 TRADE_UNCOUNTER_NO  （已添加）
-    银行与支付机构之间的业务交易编码    文本框 TRADE_BPTC  （已添加）
-    交易金额（折人民币）  文本框 RMB_AMT （已添加）
-    交易信息备注1    文本框 REMARK1  （已添加）
-    交易信息备注2    文本框 REMARK2  （已添加）
+    其他非柜台交易方式   文本框 TRADE_UNCOUNTER_OTHER_TYPE  （已添加）   @N
+    非柜台交易方式的设备代码    文本框 TRADE_UNCOUNTER_NO  （已添加）   ()
+    银行与支付机构之间的业务交易编码    文本框 TRADE_BPTC  （已添加）   (@N)
+    交易金额（折人民币）  文本框 RMB_AMT （已添加）   (要计算)
+    交易信息备注1    文本框 REMARK1  （已添加）   @N
+    交易信息备注2    文本框 REMARK2  （已添加）   @N
 
     流程：
         修改SQL查询语句，（selectAMLSecondMakeup,）
@@ -36,23 +36,29 @@
     客户其它证件类型    文本框     CLIENT_IC_OTHER_TYPE
     客户与金融机构的关系  下拉框     BANK_RELATIONSHIP
     客户法定代表人其他身份证件/证明文件类型    文本框     REP_IC_OTHER_TYPE
-    交易代办人其他身份证件/证明文件类型  文本框     AGENT_IC_OTHER_TYPE 
+    交易代办人其他身份证件/证明文件类型  文本框     AGENT_IC_OTHER_TYPE     [@N]
     收付款方匹配号类型   下拉框     REC_PAY_TYPE
-    收付款方匹配号 文本框     REC_PAY_NO
+    收付款方匹配号 文本框     REC_PAY_NO  []
     非柜台交易方式 下拉框     TRADE_UNCOUNTER_TYPE
-    其他非柜台交易方式   文本框     TRADE_UNCOUNTER_OTHER_TYPE
-    非柜台交易方式的设备代码    文本框     TRADE_UNCOUNTER_NO
-    银行与支付机构之间的业务交易编码    文本框     TRADE_BPTC
-    交易金额（折人民币）  文本框     RMB_AMT
-    交易信息备注1    文本框     REMARK1
-    交易信息备注2    文本框     REMARK2
+    其他非柜台交易方式   文本框     TRADE_UNCOUNTER_OTHER_TYPE  [@N]
+    非柜台交易方式的设备代码    文本框     TRADE_UNCOUNTER_NO  []
+    银行与支付机构之间的业务交易编码    文本框     TRADE_BPTC  (@N)
+    交易金额（折人民币）  文本框     RMB_AMT     ji
+    交易信息备注1    文本框     REMARK1  @N
+    交易信息备注2    文本框     REMARK2  @N
     5、AML_ANALYSISRESULT
     可疑交易报告紧急程度  下拉框     BS_DETR
     报送方向    下拉框     BS_DORP
-    其他报送方向  文本框     BS_ODRP
-    可疑交易报告触发点   下拉框     BS_TPTR
-    其他可疑交易报告触发点 文本框     BS_OTPR 
-    资金交易及客户行为情况 文本框     BS_STCB
-    疑点分析    文本框     BS_AOSP
+    报送次数标志  BS_TORP
+    其他报送方向  文本框     BS_DORP     [@N]
+    可疑交易报告触发点   下拉框     BS_TPTR 
+    其他可疑交易报告触发点 文本框     BS_OTPR     [@N]
+    资金交易及客户行为情况 文本框     BS_STCB     (@N)
+    疑点分析    文本框     BS_AOSP     (@N)
     疑似涉罪类型  多选下拉框      BS_TOSC
-    人工补正标识  文本框     BS_MIRS
+    人工补正标识  文本框     BS_MIRS     [@N]
+
+    (@N)    未做字段填写说明
+    [@N]    在某一种情况下填充@N
+    @N      确切表明填写规则@N
+    []      有字段填写说明,有具体规则
