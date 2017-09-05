@@ -1,6 +1,6 @@
 USE [SOAR]
 GO
-/****** Object:  StoredProcedure [dbo].[SP_HUGETRANS_0904]    Script Date: 2017/9/4 18:24:15 ******/
+/****** Object:  StoredProcedure [dbo].[SP_HUGETRANS_0504]    Script Date: 2017/9/5 15:28:05 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -28,7 +28,7 @@ GO
         4- 改变“跨境”触发限制判定标准；
         5- 触发大额上报条件后，抓取该客户当日所有交易，不分币种，不分收付。
 *******************************************************************************/
-ALTER PROCEDURE [dbo].[SP_HUGETRANS_0904]
+ALTER PROCEDURE [dbo].[SP_HUGETRANS_0504]
   @DEPARTID       VARCHAR(20),
   @WORKDATE       VARCHAR(8),
   @ERR_CODE       NUMERIC OUTPUT,
@@ -161,7 +161,7 @@ BEGIN CATCH
          
     IF (@ERR_CODE != 0)
     BEGIN     
-        SET @ERR_MSG = 'SP_HUGETRANS_0904:' + ERROR_MESSAGE ()
+        SET @ERR_MSG = 'SP_HUGETRANS_0504:' + ERROR_MESSAGE ()
         RETURN
     END 
 END  CATCH  

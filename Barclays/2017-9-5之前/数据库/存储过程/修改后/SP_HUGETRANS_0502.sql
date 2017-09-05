@@ -1,6 +1,6 @@
 USE [SOAR]
 GO
-/****** Object:  StoredProcedure [dbo].[SP_HUGETRANS_0902]    Script Date: 2017/9/4 18:19:39 ******/
+/****** Object:  StoredProcedure [dbo].[SP_HUGETRANS_0502]    Script Date: 2017/9/5 15:27:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -30,7 +30,7 @@ GO
  *  错误信息：error_message
  *  作者:WUSHIYU                                          最后修改日期:20130627
 *******************************************************************************/
-ALTER PROCEDURE [dbo].[SP_HUGETRANS_0902]
+ALTER PROCEDURE [dbo].[SP_HUGETRANS_0502]
   @DEPARTID       VARCHAR(20),
   @WORKDATE       VARCHAR(8),
   @ERR_CODE     NUMERIC OUTPUT,
@@ -189,7 +189,7 @@ BEGIN CATCH
          
     IF (@ERR_CODE != 0)
     BEGIN     
-        SET @ERR_MSG = 'SP_HUGETRANS_0902:' + ERROR_MESSAGE ()
+        SET @ERR_MSG = 'SP_HUGETRANS_0502:' + ERROR_MESSAGE ()
         RETURN
     END 
 END  CATCH

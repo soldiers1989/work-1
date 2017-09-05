@@ -1,0 +1,40 @@
+一、修改数据库
+    1、AML_ANALYSISRESULT
+        BS_SEQNO    Varchar(10) 可疑交易在上报报文中的序号   新增
+        BS_Frequency   Varchar(2)  可疑报告上报次数    新增
+        RECT_TIME   Varchar(8)  更正时限    新增
+        RECT_REQ    Varchar(1000)   更正要求    新增
+        RECT_CONTENT    Varchar(1000)   更正内容    新增
+    2、AML_RECEIPTIMPORTLOG
+        RECT_TIME   Varchar(8)  更正时限    新增
+        RECT_REQ    Varchar(1000)   更正要求    新增
+        RECT_CONTENT    Varchar(1000)   更正内容    新增
+
+二、修改查询语句
+    1、AMLSecondMakeup
+        大额-字段：
+            更正时限    只在列表显示  RECT_TIME   colRectTime01
+            更正要求    只在列表显示  RECT_REQ    colRectReq01
+            更正内容    只在列表显示  RECT_CONTENT    colRectContent01
+        可疑-字段：
+            上报次数    只在列表显示  BS_Frequency    colBsFrequency02
+            更正时限    只在列表显示  RECT_TIME   colRectTime02
+            更正要求    只在列表显示  RECT_REQ    colRectReq02
+            更正内容    只在列表显示  RECT_CONTENT    colRectContent02
+
+    2、AMLSecondMakeupCheck
+        大额-字段：
+            更正时限    只在列表显示  RECT_TIME   colRectTime01
+            更正要求    只在列表显示  RECT_REQ    colRectReq01
+            更正内容    只在列表显示  RECT_CONTENT    colRectContent01
+        可疑-字段：
+            上报次数    只在列表显示  BS_Frequency    colBsFrequency02
+            更正时限    只在列表显示  RECT_TIME   colRectTime02
+            更正要求    只在列表显示  RECT_REQ    colRectReq02
+            更正内容    只在列表显示  RECT_CONTENT    colRectContent02
+
+三、修改dataset
+    已修改
+
+四、修改界面
+    已修改

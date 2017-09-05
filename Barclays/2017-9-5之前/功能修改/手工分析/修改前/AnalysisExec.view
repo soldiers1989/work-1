@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tf:View xmlns:tf="http://www.gneit.com/spec/topface" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gneit.com/spec/topface/TopFace.xsd" root="true" id="com.aif.rpt.analysis.client.AnalysisExec">
+  <tf:Datasets initial="true">
+    <tf:Dataset id="dsQuery" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="false" autoCancelRecord="true" intervalTime="-1" pageSize="-1" readOnly="false" enableStatusObserver="false" selectField="">
+      <tf:Fields>
+        <tf:Field name="WORK_DATE" type="Base" caption="工作日期" dataType="date" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="DEPART_ID" type="Base" caption="机构代码" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+    <tf:Dataset id="dsResult" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="false" autoCancelRecord="true" intervalTime="-1" pageSize="10" readOnly="false" enableStatusObserver="false" selectField="SELECT_FLAG">
+      <tf:Fields>
+        <tf:Field name="WORK_DATE" type="Base" caption="工作日期" dataType="date" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="DEPART_ID" type="Base" caption="机构代码" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="RULE_CODE" type="Base" caption="规则代码" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="RULE_TYPE" type="Base" caption="规则类型" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="RULE_NOTES" type="Base" caption="规则描述" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="ERR_FLAG" type="Base" caption="执行状态" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="ERR_CONTENT" type="Base" caption="执行信息" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="BEGIN_TIME" type="Base" caption="开始时间" dataType="timestr" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="END_TIME" type="Base" caption="结束时间" dataType="timestr" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="RULE_ANALYSE_METHOD" type="Base" caption="分析方法" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="SELECT_FLAG" type="Base" caption="" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+    <tf:Dataset id="dsDepartList" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="true" autoCancelRecord="true" intervalTime="-1" pageSize="0" readOnly="false" enableStatusObserver="false" selectField="">
+      <tf:Fields>
+        <tf:Field name="depart_id" type="Base" caption="" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="depart_name" type="Base" caption="" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+    <tf:Dataset id="dscomSource" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="false" autoCancelRecord="true" intervalTime="-1" pageSize="0" readOnly="false" enableStatusObserver="false" selectField="SelectId">
+      <tf:Fields>
+        <tf:Field name="source_name" type="Base" caption="数据源" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="source_id" type="Base" caption="" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="SelectId" type="Base" caption="" dataType="boolean" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+    <tf:Dataset id="dsuncomSource" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="false" autoCancelRecord="true" intervalTime="-1" pageSize="0" readOnly="false" enableStatusObserver="false" selectField="SelectId">
+      <tf:Fields>
+        <tf:Field name="source_name" type="Base" caption="数据源" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="source_id" type="Base" caption="" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="SelectId" type="Base" caption="" dataType="boolean" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+  </tf:Datasets>
+  <tf:Commands initial="true">
+    <tf:Command id="queryRuleCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="queryRuleItem" type="Dataset" bizType="Query" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dsResult" conditionDataset="dsQuery" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="AnalysisExecCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="AnalysisExecItem" type="Dataset" bizType="Commit" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="ALL" sqlId="" optType="selectList" entityDataset="dsResult" conditionDataset="" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="queryDepartCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="queryDepartItem" type="Dataset" bizType="Query" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dsDepartList" conditionDataset="dsDepartList" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="queryDefaultCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="queryDefaultItem" type="Dataset" bizType="Query" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dsQuery" conditionDataset="" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="checkCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="checkCmdItem" type="Dataset" bizType="Commit" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dsQuery" conditionDataset="" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="comfirmQryCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="comfirmSourceList" type="Dataset" bizType="Query" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dscomSource" conditionDataset="dsQuery" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="uncomfirmQryCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="uncomfirmSourceList" type="Dataset" bizType="Query" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dsuncomSource" conditionDataset="dsQuery" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="comfirmCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="comfirmSource" type="Dataset" bizType="Commit" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="ALL" sqlId="" optType="selectList" entityDataset="dscomSource" conditionDataset="" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="uncomfirmCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="uncomfirmSource" type="Dataset" bizType="Commit" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dsuncomSource" conditionDataset="" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+  </tf:Commands>
+  <tf:Render initial="true">
+    <tf:Layout id="outerlayout" fragmentId="" type="VFlow" row="" column="" labelAlign="left" componentAlignment="Middle_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+      <tf:Form id="queryForm" fragmentId="" type="Auto" caption="手工分析" dataset="dsQuery" width="" height="" enable="true" readOnly="false" visible="true" expandRatio="">
+        <tf:Layout id="queryFormLayout" fragmentId="" type="Grid" labelAlign="left" row="1" column="13" margin="true" spacing="true" columnExpandRatio="" width="100%" height="">
+          <tf:Editor id="editorWORK_DATE" fragmentId="" type="Date" leftMedian="" rightMedian="" caption="" dataset="dsQuery" field="WORK_DATE" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="1" columnEnd="4" rowStart="1" rowEnd="1" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="false" visible="true" dbcshortcut=""/>
+          <tf:Select id="editorDEPART_ID" fragmentId="" type="ComboBox" caption="" dataset="dsQuery" field="DEPART_ID" moduleid="" bizCode="" dropdownDataset="dsDepartList" valueField="depart_id" displayField="depart_name" allowNull="true" nullSelectionAllowed="true" switchMode="true" componentAlignment="Middle_Left" columnStart="5" columnEnd="8" rowStart="1" rowEnd="1" colSpan="" rowSpan="" width="100%" height="" labelWidth="" enable="true" readOnly="false" visible="true" expandRatio="" filteringMode="Contains" attachComboBox="" attachFieldName="" leftColumnCaption="" rightColumnCaption="" isMultiSelect="true" orientation="vertical"/>
+        </tf:Layout>
+      </tf:Form>
+      <tf:Layout id="queryBtnLayout" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Top_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+        <tf:Button id="btnQuery" fragmentId="" type="Base" caption="查询" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btnExec" fragmentId="" type="Base" caption="分析" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btconfirm" fragmentId="" type="Base" caption="${report.res.common.buuton.btnAf}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btcancel" fragmentId="" type="Base" caption="${report.res.common.buuton.btnAfNo}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+      </tf:Layout>
+      <tf:Table id="tableResult" fragmentId="" type="Select" caption="" hightLight="true" dataset="dsResult" width="100%" height="405px" enable="true" readOnly="false" visible="true" selectField="" reorderingAllowed="false" collapsingAllowed="false" expandRatio="">
+        <tf:Columns>
+          <tf:Column id="editWORK_DATE" field="WORK_DATE" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="80" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="editDEPART_ID" field="DEPART_ID" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="100" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="editRULE_CODE" field="RULE_CODE" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="80" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="editRULE_TYPE" field="RULE_TYPE" caption="" moduleid="RPT1501" bizCode="0000" dropdown="" dateFormat="" moneyFormat="" width="80" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="editRULE_NOTES" field="RULE_NOTES" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="150" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="editERR_FLAG" field="ERR_FLAG" caption="" moduleid="RPT1502" bizCode="0000" dropdown="" dateFormat="" moneyFormat="" width="80" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="editERR_CONTENT" field="ERR_CONTENT" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="200" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="editBEGIN_TIME" field="BEGIN_TIME" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="120" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="editEND_TIME" field="END_TIME" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="120" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+        </tf:Columns>
+      </tf:Table>
+    </tf:Layout>
+    <tf:Window id="comsourceWindow" fragmentId="" type="Sub" caption="${report.res.common.title.manualDiscrimination.title1}" closeable="true" draggable="false" resizeable="false" shortcut="" modal="false" autoCenter="true" autoSize="" positionX="0" positionY="0" border="1" width="" height="" enable="true" readOnly="false" visible="true">
+      <tf:Layout id="slLayout" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Top_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+        <tf:Table id="comsourceTbl" fragmentId="" type="Select" caption="" hightLight="true" dataset="dscomSource" width="300px" height="300px" enable="true" readOnly="false" visible="true" selectField="SelectId" reorderingAllowed="false" collapsingAllowed="false" expandRatio="">
+          <tf:Columns>
+            <tf:Column id="colSourceName" field="source_name" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          </tf:Columns>
+        </tf:Table>
+      </tf:Layout>
+      <tf:Layout id="slbtLayout4" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Middle_Center" margin="true" spacing="false" columnExpandRatio="" width="100%" height="" enable="true" readOnly="false" visible="true">
+        <tf:Button id="btOk" fragmentId="" type="Base" caption="${report.res.common.buuton.ok}" width="" height="" componentAlignment="Middle_Center" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btReturn" fragmentId="" type="Base" caption="${report.res.common.button.back}" width="" height="" componentAlignment="Middle_Center" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+      </tf:Layout>
+    </tf:Window>
+    <tf:Window id="uncomsourceWindow" fragmentId="" type="Sub" caption="${report.res.common.title.manualDiscrimination.title2}" closeable="true" draggable="false" resizeable="false" shortcut="" modal="false" autoCenter="true" autoSize="" positionX="0" positionY="0" border="1" width="" height="" enable="true" readOnly="false" visible="true">
+      <tf:Layout id="slLayout2" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Top_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+        <tf:Table id="uncomsourceTbl" fragmentId="" type="Select" caption="" hightLight="true" dataset="dsuncomSource" width="300px" height="300px" enable="true" readOnly="false" visible="true" selectField="SelectId" reorderingAllowed="false" collapsingAllowed="false" expandRatio="">
+          <tf:Columns>
+            <tf:Column id="colunSourceName" field="source_name" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          </tf:Columns>
+        </tf:Table>
+      </tf:Layout>
+      <tf:Layout id="slbtLayout2" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Middle_Center" margin="true" spacing="false" columnExpandRatio="" width="100%" height="" enable="true" readOnly="false" visible="true">
+        <tf:Button id="btOk2" fragmentId="" type="Base" caption="${report.res.common.buuton.ok}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btReturn2" fragmentId="" type="Base" caption="${report.res.common.button.back}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+      </tf:Layout>
+    </tf:Window>
+  </tf:Render>
+</tf:View>
