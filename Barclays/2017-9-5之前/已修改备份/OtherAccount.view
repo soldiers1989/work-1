@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tf:View xmlns:tf="http://www.gneit.com/spec/topface" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gneit.com/spec/topface/TopFace.xsd" root="true" id="com.aif.rpt.bas.client.OtherAccount">
+  <tf:Datasets initial="true">
+    <tf:Dataset id="dsQuery" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="false" autoCancelRecord="true" intervalTime="-1" pageSize="-1" readOnly="false" enableStatusObserver="false" selectField="">
+      <tf:Fields>
+        <tf:Field name="CTPY_ACCT_ID" type="Base" caption="交易对手账号" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_NAME" type="Base" caption="对手名称" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+    <tf:Dataset id="dsResult" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="false" autoCancelRecord="true" intervalTime="-1" pageSize="-1" readOnly="false" enableStatusObserver="false" selectField="">
+      <tf:Fields>
+        <tf:Field name="CTPY_ACCT_ID" type="Base" caption="交易对手账号" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_ACCT_TYPE" type="Base" caption="对手账号类型" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="RPT1307" bizCode="0000" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_IC_TYPE" type="Base" caption="对手证件类型" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_IC_TYPE_MEMO" type="Base" caption="对手证件类型备注" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="RPT1302" bizCode="0000" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_IC_CODE" type="Base" caption="对手证件号码" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_NATIONALITY" type="Base" caption="对手国籍" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_TYPE" type="Base" caption="对手类型" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="RPT1301" bizCode="0000" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_NAME" type="Base" caption="对手名称" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="false" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="CTPY_IC_OTHER_TYPE" type="Base" caption="交易对手其他身份证件/证明文件类型" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+    <tf:Dataset id="dsCountryQuery" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="false" autoCancelRecord="true" intervalTime="-1" pageSize="-1" readOnly="false" enableStatusObserver="false" selectField="">
+      <tf:Fields>
+        <tf:Field name="countryCode" type="Base" caption="${report.res.db.tb_nationregion.nationregion_code}" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="countryName" type="Base" caption="${report.res.db.tb_nationregion.nationregion_name}" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+    <tf:Dataset id="dsCountryResult" type="Custom" beanClazz="" provider="" insertOnEmpty="false" autoLoad="false" autoCancelRecord="true" intervalTime="-1" pageSize="-1" readOnly="false" enableStatusObserver="false" selectField="">
+      <tf:Fields>
+        <tf:Field name="countryCode" type="Base" caption="国家地区代码" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+        <tf:Field name="countryName" type="Base" caption="国家地区名称" dataType="string" precision="38" scale="0" leverage="0" defaultValue="" format="" moduleid="" bizCode="" isPrimaryKey="false" isForeignKey="false" dropdown="" nullable="true" nullableError="" lengthRange="" lengthRangeError="" readOnly="false" msgAlign="right" charset="" charsetError=""/>
+      </tf:Fields>
+    </tf:Dataset>
+  </tf:Datasets>
+  <tf:Parameters initial="true"/>
+  <tf:Render initial="true">
+    <tf:Layout id="outerLayout" fragmentId="" type="VFlow" row="" column="" labelAlign="left" componentAlignment="Middle_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+      <tf:Form id="queryForm" fragmentId="对手方账户信息维" type="Auto" caption="" dataset="dsQuery" width="" height="" enable="true" readOnly="false" visible="true" expandRatio="">
+        <tf:Layout id="queryFormLayout" fragmentId="" type="Grid" labelAlign="left" row="1" column="13" margin="false" spacing="true" columnExpandRatio="" width="100%" height="">
+          <tf:Editor id="editorCTPY_ACCT_ID" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsQuery" field="CTPY_ACCT_ID" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="1" columnEnd="4" rowStart="1" rowEnd="1" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="false" visible="true" dbcshortcut=""/>
+          <tf:Editor id="editorCTPY_NAME" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsQuery" field="CTPY_NAME" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="5" columnEnd="8" rowStart="1" rowEnd="1" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="false" visible="true" dbcshortcut=""/>
+        </tf:Layout>
+      </tf:Form>
+      <tf:Layout id="queryBtnLayout" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Top_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+        <tf:Button id="btnQuery" fragmentId="" type="Base" caption="${report.res.common.button.query}" width="" height="" componentAlignment="Middle_Left" command="" callbackCommand="" columnStart="9" columnEnd="12" rowStart="1" rowEnd="1" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+      </tf:Layout>
+      <tf:Table id="tableResult" fragmentId="" type="Base" caption="" hightLight="true" dataset="dsResult" width="100%" height="455px" enable="true" readOnly="false" visible="true" selectField="" reorderingAllowed="false" collapsingAllowed="false" expandRatio="">
+        <tf:Columns>
+          <tf:Column id="CTPY_ACCT_ID" field="CTPY_ACCT_ID" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="CTPY_ACCT_TYPE" field="CTPY_ACCT_TYPE" caption="" moduleid="RPT1308" bizCode="0000" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="CTPY_IC_TYPE" field="CTPY_IC_TYPE" caption="" moduleid="RPT1302" bizCode="0000" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="CTPY_IC_TYPE_MEMO" field="CTPY_IC_TYPE_MEMO" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="CTPY_IC_CODE" field="CTPY_IC_CODE" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="CTPY_NATIONALITY" field="CTPY_NATIONALITY" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="CTPY_TYPE" field="CTPY_TYPE" caption="" moduleid="RPT1301" bizCode="0000" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="CTPY_NAME" field="CTPY_NAME" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          <tf:Column id="CTPY_IC_OTHER_TYPE" field="CTPY_IC_OTHER_TYPE" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+        </tf:Columns>
+      </tf:Table>
+      <tf:Layout id="paginglayout" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Middle_Right" margin="false" spacing="false" columnExpandRatio="" width="100%" height="" enable="true" readOnly="false" visible="true">
+        <tf:Navigation id="paging" fragmentId="" type="Pagebar" dataset="dsResult" showPagesize="false" showFirstAndLast="true" showRefresh="true" showDetail="true" showTotalCount="true" enable="true" readOnly="false" visible="true"/>
+      </tf:Layout>
+      <tf:Layout id="btnLayout" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Middle_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+        <tf:Button id="btnAdd" fragmentId="" type="Base" caption="${report.res.common.button.add}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btnMod" fragmentId="" type="Base" caption="${report.res.common.button.mod}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btnDel" fragmentId="" type="Base" caption="${report.res.common.button.del}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btnSave" fragmentId="" type="Base" caption="${report.res.common.button.save}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="false" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        <tf:Button id="btnCancel" fragmentId="" type="Base" caption="${report.res.common.button.cancel}" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="false" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+      </tf:Layout>
+      <tf:Form id="formAction" fragmentId="" type="Auto" caption="" dataset="dsResult" width="" height="" enable="true" readOnly="true" visible="true" expandRatio="">
+        <tf:Layout id="h3" fragmentId="" type="Grid" labelAlign="left" row="1" column="13" margin="true" spacing="true" columnExpandRatio="" width="100%" height="">
+          <tf:Editor id="editCTPY_ACCT_ID" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsResult" field="CTPY_ACCT_ID" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="1" columnEnd="4" rowStart="1" rowEnd="1" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="true" visible="true" dbcshortcut=""/>
+          <tf:Select id="editCTPY_ACCT_TYPE" fragmentId="" type="ComboBox" caption="" dataset="dsResult" field="CTPY_ACCT_TYPE" moduleid="RPT1308" bizCode="0000" dropdownDataset="" valueField="" displayField="" allowNull="false" nullSelectionAllowed="true" switchMode="true" componentAlignment="Middle_Left" columnStart="5" columnEnd="8" rowStart="1" rowEnd="1" colSpan="" rowSpan="" width="100%" height="" labelWidth="" enable="true" readOnly="true" visible="true" expandRatio="" filteringMode="Contains" attachComboBox="" attachFieldName="" leftColumnCaption="" rightColumnCaption="" isMultiSelect="true" orientation="vertical"/>
+          <tf:Select id="editCTPY_IC_TYPE" fragmentId="" type="ComboBox" caption="" dataset="dsResult" field="CTPY_IC_TYPE" moduleid="RPT1302" bizCode="0000" dropdownDataset="" valueField="" displayField="" allowNull="false" nullSelectionAllowed="true" switchMode="true" componentAlignment="Middle_Left" columnStart="1" columnEnd="4" rowStart="2" rowEnd="2" colSpan="" rowSpan="" width="" height="" labelWidth="" enable="true" readOnly="true" visible="true" expandRatio="" filteringMode="Contains" attachComboBox="" attachFieldName="" leftColumnCaption="" rightColumnCaption="" isMultiSelect="true" orientation="vertical"/>
+          <tf:Editor id="editCTPY_IC_TYPE_MEMO" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsResult" field="CTPY_IC_TYPE_MEMO" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="5" columnEnd="8" rowStart="2" rowEnd="2" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="true" visible="true" dbcshortcut=""/>
+          <tf:Editor id="editCTPY_IC_CODE" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsResult" field="CTPY_IC_CODE" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="1" columnEnd="4" rowStart="3" rowEnd="3" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="true" visible="true" dbcshortcut=""/>
+          <tf:Editor id="editCTPY_NATIONALITY" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsResult" field="CTPY_NATIONALITY" resolution="" format="" picker="S" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="5" columnEnd="8" rowStart="3" rowEnd="3" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="true" visible="true" dbcshortcut=""/>
+          <tf:Select id="editCTPY_TYPE" fragmentId="" type="ComboBox" caption="" dataset="dsResult" field="CTPY_TYPE" moduleid="RPT1301" bizCode="0000" dropdownDataset="" valueField="" displayField="" allowNull="false" nullSelectionAllowed="true" switchMode="true" componentAlignment="Middle_Left" columnStart="1" columnEnd="4" rowStart="4" rowEnd="4" colSpan="" rowSpan="" width="100%" height="" labelWidth="" enable="true" readOnly="true" visible="true" expandRatio="" filteringMode="Contains" attachComboBox="" attachFieldName="" leftColumnCaption="" rightColumnCaption="" isMultiSelect="true" orientation="vertical"/>
+          <tf:Editor id="editCTPY_NAME" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsResult" field="CTPY_NAME" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="5" columnEnd="8" rowStart="4" rowEnd="4" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="true" visible="true" dbcshortcut=""/>
+          <tf:Editor id="editCTPY_IC_OTHER_TYPE" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsResult" field="CTPY_IC_OTHER_TYPE" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="1" columnEnd="4" rowStart="5" rowEnd="5" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="true" visible="true" dbcshortcut=""/>
+        </tf:Layout>
+      </tf:Form>
+    </tf:Layout>
+    <tf:Window id="countryWindow" fragmentId="" type="Sub" caption="国籍选择" closeable="true" draggable="false" resizeable="false" shortcut="" modal="false" autoCenter="true" autoSize="true" positionX="0" positionY="0" border="1" width="" height="" enable="true" readOnly="false" visible="true">
+      <tf:Layout id="tabCountryLayout" fragmentId="" type="VFlow" row="" column="" labelAlign="left" componentAlignment="Top_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+        <tf:Form id="countryQueryForm" fragmentId="" type="Auto" caption="国家地区" dataset="dsCountryQuery" width="600px" height="" enable="true" readOnly="false" visible="true" expandRatio="">
+          <tf:Layout id="countryQueryFormLayout" fragmentId="" type="Grid" labelAlign="left" row="1" column="13" margin="false" spacing="true" columnExpandRatio="" width="100%" height="">
+            <tf:Editor id="countryCode" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsCountryQuery" field="countryCode" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="1" columnEnd="4" rowStart="1" rowEnd="1" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="false" visible="true" dbcshortcut=""/>
+            <tf:Editor id="countryName" fragmentId="" type="Text" leftMedian="" rightMedian="" caption="" dataset="dsCountryQuery" field="countryName" resolution="" format="" picker="" componentAlignment="Middle_Left" labelAlignment="Middle_Right" columnStart="5" columnEnd="8" rowStart="1" rowEnd="1" columns="" rows="" colSpan="" rowSpan="" width="100%" height="" symbol="" maxLength="" labelWidth="" enable="true" readOnly="false" visible="true" dbcshortcut=""/>
+          </tf:Layout>
+        </tf:Form>
+        <tf:Layout id="btnCountryLayout" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Top_Left" margin="false" spacing="false" columnExpandRatio="" width="" height="" enable="true" readOnly="false" visible="true">
+          <tf:Button id="btnCountryQuery" fragmentId="" type="Base" caption="${report.res.common.button.query}" width="" height="" componentAlignment="Middle_Left" command="" callbackCommand="" columnStart="9" columnEnd="12" rowStart="1" rowEnd="1" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+          <tf:Button id="btnCountryOk" fragmentId="" type="Base" caption="确定" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+          <tf:Button id="btnCountryBack" fragmentId="" type="Base" caption="返回" width="" height="" componentAlignment="" command="" callbackCommand="" columnStart="" columnEnd="" rowStart="" rowEnd="" enable="true" readOnly="false" visible="true" expandRatio="" shortcut=""/>
+        </tf:Layout>
+        <tf:Table id="tableCountryResult" fragmentId="" type="Base" caption="" hightLight="true" dataset="dsCountryResult" width="600px" height="200px" enable="true" readOnly="false" visible="true" selectField="" reorderingAllowed="false" collapsingAllowed="false" expandRatio="">
+          <tf:Columns>
+            <tf:Column id="colCountryCode" field="countryCode" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+            <tf:Column id="colCountryName" field="countryName" caption="" moduleid="" bizCode="" dropdown="" dateFormat="" moneyFormat="" width="" columnAlignment="Align_left" enable="true" readOnly="false" visible="true" addUp="false"/>
+          </tf:Columns>
+        </tf:Table>
+        <tf:Layout id="pagingCountrylayout" fragmentId="" type="HFlow" row="" column="" labelAlign="left" componentAlignment="Middle_Right" margin="false" spacing="false" columnExpandRatio="" width="600px" height="" enable="true" readOnly="false" visible="true">
+          <tf:Navigation id="pagebarCountry" fragmentId="" type="Pagebar" dataset="dsCountryResult" showPagesize="false" showFirstAndLast="true" showRefresh="true" showDetail="true" showTotalCount="true" enable="true" readOnly="false" visible="true"/>
+        </tf:Layout>
+      </tf:Layout>
+    </tf:Window>
+  </tf:Render>
+  <tf:Commands initial="true">
+    <tf:Command id="queryCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="queryItem" type="Sql" bizType="Query" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dsResult" conditionDataset="dsQuery" validForm="" templateTable="tableResult" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="saveCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="saveItem" type="Dataset" bizType="Commit" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectOne" entityDataset="dsResult" conditionDataset="dsResult" validForm="" templateTable="tableResult" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+    <tf:Command id="qryCountryCmd" type="Dataset" autoExecuteAfterCreate="false" showMessageOnScreen="false" defaultSuccessMessage="" defaultErrorMessage="" loadingTipEnable="true" loadingTipModal="false" delay="2000">
+      <tf:CommandItems>
+        <tf:CommandItem id="qryCountryItem" type="Dataset" bizType="Query" ref="" callbackFields="" backfillFields="" flushDataOnSuccess="false" clearOriginalData="false" bank="" application="" pkgId="" datascope="Current" sqlId="" optType="selectList" entityDataset="dsCountryResult" conditionDataset="dsCountryQuery" validForm="" templateTable="" ifNoneResultNotification="true"/>
+      </tf:CommandItems>
+    </tf:Command>
+  </tf:Commands>
+</tf:View>
