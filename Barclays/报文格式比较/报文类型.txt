@@ -1,0 +1,50 @@
+                        // 大额普通-N
+			this.genNBH(header, dataMap);
+			// 大额补报-A
+			this.genABH(header, dataMap);
+			// 大额纠错-C
+			this.genCBH(header, dataMap);
+
+			// 大额删除-D
+			this.genDBH(header, dataMap);
+
+			// 大额重发-R
+			this.genRBH(header, dataMap);
+
+			// 大额补正-I
+			this.genIBH(header, dataMap);
+
+			// 可疑普通-N
+			this.genNBS(header, dataMap);
+
+			// 可疑补报-A
+			this.genABS(header, dataMap);
+
+			// 可疑纠错-C
+			this.genCBS(header, dataMap);
+
+			// 可疑重发-R
+			this.genRBS(header, dataMap);
+
+			// 可疑补正-I
+			this.genIBS(header, dataMap);
+
+
+
+
+
+
+select *　from REPORT_FILE_TEMPLETE_INFO
+
+
+AML-ABH	大额补报报文	NBH.ftl
+AML-ABS	可疑补报报文	NBS.ftl
+AML-CBH	大额纠错报文	CBH.ftl
+AML-CBS	可疑纠错报文	NBS.ftl
+AML-DBH	大额删除报文	DBH.ftl
+AML-IBH	大额补正报文	IBH.ftl
+AML-IBS	可疑补正报文	NBS.ftl
+AML-NBH	大额正常报文	NBH.ftl
+AML-NBS	可疑普通报文	NBS.ftl
+AML-RBH	大额重发报文	NBH.ftl
+AML-RBS	可疑重发报文	NBS.ftl

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="gb18030"?>
+<IHTR>
+	<RBIF>
+		<RINM>${RBIF.RINM}</RINM>
+		<RICD>${RBIF.RICD}</RICD>
+		<IRDT>${RBIF.IRDT}</IRDT>
+		<TSTN>${RBIF.TSTN}</TSTN>
+	</RBIF>
+	<TSDTs>
+		<#list TSDTs as TSDT>
+		<TSDT seqno="${TSDT.SEQNO}">
+			<OCNM>${TSDT.OCNM}</OCNM>
+			<OTDT>${TSDT.OTDT}</OTDT>
+			<OTCD>${TSDT.OTCD}</OTCD>
+			<OTIC>${TSDT.OTIC}</OTIC>
+			<RINI>
+				<FINN>${TSDT.FINN}</FINN>
+				<FIRC>${TSDT.FIRC}</FIRC>
+				<RLTP>${TSDT.RLTP}</RLTP>
+				<FICT>${TSDT.FICT}</FICT>
+				<FINC>${TSDT.FINC}</FINC>
+				<CATP>${TSDT.CATP}</CATP>
+				<CTAC>${TSDT.CTAC}</CTAC>
+			</RINI>
+			<TBIF>
+				<TBNM>${TSDT.TBNM}</TBNM>
+				<TBIT>${TSDT.TBIT}</TBIT>
+				<TBID>${TSDT.TBID}</TBID>
+				<TBNT>${TSDT.TBNT}</TBNT>
+			</TBIF>
+			<TSIF>
+				<TSTM>${TSDT.TSTM}</TSTM>
+				<TICD>${TSDT.TICD}</TICD>
+				<TSTP>${TSDT.TSTP}</TSTP>
+				<TSCT>${TSDT.TSCT}</TSCT>
+				<TSDR>${TSDT.TSDR}</TSDR>
+				<TDRC>${TSDT.TDRC}</TDRC>
+				<TRCD>${TSDT.TRCD}</TRCD>
+				<CRPP>${TSDT.CRPP}</CRPP>
+				<CRTP>${TSDT.CRTP}</CRTP>
+				<CRAT>${TSDT.CRAT}</CRAT>
+			</TSIF>
+			<TCIF>
+				<CFIN>${TSDT.CFIN}</CFIN>
+				<CFCT>${TSDT.CFCT}</CFCT>
+				<CFIC>${TSDT.CFIC}</CFIC>
+				<TCNM>${TSDT.TCNM}</TCNM>
+				<TCIT>${TSDT.TCIT}</TCIT>
+				<TCID>${TSDT.TCID}</TCID>
+				<TCAT>${TSDT.TCAT}</TCAT>
+				<TCAC>${TSDT.TCAC}</TCAC>
+			</TCIF>
+		</TSDT>
+		</#list>
+	</TSDTs>
+</IHTR>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf‐8"?>
+<BSTR>
+	<RBIF>
+		<RICD>报告机构编码</RICD>
+		<RPNC>上报网点代码</RPNC>
+		<DETR>可疑交易报告紧急程度</DETR>
+		<TORP>报送次数标志</TORP>
+		<ORXN>初次报送的可疑交易报告报文名称</ORXN>
+		<DORP>报送方向</DORP>
+		<ODRP>其他报送方向</ODRP>
+		<TPTR>可疑交易报告触发点</TPTR>
+		<OTPR>其他可疑交易报告触发点</OTPR>
+		<STCB>资金交易及客户行为情况</STCB>
+		<AOSP>疑点分析</AOSP>
+		<TOSCs>
+			<TOSC seqno=”1”>疑似涉罪类型1</TOSC>
+			.........
+		</TOSCs>
+		<STCRs>
+			<STCR seqno=”1”>可疑交易特征代码1</STCR>
+			.........
+		</STCRs>
+		<SETN>可疑主体总数</SETN>
+		<STNM>可疑交易总数</STNM>
+		<RPNM>可疑交易报告的填报人员</RPNM>
+		<MIRS>人工补正标识</MIRS>
+	</RBIF>
+	<SEIFs>
+		<SEIF seqno=”1”>
+			<CSNM>客户号</CSNM>
+			<SEVC>可疑主体职业（对私）或行业（对公）</SEVC>
+			<SIIFs>
+				<SIIF seqno=”1”>
+					<SENM>可疑主体姓名/名称</SENM>
+					<SETP>可疑主体身份证件/证明文件类型</SETP>
+					<OITP>其他身份证件/证明文件类型</OITP>
+					<SEID>可疑主体身份证件/证明文件号码</SEID>
+				</SIIF>
+				.........
+			</SIIFs>
+			<STNTs>
+				<STNT seqno=”1”>可疑主体国籍1</STNT>
+				.........
+			</STNTs>
+			<SCIF>
+				<SCTLs>
+					<SCTL seqno=”1”>可疑主体联系电话1</SCTL>
+					.........
+				</SCTLs>
+				<SEARs>
+					<SEAR seqno=”1”>可疑主体住址/经营地址1</SEAR>
+					.........
+				</SEARs>
+				<SEEIs>
+					<SEEI seqno=”1”>可疑主体其他联系方式1</SEEI>
+					.........
+				</SEEIs>
+			</SCIF>
+			<SRIF>
+				<SRNM>可疑主体法定代表人姓名</SRNM>
+				<SRIT>可疑主体法定代表人身份证件类型</SRIT>
+				<ORIT>可疑主体法定代表人其他身份证件/证明文件类型</ORIT>
+				<SRID>可疑主体法定代表人身份证件号码</SRID>
+				<SCNM>可疑主体控股股东或实际控制人名称</SCNM>
+				<SCIT>可疑主体控股股东或实际控制人身份证件/证明文件类型</SCIT>
+				<OCIT>可疑主体控股股东或实际控制人其他身份证件/证明文件类型</OCIT>
+				<SCID>可疑主体控股股东或实际控制人身份证件/证明文件号码</SCID>
+			</SRIF>
+		</SEIF>
+		.........
+	</SEIFs>
+	<STIFs>
+		<STIF seqno=”1”>
+			<RINI>
+				<FINC>金融机构网点代码</FINC>
+				<RLFC>金融机构与客户的关系</RLFC>
+			</RINI>
+			<CIIF>
+				<CTNM>客户姓名/名称</CTNM>
+				<CITP>客户身份证件/证明文件类型</CITP>
+				<OITP>其他身份证件/证明文件类型</OITP>
+				<CTID>客户身份证件/证明文件号码</CTID>
+				<CSNM>客户号</CSNM>
+			</CIIF>
+			<ATIF>
+				<CATP>客户账户类型</CATP>
+				<CTAC>客户账号</CTAC>
+				<OATM>客户账户开立时间</OATM>
+				<CATM>客户账户销户时间</CATM>
+				<CBCT>客户银行卡类型</CBCT>
+				<OCBT>客户银行卡其他类型</OCBT>
+				<CBCN>客户银行卡号码</CBCN>
+			</ATIF>
+			<TBIF>
+				<TBNM>交易代办人姓名</TBNM>
+				<TBIT>交易代办人身份证件/证明文件类型</TBIT>
+				<OITP>其他身份证件/证明文件类型</OITP>
+				<TBID>交易代办人身份证件/证明文件号码</TBID>
+				<TBNT>交易代办人国籍</TBNT>
+			</TBIF>
+			<TSIF>
+				<TSTM>交易时间</TSTM>
+				<TRCD>交易发生地</TRCD>
+				<TICD>业务标识号</TICD>
+				<RPMT>收付款方匹配号类型</RPMT>
+				<RPMN>收付款方匹配号</RPMN>
+				<TSTP>交易方式</TSTP>
+				<OCTT>非柜台交易方式</OCTT>
+				<OOCT>其他非柜台交易方式</OOCT>
+				<OCEC>非柜台交易方式的设备代码</OCEC>
+				<BPTC>银行与支付机构之间的业务交易编码</BPTC>
+				<TSCT>涉外收支交易分类与代码</TSCT>
+				<TSDR>资金收付标志</TSDR>
+				<CRSP>资金来源和用途</CRSP>
+				<CRTP>交易币种</CRTP>
+				<CRAT>交易金额</CRAT>
+			</TSIF>
+			<TCIF>
+				<CFIN>对方金融机构网点名称</CFIN>
+				<CFCT>对方金融机构网点代码类型</CFCT>
+				<CFIC>对方金融机构网点代码</CFIC>
+				<CFRC>对方金融机构网点行政区划代码</CFRC>
+				<TCNM>交易对手姓名/名称</TCNM>
+				<TCIT>交易对手身份证件/证明文件类型</TCIT>
+				<OITP>其他身份证件/证明文件类型</OITP>
+				<TCID>交易对手身份证件/证明文件号码</TCID>
+				<TCAT>交易对手账户类型</TCAT>
+				<TCAC>交易对手账号</TCAC>
+			</TCIF>
+			<ROTFs>
+				<ROTF seqno=”1”>交易信息备注1</ROTF>
+				<ROTF seqno=”2”>交易信息备注2</ROTF>
+			</ROTFs>
+		</STIF>
+		.........
+	</STIFs>
+</BSTR>
