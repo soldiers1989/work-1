@@ -1,0 +1,16 @@
+1、如果新添加了节点
+    在 REPORT_FILE_DATA_RULES 表中做相对应的添加；
+2、在reportingServerSql.xml
+    将相对应的节点添加进去；
+3、新模板可能修改了老模版的层次结构（在代码中就是循环层次）
+
+4、模板
+    list代表有多条数据对应循环
+
+5、SERIAL_NUM_1，SERIAL_NUM_2，SERIAL_NUM_3不知是啥东西
+    根据代码观察，每嵌套一层循环，需要增加一个SERIAL_NUM_n;
+    当前属性在哪层循环，就用对应的SERIAL_NUM_n
+    TOTAL_COUNT2总条数
+    SERIAL_NUM_1代表CATI第几条
+    SERIAL_NUM_2 对应的RULE 代表HTCR
+    SERIAL_NUM_3 对应交易明细 代表TSDT

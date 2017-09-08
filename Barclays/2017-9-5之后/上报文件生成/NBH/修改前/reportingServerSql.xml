@@ -1,0 +1,1414 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+
+<mapper namespace="com.aif.rpt.biz.aml.reporting.server.reportingServerSql">  
+    <!-- AML上报文件生成大额查询-->
+	<select id="selectAMLBH" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		${pageBegin}
+		SELECT T1.WORK_DATE,
+			       T1.MAKE_STATUS,
+			       T1.CHECK_STATUS,
+			       T1.RPT_STATUS,
+			       T1.REF_NO,
+			       T2.DEPART_NAME,
+			       T2.DEPART_TYPE,
+			       T2.DEPART_ID,
+			       T2.DEPART_AREACODE,
+			       T1.RELATION_TYPE,
+			       T2.CLIENT_ID,
+			       T2.CLIENT_NAME,
+			       T2.CLIENT_IC_TYPE,
+			       T2.CLIENT_IC_NO,
+			       T2.CLIENT_NATIONALITY,
+			       T2.PHONE,
+			       T2.ADDRESS,
+			       T2.AGENT_NAME,
+			       T2.AGENT_IC_TYPE,
+			       T2.AGENT_IC_NO,
+			       T2.AGENT_NATIONALITY,
+			       T2.ACCT_ID,
+			       T2.ACCT_TYPE,
+			       T2.VALUE_DATE,
+			       T2.TRADE_DATE,
+			       T2.TRADE_TIME,
+			       T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRADE_VENUE_REGION,
+			       T2.TRADE_MODE,
+			       T2.DEBIT_CREDIT,
+			       (CASE
+			                         WHEN T2.TRADE_REGION = '000000' THEN
+			                          T2.TRADE_COUNTRY
+			                         ELSE
+			                          T2.TRADE_REGION
+			                       END) AS WHITHER,
+			       T2.TRADE_CODE,
+			       T2.FUND_USAGE,
+			       T2.CURRENCY,
+			       T2.AMT,
+			       T2.DOLLAR_AMT,
+			       T2.CTPY_FI_CODE,
+			       T2.CTPY_FI_NAME,
+			       T2.CTPY_FI_TYPE,
+			       T2.CTPY_NAME,
+			       T2.CTPY_TYPE,
+			       T2.CTPY_IC_TYPE,
+			       T2.CTPY_ACCT_ID,
+			       T2.CTPY_ACCT_TYPE,
+			       T2.TRADE_TYPE,
+			       T1.RULE_CODE,
+			       T1.UNIT_CODE,
+			       T1.UNIT_NAME,
+			       T1.REPORTER,
+			       T1.CHECKER
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2, TB_ANALYSISRULES T3
+			 WHERE T1.WORK_DATE = T2. WORK_DATE
+			   AND T1. REF_NO = T2. REF_NO
+			   AND T1. DEPART_ID = T2. DEPART_ID
+			   AND T1. RULE_CODE = T3. RULE_CODE
+			   AND T1. RULE_TYPE = T3. RULE_TYPE
+			   AND T1. RULE_TYPE = '01'
+			   AND T1. IS_DEL = '0'
+
+		<if test="WORK_DATE!=null  &amp;&amp; !&quot;&quot;.equals(WORK_DATE.trim())">
+			AND T1.WORK_DATE = #{WORK_DATE}
+		</if>
+		<if test="bizSql!=null">
+			and ${bizSql}
+		</if>
+		${pageEnd}
+	</select>
+	
+	<select id="selectAMLBH_totalCount" parameterType="java.util.HashMap"
+		resultType="java.lang.Integer">
+		SELECT count(*)
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2, TB_ANALYSISRULES T3
+			 WHERE T1.WORK_DATE = T2. WORK_DATE
+			   AND T1. REF_NO = T2. REF_NO
+			   AND T1. DEPART_ID = T2. DEPART_ID
+			   AND T1. RULE_CODE = T3. RULE_CODE
+			   AND T1. RULE_TYPE = T3. RULE_TYPE
+			   AND T1. RULE_TYPE = '01'
+			   AND T1. IS_DEL = '0'
+
+		<if test="WORK_DATE!=null  &amp;&amp; !&quot;&quot;.equals(WORK_DATE.trim())">
+			AND T1.WORK_DATE = #{WORK_DATE}
+		</if>
+		<if test="bizSql!=null">
+			and ${bizSql}
+		</if>
+	</select>
+	
+	<!-- AML上报文件生成可疑查询-->
+	<select id="selectAMLBS" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		${pageBegin}
+		SELECT T1.WORK_DATE,
+			       T1.MAKE_STATUS,
+			       T1.CHECK_STATUS,
+			       T1.RPT_STATUS,
+			       T1.REF_NO,
+			       T2.DEPART_NAME,
+			       T2.DEPART_TYPE,
+			       T2.DEPART_ID,
+			       T2.DEPART_AREACODE,
+			       T1.RELATION_TYPE,
+			       T2.CLIENT_ID,
+			       T2.CLIENT_NAME,
+			       T2.CLIENT_IC_TYPE,
+			       T2.CLIENT_IC_NO,
+			       T2.PHONE,
+			       T2.OTHER_CONTACT,
+			       T2.CLIENT_NATIONALITY,
+			       T2.INDUSTRY_TYPE,
+			       T2.REGISTERED_CAPITAL,
+			       T2.REP_NAME,
+			       T2.REP_IC_TYPE,
+			       T2.REP_IC_NO,
+			       T2.ADDRESS,
+			       T2.AGENT_NAME,
+			       T2.AGENT_IC_TYPE,
+			       T2.AGENT_IC_NO,
+			       T2.AGENT_NATIONALITY,
+			       T2.ACCT_ID,
+			       T2.ACCT_TYPE,
+			       T2.ACCT_OPEN_TIME,
+			       T2.ACCT_CLOSE_TIME,
+			       T2.VALUE_DATE,
+			       T2.TRADE_DATE,
+			       T2.TRADE_TIME,
+			       T2.TRADE_VENUE_COUNTRY + TRADE_VENUE_REGION AS TRADE_VENUE_REGION,
+			       T2.TRADE_MODE,
+			       T2.DEBIT_CREDIT,
+			       (CASE
+			         WHEN T2.TRADE_REGION = '000000' THEN
+			          T2.TRADE_COUNTRY
+			         ELSE
+			          T2.TRADE_REGION
+			       END) WHITHER,
+			       T2.TRADE_CODE,
+			       T2.FUND_USAGE,
+			       T2.CURRENCY,
+			       T2.AMT,
+			       T2.DOLLAR_AMT,
+			       T2.CTPY_FI_CODE,
+			       T2.CTPY_FI_NAME,
+			       T2.CTPY_FI_TYPE,
+			       T2.CTPY_FI_COUNTRY + T2.CTPY_FI_REGION_CODE AS CTPY_FI_REGION_CODE,
+			       T2.CTPY_NAME,
+			       T2.CTPY_TYPE,
+			       T2.CTPY_IC_TYPE,
+			       T2.CTPY_ACCT_ID,
+			       T2.CTPY_ACCT_TYPE,
+			       T2.TRADE_TYPE,
+			       T1.RULE_CODE,
+			       T1.SHADINESS_LEVEL,
+			       T1.ACTION_MEASURE,
+			       T1.SHADINESS_DESC,
+			       T1.UNIT_CODE,
+			       T1.UNIT_NAME,
+			       T1.REPORTER,
+			       T1.CHECKER
+			
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2, TB_ANALYSISRULES T3
+			 WHERE T1.WORK_DATE = T2. WORK_DATE
+			   AND T1. REF_NO = T2. REF_NO
+			   AND T1. DEPART_ID = T2. DEPART_ID
+			   AND T1. RULE_CODE = T3. RULE_CODE
+			   AND T1. RULE_TYPE = T3. RULE_TYPE
+			   AND T1. RULE_TYPE = '02'
+			   AND T1. IS_DEL = '0'
+
+		<if test="WORK_DATE!=null  &amp;&amp; !&quot;&quot;.equals(WORK_DATE.trim())">
+			AND T1.WORK_DATE = #{WORK_DATE}
+		</if>
+		<if test="bizSql!=null">
+			and ${bizSql}
+		</if>
+		${pageEnd}
+	</select>
+	
+	<select id="selectAMLBS_totalCount" parameterType="java.util.HashMap"
+		resultType="java.lang.Integer">
+		SELECT count(*)
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2, TB_ANALYSISRULES T3
+			 WHERE T1.WORK_DATE = T2. WORK_DATE
+			   AND T1. REF_NO = T2. REF_NO
+			   AND T1. DEPART_ID = T2. DEPART_ID
+			   AND T1. RULE_CODE = T3. RULE_CODE
+			   AND T1. RULE_TYPE = T3. RULE_TYPE
+			   AND T1. RULE_TYPE = '02'
+			   AND T1. IS_DEL = '0'
+
+		<if test="WORK_DATE!=null  &amp;&amp; !&quot;&quot;.equals(WORK_DATE.trim())">
+			AND T1.WORK_DATE = #{WORK_DATE}
+		</if>
+		<if test="bizSql!=null">
+			and ${bizSql}
+		</if>
+	</select>
+	
+	<select id="selectReportFileByWorkDate" parameterType="java.util.HashMap"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM AML_ZIPS WHERE 1=1
+
+		<if test="WORK_DATE!=null  &amp;&amp; !&quot;&quot;.equals(WORK_DATE.trim())">
+			AND WORK_DATE = #{WORK_DATE}
+		</if>
+	</select>
+    
+    <!-- 根据报文类型取得GENERATE_DATE日期最大的记录 -->
+    <select id="selectMaxGenDateOfAMLZips" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT TOP 1 ZIP_NAME, GENERATE_DATE
+		  FROM AML_ZIPS
+		 WHERE SUBSTRING(ZIP_NAME, 3, 1) = #{TRADE_REPORT_TYPE,jdbcType=VARCHAR}
+		 <!-- modify 20170314 按照大额或者可疑生成报文批次号 begin -->
+<!-- 		 AND SUBSTRING(ZIP_NAME, 1, 1) = #{REPORT_TYPE,jdbcType=VARCHAR} -->
+		 <!--  AND WORK_DATE=#{WORK_DATE,jdbcType=VARCHAR} -->
+		  ORDER BY SUBSTRING(ZIP_NAME, 2, LEN(ZIP_NAME)) DESC
+<!-- 		 ORDER BY GENERATE_DATE DESC -->
+		<!-- modify 20170314 按照大额或者可疑生成报文批次号 end -->
+	</select>
+	
+	
+	<!-- 查询不同的交易日期 -->
+	<select id="selectDistinctTradeDate" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.TRADE_DATE
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取重发的文件名 -->
+	<select id="selectDistinctRptFiles" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T1.RPT_FILE
+			  FROM AML_ANALYSISRESULT T1
+			 WHERE  T1.RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR}
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取报表机构名称，编码和报告生成日期 -->
+	<select id="selectReportDepartInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_NAME, UNIT_CODE, WORK_DATE
+		  FROM AML_ANALYSISRESULT
+		 WHERE RPT_STATUS = '10'
+		   AND IS_DEL != '1'
+		   AND CHECK_STATUS = '1'
+		   AND REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取交易主体信息 -->
+	<select id="selectCATIs" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NAME,
+			       T2.CLIENT_IC_TYPE,
+			       T2.CLIENT_IC_NO,
+			       T2.CLIENT_ID,
+			       T2.CLIENT_NATIONALITY,
+			       ISNULL(T2.CLIENT_IC_TYPE_MEMO,'') as CLIENT_IC_TYPE_MEMO,
+			       T2.TRADE_DATE
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND ${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取大额补正上报数据 -->
+	<select id="selectIBHData" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT T1. RULE_CODE,
+					T2.REF_NO
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND T1.${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取重发交易主体信息 -->
+	<select id="selectCATIsOfSBH" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NAME,
+			       T2.CLIENT_IC_TYPE,
+			       T2.CLIENT_IC_NO,
+			       T2.CLIENT_ID,
+			       T2.CLIENT_NATIONALITY,
+			       ISNULL(T2.CLIENT_IC_TYPE_MEMO,'') AS CLIENT_IC_TYPE_MEMO,
+			       T2.TRADE_DATE
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 更新交易主体总数和SERIAL_NUM_1 -->
+	<update id="updateTotalCount1AndSerialNum1" parameterType="java.util.HashMap">
+			UPDATE AML_ANALYSISRESULT
+			   SET TOTAL_COUNT1 = #{TOTAL_COUNT1}, SERIAL_NUM_1 = #{SERIAL_NUM_1}
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND T2.${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+			   AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 更新IBH的TOTAL_COUNT1和SERIAL_NUM_1 -->
+	<update id="updateIBHTotalCount1AndSerialNum1" parameterType="java.util.HashMap">
+			UPDATE AML_ANALYSISRESULT
+			   SET TOTAL_COUNT1 = #{TOTAL_COUNT1}, SERIAL_NUM_1 = #{SERIAL_NUM_1},REPORT_DATE = #{REPORT_DATE},
+			   		   RPT_FILE     = #{RPT_FILE},
+				       RPT_ZIP      = #{RPT_ZIP},
+				       REPORTER     = #{REPORTER},
+				       RPT_STATUS   = #{RPT_STATUS}
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND T1.${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+			   AND T2. REF_NO = #{REF_NO,jdbcType=VARCHAR}
+			   AND T1.RULE_CODE = #{RULE_CODE,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 获取该客户下每种规则代码和总数 -->
+	<select id="selectRuleCodes" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT T1.RULE_CODE,COUNT(0) AS TOTAL_COUNT2
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND ${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+			   AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
+			GROUP BY T1.RULE_CODE
+	</select>
+	
+	<!-- 更新TOTAL_COUNT2和SERIAL_NUM_2 -->
+	<update id="updateTotalCount2AndSerialNum2" parameterType="java.util.HashMap">
+			UPDATE AML_ANALYSISRESULT
+			   SET TOTAL_COUNT2 = #{TOTAL_COUNT2}, SERIAL_NUM_2 = #{SERIAL_NUM_2}
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND T2.${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+			   AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
+			   AND T1.RULE_CODE = #{RULE_CODE,jdbcType=VARCHAR}
+    </update>
+	
+	<!-- 获取该客户和分析规则代码下的交易信息 -->
+	<select id="selectTradeInfos" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT T2.REF_NO
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND ${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+			   AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
+			   AND T1.RULE_CODE = #{RULE_CODE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 更新SERIAL_NUM_3 -->
+	<update id="updateSerialNum3" parameterType="java.util.HashMap">
+			UPDATE AML_ANALYSISRESULT
+				   SET TOTAL_COUNT1 = #{TOTAL_COUNT1},
+				       SERIAL_NUM_1 = #{SERIAL_NUM_1},
+				       TOTAL_COUNT2 = #{TOTAL_COUNT2},
+				       SERIAL_NUM_2 = #{SERIAL_NUM_2},
+				       SERIAL_NUM_3 = #{SERIAL_NUM_3},
+				       RPT_FILE     = #{RPT_FILE},
+				       RPT_ZIP      = #{RPT_ZIP},
+				       REPORTER     = #{REPORTER},
+				       RPT_STATUS   = #{RPT_STATUS},
+				       REPORT_DATE = #{REPORT_DATE}
+				 WHERE RPT_STATUS = '10'
+				   AND IS_DEL != '1'
+				   AND CHECK_STATUS = '1'
+				   AND REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+				   AND WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+				   AND RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+				   AND RULE_CODE = #{RULE_CODE,jdbcType=VARCHAR}
+				   AND REF_NO = #{REF_NO,jdbcType=VARCHAR}
+    </update>
+	
+	<!-- 在AML_ZIPS表中插入包信息 -->
+	<select id="insertAmlZips" parameterType="java.util.HashMap">
+		INSERT INTO AML_ZIPS
+		  (WORK_DATE,
+		   SERIAL_NO,
+		   ZIP_NAME,
+		   DATA_DATE,
+		   DEPART_CODE,
+		   ZIP_TYPE,
+		   ZIP_PATH,
+		   GENERATE_DATE,
+		   ZIP_STATUS)
+		VALUES
+		   (#{WORK_DATE,jdbcType=VARCHAR},
+		   #{SERIAL_NO,jdbcType=VARCHAR},
+		   #{ZIP_NAME,jdbcType=VARCHAR},
+		   #{DATA_DATE,jdbcType=VARCHAR},
+		   #{DEPART_CODE,jdbcType=VARCHAR},
+		   #{ZIP_TYPE,jdbcType=VARCHAR},
+		   #{ZIP_PATH,jdbcType=VARCHAR},
+		   #{GENERATE_DATE,jdbcType=VARCHAR},
+		   #{ZIP_STATUS,jdbcType=VARCHAR}
+		   )
+	</select>
+	
+	<!-- 获取AML_FILES的SERIAL_NO -->
+	<select id="selectMaxSerialNoOfAMLFiles" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT (CASE
+		         WHEN MAX(SERIAL_NO) IS NULL THEN
+		          '1'
+		         ELSE
+		          MAX(SERIAL_NO) + 1
+		       END) as SERIAL_NO
+		  FROM AML_FILES
+		 WHERE ZIP_NAME = #{ZIP_NAME,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 在AML_FILES表中插入包信息 -->
+	<select id="insertAmlFiles" parameterType="java.util.HashMap">
+		INSERT INTO AML_FILES
+			  (APPLICATION_ID,
+			   WORK_DATE,
+			   SERIAL_NO,
+			   ZIP_NAME,
+			   DATA_DATE,
+			   FILE_NAME,
+			   FILE_TYPE,
+			   FILE_STATUS,
+			   RET_DATE,
+			   RET_FILENAME,
+			   TRANS_COUNT,
+			   FILE_IDENTIFY)
+			VALUES
+			   (#{APPLICATION_ID,jdbcType=VARCHAR},
+			   #{WORK_DATE,jdbcType=VARCHAR},
+			   #{SERIAL_NO,jdbcType=VARCHAR},
+			   #{ZIP_NAME,jdbcType=VARCHAR},
+			   #{DATA_DATE,jdbcType=VARCHAR},
+			   #{FILE_NAME,jdbcType=VARCHAR},
+			   #{FILE_TYPE,jdbcType=VARCHAR},
+			   #{FILE_STATUS,jdbcType=VARCHAR},
+			   #{RET_DATE,jdbcType=VARCHAR},
+			   #{RET_FILENAME,jdbcType=VARCHAR},
+			   #{TRANS_COUNT,jdbcType=VARCHAR},
+			   #{FILE_IDENTIFY,jdbcType=VARCHAR}
+			   )
+	</select>
+	
+	<!-- 可疑-查询获取批次号 -->
+	<select id="selectBSBatchNo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T1.BATCH_NO
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.IF_RPT = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 可疑-查询上报中客户信息 -->
+	<select id="selectBSClientInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT  DISTINCT T2.CLIENT_NAME,
+                T2.CLIENT_IC_NO,
+                T2.CLIENT_ID,
+                T2.CLIENT_TYPE,
+                ISNULL(T2.PHONE,'') AS PHONE,
+                ISNULL(T2.ADDRESS,'') AS ADDRESS,  
+                ISNULL(T2.OTHER_CONTACT,'') AS OTHER_CONTACT,
+                T2.CLIENT_NATIONALITY,
+                T2.INDUSTRY_TYPE, 
+                T2.REGISTERED_CAPITAL,
+                ISNULL(T2.REP_NAME,'') AS REP_NAME,
+                ISNULL(T2.REP_IC_NO ,'') AS REP_IC_NO
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.IF_RPT = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+		   AND T1.${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 可疑-查询该客户下的帐户信息 -->
+	<select id="selectBSAcctInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT ACCT_ID
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.IF_RPT = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+		   AND T1.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}		  
+		   AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}		  
+	</select>
+	
+	<!-- 可疑-查询该帐户下的交易信息 -->
+	<select id="selectBSTradeInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T1.REF_NO
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.IF_RPT = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+		   AND T1.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}
+	</select>
+	
+	<update id="updateRPDISerialNum3" parameterType="java.util.HashMap">
+			UPDATE AML_ANALYSISRESULT
+				   SET SERIAL_NUM_3 = #{SERIAL_NUM_3}
+				 WHERE RPT_STATUS = '10'
+				   AND IS_DEL != '1'
+				   AND CHECK_STATUS = '1'
+				   AND IF_RPT = '1'
+				   AND REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+				   AND WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+				   AND RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+				   AND BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}
+				   AND REF_NO = #{REF_NO,jdbcType=VARCHAR}
+    </update>
+	
+	<!-- 可疑-更新SERIAL_NUM_1,SERIAL_NUM_2 -->
+	<update id="updateBSSerialNum3" parameterType="java.util.HashMap">
+			update AML_ANALYSISRESULT 
+set TOTAL_COUNT1 = #{TOTAL_COUNT1},
+	   SERIAL_NUM_1 = #{SERIAL_NUM_1},
+	   TOTAL_COUNT2 = #{TOTAL_COUNT2},
+	   SERIAL_NUM_2 = #{SERIAL_NUM_2},
+	   RPT_FILE     = #{RPT_FILE},
+	   RPT_ZIP      = #{RPT_ZIP},
+	   REPORTER     = #{REPORTER},
+	   RPT_STATUS   = #{RPT_STATUS},
+	   REPORT_DATE = #{REPORT_DATE}
+from AML_DATASOURCE
+where AML_DATASOURCE.REF_NO=AML_ANALYSISRESULT.REF_NO AND AML_ANALYSISRESULT.RPT_STATUS = '10'
+		   AND AML_ANALYSISRESULT.IS_DEL != '1'
+		   AND AML_ANALYSISRESULT.CHECK_STATUS = '1'
+		   AND AML_ANALYSISRESULT.IF_RPT = '1'
+		   AND AML_ANALYSISRESULT.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND AML_ANALYSISRESULT.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND AML_ANALYSISRESULT.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+		   AND AML_ANALYSISRESULT.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}
+		   AND AML_DATASOURCE.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
+		   AND AML_DATASOURCE.ACCT_ID = #{ACCT_ID,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 可疑-根据批次号查询获取原文件名 -->
+	<select id="selectDistinctCBSRptFiles" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T1.RPT_FILE
+			  FROM AML_ANALYSISRESULT T1
+			 WHERE  T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.IF_RPT = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 可疑纠错-查询该批次和文件下的客户信息 -->
+	<select id="selectCBSClientInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT CLIENT_ID
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.IF_RPT = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+		   AND T1.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}
+		   AND T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 可疑纠错-查询该客户下的帐户信息 -->
+	<select id="selectCBSAcctInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT ACCT_ID
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.IF_RPT = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+		   AND T1.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}
+		   AND T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+		   AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 可疑纠错-查询该帐户下的交易信息 -->
+	<select id="selectCBSTradeInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T1.REF_NO
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.IF_RPT = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+		   AND T1.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}
+		   AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
+		   AND T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+		   AND T2.ACCT_ID = #{ACCT_ID,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取上报文件模版信息 -->
+	<select id="selectReportFileTemplateInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT APPLICATION_ID, 
+			       APPLICATION_NAME, 
+			       TEMPLETE_NAME, 
+			       FILE_IDENTIFY
+			  FROM REPORT_FILE_TEMPLETE_INFO
+			 WHERE ENABLE_FLAG = '0'
+			   AND APPLICATION_ID = #{APPLICATION_ID,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取上报文件配置规则 -->
+	<select id="selectReportFileDataRules" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT APPLICATION_ID,
+			       SEQ_NO,
+			       RULE_TYPE,
+			       DATASET_NAME,
+			       SQL_ID,
+			       BEAN_ID,
+			       METHOD_NAME,
+			       DATA_RULE_DESCN,
+			       IS_SINGLE_DATA
+			  FROM REPORT_FILE_DATA_RULES
+			 WHERE APPLICATION_ID = #{APPLICATION_ID,jdbcType=VARCHAR}
+			 ORDER BY SEQ_NO
+	</select>
+	
+	<!-- 配置规则sql -->
+	<!-- 大额普通 -->
+	<select id="sqlid_NBH001" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_NAME    AS RINM,
+	                UNIT_CODE    AS RICD,
+	                REPORT_DATE  AS RPDT,
+	                TOTAL_COUNT1 AS CTTN
+	  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_NBH002" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NAME        AS CTNM,
+	                CASE
+	                  WHEN T2.CLIENT_IC_TYPE = '19' OR T2.CLIENT_IC_TYPE = '29' THEN
+	                   T2.CLIENT_IC_TYPE+T2.CLIENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.CLIENT_IC_TYPE
+	                END AS CITP,
+	                T2.CLIENT_IC_NO       AS CTID,
+	                T2.CLIENT_ID        AS CSNM,
+	                T2.CLIENT_NATIONALITY AS CTNT,
+	                T2.TRADE_DATE         AS HTDT,
+	                T1.SERIAL_NUM_1       SEQNO,
+	                T1.SERIAL_NUM_1       P_SEQNO1
+	  FROM AML_ANALYSISRESULT T1
+	  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+	 WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_1
+	</select>
+	
+	<select id="sqlid_NBH003" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT RULE_CODE       AS CRCD,
+	                TOTAL_COUNT2    AS TTNM,
+	                SERIAL_NUM_2    AS SEQNO,
+                	SERIAL_NUM_1    AS P_SEQNO1,
+                	SERIAL_NUM_2    AS P_SEQNO2
+	  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_2
+	</select>
+	
+	<select id="sqlid_NBH004" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.DEPART_NAME AS FINN,
+	                T2.DEPART_AREACODE AS FIRC,
+	                T1.RELATION_TYPE AS RLTP,
+	                T2.DEPART_TYPE AS FICT,
+	                T2.DEPART_ID AS FINC,
+	                T2.ACCT_TYPE AS CATP,
+	                
+	                T2.AGENT_NAME AS TBNM,
+	               CASE
+	                  WHEN T2.AGENT_IC_TYPE = '19' OR T2.AGENT_IC_TYPE = '29' THEN
+	                   T2.AGENT_IC_TYPE+T2.AGENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.AGENT_IC_TYPE
+	                END AS TBIT,
+	                
+	                CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)&lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)&lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+	                
+	                T2.AGENT_IC_NO AS TBID,
+	                T2.AGENT_NATIONALITY AS TBNT,
+	                CASE
+	                  WHEN T2.TRADE_TIME IS NULL OR T2.TRADE_TIME = '' THEN
+	                   T2.TRADE_DATE + 'tttttt'
+	                  ELSE
+	                   T2.TRADE_DATE + T2.TRADE_TIME
+	                END AS TSTM,
+	                T2.REF_NO AS TICD,
+	                T2.TRADE_MODE AS TSTP,
+	                T2.TRADE_CODE AS TSCT,
+	                T2.DEBIT_CREDIT AS TSDR,
+	                T2.TRADE_COUNTRY + T2.TRADE_REGION AS TDRC,
+	                T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRCD,
+	                T2.FUND_USAGE AS CRPP,
+	                T2.CURRENCY AS CRTP,
+	                SUBSTRING(CAST(ROUND(T2.AMT,3) as VARCHAR(26)),1,CHARINDEX('.',CAST(ROUND(T2.AMT,3) as VARCHAR(26)))+3) AS CRAT,
+	                T2.CTPY_FI_NAME AS CFIN,
+	                T2.CTPY_FI_TYPE AS CFCT,
+	                T2.CTPY_FI_CODE AS CFIC,
+	                T2.CTPY_NAME AS TCNM,
+	                T2.CTPY_IC_TYPE AS TCIT,
+	                T2.CTPY_IC_CODE AS TCID,
+	                T2.CTPY_ACCT_TYPE AS TCAT,
+	                T2.CTPY_ACCT_ID AS TCAC,
+	                T1.SERIAL_NUM_3 AS SEQNO,
+	                T1.SERIAL_NUM_2 AS P_SEQNO2,
+	                T1.SERIAL_NUM_1 AS P_SEQNO1
+	  FROM AML_ANALYSISRESULT T1
+	  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+	 WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_3
+	</select>
+	
+	<!-- 大额重发 -->
+	<select id="sqlid_RBH001" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_NAME    AS RINM,
+	                UNIT_CODE    AS RICD,
+	                REPORT_DATE  AS RPDT,
+	                TOTAL_COUNT1 AS CTTN
+	  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_RBH002" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NAME        AS CTNM,
+	               CASE
+	                  WHEN T2.CLIENT_IC_TYPE = '19' OR T2.CLIENT_IC_TYPE = '29' THEN
+	                   T2.CLIENT_IC_TYPE+T2.CLIENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.CLIENT_IC_TYPE
+	                END AS CITP,
+	                T2.CLIENT_IC_NO       AS CTID,
+	                T2.CLIENT_ID        AS CSNM,
+	                T2.CLIENT_NATIONALITY AS CTNT,
+	                T2.TRADE_DATE         AS HTDT,
+	                T1.SERIAL_NUM_1       SEQNO,
+	                T1.SERIAL_NUM_1       P_SEQNO1
+	  FROM AML_ANALYSISRESULT T1
+	  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+	 WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_1
+	</select>
+	
+	<select id="sqlid_RBH003" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT RULE_CODE       AS CRCD,
+	                TOTAL_COUNT2    AS TTNM,
+	                SERIAL_NUM_2    AS SEQNO,
+                	SERIAL_NUM_1    AS P_SEQNO1,
+                	SERIAL_NUM_2    AS P_SEQNO2
+	  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_2
+	</select>
+	
+	<select id="sqlid_RBH004" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.DEPART_NAME AS FINN,
+	                T2.DEPART_AREACODE AS FIRC,
+	                T1.RELATION_TYPE AS RLTP,
+	                T2.DEPART_TYPE AS FICT,
+	                T2.DEPART_ID AS FINC,
+	                T2.ACCT_TYPE AS CATP,
+	                
+	              CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA' THEN 
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)&lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)&lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+	                
+	                T2.AGENT_NAME AS TBNM,
+	               CASE
+	                  WHEN T2.AGENT_IC_TYPE = '19' OR T2.AGENT_IC_TYPE = '29' THEN
+	                   T2.AGENT_IC_TYPE+T2.AGENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.AGENT_IC_TYPE
+	                END AS TBIT,
+	                T2.AGENT_IC_NO AS TBID,
+	                T2.AGENT_NATIONALITY AS TBNT,
+	                CASE
+	                  WHEN T2.TRADE_TIME IS NULL OR T2.TRADE_TIME = '' THEN
+	                   T2.TRADE_DATE + 'tttttt'
+	                  ELSE
+	                   T2.TRADE_DATE + T2.TRADE_TIME
+	                END AS TSTM,
+	                T2.REF_NO AS TICD,
+	                T2.TRADE_MODE AS TSTP,
+	                T2.TRADE_CODE AS TSCT,
+	                T2.DEBIT_CREDIT AS TSDR,
+	                T2.TRADE_COUNTRY + T2.TRADE_REGION AS TDRC,
+	                T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRCD,
+	                T2.FUND_USAGE AS CRPP,
+	                T2.CURRENCY AS CRTP,
+	                SUBSTRING(CAST(ROUND(T2.AMT,3) as VARCHAR(26)),1,CHARINDEX('.',CAST(ROUND(T2.AMT,3) as VARCHAR(26)))+3) AS CRAT,
+	                T2.CTPY_FI_NAME AS CFIN,
+	                T2.CTPY_FI_TYPE AS CFCT,
+	                T2.CTPY_FI_CODE AS CFIC,
+	                T2.CTPY_NAME AS TCNM,
+	                T2.CTPY_IC_TYPE AS TCIT,
+	                T2.CTPY_IC_CODE AS TCID,
+	                T2.CTPY_ACCT_TYPE AS TCAT,
+	                T2.CTPY_ACCT_ID AS TCAC,
+	                T1.SERIAL_NUM_3 AS SEQNO,
+	                T1.SERIAL_NUM_2 AS P_SEQNO2,
+	                T1.SERIAL_NUM_1 AS P_SEQNO1
+	  FROM AML_ANALYSISRESULT T1
+	  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+	 WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_3
+	</select>
+	
+	<!-- 大额补报 -->
+	<select id="sqlid_ABH001" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_NAME    AS RINM,
+	                UNIT_CODE    AS RICD,
+	                REPORT_DATE  AS RPDT,
+	                TOTAL_COUNT1 AS CTTN
+	  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_ABH002" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NAME        AS CTNM,
+	                CASE
+	                  WHEN T2.CLIENT_IC_TYPE = '19' OR T2.CLIENT_IC_TYPE = '29' THEN
+	                   T2.CLIENT_IC_TYPE+T2.CLIENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.CLIENT_IC_TYPE
+	                END AS CITP,
+	                T2.CLIENT_IC_NO       AS CTID,
+	                T2.CLIENT_ID        AS CSNM,
+	                T2.CLIENT_NATIONALITY AS CTNT,
+	                T2.TRADE_DATE         AS HTDT,
+	                T1.SERIAL_NUM_1       SEQNO,
+	                T1.SERIAL_NUM_1       P_SEQNO1
+	  FROM AML_ANALYSISRESULT T1
+	  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+	 WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_1
+	</select>
+	
+	<select id="sqlid_ABH003" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT RULE_CODE       AS CRCD,
+	                TOTAL_COUNT2    AS TTNM,
+	                SERIAL_NUM_2    AS SEQNO,
+                	SERIAL_NUM_1    AS P_SEQNO1,
+                	SERIAL_NUM_2    AS P_SEQNO2
+	  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_2
+	</select>
+	
+	<select id="sqlid_ABH004" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.DEPART_NAME AS FINN,
+	                T2.DEPART_AREACODE AS FIRC,
+	                T1.RELATION_TYPE AS RLTP,
+	                T2.DEPART_TYPE AS FICT,
+	                T2.DEPART_ID AS FINC,
+	                T2.ACCT_TYPE AS CATP,
+	                
+	              CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA' THEN
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)&lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)&lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+	                
+	                T2.AGENT_NAME AS TBNM,
+	               CASE
+	                  WHEN T2.AGENT_IC_TYPE = '19' OR T2.AGENT_IC_TYPE = '29' THEN
+	                   T2.AGENT_IC_TYPE+T2.AGENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.AGENT_IC_TYPE
+	                END AS TBIT,
+	                T2.AGENT_IC_NO AS TBID,
+	                T2.AGENT_NATIONALITY AS TBNT,
+	                CASE
+	                  WHEN T2.TRADE_TIME IS NULL OR T2.TRADE_TIME = '' THEN
+	                   T2.TRADE_DATE + 'tttttt'
+	                  ELSE
+	                   T2.TRADE_DATE + T2.TRADE_TIME
+	                END AS TSTM,
+	                T2.REF_NO AS TICD,
+	                T2.TRADE_MODE AS TSTP,
+	                T2.TRADE_CODE AS TSCT,
+	                T2.DEBIT_CREDIT AS TSDR,
+	                T2.TRADE_COUNTRY + T2.TRADE_REGION AS TDRC,
+	                T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRCD,
+	                T2.FUND_USAGE AS CRPP,
+	                T2.CURRENCY AS CRTP,
+	                SUBSTRING(CAST(ROUND(T2.AMT,3) as VARCHAR(26)),1,CHARINDEX('.',CAST(ROUND(T2.AMT,3) as VARCHAR(26)))+3) AS CRAT,
+	                T2.CTPY_FI_NAME AS CFIN,
+	                T2.CTPY_FI_TYPE AS CFCT,
+	                T2.CTPY_FI_CODE AS CFIC,
+	                T2.CTPY_NAME AS TCNM,
+	                T2.CTPY_IC_TYPE AS TCIT,
+	                T2.CTPY_IC_CODE AS TCID,
+	                T2.CTPY_ACCT_TYPE AS TCAT,
+	                T2.CTPY_ACCT_ID AS TCAC,
+	                T1.SERIAL_NUM_3 AS SEQNO,
+	                T1.SERIAL_NUM_2 AS P_SEQNO2,
+	                T1.SERIAL_NUM_1 AS P_SEQNO1
+	  FROM AML_ANALYSISRESULT T1
+	  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+	 WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SERIAL_NUM_3
+	</select>
+	
+	<!-- 大额纠错 -->
+	<select id="sqlid_CBH001" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_NAME    AS RINM,
+	                UNIT_CODE    AS RICD,
+	                REPORT_DATE  AS RPDT,
+	                TOTAL_COUNT1 AS CTTN
+	  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_CBH002" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_ID AS OCNM,
+                T2.TRADE_DATE AS OTDT,
+                T1.RULE_CODE AS OTCD,
+                T2.REF_NO AS OTIC,
+                T2.DEPART_NAME AS FINN,
+                T2.DEPART_AREACODE AS FIRC,
+                T1.RELATION_TYPE AS RLTP,
+                T2.DEPART_TYPE AS FICT,
+                T2.DEPART_ID AS FINC,
+                T2.ACCT_TYPE AS CATP,
+                
+                 CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA' THEN 
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)&lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)&lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+                
+                T2.AGENT_NAME AS TBNM,
+                CASE
+	                  WHEN T2.AGENT_IC_TYPE = '19' OR T2.AGENT_IC_TYPE = '29' THEN
+	                   T2.AGENT_IC_TYPE+T2.AGENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.AGENT_IC_TYPE
+	                END AS TBIT,
+                T2.AGENT_IC_NO AS TBID,
+                T2.AGENT_NATIONALITY AS TBNT,
+                CASE
+	                  WHEN T2.TRADE_TIME IS NULL OR T2.TRADE_TIME = '' THEN
+	                   T2.TRADE_DATE + 'tttttt'
+	                  ELSE
+	                   T2.TRADE_DATE + T2.TRADE_TIME
+	                END AS TSTM,
+                T2.REF_NO AS TICD,
+                T2.TRADE_MODE AS TSTP,
+                T2.TRADE_CODE AS TSCT,
+                T2.DEBIT_CREDIT AS TSDR,
+                T2.TRADE_COUNTRY + T2.TRADE_REGION AS TDRC,
+                T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRCD,
+                T2.FUND_USAGE AS CRPP,
+                T2.CURRENCY AS CRTP,
+                SUBSTRING(CAST(ROUND(T2.AMT,3) as VARCHAR(26)),1,CHARINDEX('.',CAST(ROUND(T2.AMT,3) as VARCHAR(26)))+3) AS CRAT,
+                T2.CTPY_FI_NAME AS CFIN,
+                T2.CTPY_FI_TYPE AS CFCT,
+                T2.CTPY_FI_CODE AS CFIC,
+                T2.CTPY_NAME AS TCNM,
+                CASE
+	                  WHEN T2.CTPY_IC_TYPE = '19' OR T2.CTPY_IC_TYPE = '29' THEN
+	                   T2.CTPY_IC_TYPE+T2.CTPY_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.CTPY_IC_TYPE
+	                END AS TCIT,
+                T2.CTPY_IC_CODE AS TCID,
+                T2.CTPY_ACCT_TYPE AS TCAT,
+                T2.CTPY_ACCT_ID AS TCAC,
+                T1.SERIAL_NUM_1 AS SEQNO
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR} ORDER BY SERIAL_NUM_1
+	</select>
+	
+	<!-- 大额补正 -->
+	<select id="sqlid_IBH001" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_NAME    AS RINM,
+                UNIT_CODE    AS RICD,
+                REPORT_DATE  AS IRDT,
+                TOTAL_COUNT1 AS TSTN
+  	FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_IBH002" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_ID AS OCNM,
+                T2.TRADE_DATE AS OTDT,
+                T1.RULE_CODE AS OTCD,
+                T2.REF_NO AS OTIC,
+                T2.DEPART_NAME AS FINN,
+                T2.DEPART_AREACODE AS FIRC,
+                T1.RELATION_TYPE AS RLTP,
+                T2.DEPART_TYPE AS FICT,
+                T2.DEPART_ID AS FINC,
+                T2.ACCT_TYPE AS CATP,
+                
+                CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)&lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)&lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+                
+                
+                T2.AGENT_NAME AS TBNM,
+                CASE
+	                  WHEN T2.AGENT_IC_TYPE = '19' OR T2.AGENT_IC_TYPE = '29' THEN
+	                   T2.AGENT_IC_TYPE+T2.AGENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.AGENT_IC_TYPE
+	                END AS TBIT,
+                T2.AGENT_IC_NO AS TBID,
+                T2.AGENT_NATIONALITY AS TBNT,
+                CASE
+	                  WHEN T2.TRADE_TIME IS NULL OR T2.TRADE_TIME = '' THEN
+	                   T2.TRADE_DATE + 'tttttt'
+	                  ELSE
+	                   T2.TRADE_DATE + T2.TRADE_TIME
+	                END AS TSTM,
+                T2.REF_NO AS TICD,
+                T2.TRADE_MODE AS TSTP,
+                T2.TRADE_CODE AS TSCT,
+                T2.DEBIT_CREDIT AS TSDR,
+                T2.TRADE_COUNTRY + T2.TRADE_REGION AS TDRC,
+                T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRCD,
+                T2.FUND_USAGE AS CRPP,
+                T2.CURRENCY AS CRTP,
+                SUBSTRING(CAST(ROUND(T2.AMT,3) as VARCHAR(26)),1,CHARINDEX('.',CAST(ROUND(T2.AMT,3) as VARCHAR(26)))+3) AS CRAT,
+                T2.CTPY_FI_NAME AS CFIN,
+                T2.CTPY_FI_TYPE AS CFCT,
+                T2.CTPY_FI_CODE AS CFIC,
+                T2.CTPY_NAME AS TCNM,
+                CASE
+	                  WHEN T2.CTPY_IC_TYPE = '19' OR T2.CTPY_IC_TYPE = '29' THEN
+	                   T2.CTPY_IC_TYPE+T2.CTPY_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.CTPY_IC_TYPE
+	                END AS TCIT,
+                T2.CTPY_IC_CODE AS TCID,
+                T2.CTPY_ACCT_TYPE AS TCAT,
+                T2.CTPY_ACCT_ID AS TCAC,
+                T1.SERIAL_NUM_1 AS SEQNO
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR} ORDER BY SERIAL_NUM_1
+	</select>
+	
+	<!-- 大额删除 -->
+	<select id="sqlid_DBH001" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_NAME    AS RINM,
+                UNIT_CODE    AS RICD,
+                REPORT_DATE  AS DRDT,
+                TOTAL_COUNT1 AS DTTN
+  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_DBH002" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.TRADE_DATE AS HTDT,
+                T2.CLIENT_ID AS CSNM,
+                T1.RULE_CODE AS CRCD,
+                T2.REF_NO AS TICD,
+                T1.SERIAL_NUM_1 AS SEQNO
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR} ORDER BY SERIAL_NUM_1
+	</select>
+	
+	<!-- 可疑普通 -->
+	<select id="sqlid_NBS001" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.DEPART_NAME AS FINM,
+                T2.DEPART_AREACODE AS FIRC,
+                T2.DEPART_TYPE AS FICT,
+                T2.DEPART_ID AS FICD,
+                T1.RULE_CODE AS STCR,
+                T1.SHADINESS_LEVEL AS SSDG,
+                T1.ACTION_MEASURE AS TKMS,
+                T1.SHADINESS_DESC AS SSDS,
+                T1.TOTAL_COUNT1 AS CTTN,
+                T1.REPORTER AS RPNM,
+                T1.REPORT_DATE AS RPDT
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_NBS002" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT COUNT(REF_NO) AS TTNM
+  FROM AML_ANALYSISRESULT 
+ WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_NBS003" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NAME       AS CTNM,
+                CASE
+	                  WHEN T2.CLIENT_IC_TYPE = '19' OR T2.CLIENT_IC_TYPE = '29' THEN
+	                   T2.CLIENT_IC_TYPE+T2.CLIENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.CLIENT_IC_TYPE
+	                END AS CITP,
+                T2.CLIENT_IC_NO       AS CTID,
+                T2.CLIENT_ID          AS CSNM,
+                T2.CLIENT_TYPE        AS CTTP,
+                T2.PHONE              AS CCTL,
+                T2.ADDRESS            AS CTAR,  
+                T2.OTHER_CONTACT      AS CCEI,
+                T2.CLIENT_NATIONALITY AS CTNT,
+                T2.INDUSTRY_TYPE      AS CTVC, 
+                T2.REGISTERED_CAPITAL AS RGCP,
+                T2.REP_NAME           AS CRNM,
+                CASE
+	                  WHEN T2.REP_IC_TYPE = '19' OR T2.REP_IC_TYPE = '29' THEN
+	                   T2.REP_IC_TYPE+T2.REP_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.REP_IC_TYPE
+	                END AS CRIT,
+                T2.REP_IC_NO          AS CRID,             
+                T1.TOTAL_COUNT2       AS ATNM,
+                T1.SERIAL_NUM_1       AS SEQNO,
+                T1.SERIAL_NUM_1       AS P_SEQNO1
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY SERIAL_NUM_1 
+	</select>
+	
+	<select id="sqlid_NBS004" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.ACCT_TYPE       AS CATP,
+                 CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA' THEN
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)&lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)&lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+                
+                T2.ACCT_OPEN_TIME   AS OATM,
+                T2.ACCT_CLOSE_TIME  AS CATM,
+                T1.SERIAL_NUM_2     AS SEQNO,                
+                T1.SERIAL_NUM_1     AS P_SEQNO1,
+                T1.SERIAL_NUM_2     AS P_SEQNO2              
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY SERIAL_NUM_2 
+	</select>
+	
+	<select id="sqlid_NBS005" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NAME     AS CTNM,
+                CASE
+	                  WHEN T2.CLIENT_IC_TYPE = '19' OR T2.CLIENT_IC_TYPE = '29' THEN
+	                   T2.CLIENT_IC_TYPE+T2.CLIENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.CLIENT_IC_TYPE
+	                END AS CITP,
+                T2.CLIENT_IC_NO     AS CTID,
+                
+                CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3) &lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+	                   
+                T2.AGENT_NAME       AS BKNM,
+                CASE
+	                  WHEN T2.AGENT_IC_TYPE = '19' OR T2.AGENT_IC_TYPE = '29' THEN
+	                   T2.AGENT_IC_TYPE+T2.AGENT_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.AGENT_IC_TYPE
+	                END AS BITP,
+                T2.AGENT_IC_NO AS BKID,
+                T2.AGENT_NATIONALITY AS BKNT,
+                CASE
+	                  WHEN T2.TRADE_TIME IS NULL OR T2.TRADE_TIME = '' THEN
+	                   T2.TRADE_DATE + 'tt'
+	                  ELSE
+	                   T2.TRADE_DATE + isnull(substring(T2.TRADE_TIME,1,2),'tt')
+	                END AS TSTM,
+                T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRCD,                
+                T2.REF_NO AS TICD,
+                T2.TRADE_MODE AS TSTP,
+                T2.TRADE_CODE AS TSCT,
+                T2.DEBIT_CREDIT AS TSDR,
+                T2.FUND_USAGE AS CRSP,
+                T2.CURRENCY AS CRTP,
+                SUBSTRING(CAST(ROUND(T2.AMT,3) as VARCHAR(26)),1,CHARINDEX('.',CAST(ROUND(T2.AMT,3) as VARCHAR(26)))+3) AS CRAT,
+                T2.CTPY_FI_NAME AS CFIN,
+                T2.CTPY_FI_TYPE AS CFCT,
+                T2.CTPY_FI_CODE AS CFIC,
+                T2.CTPY_FI_COUNTRY+T2.CTPY_FI_REGION_CODE AS CFRC,
+                T2.CTPY_NAME AS TCNM,
+                CASE
+	                  WHEN T2.CTPY_IC_TYPE = '19' OR T2.CTPY_IC_TYPE = '29' THEN
+	                   T2.CTPY_IC_TYPE+T2.CTPY_IC_TYPE_MEMO
+	                  ELSE
+	                   T2.CTPY_IC_TYPE
+	                END AS TCIT,
+                T2.CTPY_IC_CODE AS TCID,
+                T2.CTPY_ACCT_TYPE AS TCAT,
+                T2.CTPY_ACCT_ID AS TCAC,         
+                T1.SERIAL_NUM_3     AS SEQNO,                
+                T1.SERIAL_NUM_2     AS P_SEQNO2 ,      
+                T1.SERIAL_NUM_1     AS P_SEQNO1                      
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY SERIAL_NUM_3
+	</select>
+	
+	<select id="selectAmlZips" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	${pageBegin}
+		select '0' as SELECT_FLAG,a.WORK_DATE,a.ZIP_NAME,a.DATA_DATE,a.SERIAL_NO,t.DEPART_CODE,a.ZIP_TYPE,a.ZIP_PATH,a.GENERATE_DATE,a.ZIP_STATUS
+		from AML_ZIPS a,TB_BRANCH t
+		where a.DEPART_CODE = t.AML_CODE
+	 	and a.DATA_DATE = #{DATA_DATE}
+		<if test = "DEPART_ID != null">
+			and t.DEPART_CODE = #{DEPART_ID}
+		</if>
+		<if test = "ZIP_STATUS != null">
+			and a.ZIP_STATUS = #{ZIP_STATUS}
+		</if>
+	${pageEnd}
+	</select>
+	
+	<select id="selectAmlZips_totalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select Count(*)
+		from AML_ZIPS a,TB_BRANCH t
+		where a.DEPART_CODE = t.AML_CODE
+	 	and a.DATA_DATE = #{DATA_DATE}
+		<if test = "DEPART_ID != null">
+			and t.DEPART_CODE = #{DEPART_ID}
+		</if>
+		<if test = "ZIP_STATUS != null">
+			and a.ZIP_STATUS = #{ZIP_STATUS}
+		</if>
+	</select>
+</mapper>

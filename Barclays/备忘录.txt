@@ -1,0 +1,11 @@
+1、犯罪类型（多选）  （要做）    （未完成）
+
+    思路：一个框显示犯罪信息和代码，一个按钮选择犯罪类型，然后弹框查询
+
+2、SERIAL_NUM_1，SERIAL_NUM_2，SERIAL_NUM_3不知是啥东西
+    根据代码观察，每嵌套一层循环，需要增加一个SERIAL_NUM_n;
+    当前属性在哪层循环，就用对应的SERIAL_NUM_n
+    TOTAL_COUNT2总条数
+    SERIAL_NUM_1代表CATI第几条
+    SERIAL_NUM_2 对应的RULE 代表HTCR
+    SERIAL_NUM_3 对应交易明细 代表TSDT
