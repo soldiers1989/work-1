@@ -15,3 +15,7 @@
     SERIAL_NUM_1代表CATI第几条
     SERIAL_NUM_2 对应的RULE 代表HTCR
     SERIAL_NUM_3 对应交易明细 代表TSDT
+
+    现在新模板添加了一层CCIF 我觉得应该添加SERIAL_NUM_4
+    要先查询HTCR
+    再查询TSDT
