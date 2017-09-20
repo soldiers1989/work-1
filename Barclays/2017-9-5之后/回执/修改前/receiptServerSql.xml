@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+
+<mapper namespace="com.aif.rpt.biz.aml.receipt.server.receiptServerSql">  
+    <!-- 获取上报文件信息 -->
+	<select id="selectReportedFiles" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT CAST(ROW_NUMBER() OVER(ORDER BY DATA_DATE) AS VARCHAR(8)) AS SEQ_NUM,
+			       WORK_DATE,
+			       SERIAL_NO,
+			       FILE_NAME,
+			       FILE_TYPE,
+			       FILE_STATUS,
+			       ZIP_NAME,
+			       DATA_DATE
+			  FROM AML_FILES
+			 WHERE FILE_STATUS = '00'
+			   AND SUBSTRING(ZIP_NAME, 20, 8) = #{WORK_DATE}
+			 ORDER BY DATA_DATE
+	</select>
+	
+	<!-- 更新回执信息到分析结果表 -->
+	<update id="updateAMLAnalysisresult" parameterType="java.util.HashMap">
+		UPDATE AML_ANALYSISRESULT
+		   SET RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR}
+		   <if test='RET_MSE != null'>
+            	,RET_MSE = #{RET_MSE,jdbcType=VARCHAR}
+           </if>
+           <if test='REPORT_TYPE != null &amp;&amp; !"".equals(REPORT_TYPE.trim())'>
+            	,REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+           </if>
+		 WHERE RPT_STATUS = #{RPT_STATUS2,jdbcType=VARCHAR}
+		   AND RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+		   
+		   <if test='REPORT_TYPE2 != null &amp;&amp; !"".equals(REPORT_TYPE2.trim())'>
+            	AND REPORT_TYPE = #{REPORT_TYPE2,jdbcType=VARCHAR}
+           </if>
+    </update>
+    
+    <!-- 更新上报文件表 -->
+	<update id="updateAMLFiles" parameterType="java.util.HashMap">
+		UPDATE AML_FILES
+		   SET FILE_STATUS = #{FILE_STATUS,jdbcType=VARCHAR}
+		 WHERE FILE_STATUS = #{FILE_STATUS2,jdbcType=VARCHAR}
+		   AND FILE_NAME = #{FILE_NAME,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 插入回执日志表 -->
+    <select id="insertReceiptimportlog" parameterType="java.util.HashMap">
+		INSERT INTO AML_RECEIPTIMPORTLOG
+		  (SERIAL_NO,
+		   WORK_DATE,
+		   DEPART_ID,
+		   FILE_NAME,
+		   FILE_TYPE,
+		   ERROR_FILE_NAME,
+		   ERROR_POINTER,
+		   ERROR_INFORMATION,
+		   IMPORT_TIME)
+		VALUES
+		  ((SELECT CASE
+		            WHEN MAX(cast(SERIAL_NO as int)) IS NULL THEN
+		             '1'
+		            ELSE
+		             MAX(cast(SERIAL_NO as int)) + 1
+		          END
+		     FROM AML_RECEIPTIMPORTLOG),
+		   #{WORK_DATE,jdbcType=VARCHAR},
+		   #{DEPART_CODE,jdbcType=VARCHAR},
+		   #{FILE_NAME,jdbcType=VARCHAR},
+		   #{FILE_TYPE,jdbcType=VARCHAR},
+		   #{ERROR_FILE_NAME,jdbcType=VARCHAR},
+		   #{ERROR_POINTER,jdbcType=VARCHAR},
+		   #{ERROR_INFORMATION,jdbcType=VARCHAR},
+		   #{IMPORT_TIME,jdbcType=VARCHAR})
+	</select>
+	
+	<!-- 更新错误回执信息 -->
+	<update id="updateReceiveError" parameterType="java.util.HashMap">
+		UPDATE AML_ANALYSISRESULT
+               SET RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR},
+                     REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR},
+                     RET_MSE = RET_MSE + #{RET_MSE,jdbcType=VARCHAR}
+         WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+         
+         <if test='SERIAL_NUM_1 != null &amp;&amp; !"".equals(SERIAL_NUM_1.trim())'>
+            	AND SERIAL_NUM_1 = #{SERIAL_NUM_1,jdbcType=VARCHAR}
+         </if>
+         <if test='SERIAL_NUM_2 != null &amp;&amp; !"".equals(SERIAL_NUM_2.trim())'>
+            	AND SERIAL_NUM_2 = #{SERIAL_NUM_2,jdbcType=VARCHAR}
+         </if>
+         <if test='SERIAL_NUM_3 != null &amp;&amp; !"".equals(SERIAL_NUM_3.trim())'>
+            	AND SERIAL_NUM_3 = #{SERIAL_NUM_3,jdbcType=VARCHAR}
+         </if>
+    </update>
+	
+	<!-- 交易基本信息错误更新 -->
+	<update id="updateRBIFError" parameterType="java.util.HashMap">
+		UPDATE AML_ANALYSISRESULT
+               SET RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR},
+                     RET_MSE = #{RET_MSE,jdbcType=VARCHAR}
+         WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 交易主体信息错误更新SERIAL_NUM_1 -->
+	<update id="updateCATIError" parameterType="java.util.HashMap">
+		UPDATE AML_ANALYSISRESULT
+               SET RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR},
+                     RET_MSE = #{RET_MSE,jdbcType=VARCHAR}
+         WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 交易特征信息错误更新SERIAL_NUM_2 -->
+	<update id="updateHTCRError" parameterType="java.util.HashMap">
+		UPDATE AML_ANALYSISRESULT
+               SET RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR},
+                     RET_MSE = #{RET_MSE,jdbcType=VARCHAR}
+         WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 交易特征信息错误更新SERIAL_NUM_3 -->
+	<update id="updateTSDTError" parameterType="java.util.HashMap">
+		UPDATE AML_ANALYSISRESULT
+               SET RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR},
+                     RET_MSE = #{RET_MSE,jdbcType=VARCHAR}
+         WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+    </update>
+    
+    <!-- 获取为上报完成的数据 -->
+    <select id="selectNotFinishedReportData" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT T1.REF_NO
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2, TB_ANALYSISRULES T3
+			 WHERE T1.WORK_DATE = T2. WORK_DATE
+			   AND T1. REF_NO = T2. REF_NO
+			   AND T1. DEPART_ID = T2. DEPART_ID
+			   AND T1. RULE_CODE = T3. RULE_CODE
+			   AND T1. RULE_TYPE = T3. RULE_TYPE
+			   AND T1. IS_DEL = '0'
+			   AND T1.RPT_STATUS != '20'
+			   AND T1.WORK_DATE = #{REPORT_DATA_DATE}
+	</select>
+</mapper>

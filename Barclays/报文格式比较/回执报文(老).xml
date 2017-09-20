@@ -1,0 +1,39 @@
+<!-- 正确回执 -->
+<FDBK>
+    <SFID>SUCC</SFID>
+</FDBK>
+
+<!-- 错误回执 -->
+<FDBK>
+    <SFID>CTFL</SFID>
+    <ERTN> 该文件错误总数 </ERTN>
+    <FCERs>
+        <FCER seqno=” 1”>
+            <ERLC> 错误定位 </ERLC>
+            <ERRS> 错误原因 </ERRS>
+        </FCER>
+        ...
+    </FCERs>
+</FDBK>
+
+<!-- 补正回执 -->
+<FDBK>
+    <SFID>RQCR</SFID>
+    <RCTN> 该文件补正大额交易总数 </RCTN>
+    <FCRCs>
+        <FCRC seqno=” 1”>
+            <OCNM> 待补正交易记录客户号 </OCNM>
+            <OTDT> 待补正大额交易发生日期 </OTDT>
+            <OTCD> 待补正大额交易特征代码 </OTCD>
+            <OTIC>待补正交易业务标示号 </OTIC>
+            <RCIFs>
+                <RCIF seqno=”1”>
+                    <RCLC> 补正定位 </RCLC>
+                    <RCSG> 补正提示 </RCSG>
+                </RCIF>
+                ...
+            </RCIFs>
+        </FCRC>
+        ...
+    </FCRCs>
+</FDBK>

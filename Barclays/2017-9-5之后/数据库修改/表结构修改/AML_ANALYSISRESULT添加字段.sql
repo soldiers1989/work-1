@@ -8,3 +8,5 @@ alter table AML_ANALYSISRESULT add  RECT_TIME varchar(8);
 alter table AML_ANALYSISRESULT add  RECT_REQ varchar(1000);
 -- RECT_CONTENT    Varchar(1000)   更正内容    新增
 alter table AML_ANALYSISRESULT add  RECT_CONTENT varchar(1000);
+-- SERIAL_NUM_4    Varchar(8)   SERIAL_NUM_4    新增
+alter table AML_ANALYSISRESULT add  SERIAL_NUM_4 varchar(8);

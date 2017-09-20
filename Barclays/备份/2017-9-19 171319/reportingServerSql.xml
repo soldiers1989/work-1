@@ -294,6 +294,24 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			   AND ${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
 	</select>
 	
+	<!-- 获取交易主体信息 -->
+	<select id="selectDTDTs" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_ID,
+			       T2.REF_NO,
+			       T1.RULE_CODE,
+			       T2.TRADE_DATE
+			  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+			 WHERE T1.REF_NO = T2.REF_NO
+			   AND T1.RPT_STATUS = '10'
+			   AND T1.IS_DEL != '1'
+			   AND T1.CHECK_STATUS = '1'
+			   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+			   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+			   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+			   AND ${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
+	</select>
+	
 	<!-- 获取大额补正上报数据 -->
 	<select id="selectIBHData" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
@@ -462,6 +480,32 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				   AND RULE_CODE = #{RULE_CODE,jdbcType=VARCHAR}
 				   AND REF_NO = #{REF_NO,jdbcType=VARCHAR}
     </update>
+    
+    <!-- 更新SERIAL_NUM_31 -->
+	<update id="updateSerialNum31" parameterType="java.util.HashMap">
+			UPDATE AML_ANALYSISRESULT
+				   SET TOTAL_COUNT1 = #{TOTAL_COUNT1},
+				       SERIAL_NUM_1 = #{SERIAL_NUM_1},
+				       TOTAL_COUNT2 = #{TOTAL_COUNT2},
+				       SERIAL_NUM_2 = #{SERIAL_NUM_2},
+				       SERIAL_NUM_3 = #{SERIAL_NUM_3},
+				       RPT_FILE     = #{RPT_FILE},
+				       RPT_ZIP      = #{RPT_ZIP},
+				       REPORTER     = #{REPORTER},
+				       RPT_STATUS   = #{RPT_STATUS},
+				       REPORT_DATE = #{REPORT_DATE}
+				 WHERE RPT_STATUS = '10'
+				   AND IS_DEL != '1'
+				   AND CHECK_STATUS = '1'
+				   AND REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+				   AND WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+				   AND RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+				   
+				   AND REF_NO = #{REF_NO,jdbcType=VARCHAR}
+				   <if test="RULE_CODE!=null  &amp;&amp; !&quot;&quot;.equals(RULE_CODE.trim())">
+				   	and RULE_CODE = #{RULE_CODE,jdbcType=VARCHAR}
+				   </if>
+    </update>
 	
 	<!-- 在AML_ZIPS表中插入包信息 -->
 	<select id="insertAmlZips" parameterType="java.util.HashMap">
@@ -574,6 +618,26 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		   AND T1.${BIZ_FIELD} = #{FIELD_VALUE,jdbcType=VARCHAR}
 	</select>
 	
+	<!-- 可疑-查询该客户下的客户姓名等 -->
+	<select id="selectBSClientInfoIcOthertype" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT CLIENT_NAME,
+				CLIENT_IC_TYPE,
+				ISNULL(T2.CLIENT_IC_OTHER_TYPE,'@N') AS CLIENT_IC_OTHER_TYPE,
+				CLIENT_IC_NO
+		  FROM AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+		 WHERE T1.REF_NO = T2.REF_NO
+		   AND T1.RPT_STATUS = '10'
+		   AND T1.IS_DEL != '1'
+		   AND T1.CHECK_STATUS = '1'
+		   AND T1.IF_RPT = '1'
+		   AND T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+		   AND T1.WORK_DATE = #{WORK_DATE,jdbcType=VARCHAR}
+		   AND T1.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
+		   AND T1.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}		  
+		   AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}		  
+	</select>
+	
 	<!-- 可疑-查询该客户下的帐户信息 -->
 	<select id="selectBSAcctInfo" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
@@ -643,7 +707,9 @@ where AML_DATASOURCE.REF_NO=AML_ANALYSISRESULT.REF_NO AND AML_ANALYSISRESULT.RPT
 		   AND AML_ANALYSISRESULT.RULE_TYPE = #{RULE_TYPE,jdbcType=VARCHAR}
 		   AND AML_ANALYSISRESULT.BATCH_NO = #{BATCH_NO,jdbcType=VARCHAR}
 		   AND AML_DATASOURCE.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
-		   AND AML_DATASOURCE.ACCT_ID = #{ACCT_ID,jdbcType=VARCHAR}
+		   <if test="ACCT_ID!=null  &amp;&amp; !&quot;&quot;.equals(ACCT_ID.trim())">
+			AND AML_DATASOURCE.ACCT_ID = #{ACCT_ID,jdbcType=VARCHAR}
+			</if>
     </update>
     
     <!-- 可疑-根据批次号查询获取原文件名 -->
@@ -1237,6 +1303,88 @@ where AML_DATASOURCE.REF_NO=AML_ANALYSISRESULT.REF_NO AND AML_ANALYSISRESULT.RPT
  WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR} ORDER BY SERIAL_NUM_1
 	</select>
 	
+	<!-- 大额纠错 -->
+	<select id="sqlid_CBH01" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_CODE    AS RICD,
+	                TOTAL_COUNT1 AS TSTN,
+	                ISNULL(BS_MIRS,'@N')     AS MIRS
+	  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_CBH02" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_ID AS OCNM,
+                T2.TRADE_DATE AS OTDT,
+                T1.RULE_CODE AS OTCD,
+                T2.REF_NO AS OTIC,
+                T2.DEPART_ID AS FINC,
+                T2.BANK_RELATIONSHIP AS RLFC,
+                T2.ACCT_TYPE AS CATP,
+                
+                 CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA' THEN 
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)&lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)&lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+                T2.ACCT_OPEN_TIME AS OATM,
+                T2.CARD_TYPE AS CBCT,
+                ISNULL(T2.CARD_OTHER_TYPE,'@N') AS OCBT,
+                T2.CARD_NO AS CBCN,
+                T2.AGENT_NAME AS TBNM,
+                T2.AGENT_IC_TYPE AS TBIT,
+                ISNULL(T2.AGENT_IC_OTHER_TYPE,'@N') AS OITP1,
+
+                T2.AGENT_IC_NO AS TBID,
+                T2.AGENT_NATIONALITY AS TBNT,
+                CASE
+	                  WHEN T2.TRADE_TIME IS NULL OR T2.TRADE_TIME = '' THEN
+	                   T2.TRADE_DATE + 'tttttt'
+	                  ELSE
+	                   T2.TRADE_DATE + T2.TRADE_TIME
+	                END AS TSTM,
+                T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRCD,
+                T2.REF_NO AS TICD,
+                T2.REC_PAY_TYPE AS RPMT,
+                T2.REC_PAY_NO AS RPMN,
+                T2.TRADE_MODE AS TSTP,
+                T2.TRADE_UNCOUNTER_TYPE AS OCTT,
+                ISNULL(T2.TRADE_UNCOUNTER_OTHER_TYPE,'@N') AS OOCT,
+                T2.TRADE_UNCOUNTER_NO AS OCEC,
+                T2.TRADE_BPTC AS BPTC,
+                T2.TRADE_CODE AS TSCT,
+                T2.DEBIT_CREDIT AS TSDR,
+                T2.FUND_USAGE AS CRPP,
+                T2.CURRENCY AS CRTP,
+                SUBSTRING(CAST(ROUND(T2.AMT,3) as VARCHAR(26)),1,CHARINDEX('.',CAST(ROUND(T2.AMT,3) as VARCHAR(26)))+3) AS CRAT,
+                T2.RMB_AMT AS CRMB,
+                T2.DOLLAR_AMT AS CUSD,
+                T2.CTPY_FI_NAME AS CFIN,
+                T2.CTPY_FI_TYPE AS CFCT,
+                T2.CTPY_FI_CODE AS CFIC,
+                T2.CTPY_FI_REGION_CODE AS CFRC,
+                T2.CTPY_NAME AS TCNM,
+                T2.CTPY_IC_TYPE AS TCIT,
+                ISNULL(T2.CTPY_IC_OTHER_TYPE,'@N') AS OITP2,
+                T2.CTPY_IC_CODE AS TCID,
+                T2.CTPY_ACCT_TYPE AS TCAT,
+                T2.CTPY_ACCT_ID AS TCAC,
+                ISNULL(T2.REMARK1,'@N') AS ROTF1,
+                ISNULL(T2.REMARK2,'@N') AS ROTF2,
+                T1.SERIAL_NUM_1 AS SEQNO
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR} ORDER BY SERIAL_NUM_1
+	</select>
+	
 	<!-- 大额补正 -->
 	<select id="sqlid_IBH001" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
@@ -1333,6 +1481,27 @@ where AML_DATASOURCE.REF_NO=AML_ANALYSISRESULT.REF_NO AND AML_ANALYSISRESULT.RPT
 		resultType="java.util.HashMap">
 		SELECT DISTINCT T2.TRADE_DATE AS HTDT,
                 T2.CLIENT_ID AS CSNM,
+                T1.RULE_CODE AS CRCD,
+                T2.REF_NO AS TICD,
+                T1.SERIAL_NUM_1 AS SEQNO
+  FROM AML_ANALYSISRESULT T1
+  LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR} ORDER BY SERIAL_NUM_1
+	</select>
+	
+	<!-- 大额删除 -->
+	<select id="sqlid_DBH01" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT UNIT_CODE    AS RICD,
+                TOTAL_COUNT1 AS DTTN
+  FROM AML_ANALYSISRESULT
+	 WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_DBH02" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_ID AS CSNM,
+                T2.TRADE_DATE AS HTDT,
                 T1.RULE_CODE AS CRCD,
                 T2.REF_NO AS TICD,
                 T1.SERIAL_NUM_1 AS SEQNO
@@ -1494,6 +1663,198 @@ where AML_DATASOURCE.REF_NO=AML_ANALYSISRESULT.REF_NO AND AML_ANALYSISRESULT.RPT
   FROM AML_ANALYSISRESULT T1
   LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
  WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY SERIAL_NUM_3
+	</select>
+	
+	<!-- 可疑普通 -->
+	<select id="sqlid_NBS01" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T1.UNIT_CODE AS RICD,
+                T2.DEPART_ID AS RPNC,
+                T1.BS_DETR AS DETR,
+                T1.BS_TORP AS TORP,
+                '@N' AS ORXN,
+                T1.BS_DORP AS DORP,
+                T1.BS_ODRP AS ODRP,
+                T1.BS_TPTR AS TPTR,
+                T1.BS_OTPR AS OTPR,
+                T1.BS_STCB AS STCB,
+                T1.BS_AOSP AS AOSP,
+                T1.TOTAL_COUNT1 AS SETN,
+                T1.REPORTER AS RPNM,
+                T1.BS_MIRS AS MIRS
+  			FROM AML_ANALYSISRESULT T1
+  			LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ 			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_NBS02" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT COUNT(REF_NO) AS STNM
+  			FROM AML_ANALYSISRESULT 
+ 			WHERE RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="sqlid_NBS03" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT ISNULL(T1.BS_TOSC,'') AS TOSC,
+                	dense_rank() over( order by T1.BS_TOSC desc)    AS SEQNO
+                	FROM AML_ANALYSISRESULT T1
+	  		LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SEQNO
+	</select>
+	
+	<select id="sqlid_NBS04" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT ISNULL(T1.RULE_CODE,'') AS STCR,
+                	dense_rank() over( order by T1.RULE_CODE desc)    AS SEQNO
+                	FROM AML_ANALYSISRESULT T1
+	  		LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+	 		WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+	 ORDER BY SEQNO
+	</select>
+	
+	<select id="sqlid_NBS05" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_ID          AS CSNM,
+                T2.INDUSTRY_TYPE      AS SEVC, 
+                T2.REP_NAME           AS SRNM,
+                T2.REP_IC_TYPE       AS SRIT,
+                ISNULL(T2. REP_IC_OTHER_TYPE,'@N')       AS ORIT,
+                T2.REP_IC_NO          AS SRID,
+                T2. REP_OTHER_NAME          AS SCNM,
+                T2.REP_OTHER_IC_TYPE          AS SCIT,
+                ISNULL(T2.REP_OTHER_IC_OTHER_TYPE,'@N')          AS OCIT,
+                T2.REP_OTHER_IC_NO          AS SCID,
+                T1.SERIAL_NUM_1       AS SEQNO,
+                T1.SERIAL_NUM_1       AS P_SEQNO1
+  			FROM AML_ANALYSISRESULT T1
+  			LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ 			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY SERIAL_NUM_1
+	</select>
+	
+	<select id="sqlid_NBS06" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NAME          AS SENM,
+                T2.CLIENT_IC_TYPE      AS SETP, 
+                ISNULL(T2.CLIENT_IC_OTHER_TYPE,'@N')           AS OITP,
+                T2.CLIENT_IC_NO       AS SEID,
+                T1.SERIAL_NUM_2       AS SEQNO,
+                T1.SERIAL_NUM_1       AS P_SEQNO1
+  			FROM AML_ANALYSISRESULT T1
+  			LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ 			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY SERIAL_NUM_2
+	</select>
+	
+	<select id="sqlid_NBS07" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.CLIENT_NATIONALITY          AS STNT,
+                T1.SERIAL_NUM_1       AS P_SEQNO1
+  			FROM AML_ANALYSISRESULT T1
+  			LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ 			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY P_SEQNO1
+	</select>
+	
+	<select id="sqlid_NBS08" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.PHONE          AS STNT,
+                T1.SERIAL_NUM_1       AS P_SEQNO1
+  			FROM AML_ANALYSISRESULT T1
+  			LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ 			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY P_SEQNO1
+	</select>
+	
+	<select id="sqlid_NBS09" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.ADDRESS          AS STNT,
+                T1.SERIAL_NUM_1       AS P_SEQNO1
+  			FROM AML_ANALYSISRESULT T1
+  			LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ 			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY P_SEQNO1
+	</select>
+	
+	<select id="sqlid_NBS10" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.OTHER_CONTACT          AS STNT,
+                T1.SERIAL_NUM_1       AS P_SEQNO1
+  			FROM AML_ANALYSISRESULT T1
+  			LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ 			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY P_SEQNO1
+	</select>
+	
+	<select id="sqlid_NBS11" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT DISTINCT T2.DEPART_ID     AS FINC,
+                T2.BANK_RELATIONSHIP     AS RLFC,
+                T2.CLIENT_NAME     AS CTNM,
+                T2.CLIENT_IC_TYPE AS CITP,
+                ISNULL(T2.CLIENT_IC_OTHER_TYPE,'@N')     AS OITP1,
+                T2.CLIENT_IC_NO     AS CTID,
+                T2.CLIENT_ID     AS CSNM,
+
+                T2.ACCT_TYPE     AS CATP,
+                CASE 
+	                WHEN T2.PBOC_NUM_ACCT IS NULL OR T2.PBOC_NUM_ACCT='' THEN
+	                     T2.ACCT_ID
+	                ELSE
+	                     CASE WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA' THEN
+	                          'NRA'+T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3)='NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3)='NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                          WHEN  SUBSTRING(T2.ACCT_ID,1,3) &lt;&gt;'NRA' AND SUBSTRING(T2.PBOC_NUM_ACCT,1,3) &lt;&gt;'NRA'  THEN
+	                          T2.PBOC_NUM_ACCT
+	                      END 
+	                   END AS CTAC,
+                T2.ACCT_OPEN_TIME     AS OATM,
+                T2.ACCT_CLOSE_TIME     AS CATM,
+                T2. CARD_TYPE     AS CBCT,
+                ISNULL(T2. CARD_OTHER_TYPE,'@N')     AS OCBT,
+                T2. CARD_NO     AS CBCN,
+
+                T2.AGENT_NAME     AS TBNM,
+                T2.AGENT_IC_TYPE     AS TBIT,
+                ISNULL(T2.AGENT_IC_OTHER_TYPE,'@N')     AS OITP2,
+                T2.AGENT_IC_NO     AS TBID,
+                T2.AGENT_NATIONALITY     AS TBNT,
+
+                CASE
+	                  WHEN T2.TRADE_TIME IS NULL OR T2.TRADE_TIME = '' THEN
+	                   T2.TRADE_DATE + 'tt'
+	                  ELSE
+	                   T2.TRADE_DATE + isnull(substring(T2.TRADE_TIME,1,2),'tt')
+	                END AS TSTM,
+                T2.TRADE_VENUE_COUNTRY + T2.TRADE_VENUE_REGION AS TRCD,                
+                T2.REF_NO AS TICD,
+                T2.REC_PAY_TYPE     AS RPMT,
+                T2.REC_PAY_NO     AS RPNM,
+                T2.TRADE_MODE AS TSTP,
+                T2.TRADE_UNCOUNTER_TYPE     AS OCTT,
+                ISNULL(T2.TRADE_UNCOUNTER_OTHER_TYPE,'@N')     AS OOCT,
+                T2.TRADE_UNCOUNTER_NO     AS OCEC,
+                T2.TRADE_BPTC     AS BPTC,
+                T2.TRADE_CODE AS TSCT,
+                T2.DEBIT_CREDIT AS TSDR,
+                T2.FUND_USAGE AS CRSP,
+                T2.CURRENCY AS CRTP,
+                SUBSTRING(CAST(ROUND(T2.AMT,3) as VARCHAR(26)),1,CHARINDEX('.',CAST(ROUND(T2.AMT,3) as VARCHAR(26)))+3) AS CRAT,
+                T2.CTPY_FI_NAME AS CFIN,
+                T2.CTPY_FI_TYPE AS CFCT,
+                T2.CTPY_FI_CODE AS CFIC,
+                T2.CTPY_FI_COUNTRY+T2.CTPY_FI_REGION_CODE AS CFRC,
+                T2.CTPY_NAME     AS TCNM,
+                T2.CTPY_IC_TYPE AS TCIT,
+                ISNULL(T2.CTPY_IC_OTHER_TYPE,'@N')     AS OITP3,
+                T2.CTPY_IC_CODE    AS TCID,
+                T2.CTPY_ACCT_TYPE AS TCAT,
+                T2.CTPY_ACCT_ID    AS TCAC,   
+                ISNULL(T2.REMARK1,'@N')          AS ROTF1,
+                ISNULL(T2.REMARK2,'@N')          AS ROTF2,
+                T1.SERIAL_NUM_3     AS SEQNO,                
+                T1.SERIAL_NUM_2     AS P_SEQNO2 ,      
+                T1.SERIAL_NUM_1     AS P_SEQNO1                      
+  			FROM AML_ANALYSISRESULT T1
+  			LEFT OUTER JOIN AML_DATASOURCE T2 ON T1.REF_NO = T2.REF_NO
+ 			WHERE T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}  ORDER BY SERIAL_NUM_3
 	</select>
 	
 	<select id="selectAmlZips" parameterType="java.util.HashMap" resultType="java.util.HashMap">

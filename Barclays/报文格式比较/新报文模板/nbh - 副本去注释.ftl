@@ -47,7 +47,7 @@
 							<OITP>${CATI.OITP!}</OITP>
 							<CTID>${CATI.CTID!}</CTID>
 							<TSDTs>
-								<#list CommonFilter.doFilter(HTCR, TSDTs, "P_SEQNO2=P_SEQNO2","P_SEQNO1=P_SEQNO1") as TSDT>
+								<#list CommonFilter.doFilter(HTCR, TSDTs, "P_SEQNO2=P_SEQNO2","P_SEQNO1=P_SEQNO1","P_SEQNO3=P_SEQNO3") as TSDT>
 								<TSDT seqno="${TSDT.SEQNO!}">
 									<RINI>
 										<FINC>${TSDT.FINC!}</FINC>
@@ -100,7 +100,7 @@
 										<TCAC>${TSDT.TCAC!}</TCAC>
 									</TCIF>
 									<ROTFs>
-										<#list CommonFilter.doFilter(HTCR, ROTFs, "P_SEQNO2=P_SEQNO2","P_SEQNO1=P_SEQNO1") as ROTF>
+										<#list CommonFilter.doFilter(HTCR, ROTFs, "P_SEQNO2=P_SEQNO2","P_SEQNO1=P_SEQNO1",,"P_SEQNO3=P_SEQNO3")) as ROTF>
 										<ROTF seqno="${ROTF.SEQNO!}">${ROTF.ROTF!}</ROTF>
 										<ROTF seqno="${ROTF.SEQNO!}">${ROTF.ROTF!}</ROTF>
 										</#list>

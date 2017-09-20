@@ -1,0 +1,28 @@
+<!-- 大额交易信息更正通知 -->
+<?xml version="1.0" encoding="utf‐8"?>
+<MCVR>
+    <BSIF>
+        <RICD>报告机构编码</RICD>
+        <TMLM>更正完成时限</TMLM>
+        <RQDS>更正填报要求</RQDS>
+        <RQNM>待更正大额交易总数</RQNM>
+        </BSIF>
+    <TSDTs>
+        <TSDT seqno="1">
+        
+            <OCNM>原客户号</OCNM>
+            <OTDT>原大额交易发生日期</OTDT>
+            <OTCD>原大额交易特征代码</OTCD>
+            <OTIC>原业务标示号</OTIC>
+        
+            <ITEMS>
+            
+                <ITEM seqno="1">待更正字段1</ITEM>
+                <ITEM seqno="2">待更正字段2</ITEM>
+                        ........
+            </ITEMS>
+            </TSDT>
+    </TSDTs>
+</MCVR>
+
+
