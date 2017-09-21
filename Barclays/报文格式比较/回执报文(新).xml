@@ -6,7 +6,7 @@
         <TMLM>更正完成时限</TMLM>
         <RQDS>更正填报要求</RQDS>
         <RQNM>待更正大额交易总数</RQNM>
-        </BSIF>
+    </BSIF>
     <TSDTs>
         <TSDT seqno="1">
         
@@ -24,5 +24,209 @@
             </TSDT>
     </TSDTs>
 </MCVR>
+
+<!--可疑交易信息更正通知 -->
+<?xml version="1.0" encoding="utf‐8"?>
+<MCVR>
+    <BSIF>
+        <RICD>报告机构编码</RICD>
+        <TMLM>更正完成时限</TMLM>
+        <RQDS>更正填报要求</RQDS>
+        <ORNM>原可疑交易报告报文名</ORNM>
+        <RQNM>待更正可疑交易总数</RQNM>
+    </BSIF>
+    <REPTs>
+        <REPT seqno="1">
+            <TSNO>可疑交易在原可疑交易报告中的序号</TSNO>
+            <STDT>待更正可疑交易发生日期</STDT>
+            <ITEMS>
+                <ITEM seqno="1">待更正字段1</ITEM>
+                <ITEM seqno="2">待更正字段2</ITEM>
+                        ........
+            </ITEMS>
+            </REPT>
+    </REPTs>
+</MCVR>
+
+<!-- 信息补充通知 -->
+<?xml version="1.0" encoding="utf‐8"?>
+    <MCVR>
+    
+        <BSIF>
+            <RICD>报告机构编码</RICD>
+            <TMLM>补充完成时限</TMLM>
+            数据报送接口规范 39
+            <RQDS>补充填报要求</RQDS>
+            </BSIF>
+    
+        <SPMT>
+            <BGDT>补充开始日期</BGDT>
+            <EDDT>补充结束日期</EDDT>
+            <CITP>客户身份证件/证明文件类型</CITP>
+            <CTID>客户身份证件/证明文件号码</CTID>
+            <CTAC>客户账号</CTAC>
+        </SPMT>
+    </MCVR>
+
+<!-- 报文回执 -->
+
+<!-- 大额交易报文正确回执结构 -->
+<?xml version="1.0" encoding="utf‐8"?>
+    <FDBK>
+    
+        <RPID>回执对应报文的名称</RPID>
+    
+        <SFID>SUCC</SFID>
+    
+        <FDSI>
+            <CTTN>大额交易客户总数</CTTN>
+            <HTNM>报告涉及大额交易总数</HTNM>
+        </FDSI>
+    </FDBK>
+
+<!-- 可疑交易报文正确回执结构 -->
+<?xml version="1.0" encoding="utf‐8"?>
+    <FDBK>
+    
+        <RPID>回执对应报文的名称</RPID>
+    
+        <SFID>SUCC</SFID>
+    
+        <FDSI>
+            <TOSCs>
+                <TOSC seqno=”1”>疑似涉罪类型 1</TOSC>
+                    .........
+            </TOSCs>
+            <STCRs>
+                <STCR seqno=”1”>可疑交易特征代码 1</STCR>
+                    .........
+            </STCRs>
+            <SETN>可疑主体总数</SETN>
+            <STNM>可疑交易总数</STNM>
+        </FDSI>
+    </FDBK>
+
+<!-- 系统补正回执 -->
+<!-- 大额交易报告新增报文系统补正回执 -->
+<?xml version="1.0" encoding="utf‐8"?>
+    <FDBK>
+    
+        <RPID>回执对应报文的名称</RPID>
+        <SFID>RQCR</SFID>
+        <FDSI>
+            <HTNM>报告涉及大额交易总数</HTNM>
+            <ETTN>待补正的大额交易总数</ETTN>
+        </FDSI>
+        <FCRCs>
+            <FCRC seqno=”1”>
+                <OCNM>原客户号</OCNM>
+                <OTDT>原大额交易发生日期</OTDT>
+                <OTCD>原大额交易特征代码</OTCD>
+                <OTIC>原业务标识号</OTIC>
+                <FCERs>
+                    <FCER seqno=”1”>
+                        <ERLC>补正定位</ERLC>
+                        <ERRS>补正提示</ERRS>
+                        </FCER>
+                        .........
+                </FCERs>
+                </FCRC>
+                .........
+        </FCRCs>
+    </FDBK>
+
+<!-- 可疑交易报告新增报文系统补正回执 -->
+<?xml version="1.0" encoding="utf‐8"?>
+    <FDBK>
+    
+        <RPID>回执对应报文的名称</RPID>
+        <SFID>RQCR</SFID>
+        <ERTN>该文件错误总数</ERTN>
+        <FCERs>
+            <FCER seqno=”1”>
+                <ERLC>补正定位</ERLC>
+                <ERRS>补正原因</ERRS>
+                </FCER>
+                .........
+        </FCERs>
+    </FDBK>
+
+<!-- 错误回执 -->
+
+<!-- 大额交易报告新增报文错误回执 -->
+<?xml version="1.0" encoding="utf‐8"?>
+    <FDBK>
+    
+        <RPID>回执对应报文的名称</RPID>
+        <SFID>CTFL</SFID>
+        <ERTN>该文件错误总数</ERTN>
+        <FCERs>
+            <FCER seqno=”1”>
+                <ERLC>错误定位</ERLC>
+                <ERRS>错误原因</ERRS>
+                </FCER>
+                .........
+        </FCERs>
+    </FDBK>
+
+<!-- 大额交易报告修改报文错误回执 -->
+<?xml version="1.0" encoding="utf‐8"?>
+    <FDBK>
+    
+        <RPID>回执对应报文的名称</RPID>
+        <SFID>CTFL</SFID>
+    
+        <FDSI>
+            <HTNM>报告欲纠错的大额交易总数</HTNM>
+            <ETTN>未成功纠错的大额交易总数</ETTN>
+        </FDSI>
+        <FCRCs>
+            <FCRC seqno=”1”>
+                <OCNM>原客户号</OCNM>
+                <OTDT>原大额交易发生日期</OTDT>
+                <OTCD>原大额交易特征代码</OTCD>
+                <OTIC>原业务标识号</OTIC>
+                <FCERs>
+                    <FCER seqno=”1”>
+                        <ERLC>错误定位</ERLC>
+                        <ERRS>错误提示</ERRS>
+                        </FCER>
+                        .........
+                </FCERs>
+                </FCRC>
+                .........
+        </FCRCs>
+    </FDBK>
+ 
+<!-- 大额交易报告删除报文错误回执 -->
+<?xml version="1.0" encoding="utf‐8"?>
+    <FDBK>
+    
+        <RPID>回执对应报文的名称</RPID>
+        <SFID>CTFL</SFID>
+        <SDTN>正确删除交易总数</SDTN>
+        <UTTN>未匹配交易主键数</UTTN>
+        <!-- 成功匹配 -->
+        <SDTKs>
+            <SDTK seqno=”1”>
+                <HTDT>大额交易发生日期</HTDT>
+                <CSNM>客户号</CSNM>
+                <CRCD>大额交易特征代码</CRCD>
+                <TICD>业务标识号</TICD>
+                </SDTK>
+                .........
+        </SDTKs>
+        <!-- 不匹配 -->
+        <UMTKs> 
+            <UMTK seqno=”1”>
+                <HTDT>大额交易发生日期</HTDT>
+                <CSNM>客户号</CSNM>
+                <CRCD>大额交易特征代码</CRCD>
+                <TICD>业务标识号</TICD>
+                </UMTK>
+                .........
+        </UMTKs>
+    </FDBK>
+
 
 

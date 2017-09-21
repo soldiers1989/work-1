@@ -1,0 +1,17 @@
+一、大体流程
+    1、将新旧报文对比，读懂代码
+
+    2、按要求修改代码
+
+    3、解析补正定位
+
+    4、错误回执要分情况重写
+        如何判断是主动纠错还是补正回执应答修改
+
+问题：
+
+    1、以下字段在数据库中的对应
+    <OCNM>原客户号</OCNM>       ORIG_CLIENT_ID
+    <OTDT>原大额交易发生日期</OTDT>      ORIG_TRADE_DATE
+    <OTCD>原大额交易特征代码</OTCD>      ORIG_RULE_CODE
+    <OTIC>原业务标识号</OTIC>     ORIG_REF_NO

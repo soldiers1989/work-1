@@ -16,7 +16,7 @@
     </FCERs>
 </FDBK>
 
-<!-- 补正回执 -->
+<!-- 大额交易补正要求回执文件内容 -->
 <FDBK>
     <SFID>RQCR</SFID>
     <RCTN> 该文件补正大额交易总数 </RCTN>
@@ -33,6 +33,19 @@
                 </RCIF>
                 ...
             </RCIFs>
+        </FCRC>
+        ...
+    </FCRCs>
+</FDBK>
+
+ <!-- 可疑交易补正要求回执文件内容 -->
+<FDBK>
+    <SFID>RQCR</SFID>
+    <RCTN> 该文件补正总数 </RCTN>
+    <FCRCs>
+        <FCRC seqno=” 1”>
+            <RCLC> 补正位臵 </RCLC>
+            <RCSG> 补正提示 </RCSG>
         </FCRC>
         ...
     </FCRCs>
