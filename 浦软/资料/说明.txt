@@ -1,0 +1,4 @@
+1、VS2010
+2、.net MVC 3
+3、EF6
+4、EasyUI

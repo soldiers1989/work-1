@@ -15,3 +15,16 @@
     <OTDT>原大额交易发生日期</OTDT>      ORIG_TRADE_DATE
     <OTCD>原大额交易特征代码</OTCD>      ORIG_RULE_CODE
     <OTIC>原业务标识号</OTIC>     ORIG_REF_NO
+ String exprHTDT = expression + "/HTDT";
+                    String sHTDT = xmlOp.getNodeValue(exprHTDT); //大额交易发生日期
+                    String exprCSNM = expression + "/CSNM";
+                    String sCSNM = xmlOp.getNodeValue(exprCSNM); //客户号    
+                    String exprCRCD = expression + "/CRCD";
+                    String sCRCD = xmlOp.getNodeValue(exprCRCD); //大额交易特征代码   
+                    String exprTICD = expression + "/TICD";
+                    String sTICD = xmlOp.getNodeValue(exprTICD); //业务标识号
+
+parameter.put("TRADE_DATE", sHTDT);
+parameter.put("CLIENT_ID", sCSNM);
+parameter.put("RULE_COOD", sCRCD);
+parameter.put("REF_NO", sTICD);

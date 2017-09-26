@@ -22,6 +22,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 更新回执信息到分析结果表 -->
+	<!--
 	<update id="updateAMLAnalysisresult" parameterType="java.util.HashMap">
 		UPDATE AML_ANALYSISRESULT
 		   SET RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR}
@@ -31,23 +32,47 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
            <if test='REPORT_TYPE != null &amp;&amp; !"".equals(REPORT_TYPE.trim())'>
             	,REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
            </if>
-           <if test='RECT_TIME != null'>
-            	,RECT_TIME = #{RECT_TIME,jdbcType=VARCHAR}
-           </if>
-           <if test='RECT_REQ != null'>
-            	,RECT_REQ = #{RECT_REQ,jdbcType=VARCHAR}
-           </if>
-           <if test='RECT_CONTENT != null'>
-            	,RECT_CONTENT = #{RECT_CONTENT,jdbcType=VARCHAR}
-           </if>
-           <if test='BS_MIRS != null'>
-            	,BS_MIRS = #{BS_MIRS,jdbcType=VARCHAR}
-           </if>
 		 WHERE RPT_STATUS = #{RPT_STATUS2,jdbcType=VARCHAR}
 		   AND RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
 		   
 		   <if test='REPORT_TYPE2 != null &amp;&amp; !"".equals(REPORT_TYPE2.trim())'>
             	AND REPORT_TYPE = #{REPORT_TYPE2,jdbcType=VARCHAR}
+           </if>
+    </update>
+     -->
+    <!-- 更新回执信息到分析结果表（改） -->
+	<update id="updateAMLAnalysisresult" parameterType="java.util.HashMap">
+		UPDATE AML_ANALYSISRESULT T1, AML_DATASOURCE T2
+           SET T1.RPT_STATUS = #{RPT_STATUS,jdbcType=VARCHAR}
+           <if test='RET_MSE != null'>
+                ,T1.RET_MSE = #{RET_MSE,jdbcType=VARCHAR}
+           </if>
+           <if test='REPORT_TYPE != null &amp;&amp; !"".equals(REPORT_TYPE.trim())'>
+                ,T1.REPORT_TYPE = #{REPORT_TYPE,jdbcType=VARCHAR}
+           </if>
+         WHERE T1.RPT_STATUS = #{RPT_STATUS2,jdbcType=VARCHAR}
+           AND T1.RPT_FILE = #{RPT_FILE,jdbcType=VARCHAR}
+           
+           <if test='REPORT_TYPE2 != null &amp;&amp; !"".equals(REPORT_TYPE2.trim())'>
+                AND T1.REPORT_TYPE = #{REPORT_TYPE2,jdbcType=VARCHAR}
+           </if>
+
+           <if test='RULE_COOD != null &amp;&amp; !"".equals(RULE_COOD.trim())'>
+                AND T1.RULE_COOD = #{RULE_COOD,jdbcType=VARCHAR}
+                AND T2.RULE_COOD = #{RULE_COOD,jdbcType=VARCHAR}
+           </if>
+
+           <if test='REF_NO != null &amp;&amp; !"".equals(REF_NO.trim())'>
+                AND T1.REF_NO = #{REF_NO,jdbcType=VARCHAR}
+                AND T2.REF_NO = #{REF_NO,jdbcType=VARCHAR}
+           </if>
+
+           <if test='CLIENT_ID != null &amp;&amp; !"".equals(CLIENT_ID.trim())'>
+                AND T2.CLIENT_ID = #{CLIENT_ID,jdbcType=VARCHAR}
+           </if>
+           
+           <if test='TRADE_DATE != null &amp;&amp; !"".equals(TRADE_DATE.trim())'>
+                AND T2.TRADE_DATE = #{TRADE_DATE,jdbcType=VARCHAR}
            </if>
     </update>
     
@@ -70,10 +95,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		   ERROR_FILE_NAME,
 		   ERROR_POINTER,
 		   ERROR_INFORMATION,
-		   IMPORT_TIME,
-		   RECT_TIME,
-		   RECT_REQ,
-		   RECT_CONTENT)
+		   IMPORT_TIME)
 		VALUES
 		  ((SELECT CASE
 		            WHEN MAX(cast(SERIAL_NO as int)) IS NULL THEN
@@ -89,10 +111,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		   #{ERROR_FILE_NAME,jdbcType=VARCHAR},
 		   #{ERROR_POINTER,jdbcType=VARCHAR},
 		   #{ERROR_INFORMATION,jdbcType=VARCHAR},
-		   #{IMPORT_TIME,jdbcType=VARCHAR},
-		   #{RECT_TIME,jdbcType=VARCHAR},
-		   #{RECT_REQ,jdbcType=VARCHAR},
-		   #{RECT_CONTENT,jdbcType=VARCHAR})
+		   #{IMPORT_TIME,jdbcType=VARCHAR})
 	</select>
 	
 	<!-- 更新错误回执信息 -->

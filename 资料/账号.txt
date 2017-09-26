@@ -1,0 +1,18 @@
+﻿腾讯云服务器：118.89.155.103
+svn://118.89.155.103/project
+
+svn://182.254.136.22/project
+
+
+
+$ git config --global user.name "cofire"
+$ git config --global user.email "yli_666@163.com"
+
+$ ssh-keygen -t rsa -C "yli_666@163.com"
+
+c:/gitkey/.ssh/id_rsa
+
+
+VPN
+
+45.78.46.79  8398 jkad

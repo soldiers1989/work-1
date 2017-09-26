@@ -219,53 +219,275 @@ public class RetXmlFileImpService {
 			String affExpr = "]";
 			// String tmp = xmlOp.getNodeValue(exprERTN);
 			StringBuffer lsql = new StringBuffer("");
-			int iErtn = Integer.valueOf(xmlOp.getNodeValue(exprERTN));
-			for (int i = 1; i <= iErtn; i++) {
-				expression = preExpr + String.valueOf(i) + affExpr;
-				exprERLC = expression + "/ERLC";
-				sERLC = xmlOp.getNodeValue(exprERLC);
-				exprERRS = expression + "/ERRS";
-				sERRS = xmlOp.getNodeValue(exprERRS);
-				
-				
-				
-				// 更新回执信息到分析结果表
-				Map parameter = new HashMap();
-				parameter.put("RPT_STATUS", "20"); 
-				parameter.put("REPORT_TYPE", "N"); // 重发
-				parameter.put("RPT_STATUS2", "11"); // 已上报
-				parameter.put("REPORT_TYPE2", "N"); // 普通
-				parameter.put("RPT_FILE", this.fileName);
-				myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
-				// 更新上报文件表
-				parameter = new HashMap();
-				parameter.put("FILE_STATUS", "11"); // 错误
-				parameter.put("FILE_STATUS2", "00"); // 正常
-				parameter.put("FILE_NAME", this.fileName);
-				myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
-				// 插入回执日志表
-				parameter = new HashMap();
-				parameter.put("WORK_DATE", this.workDate);
-				parameter.put("DEPART_CODE", this.departId);
-				parameter.put("FILE_NAME", this.receiptFileName);
-				parameter.put("FILE_TYPE", "01"); // 内容错误回执
-				parameter.put("ERROR_FILE_NAME", this.fileName);
-				parameter.put("ERROR_POINTER", sERLC);
-				parameter.put("ERROR_INFORMATION", sERRS);
-				parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
-				myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
+			int iERTN = Integer.valueOf(xmlOp.getNodeValue(exprERTN));
+			if (receiptFileName.indexOf("NBH") > 0) {
+				for (int i = 1; i <= iERTN; i++) {
+					expression = preExpr + String.valueOf(i) + affExpr;
+					exprERLC = expression + "/ERLC";
+					sERLC = xmlOp.getNodeValue(exprERLC);
+					exprERRS = expression + "/ERRS";
+					sERRS = xmlOp.getNodeValue(exprERRS);
+					// 更新回执信息到分析结果表
+					Map parameter = new HashMap();
+					parameter.put("RPT_STATUS", "20"); 
+					parameter.put("REPORT_TYPE", "N"); // 重发
+					parameter.put("RPT_STATUS2", "11"); // 已上报
+					parameter.put("REPORT_TYPE2", "N"); // 普通
+					parameter.put("RPT_FILE", this.fileName);
+					myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
+					// 更新上报文件表
+					parameter = new HashMap();
+					parameter.put("FILE_STATUS", "11"); // 错误
+					parameter.put("FILE_STATUS2", "00"); // 正常
+					parameter.put("FILE_NAME", this.fileName);
+					myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
+					// 插入回执日志表
+					parameter = new HashMap();
+					parameter.put("WORK_DATE", this.workDate);
+					parameter.put("DEPART_CODE", this.departId);
+					parameter.put("FILE_NAME", this.receiptFileName);
+					parameter.put("FILE_TYPE", "01"); // 内容错误回执
+					parameter.put("ERROR_FILE_NAME", this.fileName);
+					parameter.put("ERROR_POINTER", sERLC);
+					parameter.put("ERROR_INFORMATION", sERRS);
+					parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
+					myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
+	
+					if ((sERLC != null) && (sERLC.length() > 4)) {
+						sNodeName = sERLC.substring(sERLC.length() - 4);
+					} else {
+						sNodeName = "";
+					}
+					// 解析错误
+					if (!parseLocation(receiptFileName, sERLC, sERRS, RetXmlType.xFDCF,
+							sNodeName)) {
+						Log.error(receiptFileName + "：" + sERLC + ":" + sERRS + "解析失败");
+						return false;
+					}
+				}
+			}
+			if (receiptFileName.indexOf("CBH") > 0) {
+				String exprETTN = "/FDBK/FDSI/ETTN";
+				String preExprCBH = "/FDBK/FCRCs/FCRC[";
+				if(xmlOp.getNodeValue(exprETTN) == null || xmlOp.getNodeValue(exprETTN).length()<=0){
+					for (int i = 1; i <= iERTN; i++) {
+						expression = preExpr + String.valueOf(i) + affExpr;
+						exprERLC = expression + "/ERLC";
+						sERLC = xmlOp.getNodeValue(exprERLC);
+						exprERRS = expression + "/ERRS";
+						sERRS = xmlOp.getNodeValue(exprERRS);
+						// 更新回执信息到分析结果表
+						Map parameter = new HashMap();
+						parameter.put("RPT_STATUS", "20"); 
+						parameter.put("REPORT_TYPE", "N"); // 重发
+						parameter.put("RPT_STATUS2", "11"); // 已上报
+						parameter.put("REPORT_TYPE2", "N"); // 普通
+						parameter.put("RPT_FILE", this.fileName);
+						myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
+						// 更新上报文件表
+						parameter = new HashMap();
+						parameter.put("FILE_STATUS", "11"); // 错误
+						parameter.put("FILE_STATUS2", "00"); // 正常
+						parameter.put("FILE_NAME", this.fileName);
+						myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
+						// 插入回执日志表
+						parameter = new HashMap();
+						parameter.put("WORK_DATE", this.workDate);
+						parameter.put("DEPART_CODE", this.departId);
+						parameter.put("FILE_NAME", this.receiptFileName);
+						parameter.put("FILE_TYPE", "01"); // 内容错误回执
+						parameter.put("ERROR_FILE_NAME", this.fileName);
+						parameter.put("ERROR_POINTER", sERLC);
+						parameter.put("ERROR_INFORMATION", sERRS);
+						parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
+						myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
+		
+						if ((sERLC != null) && (sERLC.length() > 4)) {
+							sNodeName = sERLC.substring(sERLC.length() - 4);
+						} else {
+							sNodeName = "";
+						}
+						// 解析错误
+						if (!parseLocation(receiptFileName, sERLC, sERRS, RetXmlType.xFDCF,
+								sNodeName)) {
+							Log.error(receiptFileName + "：" + sERLC + ":" + sERRS + "解析失败");
+							return false;
+						}
+					}
+				}else{
+					int iETTN = Integer.valueOf(xmlOp.getNodeValue(exprETTN));
+					for (int i = 1; i <= iETTN; i++) {
+	                    expression = preExprCBH + String.valueOf(i) + affExpr;
+	                    
+	                    String exprOCNM = expression +"/OCNM";
+	                    String sOCNM = xmlOp.getNodeValue(exprOCNM); //原客户号
+	                    String exprOTDT = expression +"/OTDT";
+	                    String sOTDT = xmlOp.getNodeValue(exprOTDT); //原大额交易发生日期    
+	                    String exprOTCD = expression +"/OTCD";
+	                    String sOTCD = xmlOp.getNodeValue(exprOTCD); //原大额交易特征代码   
+	                    String exprOTIC = expression +"/OTIC";
+	                    String sOTIC = xmlOp.getNodeValue(exprOTIC); //原业务标示号
+	                    
+	                    expression += "/FCERs/FCER[";
+	                    sERLC = "test";
+	                    int j = 0;
+	                    while (sERLC != null && sERLC.length() > 0) {
+	                        j++;
+	                        exprERLC = expression + String.valueOf(j) + affExpr;
+	                        exprERLC = exprERLC + "/ERLC";
+	                        sERLC = xmlOp.getNodeValue(exprERLC);
+	                        exprERRS = expression + String.valueOf(j) + affExpr
+	                                + "/RCSG";
+	                        sERRS = xmlOp.getNodeValue(exprERRS);
+	                        
+	                        // 更新回执信息到分析结果表
+	                        Map parameter = new HashMap();
+	                        parameter.put("RPT_STATUS", "20"); // 上报成功 解析补正定位时需要设置为22(要求补正)
+	                        parameter.put("REPORT_TYPE", "N"); // 普通 解析补正定位时需要设置为I(补正) 
+	                        parameter.put("RPT_STATUS2", "11"); // 已上报
+	                        parameter.put("RPT_FILE", this.fileName);
+	                        parameter.put("TRADE_DATE", sOTDT);
+	                        parameter.put("CLIENT_ID", sOCNM);
+	                        parameter.put("RULE_COOD", sOTCD);
+	                        parameter.put("REF_NO", sOTIC);
+	                        myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
+	                        // 更新上报文件表
+	                        parameter = new HashMap();
+	                        parameter.put("FILE_STATUS", "12"); // 补正
+	                        parameter.put("FILE_STATUS2", "00"); // 正常
+	                        parameter.put("FILE_NAME", this.fileName);
+	                        myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
+	                        // 插入回执日志表
+	                        parameter = new HashMap();
+	                        parameter.put("WORK_DATE", this.workDate);
+	                        parameter.put("DEPART_CODE", this.departId);
+	                        parameter.put("FILE_NAME", this.receiptFileName);
+	                        parameter.put("FILE_TYPE", "02"); // 要求补正回执
+	                        parameter.put("ERROR_FILE_NAME", this.fileName);
+	                        parameter.put("ERROR_POINTER", sERLC);
+	                        parameter.put("ERROR_INFORMATION", sERRS);
+	                        parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
+	                        myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
 
-				if ((sERLC != null) && (sERLC.length() > 4)) {
-					sNodeName = sERLC.substring(sERLC.length() - 4);
-				} else {
-					sNodeName = "";
+	                        if ((sERLC != null) && (sERLC.length() > 4)) {
+	                            sNodeName = sERLC.substring(sERLC.length() - 4);
+	                        } else {
+	                            sNodeName = "";
+	                        }
+	                        if (sERLC != null && sERLC.length() > 0) {
+	                            // 解析补正定位
+	                            if (!parseLocation(receiptFileName, sERLC, sERRS,
+	                                    RetXmlType.xFDRC, sNodeName)) {
+	                                Log.error(receiptFileName + "：" + sERLC + ":"
+	                                        + sERRS + "解析失败");
+	                                return false;
+	                            }
+	                        }
+	                    }
+					}
 				}
-				// 解析错误
-				if (!parseLocation(receiptFileName, sERLC, sERRS, RetXmlType.xFDCF,
-						sNodeName)) {
-					Log.error(receiptFileName + "：" + sERLC + ":" + sERRS + "解析失败");
-					return false;
+			}
+			if (receiptFileName.indexOf("DBH") > 0) {
+				// 正确删除交易总数
+				String exprSDTN = "/FDBK/SDTN";
+				int iSDTN = Integer.valueOf(xmlOp.getNodeValue(exprSDTN));
+				// 未匹配交易主键数
+				String exprUTTN = "/FDBK/UTTN";
+				int iUTTN = Integer.valueOf(xmlOp.getNodeValue(exprUTTN));
+				preExpr = "/FDBK";
+//				正确删除交易总数
+				for (int i = 1; i <= iSDTN; i++) {
+				    expression = preExpr + "/SDTKs/SDTK[" + String.valueOf(i) + affExpr;
+				    String exprHTDT = expression + "/HTDT";
+				    String sHTDT = xmlOp.getNodeValue(exprHTDT); //大额交易发生日期
+				    String exprCSNM = expression + "/CSNM";
+				    String sCSNM = xmlOp.getNodeValue(exprCSNM); //客户号    
+				    String exprCRCD = expression + "/CRCD";
+				    String sCRCD = xmlOp.getNodeValue(exprCRCD); //大额交易特征代码   
+				    String exprTICD = expression + "/TICD";
+				    String sTICD = xmlOp.getNodeValue(exprTICD); //业务标识号
+				    // 更新回执信息到分析结果表
+				    Map parameter = new HashMap();
+				    parameter.put("RPT_STATUS", "20"); // 上报成功 解析补正定位时需要设置为22(要求补正)
+				    parameter.put("RPT_STATUS2", "11"); // 已上报
+				    parameter.put("RPT_FILE", this.fileName);
+				    parameter.put("TRADE_DATE", sHTDT);
+				    parameter.put("CLIENT_ID", sCSNM);
+				    parameter.put("RULE_COOD", sCRCD);
+				    parameter.put("REF_NO", sTICD);
+				    myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
 				}
+//				错误
+				for (int i = 1; i <= iUTTN; i++) {
+				    expression = preExpr + "/UMTKs/UMTK[" + String.valueOf(i) + affExpr;
+
+				    String exprHTDT = expression + "/HTDT";
+				    String sHTDT = xmlOp.getNodeValue(exprHTDT); //大额交易发生日期
+				    String exprCSNM = expression + "/CSNM";
+				    String sCSNM = xmlOp.getNodeValue(exprCSNM); //客户号    
+				    String exprCRCD = expression + "/CRCD";
+				    String sCRCD = xmlOp.getNodeValue(exprCRCD); //大额交易特征代码   
+				    String exprTICD = expression + "/TICD";
+				    String sTICD = xmlOp.getNodeValue(exprTICD); //业务标识号
+				    // 更新回执信息到分析结果表
+				    Map parameter = new HashMap();
+				    parameter.put("RPT_STATUS", "21"); // 上报成功 解析补正定位时需要设置为22(要求补正)
+				    parameter.put("RPT_STATUS2", "11"); // 已上报
+				    parameter.put("RPT_FILE", this.fileName);
+				    parameter.put("TRADE_DATE", sHTDT);
+				    parameter.put("CLIENT_ID", sCSNM);
+				    parameter.put("RULE_COOD", sCRCD);
+				    parameter.put("REF_NO", sTICD);
+				    myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
+				}
+			}
+			if (receiptFileName.indexOf("BS") > 0) {
+				// 可疑
+                for (int i = 1; i <= iERTN; i++) {
+                    expression = preExpr + String.valueOf(i) + affExpr;
+                    exprERLC = expression + "/ERLC";
+                    sERLC = xmlOp.getNodeValue(exprERLC);
+                    exprERRS = expression + "/ERRS";
+                    sERRS = xmlOp.getNodeValue(exprERRS);
+                    
+                    // 更新回执信息到分析结果表
+                    Map parameter = new HashMap();
+                    parameter.put("RPT_STATUS", "20"); // 上报成功 解析补正定位时需要设置为22(要求补正)
+                    parameter.put("REPORT_TYPE", "N"); // 普通 解析补正定位时需要设置为I(补正) 
+                    parameter.put("RPT_STATUS2", "11"); // 已上报
+                    parameter.put("RPT_FILE", this.fileName);
+                    myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
+                    // 更新上报文件表
+                    parameter = new HashMap();
+                    parameter.put("FILE_STATUS", "12"); // 补正
+                    parameter.put("FILE_STATUS2", "00"); // 正常
+                    parameter.put("FILE_NAME", this.fileName);
+                    myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
+                    // 插入回执日志表
+                    parameter = new HashMap();
+                    parameter.put("WORK_DATE", this.workDate);
+                    parameter.put("DEPART_CODE", this.departId);
+                    parameter.put("FILE_NAME", this.receiptFileName);
+                    parameter.put("FILE_TYPE", "02"); // 要求补正回执
+                    parameter.put("ERROR_FILE_NAME", this.fileName);
+                    parameter.put("ERROR_POINTER", sERLC);
+                    parameter.put("ERROR_INFORMATION", sERRS);
+                    parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
+                    myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
+
+                    if ((sERLC != null) && (sERLC.length() > 4)) {
+                        sNodeName = sERLC.substring(sERLC.length() - 4);
+                    } else {
+                        sNodeName = "";
+                    }
+                    // 解析补正定位
+                    if (!parseLocation(receiptFileName, sERLC, sERRS,
+                            RetXmlType.xFDRC, sNodeName)) {
+                        Log.error(receiptFileName + "：" + sERLC + ":" + sERRS
+                                + "解析失败");
+                        return false;
+                    }
+                }
 			}
 			return true;
 		} catch (Exception e) {
@@ -277,148 +499,160 @@ public class RetXmlFileImpService {
 	 * 处理补正回执
 	 */
 	private boolean impFDRCRetXmlFile() {
-		try {
-			String expression;
-			String exprRCLC; // 补正定位xpath
-			String sITEM; // 待更正字段
-			String exprRCSG; // 补正提示xpath
-			String sRCSG; // 补正提示
-			String sNodeName; // 错误节点名
-			xmlOp = new XmlFileOperate();
-			if (!xmlOp.transFormXmlFile(receiptFilePath + receiptFileName, receiptFilePath)) {
-				return false;
-			}
-			if (!xmlOp.LoadXmlFile(receiptFilePath + receiptFileName, receiptFilePath)) {
-				return false;
-			}
-			
-			String exprRQNM = "/MCVR/BSIF/RQNM"; // 读补正要求总数
-			String exprTMLM = "/MCVR/BSIF/TMLM"; // 更正完成时限
-			String exprRQDS = "/MCVR/BSIF/RQDS"; // 更正填报要求
-			String exprITEM;
-			String preExprBH = "/MCVR/TSDTs/TSDT[";
-			String preExprBS = "/MCVR/REPTs/REPT[";
-			String affExpr = "]";
-			
-			int iRQNM = Integer.valueOf(xmlOp.getNodeValue(exprRQNM));
-			String sTMLM = xmlOp.getNodeValue(exprTMLM);
-			String sRQDS = xmlOp.getNodeValue(exprRQDS);
-			if (receiptFileName.indexOf("BH") > 0) {
-				// 大额
-				for (int i = 1; i <= iRQNM; i++) {
-					expression = preExprBH + String.valueOf(i) + affExpr;
-					String exprOCNM = expression +"/OCNM";
-					String sOCNM = xmlOp.getNodeValue(exprOCNM); //原客户号
-					String exprOTDT = expression +"/OTDT";
-					String sOTDT = xmlOp.getNodeValue(exprOTDT); //原大额交易发生日期	
-					String exprOTCD = expression +"/OTCD";
-                    String sOTCD = xmlOp.getNodeValue(exprOTCD); //原大额交易特征代码   
-                    String exprOTIC = expression +"/OTIC";
-                    String sOTIC = xmlOp.getNodeValue(exprOTIC); //原业务标示号  
-					String sITEMTemp = "test";
-					sITEM = "";
-					int j = 0;
-					// 待更正字段 多记录拼接
-					while (sITEM != null && sITEM.length() > 0) {
-						j++;
-						exprITEM = expression + "/ITEMS/ITEM[" + String.valueOf(j) + affExpr;
-						sITEMTemp = xmlOp.getNodeValue(exprITEM);
-                        sITEM += sITEMTemp;
-					}
-					// 更新回执信息到分析结果表
-					Map parameter = new HashMap();
-					parameter.put("RPT_STATUS", "20"); // 上报成功 解析补正定位时需要设置为22(要求补正)
-					parameter.put("REPORT_TYPE", "N"); // 普通 解析补正定位时需要设置为I(补正) 
-					parameter.put("RPT_STATUS2", "11"); // 已上报
-					parameter.put("RPT_FILE", this.fileName);
-					parameter.put("RECT_TIME", sTMLM);
-					parameter.put("RECT_REQ", sRQDS);
-					parameter.put("RECT_CONTENT", sITEM);
-					parameter.put("BS_MIRS", this.fileName);
-					myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
-					// 更新上报文件表
-					parameter = new HashMap();
-					parameter.put("FILE_STATUS", "12"); // 补正
-					parameter.put("FILE_STATUS2", "00"); // 正常
-					parameter.put("FILE_NAME", this.fileName);
-					myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
-					// 插入回执日志表
-					parameter = new HashMap();
-					parameter.put("WORK_DATE", this.workDate);
-					parameter.put("DEPART_CODE", this.departId);
-					parameter.put("FILE_NAME", this.receiptFileName);
-					parameter.put("FILE_TYPE", "02"); // 要求补正回执
-					parameter.put("ERROR_FILE_NAME", this.fileName);
-					parameter.put("RECT_TIME", sTMLM);
-					parameter.put("RECT_REQ", sRQDS);
-					parameter.put("RECT_CONTENT", sITEM);
-//					parameter.put("ERROR_POINTER", sRCLC);
-//					parameter.put("ERROR_INFORMATION", sRCSG);
-					parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
-					myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
-				}
-			} else {
-				// 可疑
-				for (int i = 1; i <= iRQNM; i++) {
-					expression = preExprBS + String.valueOf(i) + affExpr;
-//					exprRCLC = expression + "/RCLC";
-//					sRCLC = xmlOp.getNodeValue(exprRCLC);
-//					exprRCSG = expression + "/RCSG";
-//					sRCSG = xmlOp.getNodeValue(exprRCSG);
-					String exprTSNO = expression +"/TSNO";
-	                String sTSNO = xmlOp.getNodeValue(exprTSNO); // 可疑交易在原可疑交易报告中的序号
-	                String exprSTDT = expression +"/STDT";
-	                String sSTDT = xmlOp.getNodeValue(exprSTDT); // 待更正可疑交易发生日期
-	                String sITEMTemp = "test";
-                    sITEM = "";
-                    int j = 0;
-                    // 待更正字段 多记录拼接
-                    while (sITEM != null && sITEM.length() > 0) {
-                        j++;
-                        exprITEM = expression + "/ITEMS/ITEM[" + String.valueOf(j) + affExpr;
-                        sITEMTemp = xmlOp.getNodeValue(exprITEM);
-                        sITEM += sITEMTemp;
-                    }
-					// 更新回执信息到分析结果表
-					Map parameter = new HashMap();
-					parameter.put("RPT_STATUS", "20"); // 上报成功 解析补正定位时需要设置为22(要求补正)
-					parameter.put("REPORT_TYPE", "N"); // 普通 解析补正定位时需要设置为I(补正) 
-					parameter.put("RPT_STATUS2", "11"); // 已上报
-					parameter.put("RPT_FILE", this.fileName);
-					parameter.put("RECT_TIME", sTMLM);
-                    parameter.put("RECT_REQ", sRQDS);
-                    parameter.put("RECT_CONTENT", sITEM);
-                    parameter.put("BS_MIRS", this.fileName);
-					myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
-					// 更新上报文件表
-					parameter = new HashMap();
-					parameter.put("FILE_STATUS", "12"); // 补正
-					parameter.put("FILE_STATUS2", "00"); // 正常
-					parameter.put("FILE_NAME", this.fileName);
-					myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
-					// 插入回执日志表
-					parameter = new HashMap();
-					parameter.put("WORK_DATE", this.workDate);
-					parameter.put("DEPART_CODE", this.departId);
-					parameter.put("FILE_NAME", this.receiptFileName);
-					parameter.put("FILE_TYPE", "02"); // 要求补正回执
-					parameter.put("ERROR_FILE_NAME", this.fileName);
-//					parameter.put("ERROR_POINTER", sRCLC);
-//					parameter.put("ERROR_INFORMATION", sRCSG);
-					parameter.put("RECT_TIME", sTMLM);
-                    parameter.put("RECT_REQ", sRQDS);
-                    parameter.put("RECT_CONTENT", sITEM);
-					parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
-					myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
-				}
-			}
+        try {
+            String expression;
+            String exprERLC; // 补正定位xpath
+            String sERLC; // 补正定位信息
+            String exprERRS; // 补正提示xpath
+            String sERRS; // 补正提示
+            String sNodeName; // 错误节点名
+            xmlOp = new XmlFileOperate();
+            if (!xmlOp.transFormXmlFile(receiptFilePath + receiptFileName, receiptFilePath)) {
+                return false;
+            }
+            if (!xmlOp.LoadXmlFile(receiptFilePath + receiptFileName, receiptFilePath)) {
+                return false;
+            }
+            // 读补正要求总数
+            String exprRCTN = "/FDBK/RCTN";
+            String preExprBH = "/FDBK/FCRCs/FCRC[";
+            String preExprBS = "/FDBK/FCERs/FCER[";
+            String affExpr = "]";
 
-			return true;
-		} catch (Exception e) {
-			Log.error(e.getMessage());
-			return false;
-		}
-	}
+            int iRCTN = Integer.valueOf(xmlOp.getNodeValue(exprRCTN));
+
+            if (receiptFileName.indexOf("BH") > 0) {
+                // 大额
+                // 读补正要求总数
+                String exprETTN = "/FDBK/FDSI/ETTN";
+                int iETTN = Integer.valueOf(xmlOp.getNodeValue(exprETTN));
+                for (int i = 1; i <= iETTN; i++) {
+                    expression = preExprBH + String.valueOf(i) + affExpr;
+                    
+                    String exprOTDT = expression + "/OTDT";
+                    String sOTDT = xmlOp.getNodeValue(exprOTDT); //原大额交易发生日期
+                    String exprOCNM = expression + "/OCNM";
+                    String sOCNM = xmlOp.getNodeValue(exprOCNM); //原客户号    
+                    String exprOTCD = expression + "/OTCD";
+                    String sOTCD = xmlOp.getNodeValue(exprOTCD); //原大额交易特征代码   
+                    String exprOTIC = expression + "/OTIC";
+                    String sOTIC = xmlOp.getNodeValue(exprOTIC); //原业务标识号
+                    
+                    expression += "/FCERs/FCER[";
+                    sERLC = "test";
+                    int j = 0;
+                    while (sERLC != null && sERLC.length() > 0) {
+                        j++;
+                        exprERLC = expression + String.valueOf(j) + affExpr;
+                        exprERLC = exprERLC + "/ERLC";
+                        sERLC = xmlOp.getNodeValue(exprERLC);
+                        exprERRS = expression + String.valueOf(j) + affExpr
+                                + "/ERRS";
+                        sERRS = xmlOp.getNodeValue(exprERRS);
+                        
+                        // 更新回执信息到分析结果表
+                        Map parameter = new HashMap();
+                        parameter.put("RPT_STATUS", "22"); // 上报成功 解析补正定位时需要设置为22(要求补正)
+                        parameter.put("REPORT_TYPE", "C"); // 普通 解析补正定位时需要设置为I(补正) 
+                        parameter.put("RPT_STATUS2", "11"); // 已上报
+                        parameter.put("RPT_FILE", this.fileName);
+                        parameter.put("TRADE_DATE", sOTDT);
+                        parameter.put("CLIENT_ID", sOCNM);
+                        parameter.put("RULE_COOD", sOTCD);
+                        parameter.put("REF_NO", sOTIC);
+                        myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
+                        // 更新上报文件表
+                        parameter = new HashMap();
+                        parameter.put("FILE_STATUS", "12"); // 补正
+                        parameter.put("FILE_STATUS2", "00"); // 正常
+                        parameter.put("FILE_NAME", this.fileName);
+                        myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
+                        // 插入回执日志表
+                        parameter = new HashMap();
+                        parameter.put("WORK_DATE", this.workDate);
+                        parameter.put("DEPART_CODE", this.departId);
+                        parameter.put("FILE_NAME", this.receiptFileName);
+                        parameter.put("FILE_TYPE", "02"); // 要求补正回执
+                        parameter.put("ERROR_FILE_NAME", this.fileName);
+                        parameter.put("ERROR_POINTER", sERLC);
+                        parameter.put("ERROR_INFORMATION", sERRS);
+                        parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
+                        myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
+
+                        if ((sERLC != null) && (sERLC.length() > 4)) {
+                            sNodeName = sERLC.substring(sERLC.length() - 4);
+                        } else {
+                            sNodeName = "";
+                        }
+                        if (sERLC != null && sERLC.length() > 0) {
+                            // 解析补正定位
+                            if (!parseLocation(receiptFileName, sERLC, sERRS,
+                                    RetXmlType.xFDRC, sNodeName)) {
+                                Log.error(receiptFileName + "：" + sERLC + ":"
+                                        + sERRS + "解析失败");
+                                return false;
+                            }
+                        }
+                    }
+                }
+            } else {
+                // 可疑
+                // 读补正要求总数
+                String exprERTN = "/FDBK/ERTN";
+                int iERTN = Integer.valueOf(xmlOp.getNodeValue(exprERTN));
+                for (int i = 1; i <= iERTN; i++) {
+                    expression = preExprBS + String.valueOf(i) + affExpr;
+                    exprERLC = expression + "/ERLC";
+                    sERLC = xmlOp.getNodeValue(exprERLC);
+                    exprERRS = expression + "/ERRS";
+                    sERRS = xmlOp.getNodeValue(exprERRS);
+                    
+                    // 更新回执信息到分析结果表
+                    Map parameter = new HashMap();
+                    parameter.put("RPT_STATUS", "22"); // 上报成功 解析补正定位时需要设置为22(要求补正)
+                    parameter.put("REPORT_TYPE", "C"); // 普通 解析补正定位时需要设置为I(补正) 
+                    parameter.put("RPT_STATUS2", "11"); // 已上报
+                    parameter.put("RPT_FILE", this.fileName);
+                    myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLAnalysisresult", parameter);
+                    // 更新上报文件表
+                    parameter = new HashMap();
+                    parameter.put("FILE_STATUS", "12"); // 补正
+                    parameter.put("FILE_STATUS2", "00"); // 正常
+                    parameter.put("FILE_NAME", this.fileName);
+                    myBatisSessionTemplate.update("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.updateAMLFiles", parameter);
+                    // 插入回执日志表
+                    parameter = new HashMap();
+                    parameter.put("WORK_DATE", this.workDate);
+                    parameter.put("DEPART_CODE", this.departId);
+                    parameter.put("FILE_NAME", this.receiptFileName);
+                    parameter.put("FILE_TYPE", "02"); // 要求补正回执
+                    parameter.put("ERROR_FILE_NAME", this.fileName);
+                    parameter.put("ERROR_POINTER", sERLC);
+                    parameter.put("ERROR_INFORMATION", sERRS);
+                    parameter.put("IMPORT_TIME", DATETIME_FORMAT.format(new Date()));
+                    myBatisSessionTemplate.insert("com.aif.rpt.biz.aml.receipt.server.receiptServerSql.insertReceiptimportlog", parameter);
+
+                    if ((sERLC != null) && (sERLC.length() > 4)) {
+                        sNodeName = sERLC.substring(sERLC.length() - 4);
+                    } else {
+                        sNodeName = "";
+                    }
+                    // 解析补正定位
+                    if (!parseLocation(receiptFileName, sERLC, sERRS,
+                            RetXmlType.xFDRC, sNodeName)) {
+                        Log.error(receiptFileName + "：" + sERLC + ":" + sERRS
+                                + "解析失败");
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        } catch (Exception e) {
+            Log.error(e.getMessage());
+            return false;
+        }
+    }
 	
 	/**
 	 * 解析定位

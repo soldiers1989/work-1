@@ -1,0 +1,22 @@
+1、安装vs2010开发工具
+VS2010UltimTrialCHS.iso 
+安装很慢，要有耐心
+
+2、安装2010sp1补丁包
+VS10sp1-KB983509.exe
+安装更慢，更要有耐心
+可能出现的问题
+    补丁一直在安装，一直安装不完  （关闭电脑管家等一系列杀毒和清理工具）
+    microsoft-visual-c-2010-x86-runtime 没有 （目前点的取消，不知道会不会有问题）
+
+3、安装MVC3框架
+AspNetMVC3Setup.exe
+AspNetMVC3Setup_CHS.exe
+AspNetMVC3ToolsUpdateSetup.exe
+AspNetMVC3ToolsUpdateSetup_CHS.exe
+
+4、安装NuGet管理工具
+NuGet.Tools.vsix
+
+5、SuzhouEisp.zip
+为项目源代码
