@@ -18,5 +18,13 @@ AspNetMVC3ToolsUpdateSetup_CHS.exe
 4、安装NuGet管理工具
 NuGet.Tools.vsix
 
-5、SuzhouEisp.zip
+5、安装svn插件
+AnkhSvn-2.5.12471.17.msi
+
+6、SuzhouEisp.zip
 为项目源代码
+
+7、激活
+YCFHQ-9DWCY-DKV88-T2TMH-G7BHP
+CRC: 0x3DB619A0
+SHA-1: 0x8BA7308E1F74AEE8DE6094CE04F78CD21486608D

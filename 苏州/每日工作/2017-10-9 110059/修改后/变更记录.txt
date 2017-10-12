@@ -1,0 +1,86 @@
+var result = _companyRegisterSrvc.GetMany(o => o.CompanyRegisterId == mode.CompanyRegisterId).ToList();
+                    var temp = "";
+                    if (result[0].Remarks != mode.Remarks)
+                    {
+                        temp += result[0].Remarks + "变为" + mode.Remarks + ";";
+                    }
+                    if (result[0].CompanyNature != mode.CompanyNature)
+                    {
+                        temp += result[0].CompanyNature + "变为" + mode.CompanyNature + ";";
+                    }
+                    if (result[0].ConsultancyService != mode.ConsultancyService)
+                    {
+                        temp += result[0].ConsultancyService + "变为" + mode.ConsultancyService + ";";
+                    }
+                    if (result[0].IsAccept != mode.IsAccept)
+                    {
+                        temp += result[0].IsAccept + "变为" + mode.IsAccept + ";";
+                    }
+                    if (result[0].AcceptInfo != mode.AcceptInfo)
+                    {
+                        temp += result[0].AcceptInfo + "变为" + mode.AcceptInfo + ";";
+                    }
+                    if (result[0].ContractName != mode.ContractName)
+                    {
+                        temp += result[0].ContractName + "变为" + mode.ContractName + ";";
+                    }
+                    if (result[0].ContractPhone != mode.ContractPhone)
+                    {
+                        temp += result[0].ContractPhone + "变为" + mode.ContractPhone + ";";
+                    }
+                    if (result[0].FillTime != mode.FillTime)
+                    {
+                        temp += result[0].FillTime + "变为" + mode.FillTime + ";";
+                    }
+                    if (result[0].IsResponse != mode.IsResponse)
+                    {
+                        temp += result[0].IsResponse + "变为" + mode.IsResponse + ";";
+                    }
+                    if (result[0].ResponseTime != mode.ResponseTime)
+                    {
+                        temp += result[0].ResponseTime + "变为" + mode.ResponseTime + ";";
+                    }
+                    if (result[0].LicenseName != mode.LicenseName)
+                    {
+                        temp += result[0].LicenseName + "变为" + mode.LicenseName + ";";
+                    }
+                    if (result[0].LicenseAddress != mode.LicenseAddress)
+                    {
+                        temp += result[0].LicenseAddress + "变为" + mode.LicenseAddress + ";";
+                    }
+                    if (result[0].LegalRepresent != mode.LegalRepresent)
+                    {
+                        temp += result[0].LegalRepresent + "变为" + mode.LegalRepresent + ";";
+                    }
+                    if (result[0].RegisterAccount != mode.RegisterAccount)
+                    {
+                        temp += result[0].RegisterAccount + "变为" + mode.RegisterAccount + ";";
+                    }
+                    if (result[0].CompanyType != mode.CompanyType)
+                    {
+                        temp += result[0].CompanyType + "变为" + mode.CompanyType + ";";
+                    }
+                    if (result[0].PayCapital != mode.PayCapital)
+                    {
+                        temp += result[0].PayCapital + "变为" + mode.PayCapital + ";";
+                    }
+                    if (result[0].BusinessScope != mode.BusinessScope)
+                    {
+                        temp += result[0].BusinessScope + "变为" + mode.BusinessScope + ";";
+                    }
+                    if (result[0].EstablishTime != mode.EstablishTime)
+                    {
+                        temp += result[0].EstablishTime + "变为" + mode.EstablishTime + ";";
+                    }
+                    if (result[0].RegisterNo != mode.RegisterNo)
+                    {
+                        temp += result[0].RegisterNo + "变为" + mode.RegisterNo + ";";
+                    }
+                    if (result[0].Merchant != mode.Merchant)
+                    {
+                        temp += result[0].Merchant + "变为" + mode.Merchant + ";";
+                    }
+                    companyRegisterChangeRecord.ContentDetail = temp;
+                    if (temp.Length != 0) {
+                        _companyRegistersChangeRecordSrvc.CreateModel(companyRegisterChangeRecord);
+                    }

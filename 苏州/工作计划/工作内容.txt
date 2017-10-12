@@ -4,10 +4,15 @@
 2、测试地址
     http://222.73.203.124:9010/ 
     用户：admin
-    密码：111111
+    密码：******
 
 3、数据库
     IP：172.30.22.101,31
     Database：SuzhouEisp2017
-    账号：eisp
+    账号：lyeisp
     密码：www.123.com
+
+4、svn
+    地址：http://222.73.203.118/svn/eisp_3/branches/SuzhouEisp
+    账号：Liy
+    密码：******

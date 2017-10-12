@@ -1,0 +1,374 @@
+@using Wiseonline.Eisp.Domain
+@using Wiseonline.Eisp.Helpers;
+@using Wiseonline.Eisp.Web.Helpers
+@using Wiseonline.Eisp.Web.ViewModel.WorkflowForm;
+@model DailyReception
+@{
+    ViewBag.Title = "日常接待编辑";
+    <link href="@Url.Content("~/Content/OfficeWorkFlow.css")" rel="stylesheet" type="text/css" />
+}
+@*<script src="@Url.Content("~/jb/OfficeWorkFlow/WorkFlowCreate.js")" type="text/javascript"></script>*@
+<script type="text/javascript">
+    $(function() {
+        $.ajax({
+            url: '@Url.Action("GetAreaList", "DailyReception")',
+            type: 'post',
+            data: {},
+            success: function(data) {
+                $("div").each(function() {
+                    if ($(this).css("position") == "absolute" && $(this).attr("class") == "panel combo-p") {
+
+                        debugger;
+                        var a = $(this)[0].firstElementChild.firstElementChild.innerHTML;
+                        if (a == "省份") {
+                            $(this)[0].firstElementChild.innerHTML = data;
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    function showDetail(i,j) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("GetRegionList", "DailyReception")',
+            type: 'post',
+            data: { name: i, codeid: j },
+            success: function (data) {
+                $("div").each(function () {
+                    if ($(this).css("position") == "absolute" && $(this).attr("class") == "panel combo-p") {
+
+                        debugger;
+                        var a = $(this)[0].firstElementChild.firstElementChild.innerHTML;
+                        if (a == "地区") {
+                            $(this)[0].firstElementChild.innerHTML = data;
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function ChooseUser(id, moduelName, btnID) {
+        $('#UserChoosePanel').toggle();
+        UCP_flag = 0;
+
+        $(document).unbind('click').click(function () {
+            $(".combo-panel").mousedown(function () {
+                UCP_flag = 0;
+                return false;
+            });
+            $("#UserChoosePanel").click(function () {
+                UCP_flag = 1;
+                return false;
+            });
+            $("#" + btnID).click(function () {
+                UCP_flag = 1;
+                return false;
+            });
+            if (UCP_flag == 1)
+                $("#UserChoosePanel").hide();
+            UCP_flag = 1;
+        });
+
+        UserChoosePanel_id = id;
+        if ($("#UserChoosePanel").is(":visible")) {
+            //清空
+            $("#UCP_users").empty();
+            $("#UCP_Chooseusers").empty();
+            $('#UCP_depts').combotree('setValue', '');
+            ///$("#UCP_Choosegroups").empty();
+            //相对位置
+            $('#UserChoosePanel').css("left", $('#' + id).position().left);
+            var deviation = 0;
+            if (document.all) {
+                deviation = 8;
+            }
+            else
+                deviation = 10;
+            var top = 0 + Number($('#' + id).position().top + $('#' + id).height() + deviation);
+            $('#UserChoosePanel').css("top", top);
+            //赋值
+            var result = $('#' + id).val();
+            if (result != "") {
+                // 去除尾部分号（Create By HAVENT）
+                var rgx = new RegExp(";$");
+                if (rgx.test(result)) { result = result.substring(0, result.length - 1) };
+
+                $.each(result.split(";"), function (index, item) {
+                    $("#UCP_Chooseusers").append("<option>" + item + "</option>");
+                });
+                /*            var groups = "";
+                var users = "";
+                if (result.indexOf(groupSplit) > -1) {
+                var array = result.split(groupSplit);
+                groups = array[0];
+                users = array[1];
+                } else {
+                users = result;
+                }
+                $.each(groups.split(";"), function (index, item) {
+                if (item != "")
+                $("#UCP_Choosegroups").append("<option>" + item + "</option>");
+                });
+                $.each(users.split(";"), function (index, item) {
+                if (item != "")
+                $("#UCP_Chooseusers").append("<option>" + item + "</option>");   
+                });*/
+            }
+            $('#UCP_search').searchbox('setValue', '');
+
+            //群组
+            if ($('#UCP_groups option').length == 0) {
+                $.post("../SubGroup/GetSubGroupByModule?moduleName=" + moduelName, function (data) {
+                    $('#UCP_groups').append("<option value='0'>--请选择群组--</option>");
+                    $.each(data, function (index, item) {
+                        $('#UCP_groups').append("<option value='" + item.id + "'>" + item.text + "(" + item.id + ")</option>");
+                    });
+                });
+            } else {
+                $("#UCP_groups ").val(0);
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+    function submitForm(param, hasFile, newPageAfterSaveUrl, afterSubmit, refreshGrid) {
+        GetDatagridJson(refreshGrid); //将MultiSelectGrid数据转为json字符串赋值到相应Input控件
+        GetComplexGridJson();
+        if (hasFile != undefined && hasFile) {
+
+            var array = param.split('&');
+            $.each(array, function (index, item) {
+
+                if (index > 0) {
+                    var _array = item.split('=');
+                    if ($('#' + _array[0]).length == 0) {
+                        var input = $("<input>")
+                        .attr("type", "hidden")
+                        .attr("id", _array[0])
+                        .attr("name", _array[0]).val(_array[1]);
+                        $('#ff').append($(input));
+                    } else {
+                        $('#' + _array[0]).val(_array[1]);
+                    }
+                }
+            });
+        }
+
+        var submitData = $('#ff').serialize();
+        if (param != undefined) {
+            submitData = submitData + param;
+        }
+        if ($('#ff').form('validate')) {
+            $.ajax({
+                url: $('#ff').attr('action'),
+                type: $('#ff').attr('method'),
+                dataType: "json",
+                data: submitData,
+                success: function (data) {
+                    alert(data.message);
+                    window.close();
+                }
+            });
+        }
+    }
+
+    //将MultiSelectGrid控件的数据转json格式后附加到页面相应input
+    function GetDatagridJson(refreshGrid) {
+        //    refreshGrid = refreshGrid || true;
+        $(document.forms[0]).find('.MultiSelectGrid').each(function () {
+            $(this).datagrid('appendToParam', { form: document.forms[0], fieldName: undefined, refreshState: refreshGrid });
+        });
+    }
+
+    //将ComplexGrid控件的数据转json格式后附加到页面相应input
+    function GetComplexGridJson() {
+        $(document.forms[0]).find('.ComplexGrid').each(function () {
+
+            var name = $(this).ComplexGrid('options').JsonName;
+            if ($('#' + name).length == 0) {
+                var input = $("<input>")
+        .attr("type", "hidden")
+        .attr("id", name)
+        .attr("name", name).val($(this).ComplexGrid('getJsonForChanges'));
+                $(document.forms[0]).append($(input));
+            } else {
+                $('#' + name).val($(this).ComplexGrid('getJsonForChanges'));
+            }
+            $(this).ComplexGrid('CleanChanges');
+        });
+    }
+</script>
+<div class="clear">
+</div>
+<div class="main_nav">
+    <a href="@Url.Action("index", "Home")">我的桌面</a> > <a href="#">行政办公</a> > 日常接待编辑</div>
+    <div class="title_main">
+    ▌日常接待编辑</div>
+@using (Html.BeginForm("Save", "DailyReception", FormMethod.Post, new { id = "ff" }))
+{
+    IDictionary<string, object> requiredHtmlAttr = new Dictionary<string, object>();
+    requiredHtmlAttr.Add("class", "easyui-validatebox");
+    requiredHtmlAttr.Add("required", "true");
+    
+    IDictionary<string, object> HtmlAttr = new Dictionary<string, object>();
+    HtmlAttr.Add("style", "width:582px");
+    @Html.ValidationSummary(true)
+    <fieldset style="width: 750px">
+        @Html.HiddenFor(m => m.DailyReceptionId)
+        @Html.HiddenFor(m => m.Creator)
+        @Html.HiddenFor(m => m.StartUser)
+        <input id="ProvinceInput" type="hidden" value="@Model.Province"/>
+        <input id="RegionInput" type="hidden" value ='@Model.Region'/>
+        <table class="mediumLineHeight" style="width: 100%;">
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Creator)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.StartUser.DisplayName, new { @readonly = "readonly" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CreatedTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.CreatedTime, new { @readonly = "readonly" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.DelegationName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.DelegationName, requiredHtmlAttr)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.GuestName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.GuestName, requiredHtmlAttr)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.DelegationLevel)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.DelegationLevel)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.Duty)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Duty)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.DelegationNature)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.DelegationNature)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.TotalNumeber)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.TotalNumeber)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Province)
+                </td>
+                <td>
+                    <select id="Province" name="Province" class="easyui-combobox"
+                            data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#Province').combobox('setValue',$('#ProvinceInput').val());
+                         }">
+                        <option value="省份">省份</option>
+                    </select>
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.Region)
+                </td>
+                <td>
+                    <select id="Region" name="Region" class="easyui-combobox"
+                            data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#Region').combobox('setValue',$('#RegionInput').val());
+                         }">
+                        <option value="地区">地区</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Address)
+                </td>
+                <td colspan="3">
+                    @Html.TextBoxFor(m => m.Address, HtmlAttr)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.ForecastSource)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ForecastSource)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.VisitTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.VisitTime, requiredHtmlAttr)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CityLeader)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CityLeader)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.ParkLeader)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ParkLeader)
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 0;">
+                    @Html.LabelFor(m => m.CompanyReceptionist)
+                </td>
+                <td style="border: 0;" align="left" colspan="3">
+                    <input type="text" id="id_pepore" name="CompanyReceptionist" value="@Model.CompanyReceptionist" style="width: 520px" readOnly/>
+                    <a id ="User_Choose" class="easyui-linkbutton" onclick="ChooseUser('id_pepore','Schedule','User_Choose')">选择</a>
+                </td>
+            </tr>
+            @*<tr>
+                <td>
+                    @Html.LabelFor(m => m.CompanyReceptionist)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CompanyReceptionist, requiredHtmlAttr)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.Creator)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.StartUser.UserName, new { @readonly = "readonly" })
+                </td>
+            </tr>*@
+        </table>
+        
+   @Html.Partial("../User/UserChoosePanel")
+        <p id="P_toolbar">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+        </p>
+    </fieldset>
+}

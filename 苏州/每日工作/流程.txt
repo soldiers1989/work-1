@@ -1,0 +1,29 @@
+任务编号：31157
+任务内容：
+            内外资工商注册信息中的字段“实收资本”修改为“投资总额”；（修改字段，在domain中）
+            “公司性质”选项中去掉“合资”选项；（枚举类型修改）
+            增加“招商员”字段，可随时修改值；（添加字段，包括表中和domain）
+            增加“变更”按钮，实现变更功能，当变更后，“内外资工商注册”信息中增加变更相关记录
+最后一个任务流程：地址：http://localhost:5834/CompanyRegister
+    1、页面中添加变更按钮 C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\CompanyRegister\CompanyRegisterGrid.cshtml
+    2、变更按钮添加绑定事件 change(),弹窗（就是一个弹窗网页，带url，在controller中处理）
+        '@Url.Action("CompanyRegisterChangeDetail")' + '/' + eval('row.' + id)
+    3、到 C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Controllers\AdministrativeOffice\CompanyRegisterController.cs配置
+        CompanyRegisterChangeDetail方法，绑定view（“ChangeCreate”）
+    4、转到 C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\CompanyRegister\ChangeCreate.cshtml，
+        添加查看明细功能，且点击保存时，要将更改信息入库，点击查看明细时，显示更改明细（包括，时间和更改人）
+        绑定事件：查看明细功能showChangeRecordDetail()
+    5、先做查看更改明细功能，分四步：一，在数据库中建表，二，建立domain
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Domain\EispDomain\Question\CompanyRegistersChangeRecord.cs
+        三，建立domain和数据库的联系，在C:\work\SuzhouEisp\Wiseonline.Eisp.Data\EispContext.cs
+        public DbSet<CompanyRegistersChangeRecord> CompanyRegistersChangeRecords { get; set; }
+        四，查询数据,点击查看明细时，触发showChangeRecordDetail()事件
+            url: '/CompanyRegister/SearchCompanyRegisterChangeRecordGrid?Id=' + '@Model.CompanyRegisterId',
+            然后CompanyRegisterController.cs中，定义SearchCompanyRegisterChangeRecordGrid方法，方法中包含Dto方法，
+            在C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Dto\WorkflowForm\CompanyRegisterEx.cs中建立Dto方法，Dto需要model，
+            建立C:\work\SuzhouEisp\Wiseonline.Eisp.Web\ViewModel\WorkflowForm\CompanyRegisterChangeRecordViewModel.cs model
+            查询完成。
+    点击保存时，要将数据入更改记录表
+        在using中定义表单提交路径和方法，路径为CompanyRegister下的ChangeCreate方法
+        @using (Html.BeginForm("ChangeCreate", "CompanyRegister", FormMethod.Post, new { id = "ff" }))
+        转到CompanyRegisterController中，定义ChangeCreate方法，数据入库保存，这是一个完整的流程。

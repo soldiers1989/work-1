@@ -1,0 +1,59 @@
+1、访问地址
+    url：http://222.73.203.124:9010/Clm/PropertyContract?PropertyService
+
+2、找页面在工程里的位置
+    由url可以看出位置在：Clm>PropertyContract,而页面都在Views文件夹下,所以完整路径为：Areas>Clm>Views>PropertyContract
+    PropertyContract文件夹就是页面的位置，Index.cshtml就是页面
+
+3、Index.cshtml
+    @model  Wiseonline.Eisp.Web.ViewModel.PropertyContractItem  //引入数据模型(应该是传入数据库的数据，而不是传出的)
+    @{
+        ViewBag.Title = "物业合同"; //页面标题
+        Layout = "~/Areas/Clm/Views/Shared/_LayoutClm.cshtml";  //~/是根目录 载入页面布局模板
+        Html.Assets().Scripts.Add(Url.Content("~/Areas/Clm/jb/propertycontract.js")); //导入js文件
+        Html.Assets().Scripts.Add("/jb/wiseonline/ExcelExport.js"); //对应的是外部jb文件夹
+        const string thisUrl = "/Clm/PropertyContract/GetPropertyContractsList?exportExcel=true"; //
+        const string thisColumn = "ContractNumber,LandProjectDisplay,TenantName,TenancyContractNo,BeginDate,EndDate," + //对应下面结果信息的那几列
+                                  "ContractTypeDisplayName,PropertyContractStatusDisplay,OperatorDisplayName";
+    }
+
+4、查询表单的的名称
+     @using (Html.BeginForm("Serch", "Manage", FormMethod.Post, new { id = "searchuser_from"，name ="searchuser_from"}))//(动作，控制器，提交方式，属性值)
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.ContractNumber)   //标签（即文本框前面那个显示名称的地方）
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.ContractNumber) //文本输入框
+        </td>
+        <td>
+            @Html.LabelFor(m => m.LandProjectIdQuery)
+        </td>
+        <td>///LandProject/GetLandProjectType,对应的是Controllers下面的LanProjectController.css下面的GetLandProjectType方法
+            @Html.CombogridFor(m => m.LandProjectIdQuery, "/LandProject/GetLandProjectType", new[] { "id", "text" })    
+        </td>
+        <td>//日期格式
+            @Html.DateboxFor(m => m.TenancyContractEndDate_BEGIN, new { style = "width:94px" })->@Html.DateboxFor(m => m.TenancyContractEndDate_END, new { style = "width:94px" })
+        </td>
+    </tr>
+    疑问：为什么房屋用途和合同状态的代码不一样
+        枚举类型的下拉框，定义在clmCommonEnum.cs中
+    <td colspan="4" align="right">
+        <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" onclick="searchContracts();">
+            查询</a> <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'"
+                      onclick="QueryParamsReset();">重置</a>
+    </td>
+    注明：查询事件在js中，在jb文件夹的对应文件中，在页面的前面就引入了该propertycontract.js
+
+5、url格式和意思
+    url:"{controller}/{action}/{id}"定义了URL的格式。
+
+6、除了页面之外
+    viewModels:PropertyContractItem.cs中定义了数据模型，在页面中需要显示的数据的模型
+
+7、helper 定义了一些方法
+    Sipplier.css定义了菜单
+
+8、一些枚举类型
+    可能在数据库中查找
+    在domain下面定义了枚举类型的值

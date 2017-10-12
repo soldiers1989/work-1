@@ -1,0 +1,11 @@
+一、说明
+    仿照http://localhost:5834/Clm/ActivityManage这个页面新建一个一样的页面
+
+二、流程
+    1、新建一个controller，ActivityManageTestController.css
+    2、右击controller中的Index()方法，点击添加视图，然后会自动在views下面生成ActivityManageTest文件夹，且在文件夹下有Index.cshtml
+    3、添加控件和功能
+    4、建立domain数据模型（大多数时候都已经对数据进行了处理）
+    5、建立service，数据操作都在service中
+    6、
+    7、

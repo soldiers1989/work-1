@@ -1,0 +1,225 @@
+@using NPOI.SS.Formula.Functions
+@using Wiseonline.Eisp.Domain
+@using Wiseonline.Eisp.Helpers
+@using Wiseonline.Eisp.Web.Helpers
+@model CompanyRegister
+@{
+    Html.Assets().Scripts.Add("/jb/wiseonline/QuickTips.js");
+    Html.Assets().Scripts.Add(Url.Content("~/jb/wiseonline/CRUD_PageHandel.js"));
+
+    Html.Assets().Scripts.Add("/jb/wiseonline/ExcelExport.js");
+}
+<script type="text/javascript">
+    //    var currentUserName = '@ViewBag.CurrentUserName';
+    //    var isAdministrator = '@ViewBag.IsAdministrator' == 'True' ? true : false;
+    //    var isProcessUser = '@ViewBag.IsProcessUser' == 'True' ? true : false;
+
+    var bottonStyle = "style ='width:90px'";
+    $(function () {
+        $('#CompanyRegisterGrid').datagrid({
+            // height: 400,
+            fitColumns: true,
+            rownumbers: true,
+            singleSelect: true,
+            pagination: true,
+            nowrap: false,
+            autoRowHeight: true,
+            striped: true,
+            columns: [[
+                { field: 'CompanyRegisterId', hidden: true },
+                { field: 'CorpBaseInfoName', title: '公司名称', align: 'center', width: 100 },
+                { field: 'CorpBaseInfoId', hidden: true },
+                { field: 'CompanyNature', title: '公司性质', align: 'center', width: 200 },
+                { field: 'ConsultancyService', title: '咨询事务', align: 'center', width: 70 },
+                { field: 'ContractName', title: '联系人', align: 'center', width: 90 },
+                { field: 'CreatedTime', title: '创建时间', align: 'center', width: 90 },
+                { field: 'IsResponse', title: '是否现场答复', align: 'center', width: 200 }
+            ]],
+            onDblClickRow: function (v, row, index) {
+                var id = row.CompanyRegisterId;
+                $('#CompanyRegisterDlg').dialog({
+                    href: '@Url.Action("CompanyRegisterDetail")' + '/' + id
+                });
+                $('#CompanyRegisterDlg').dialog('open');
+                //window.open('/Question/VisitRecordDetail/' + id);
+            },
+            onLoadSuccess: function () {
+                $('.easyui-linkbutton').linkbutton({});
+                $(".easyui-linkbutton[readOnly='true']").linkbutton('disable');
+            }
+        });
+    });
+
+    function EnableEditButtons() {
+        $("#editBtn").linkbutton('enable');
+        $("#delBtn").linkbutton('enable');
+    }
+
+    function DisableEditButtons() {
+        $("#editBtn").linkbutton('disable');
+        $("#delBtn").linkbutton('disable');
+    }
+
+    function AddCompanyRegister() {
+        $('#CompanyRegisterDlg').dialog({
+            href: '@Url.Action("Create")'
+
+        });
+        $('#CompanyRegisterDlg').dialog('open');
+    }
+
+    function Check() {
+        var row = $('#CompanyRegisterGrid').datagrid("getSelected");
+        if (row != null) {
+            $('#ConsultancyServiceDlg').dialog({
+                href: '@Url.Action("Check")' + '/' + row.CompanyRegisterId
+            });
+            $('#ConsultancyServiceDlg').dialog('open');
+        } else {
+            $.messager.alert('提示', '请选择一条记录!', 'info');
+        }
+    }
+
+    function Set() {
+        var row = $('#CompanyRegisterGrid').datagrid("getSelected");
+        if (row != null) {
+            $('#ConsultancyServiceDlg').dialog({
+                href: '@Url.Action("Set")' + '/' + row.CompanyRegisterId
+            });
+            $('#ConsultancyServiceDlg').dialog('open');
+        } else {
+            $.messager.alert('提示', '请选择一条记录!', 'info');
+        }
+    }
+
+    function Record() {
+        var row = $('#CompanyRegisterGrid').datagrid("getSelected");
+        if (row != null) {
+            $('#ConsultancyServiceDlg').dialog({
+                href: '@Url.Action("Record")' + '/' + row.CompanyRegisterId
+            });
+            $('#ConsultancyServiceDlg').dialog('open');
+        } else {
+            $.messager.alert('提示', '请选择一条记录!', 'info');
+        }
+    }
+
+    function Receive() {
+        var row = $('#CompanyRegisterGrid').datagrid("getSelected");
+        if (row != null) {
+            $('#ConsultancyServiceDlg').dialog({
+                href: '@Url.Action("Receive")' + '/' + row.CompanyRegisterId
+            });
+            $('#ConsultancyServiceDlg').dialog('open');
+        } else {
+            $.messager.alert('提示', '请选择一条记录!', 'info');
+        }
+    }
+
+    function Seal() {
+        var row = $('#CompanyRegisterGrid').datagrid("getSelected");
+        if (row != null) {
+            $('#ConsultancyServiceDlg').dialog({
+                href: '@Url.Action("Seal")' + '/' + row.CompanyRegisterId
+            });
+            $('#ConsultancyServiceDlg').dialog('open');
+        } else {
+            $.messager.alert('提示', '请选择一条记录!', 'info');
+        }
+    }
+
+    function SaveConsultancyService() {
+        debugger;
+        $('#ConsultancyServiceForm').form('submit', {
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                var json = eval('(' + data + ')');
+                $.messager.alert('提示信息', json.message, 'info');
+                if (json.success) {
+                    $('#ConsultancyServiceDlg').dialog('close');
+                    $('#CompanyRegisterGrid').datagrid('reload');
+                }
+            }
+        });
+    }
+
+    function CancelConsultancyService() {
+        $('#ConsultancyServiceDlg').dialog('close');
+    }
+
+    function CancelCompanyRegister() {
+        $('#CompanyRegisterDlg').dialog('close');
+    }
+
+    function edit(grid, id) {
+        var row = $(grid).datagrid("getSelected");
+        //var checks = $(grid).datagrid('getChecked');
+        //if (row != null && checks.length == 1) {
+        if (row != null) {
+            $('#CompanyRegisterDlg').dialog({
+                href: '@Url.Action("CompanyRegisterDetail")' + '/' + eval('row.' + id)
+            });
+            $('#CompanyRegisterDlg').dialog('open');
+        } else {
+            $.messager.alert('提示', '请选择一条需要编辑的记录!', 'info');
+        }
+    }
+
+    function del(url, grid, id, name, type) {
+        var obj = $(grid).datagrid('getSelected');
+        if (obj != null) {
+            if (type == undefined) {
+                type = "删除";
+            }
+            $.messager.confirm('确认', '是否' + type + '[' + eval('obj.' + name) + ']', function (r) {
+                if (r) {
+                    $.ajax({
+                        url: url + "/" + eval('obj.' + id),
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function (data) {
+                            $(grid).datagrid('reload');
+                            $.QuickTips({
+                                message: data.message
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    function LocalExportExcel() {
+        var thisUrl = $("#thisUrl").val();
+        var thisColumn = "SNDisplay,Title,QuestionTypeDisplay,QuestionAskUserDisplayName,QuestionDate," +
+            "LastReplyDate,ProcessUserDisplayName,QuestionStatusDisplay";
+        if (thisUrl != undefined)
+            ExportExcel(thisUrl, thisColumn, 'QuestionForm');
+    }
+</script>
+<div id="CompanyRegisterGridToolbar">
+    <a onclick="AddCompanyRegister()" class="easyui-linkbutton" iconcls="icon-add" plain="true" target="_blank">
+        新增</a>
+    <a class="easyui-linkbutton" id="editBtn" iconcls="icon-edit" plain="true" onclick=" edit('#CompanyRegisterGrid', 'CompanyRegisterId') ">
+        编辑</a>
+    <a class="easyui-linkbutton" id="delBtn" iconcls="icon-remove" plain="true" onclick=" del('@Url.Action("DeleteCompanyRegister", "CompanyRegister")', '#CompanyRegisterGrid', 'CompanyRegisterId', 'CompanyNature') ">
+        删除</a>
+    <a onclick="Check()" class="easyui-linkbutton" iconcls="icon-edit" plain="true" target="_blank">
+        核名</a>
+    <a onclick="Set()" class="easyui-linkbutton" iconcls="icon-edit" plain="true" target="_blank">
+        设立</a>
+    <a onclick="Record()" class="easyui-linkbutton" iconcls="icon-edit" plain="true" target="_blank">
+        经发备案</a>
+    <a onclick="Receive()" class="easyui-linkbutton" iconcls="icon-edit" plain="true" target="_blank">
+        执照领取</a>
+    <a onclick="Seal()" class="easyui-linkbutton" iconcls="icon-edit" plain="true" target="_blank">
+        刻章</a>
+</div>
+<div id="CompanyRegisterGrid">
+</div>
+<div id="CompanyRegisterDlg" class="easyui-dialog" title="内外资工商注册信息" closed="true" style="width: 600px;
+                                      height: 550px">
+</div>
+<div id="ConsultancyServiceDlg" class="easyui-dialog" title="内外资工商注册信息" closed="true" style="width: 600px;
+    height: 600px">
+</div>

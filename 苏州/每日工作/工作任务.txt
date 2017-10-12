@@ -1,0 +1,84 @@
+30945   (配置的，不需要改)
+
+30949   【行政办公】工作流程，比价分析单打印信息有误，招标方式为内部、外部，打印显示为急、一般（如图）
+        http://222.73.203.124:9012/OfficeWorkFlow/Detail?formforworkflowid=0&concreteworkflowid=344&isView=False
+        (已修改)
+31157   （一站式）内外资工商注册信息信需求修改
+        (已修改)
+
+30876   【行政办公】工作流，出差申请单传阅无效 
+        http://localhost:5834/WF/WorkflowRule/Edit/65
+        http://localhost:5834/OfficeWorkFlow/Detail?formforworkflowid=59&concreteworkflowid=0
+        测试没问题
+
+（未，不清楚）30871   【一站式】热线受理咨询在杜必胜待办中点击暂停按钮之后，再点击继续，
+        然后在上一步错发回收中回收该流程。错发回收中无该流程信息。
+
+30846   【一站式】热线受理中正文与附件数量显示不正确
+        http://localhost:5834/Question/Detail?formforworkflowid=324&concreteworkflowid=306
+        （以解决）
+        文件：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Controllers\Question\QuestionController.cs
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\Question\Detail.cshtml
+        行数：1492行 142行
+
+30843   【一站式】工作流切换文件办理和正文与附件，页面显示不全。
+        http://localhost:5834/Question/Detail?formforworkflowid=324&concreteworkflowid=0
+        我这边显示没有问题，问题没有模拟出来
+
+30837   【一站式】党务/工会中公司编号无数据，如果有数据，建议添加，无数据，建议删除。 
+        http://localhost:5834/PartyAndUnion
+        文件：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\PartyAndUnion\Create.cshtml
+        行数：75
+
+30817   【系统设置】权限管理，日程数据配置，去除已选择的用户，点击保存，提示“操作失败”（如图），但实际已经保存成功
+        http://localhost:5834/ScheduleSetting
+        文件：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Controllers\Management\ScheduleSettingController.cs
+        行数：68 对updateUser进行非空判断
+        （已解决）
+
+30807   【综合信息】审核发布信息时，点击驳回报没有权限（如图）
+        http://localhost:5834/News/ShowMore?companyId=1
+        账号：liuyg
+30806   【综合信息】审核发布信息时，点击修改报没有权限（如图）
+        问题：admin账号下没有问题，而其他账号点击驳回时没有进入后台，直接弹窗没权限
+        权限问题
+
+29069   【日程接待】，新增一条记录后，新增页面未关闭，此时再点击保存，可以新增一条相同的记录，建议保存后自动关闭新增页面
+        http://localhost:5834/DailyReception
+        （已解决）
+        文件：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\DailyReception\Create.cshtml
+        行数：添加172和173行
+
+（未）29059   【综合信息】，发布时，若内容输入过长后，预览后报错如图
+        http://localhost:5834/News/ShowMore?companyId=1&typeID=2
+        get方法参数有最大值1024个字节，要改成post方法
+        预览时，需要的参数为title和content
+
+29050   【会议室管理】，若某个会议室下有日程时，删除该日程时系统还是提示删除成功，
+        http://localhost:5834/ConferenceRoom
+        先查询室友有日程，如果有，请提示
+        但实际记录被没有被删除，建议可以更换提示信息
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\ConferenceRoom\Index.cshtml
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Controllers\Management\ConferenceRoomController.cs
+
+29033   【工作流】，工作流一览，根据“发起人”条件查询不到数据，根据“操作人”条件查询出的结果实际是按列表中的“发起人”搜索的
+        赵俊，汪璐璐 生物产业.一站式
+        http://localhost:5834/Question/AllFlow
+        测试没问题
+
+28966   【系统设置】，角色管理，新增/编辑角色时，勾选上的权限经过保存后无法取消，
+        导致的结果是只要一个角色勾选过某个权限，那么该角色将一直拥有该权限
+        http://localhost:5834/Role/RoleGrid
+        我这边测试没问题
+
+28963   【系统设置】，角色管理，新增/编辑角色时，勾选的“模块名称”保存后再次打开呈未勾选状态，但权限保存是成功的
+        http://localhost:5834/Role/RoleGrid
+        我这边测试没问题
+
+（未）29146   【工作流配置--流程配置】，配置处理规则详情中，“传阅对象”保存无效
+    http://localhost:5834/WF/WorkflowRule?wfId=5
+    http://localhost:5834/WF/WorkflowRule/Edit/65
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\WF\Controllers\WorkflowRuleController.cs
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\WF\Views\WorkflowRule\Create.cshtml
+    保存在表：WorkflowRuleRoles，而项目中没有domain，需要新建domain
+    1、C:\work\SuzhouEisp\Wiseonline.Eisp.Data\EispContext.cs 添加映射nvarchar(100)

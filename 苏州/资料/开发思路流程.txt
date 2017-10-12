@@ -1,0 +1,22 @@
+一、项目的目录结构
+    1、Wiseonline.Eisp.Data  操作数据库
+    2、Wiseonline.Eisp.Domain    数据模型
+    3、Wiseonline.Eisp.Service   服务层ef6
+    4、Wiseonline.Eisp.Utility   公共方法
+    5、Wiseonline.Eisp.Web   页面
+        5.1、web项目下的文件夹
+            1. Web.config：项目配置文件，里面保存项目配置参数以及数据库连接字符串
+            2. sqlConfigs.xml：里面是数据库SQL语句（目前还不知道怎么调用）
+            3. Global.asax：全局代码文件，提供应用程序级别以及会话级别的事件处理函数，可以在Application_Start中注册全局变量
+            4. Content：放置静态文件，包括logo和css等文件
+            5. App_Data：放置本地数据库文件，比如LocalDB生成的数据库文件
+            6. jb: js文件
+            7. ViewModle: 页面数据模型，即HTML页面中的数据
+            8. Views: 视图文件，即HTML页面
+            9. Controllers: 控制器类(处理前台的访问链接)
+            10. Areas: 对应访问路径下的页面
+            11. EispContext.cs：数据库报表和domain对应
+    6、Dto 数据转换处理
+
+
+

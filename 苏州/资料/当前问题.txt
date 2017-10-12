@@ -1,0 +1,18 @@
+1、当前项目异常（解决）
+    异常详细信息1:
+        System.NotSupportedException: Model compatibility cannot be checked because the database does not contain model metadata. Model compatibility can only be checked for databases created using Code First or Code First Migrations.
+    源错误1: 
+        源文件: C:\work\SuzhouEisp\Wiseonline.Eisp.Data\Infrastructure\RepositoryBase.cs    行: 193 
+        行 193:            return dbset.Find(id);
+
+    异常详细信息2: 
+        System.NotSupportedException: Model compatibility cannot be checked because the database does not contain model metadata. Model compatibility can only be checked for databases created using Code First or Code First Migrations.
+    源错误2：
+        源文件: C:\work\SuzhouEisp\Wiseonline.Eisp.Data\EispContext.cs    行: 1234 
+        行 1234:                db.Database.Initialize(false);
+
+    解决方案：运行方式不正确
+        运行时不要选择debug模式，而是选择EasyTest模式
+
+    2、缺少：“C:\work\SuzhouEisp\Wiseonline.Eisp.Web\UploadFiles\Festival\setting.txt”。
+        补全

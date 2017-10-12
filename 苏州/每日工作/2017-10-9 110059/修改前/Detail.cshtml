@@ -1,0 +1,182 @@
+@using Wiseonline.Eisp.Helpers;
+@using Wiseonline.Eisp.Domain;
+@model ConcreteWorkflow
+@{
+    ViewBag.Title = "工作流程";
+    Html.Assets().Styles.Add(Url.Content("~/Content/OfficeWorkFlow.css"));
+    Html.Assets().Scripts.Add("/jb/OfficeWorkFlow/WorkFlowDetail.js");
+    Html.Assets().Scripts.Add("/jb/wiseonline/JqueryMask.js");
+    Html.Assets().Scripts.Add("/jb/wiseonline/print.js");
+
+    Html.Assets().Styles.Add("/jb/Fancybox/jquery.fancybox.css");
+    Html.Assets().Scripts.Add("/jb/Fancybox/jquery.fancybox.pack.js");
+    Html.Assets().Scripts.Add("/jb/Fancybox/jquery.fancybox.js");
+    Html.Assets().Scripts.Add("/jb/Fancybox/jquery.mousewheel-3.0.6.pack.js");
+}
+<style type="text/css">
+    #dd table td
+    {
+        border: 0;
+    }
+    #tt .panel-body
+    {
+        border: 0px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#zoomPic").fancybox({
+            fitToView: false
+        });
+
+
+        $.ajax({
+            url: '@Url.Action("GetViewWorkflowStaticPictureData", "Workflow", new { area = "WF", wfId = Model.FormForWorkflow.WorkflowId })',
+            success: function (data) {
+                $("#hiddenPicDiv").append('<a id="zoomPic" href=""><img id="zoomPicDivImg" src=""/></a>');
+                document.getElementById("zoomPic").src = data;
+                document.getElementById("zoomPicDivImg").src = data;
+            }
+        });
+    });
+
+    function zoomPic() {
+        $("#zoomPic").fancybox().trigger('click');
+    }
+
+</script>
+<div class="main_nav">
+    <a href="@Url.Action("Index", "Home", null)">我的桌面</a> > <a href="#">行政办公</a> > <a
+        href="#">工作流程</a> @*   > 待办事项*@</div>
+<div class="title_main">
+    ▌@Model.FormForWorkflow.Name </div>
+@Html.HiddenFor(model => model.ConcreteWorkflowId)
+<input type="hidden" id = "isView" value="@ViewBag.isView"/>
+<div class="WD_toolbar" style="padding-bottom: 10px">
+    @{
+        var oo = Model.CurrentOperations;
+        if (Model.ConcreteWorkflowOperations != null && Model.ConcreteWorkflowOperations.Any(k => k.UserName == this.CurrentUser().UserName && k.IsActive.GetValueOrDefault()))
+        {
+            <span class="DW_Send">&nbsp; &nbsp;&nbsp;&nbsp;</span>
+            <a href="javascript:void(0)"onclick=" ActiveSubmit() "> 提交 </a>
+        }
+        else
+        {
+            if (oo == null || (oo.First().WorkflowStatus.IdForTheWorkflow > 0 && ViewBag.isEnd))
+            {
+                <span class="DW_Send">&nbsp; &nbsp;&nbsp;&nbsp;</span>
+                <a href="javascript:void(0)"
+                   id="Send" onclick=" Send() "> 发送 </a>
+            }
+            if (viewbag.canend)
+            {
+                <span class="dw_end">&nbsp; &nbsp;&nbsp;&nbsp;</span>
+                <a href="javascript:void(0)"
+                   id="end" onclick=" send(true) ">结束 </a>
+            }
+            if (ViewBag.CanBack || (ViewBag.HasBackInFinish != null && ViewBag.HasBackInFinish))
+            {
+                <span class="DW_Send">&nbsp; &nbsp;&nbsp;&nbsp;</span>
+                <a href="javascript:void(0)" id="Back" onclick=" Back() ">退回 </a>
+            }
+        }
+        if (oo != null && (oo.Count() > 1 || oo.First().WorkflowStatus.IdForTheWorkflow != 1))
+        {
+        <span class="DW_Read">&nbsp; &nbsp;&nbsp;&nbsp;</span>
+        <a href="javascript:void(0)" id="Read" onclick=" Read() ">传阅</a>
+            if (Model.NotPassRoundForPerusals.Where(o => o.UserName == this.CurrentUser().UserName).Any())
+            {
+        <span class="DW_HasRead">&nbsp; &nbsp;&nbsp;&nbsp;</span>
+        <a href="javascript:void(0)" id="HasRead" onclick=" OpenHasReadDialog() ">已阅</a>
+            }
+        <span class="icon-print">&nbsp; &nbsp;&nbsp;&nbsp;</span>
+        <a href='@string.Format("{0}/{1}", string.IsNullOrWhiteSpace(Model.FormForWorkflow.PrintUrl) ? Model.FormForWorkflow.ViewUrl : Model.FormForWorkflow.PrintUrl, Model.ConcreteWorkflowId)'
+               id="Print" target="_blank">打印 </a>
+        <span class="icon-no">&nbsp; &nbsp;&nbsp;&nbsp;</span>
+        <a href="javascript:void(0)" id="Suspend" onclick=" Suspend() ">暂停 </a>
+        }
+    }
+</div>
+<div id="tab-tools">
+    <span><font color="red" style="width: 100px">流水号:@Model.ConcreteWorkflowId.ToString("D4")</font></span>
+</div>
+<div id="tt" class="easyui-tabs" style="width: 830px;" data-options="border:false,toolPosition: 'right',tools:'#tab-tools',
+        onSelect:function(title,index){  SelectTabs(title,index);}  ">
+    <div title="文件办理" style="padding: 10px;">
+        <div>
+            <iframe id="WordFile" width="100%" scrolling="no" frameborder="0" >
+            </iframe>
+            </div>
+        @if (Model.ConcreteWorkflowId == 0)
+        {
+            if (Model.FormForWorkflow.CreateUrl.IndexOf('?') > -1)
+            {
+                <input type="hidden" class="url" value ="@string.Format("{0}&id={1}", Model.FormForWorkflow.CreateUrl, Model.FormForWorkflowId)" autocomplete="off"/>
+            }
+            else
+            {
+                <input type="hidden" class="url" value ="@string.Format("{0}/{1}", Model.FormForWorkflow.CreateUrl, Model.FormForWorkflowId)" autocomplete="off"/>
+            }
+        }
+        else
+        {          
+@*          <input type="hidden" class="url" value ="@string.Format("{0}/{1}/{2}", Model.FormForWorkflow.EditUrl, Model.ConcreteWorkflowId, ViewBag.isDraft)" autocomplete="off"/>*@
+            var editUrl = Model.FormForWorkflow.EditUrl;
+            <input type="hidden" class="url" value ="@Url.Action(editUrl.Split('/')[2], editUrl.Split('/')[1], new { id = @Model.ConcreteWorkflowId, isDraft = @ViewBag.isDraft })" autocomplete="off"/>
+        }
+    </div>
+    <div title="正文与附件(@ViewBag.fileCount)" style="padding: 10px;">
+        <iframe id="AttachFile" width="100%" class="easyui-panel" data-options="border: false">
+        </iframe>
+        <input type="hidden" class="url" value ="@Url.Action("AttachmentView", "EditOffice", new { relate = @Model.ConcreteWorkflowId, type = AttachmentType.Office.ToInt(), isEditWord = @Model.CurrentStatus.IsEditWord, isBanEditWord = @Model.CurrentStatus.IsBanEditWord, isView = Convert.ToBoolean(ViewBag.isView) })" autocomplete="off"/>
+    </div>
+    <div title="流转情况" style="padding: 10px;">
+        <iframe id="ViewOperationList" width="100%" class="easyui-panel" data-options="border: false">
+        </iframe>
+        <input type="hidden" class="url" value ="@Url.Action("ViewOperations", "OfficeWorkFlow", new { concreteWorkflowId = Model.ConcreteWorkflowId })"autocomplete="off"/>
+    </div>
+ @*   <div title="静态流转图" style="padding: 10px;">
+        <iframe id="ViewWorkFlowStaticPicture" width="100%" data-options="border: false">
+        </iframe>
+        <input type="hidden" class="url" value ="@Url.Action("ViewWorkflowStaticPicture", "Workflow", new { area = "WF", wfId = Model.FormForWorkflow.WorkflowId })" autocomplete="off"/>
+    </div>*@
+    <div title="动态流转图" style="padding: 10px;">
+        <iframe id="ViewWorkFlow" width="100%" data-options="border: false">
+        </iframe>
+        <input type="hidden" class="url" value ="@Url.Action("ViewWorkflow", "Workflow", new { area = "WF", wfId = Model.FormForWorkflow.WorkflowId })" autocomplete="off"/>
+    </div>
+</div>
+<div id="dd" class="easyui-dialog" title="流转去向" style="width: 450px; height: 250px;
+    padding: 10px; z-index: 100" data-options="iconCls:'icon-reload',resizable:true,modal:true,closed: true">
+    <div id="TransferPanel" class="easyui-panel" data-options="border : false">
+    </div>
+</div>
+<div id="PassRead" class="easyui-dialog" title="传阅" style="width: 500px; height: 200px;
+    padding: 10px; z-index: 100" data-options="iconCls:'icon-reload',resizable:true,modal:true,closed: true">
+    <div>
+        传阅对象:<select id="Users" class="easyui-combotree" multiple data-options="url: '@Url.Action("GetUserTreeByDuty", "User")',panelHeight: 300,width:350,
+                onlyLeafCheck:true, editable:false, required:true">
+        </select>
+    </div>
+    <div align="center" style="padding-top: 10px">
+        <a href="javascript:void(0)" id="PassRead_Save" iconcls="icon-ok" class="easyui-linkbutton"
+           onclick="if ($('#Users').combo('getValue')!=undefined && $('#Users').combo('getValue').length>0 ) {PassRead_Save('@Url.Action("Circulate", "BusinessWorkflow", new { area = "WF" })')}">
+            确定</a> <a href="javascript:void(0)" iconcls="icon-cancel" id="PassRead_Save" class="easyui-linkbutton"
+                onclick=" PassRead_Cancel() ">取消</a>
+    </div>
+</div>
+<div id="CirculateMessage" class="easyui-dialog" title="传阅意见" style="width: 500px;
+    height: 200px; padding: 10px; z-index: 100" data-options="iconCls:'icon-reload',resizable:true,modal:true,closed: true">
+    <div>
+        传阅意见：<textarea id="CirculateMessageBox" style="width: 98%; resize: none;" class="easyui-validatebox"
+            required></textarea>
+    </div>
+    <div align="center" style="padding-top: 10px">
+        <a href="javascript:void(0)" id="CirculateMessage_Save" iconcls="icon-ok" class="easyui-linkbutton"
+            onclick="HasRead()">确定</a> <a href="javascript:void(0)" iconcls="icon-cancel" id="CirculateMessage_Close"
+                class="easyui-linkbutton" onclick=" CloseHasReadDialog() ">取消</a>
+    </div>
+</div>
+<div id="hiddenPicDiv" style="display: none">
+</div>
+
