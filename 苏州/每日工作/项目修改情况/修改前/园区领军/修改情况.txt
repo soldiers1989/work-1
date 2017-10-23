@@ -1,0 +1,33 @@
+功能：园区领军
+    园区领军模块记录园区领军客户相关的基本信息。
+
+数据库： ParkLeaders
+字段：
+基本信息
+字段说明    字段类型
+公司名称    下拉调客户信息表，可手动输入。CorpBaseInfoId
+客户代表    字符          CustomerRepresentative
+所属领域    下拉（医药）  Area
+公司地址                    Address
+注册资金                    [RegisterAccount]
+公司规模                    CompanySize
+附件      
+备注                      Remarks
+创建人                     Creator
+创建时间    日期格式        CreatedTime
+修改人               ModifyName
+修改日期                ModifyTime
+
+说明：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\EditOffice\AttachmentView.cshtml 附件页面
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Controllers\Common\EditOfficeController.cs
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Helpers\AttachmentHelper.cs
+    附件：有两个因素决定[TypeID]和[RelateID]
+
+页面修改流程：
+    1、添加controller：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Controllers\ParkLeaderController.cs
+    2、转到index：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\ParkLeader\Index.cshtml
+    3、新建domain：C:\work\SuzhouEisp\Wiseonline.Eisp.Domain\ClmDomains\ParkLeader\ParkLeader.cs
+    4、建立映射：C:\work\SuzhouEisp\Wiseonline.Eisp.Data\EispContext.cs 行数：225
+    5、新建js：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\jb\ParkLeader.js
+    6、新建Create页面：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\ParkLeader\Create.cshtml
+    7、增删改查的实现

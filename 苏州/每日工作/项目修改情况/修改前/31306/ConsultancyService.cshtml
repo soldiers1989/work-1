@@ -1,0 +1,243 @@
+@using Wiseonline.Eisp.Web.Helpers
+@using Wiseonline.Eisp.Domain
+
+@model CompanyRegister
+@{
+    Layout = null;
+}
+
+<script src="../../jb/Question/companyregister.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function submitFormLocal() {
+        debugger;
+        $("#ConsultancyService").val('@ViewBag.ConsultancyService');
+        submitForm();
+    }
+
+    function showdetail() {
+        $('#CompanyRegisterRecordGrid').datagrid({
+            url: '/CompanyRegister/SearchCompanyRegisterRecordGrid?Id=' + '@Model.CompanyRegisterId',
+            fitColumns: true,
+            rownumbers: true,
+            singleSelect: true,
+            pagination: false,
+            nowrap: false,
+            autoRowHeight: true,
+            striped: true,
+            columns: [[
+                { field: 'ConsultancyService', title: '咨询事务', align: 'center', width: 100 },
+                { field: 'Creator', title: '操作人', align: 'center', width: 100 },
+                { field: 'CreatedTime', title: '操作时间', align: 'center', width: 100 },
+                { field: 'Remarks', title: '备注', align: 'center', width: 300 }
+            ]]
+        });
+    }
+</script>
+    @using (Html.BeginForm("ConsultancyService", "CompanyRegister", FormMethod.Post, new { id = "fff" }))
+    {
+        @Html.HiddenFor(m => m.CompanyRegisterId)
+        <input id="CompanyNatureInput" type="hidden" value ='@Model.CompanyNature'/>
+        <input id="IsAcceptInput" type="hidden" value ='@Model.IsAccept'/>
+        <input id="AcceptInfoInput" type="hidden" value ='@Model.AcceptInfo'/>
+        <input id="IsResponseInput" type="hidden" value ='@Model.IsResponse'/>
+        <table width="100%" height="90%" border="0px solid">
+            <tr>
+                <td>
+                        @Html.LabelFor(m => m.SN)
+                    </td>
+                <td>
+                    @Html.TextBoxFor(m => m.SN, new { @readonly = "readonly", style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CreatedTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.CreatedTime, new { @readonly = "readonly", style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Creator)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CreatorDisplayName, new { @readonly = "readonly", style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CorpBaseInfoId)
+                </td>
+                <td>
+                    @if (Model.CorpBaseInfoOther != "" && Model.CorpBaseInfoOther != null)
+                    {
+                        @Html.TextBoxFor(m => m.CorpBaseInfoOther, new { @readonly = "readonly", style = "width:180px" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.CorpBaseInfoName, new { @readonly = "readonly", style = "width:180px" })
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.ContractName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ContractName, new { @readonly = "readonly", style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.ContractPhone)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ContractPhone, new { @readonly = "readonly", style = "width:180px" })
+                </td>
+            </tr>
+            <tr>         
+                <td>
+                    @Html.LabelFor(m => m.CompanyNature)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CompanyNature, new { @readonly = "readonly", style = "width:180px" })
+                    @*<select id="CompanyNature" name="CompanyNature" class="easyui-combobox" readonly = "readonly" style = "width:180px" 
+                            data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#CompanyNature').combobox('setValue',$('#CompanyNatureInput').val());
+                         }">
+                        <option value="内资">内资</option>
+                        <option value="外资">外资</option>
+                        <option value="合资">合资</option>
+                    </select>*@
+                </td>         
+                <td>
+                    @Html.LabelFor(m => m.ConsultancyService)
+                </td>
+                <td >
+                    <input type="text" readonly = "readonly" style = "width:180px" value="@Model.ConsultancyService"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.IsAccept)
+                </td>
+                <td >
+                    @Html.TextBoxFor(m => m.IsAccept, new { @readonly = "readonly", style = "width:180px" })
+                    @*<select id="IsAccept" name="IsAccept" class="easyui-combobox" readonly = "readonly" style = "width:180px" 
+                            data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#IsAccept').combobox('setValue',$('#IsAcceptInput').val());
+                         },onSelect:function(rIndex,rData){ SelectedIsAccept(rIndex);}">
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>*@
+                </td>
+                @if (Model.IsAccept == "是")
+                {
+                    <td>
+                        @Html.LabelFor(m => m.AcceptInfo)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.AcceptInfo, new { @readonly = "readonly", style = "width:180px" })
+                        @*<select id="AcceptInfo" name="AcceptInfo" class="easyui-combobox" readonly = "readonly" style = "width: 180px"
+                                data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#AcceptInfo').combobox('setValue',$('#AcceptInfoInput').val());
+                         },onSelect:function(rIndex,rData){ SelectedAcceptInfo(rIndex);}">
+                            <option value="完整">完整</option>
+                            <option value="不完整">不完整</option>
+                        </select>*@
+                    </td>
+                }
+            </tr>
+            @if (Model.AcceptInfo == "不完整")
+            {
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.FillTime)
+                    </td>
+                    <td>
+                        @Html.DateboxFor(m => m.FillTime, new { @readonly = "readonly", style = "width:92%" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(m => m.Merchant)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Merchant, new { style = "width:180px" })
+                    </td>
+                </tr>
+            }
+            <tr>          
+                    <td>
+                        @Html.LabelFor(m => m.IsResponse)
+                    </td>
+                    <td >
+                        @Html.TextBoxFor(m => m.IsResponse, new { @readonly = "readonly", style = "width:180px" })
+                        @*<select id="IsResponse" name="IsResponse" class="easyui-combobox" readonly = "readonly" style = "width:180px"
+                                data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#IsResponse').combobox('setValue',$('#IsResponseInput').val());
+                         },onSelect:function(rIndex,rData){ SelectedIsResponse(rIndex);}">
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>*@
+                    </td>
+                @if (Model.IsResponse == "否")
+                {
+                    <td>
+                        @Html.LabelFor(m => m.ResponseTime)
+                    </td>
+                    <td>
+                        @Html.DateboxFor(m => m.ResponseTime, new { @readonly = "readonly", style = "width:92%" })
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Remarks)
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(m => m.Remarks, new { @readonly = "readonly", style = "width:96%" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.ModifyName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ModifyDisplayName, new { @readonly = "readonly", style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.ModifyTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.ModifyTime, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                        当前操作
+                    </td>
+                <td>
+                    <input type="text" readonly = "readonly" style = "width:180px" value="@Model.ConsultancyService"/>
+                </td>
+                <td>
+                    下一步操作
+                </td>
+                <td>
+                    <input type="text" id="ConsultancyService" name="ConsultancyService" readonly = "readonly" style = "width:180px" value="@ViewBag.ConsultancyService"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    操作备注
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(m => m.ConsultancyServiceRemarks, new { style = "width:96%" })
+                </td>
+            </tr>
+        </table>
+        <div id="CompanyRegisterRecordGrid">
+</div>
+    }
+            <div style="margin-top: 20px" align="center">
+            @Html.EasyUiButton("查看明细", "showdetail()")
+            @Html.EasyUiButton("确定", "submitFormLocal()", new { iconcls = "icon-save" })
+            @Html.EasyUiButton("取消", "CancelConsultancyService()", new { iconcls = "icon-cancel" })
+        </div>

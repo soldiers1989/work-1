@@ -1,0 +1,29 @@
+功能： 药品生产许可证
+
+数据库： DrugProductionLicenses
+字段：
+字段名称    字段说明
+生产范围    字符 ProductionRange
+编号  字符 Numbering
+分类码 字符 ClassCode
+获得时间    时间格式  GetTime
+附件  Enclosure
+备注  Remarks
+创建人 Creator
+创建时间    日期格式 CreatedTime
+修改人 ModifyName
+修改时间    日期格式 ModifyTime
+
+说明：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\EditOffice\AttachmentView.cshtml 附件页面
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Controllers\Common\EditOfficeController.cs
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Helpers\AttachmentHelper.cs
+    附件：有两个因素决定[TypeID]和[RelateID]
+
+页面修改流程：
+    1、添加controller：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Controllers\DrugProductionLicenseController.cs
+    2、转到index：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\ParkLeader\Index.cshtml
+    3、新建domain：C:\work\SuzhouEisp\Wiseonline.Eisp.Domain\ClmDomains\DrugProductionLicense\DrugProductionLicense.cs
+    4、建立映射：C:\work\SuzhouEisp\Wiseonline.Eisp.Data\EispContext.cs 行数：225
+    5、新建js：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\jb\ParkLeader.js
+    6、新建Create页面：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\DrugProductionLicense\Create.cshtml
+    7、增删改查的实现

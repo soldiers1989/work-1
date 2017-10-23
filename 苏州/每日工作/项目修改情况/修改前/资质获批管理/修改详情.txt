@@ -1,0 +1,33 @@
+功能： 资质获批管理 /Clm/QualificationApprovedManagement
+
+
+数据库 QualificationApprovedManagements
+字段名称    字段类型            
+资质名称    字符          QualificationName
+资质类型    字符          QualificationType
+获批年份    字符，手动输入 ApprovedYear
+级别  下拉（国家、省、市、区）    Level
+备注                      Remarks
+附件                     (z暂时没弄)
+创建人      Creator
+创建日期    CreatedTime
+修改人      ModifyName
+修改日期    ModifyTime
+
+
+说明：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\EditOffice\AttachmentView.cshtml 附件页面
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Controllers\Common\EditOfficeController.cs
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Helpers\AttachmentHelper.cs
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\EditOffice\Attachments.cshtml
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\jb\Management\AttachmentManage.js
+    附件：有两个因素决定[TypeID]和[RelateID]
+
+页面修改流程：
+    1、添加controller：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Controllers\QualificationApprovedManagementController.cs
+    2、转到index：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\QualificationApprovedManagement\Index.cshtml
+    3、新建domain：C:\work\SuzhouEisp\Wiseonline.Eisp.Domain\ClmDomains\QualificationApprovedManagement\QualificationApprovedManagement.cs
+    4、建立映射：C:\work\SuzhouEisp\Wiseonline.Eisp.Data\EispContext.cs 行数：225
+    5、新建js：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\jb\QualificationApprovedManagement.js
+    6、新建Create页面：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\QualificationApprovedManagement\Create.cshtml
+    7、增删改查的实现
+    8、添加下拉框选择项：http://222.73.203.124:9012/CommonEnumObject

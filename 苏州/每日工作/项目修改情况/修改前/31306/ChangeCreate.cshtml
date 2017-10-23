@@ -1,0 +1,363 @@
+@using Wiseonline.Eisp.Domain
+@using Wiseonline.Eisp.Helpers;
+@using Wiseonline.Eisp.Web.Helpers
+@using Wiseonline.Eisp.Web.ViewModel.WorkflowForm;
+@model CompanyRegister
+@{
+    Layout = null;
+}           
+<script src="../../jb/Question/QuestionCreare.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function SelectedIsAccept(data) {
+        if (data['value'] == "是") {
+            $("#AcceptInfoLabel").css("display", "");
+            $("#AcceptInfoText").css("display", "");
+            $("#FillTimeText").css("display", "none");
+        } else {
+
+            $("#AcceptInfoLabel").css("display", "none");
+            $("#AcceptInfoText").css("display", "none");
+        }
+    }
+
+    function SelectedAcceptInfo(data) {
+        if (data['value'] == "不完整") {
+            $("#FillTimeText").css("display", "");
+        } else {
+
+            $("#FillTimeText").css("display", "none");
+        }
+    }
+
+    function SelectedIsResponse(data) {
+        if (data['value'] == "否") {
+            $("#ResponseTimeLabel").css("display", "");
+            $("#ResponseTimeText").css("display", "");
+        } else {
+
+            $("#ResponseTimeLabel").css("display", "none");
+            $("#ResponseTimeText").css("display", "none");
+        }
+    }
+
+    $(function () {
+        if ('@Model.IsAccept' == '是') {
+            $("#AcceptInfoLabel").css("display", "");
+            $("#AcceptInfoText").css("display", "");
+        }
+        if ('@Model.IsResponse' == '否') {
+            $("#ResponseTimeLabel").css("display", "");
+            $("#ResponseTimeText").css("display", "");
+        }
+        if ('@Model.AcceptInfo' == '不完整') {
+            $("#FillTimeText").css("display", "");
+        }
+
+        setTimeout(function () {
+            var corpbaeinfo = '@Model.CorpBaseInfoOther';
+            if (corpbaeinfo.length > 0) {
+                $("#CorpBaseInfoId").combo("setText", corpbaeinfo);
+            }
+        }, 8000);
+    });
+
+    function submitFormLocal() {
+        debugger;
+        var str = $("#CorpBaseInfoId").combo("getText");
+        var n = Number(str);
+        if (!isNaN(n)) {
+            alert("手动输入的公司名称不能为纯数字！");
+            return;
+        }
+        $("#CorpBaseInfoOther").val($("#CorpBaseInfoId").combo("getText"));
+        submitForm();
+    }
+    function showChangeRecordDetail() {
+        $('#CompanyRegisterChangeRecordGrid').datagrid({
+            url: '/CompanyRegister/SearchCompanyRegisterChangeRecordGrid?Id=' + '@Model.CompanyRegisterId',
+            fitColumns: true,
+            rownumbers: true,
+            singleSelect: true,
+            pagination: false,
+            nowrap: false,
+            autoRowHeight: true,
+            striped: true,
+            columns: [[
+                { field: 'SN', title: '编号', align: 'center', width: 100 },
+                { field: 'EditTime', title: '编辑时间', align: 'center', width: 100 },
+                { field: 'Editor', title: '编辑人', align: 'center', width: 100 }
+            ]]
+        });
+    }
+</script>
+<div class="clear">
+</div>
+@using (Html.BeginForm("ChangeCreate", "CompanyRegister", FormMethod.Post, new { id = "ff" }))
+{
+    IDictionary<string, object> requiredHtmlAttr = new Dictionary<string, object>();
+    requiredHtmlAttr.Add("class", "easyui-validatebox");
+    requiredHtmlAttr.Add("required", "true");
+    requiredHtmlAttr.Add("style", "width:180px");
+    @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.CompanyRegisterId)
+        @Html.HiddenFor(m => m.Creator)
+        @Html.HiddenFor(m => m.ModifyTime)
+        
+        <input id="CompanyNatureInput" type="hidden" value ='@Model.CompanyNature'/>
+        <input id="ConsultancyServiceInput" type="hidden" value ='@Model.ConsultancyService'/>
+        <input id="IsAcceptInput" type="hidden" value ='@Model.IsAccept'/>
+        <input id="AcceptInfoInput" type="hidden" value ='@Model.AcceptInfo'/>
+        <input id="IsResponseInput" type="hidden" value ='@Model.IsResponse'/>
+        <table class="mediumLineHeight" style="width: 100%;">
+            <tr>
+                <td>
+                        @Html.LabelFor(m => m.SN)
+                    </td>
+                <td>
+                    @Html.TextBoxFor(m => m.SN, new { @readonly = "readonly", style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CreatedTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.CreatedTime, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Creator)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CreatorDisplayName, new { @readonly = "readonly", style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CorpBaseInfoId)
+                </td>
+                <td>
+                    @if (Model.CompanyRegisterId > 0)
+                    {
+                        if (Model.CorpBaseInfoOther != "" && Model.CorpBaseInfoOther != null)
+                        {
+                        @Html.TextBoxFor(m => m.CorpBaseInfoOther, new { @readonly = "readonly", style = "width:180px" })
+                        }
+                        else
+                        {
+                        @Html.TextBoxFor(m => m.CorpBaseInfoName, new { @readonly = "readonly", style = "width:180px" })
+                        }
+                    }
+                    else
+                    {
+                        @Html.CombogridFor(m => m.CorpBaseInfoId, @Url.Action("GetListByPage", "CorpBaseInfo"), new[] { "CorpBaseInfoId", "Name", "CustomerSn" }, new { @id = "CorpBaseInfoId", @required = "true" }, comboAttrStr: "onSelect:function(rIndex,rData){ $('#Edit').linkbutton('enable')}", width: 350, displayText: Model.CorpBaseInfoName, headerCol: new[] { "公司名称", "公司编号" })
+                        <input id="CorpBaseInfoOther" name="CorpBaseInfoOther" type="hidden"/>
+                    }
+                    
+        @Html.HiddenFor(m => m.CorpBaseInfoId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.ContractName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ContractName, requiredHtmlAttr)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.ContractPhone)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ContractPhone, requiredHtmlAttr)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.LicenseName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.LicenseName, new { style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.LicenseAddress)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.LicenseAddress, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.RegisterNo)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.RegisterNo, new { style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.LegalRepresent)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.LegalRepresent, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.RegisterAccount)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.RegisterAccount, new { style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.PayCapital)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.PayCapital, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CompanyType)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CompanyType, new { style = "width:180px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.EstablishTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.EstablishTime, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.BusinessScope)
+                </td>
+                <td colspan="3">
+                    @Html.TextBoxFor(m => m.BusinessScope, new { style = "width:95%" })
+                </td>
+            </tr>
+            <tr>         
+                    <td>
+                        @Html.LabelFor(m => m.CompanyNature)
+                    </td>
+                    <td >
+                        <select id="CompanyNature" name="CompanyNature" class="easyui-combobox" required="true" style = "width:180px" 
+                                data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#CompanyNature').combobox('setValue',$('#CompanyNatureInput').val());
+                         }">
+                            <option value="内资">内资</option>
+                            <option value="外资">外资</option>
+                            @*<option value="合资">合资</option>*@
+                        </select>
+                    </td>         
+                    <td>
+                        @Html.LabelFor(m => m.ConsultancyService)
+                    </td>
+                <td>
+                    @if (Model.CompanyRegisterId > 0)
+                    {
+                        @Html.TextBoxFor(m => m.ConsultancyService, new { @readonly = "readonly", style = "width:180px" })
+                    }
+                    else
+                    {
+                        <select id="ConsultancyService" name="ConsultancyService" class="easyui-combobox" required="true" style = "width: 180px" 
+                                data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#ConsultancyService').combobox('setValue',$('#ConsultancyServiceInput').val());
+                         }">
+                            <option value="核名">核名</option>
+                            <option value="设立">设立</option>
+                            <option value="经发备案">经发备案</option>
+                            <option value="执照领取">执照领取</option>
+                            <option value="刻章">刻章</option>
+                        </select>
+                    }
+                </td>
+            </tr>
+            <tr>         
+                    <td>
+                        @Html.LabelFor(m => m.IsAccept)
+                    </td>
+                    <td >
+                        <select id="IsAccept" name="IsAccept" class="easyui-combobox" required="true" style = "width:180px" 
+                                data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#IsAccept').combobox('setValue',$('#IsAcceptInput').val());
+                         },onSelect:function(rIndex,rData){ SelectedIsAccept(rIndex);}">
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </td>
+                <td id="AcceptInfoLabel" style="display: none;">
+                            @Html.LabelFor(m => m.AcceptInfo)
+                        </td>
+                        <td  id="AcceptInfoText" style="display: none;">
+                            <select id="AcceptInfo" name="AcceptInfo" class="easyui-combobox" style = "width: 180px"
+                                    data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#AcceptInfo').combobox('setValue',$('#AcceptInfoInput').val());
+                         },onSelect:function(rIndex,rData){ SelectedAcceptInfo(rIndex);}">
+                                <option value="完整">完整</option>
+                                <option value="不完整">不完整</option>
+                            </select>
+                        </td>
+            </tr>
+            <tr id="FillTimeText" style="display: none;">
+                <td>
+                    @Html.LabelFor(m => m.FillTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.FillTime, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>          
+                    <td>
+                        @Html.LabelFor(m => m.IsResponse)
+                    </td>
+                    <td >
+                        <select id="IsResponse" name="IsResponse" class="easyui-combobox" required="true" style = "width:180px"
+                                data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#IsResponse').combobox('setValue',$('#IsResponseInput').val());
+                         },onSelect:function(rIndex,rData){ SelectedIsResponse(rIndex);}">
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </td>
+                
+                <td id="ResponseTimeLabel" style="display: none;" >
+                    @Html.LabelFor(m => m.ResponseTime)
+                </td>
+                <td id="ResponseTimeText" style="display: none;" >
+                    @Html.DateboxFor(m => m.ResponseTime, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Merchant)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Merchant, new { style = "width:180px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Remarks)
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(m => m.Remarks, new { style = "width:95%" })
+                </td>
+            </tr>
+        </table>
+     <div id="CompanyRegisterChangeRecordGrid">
+</div>
+}
+<div style="margin-top: 20px" align="center">
+    @if (Model.CompanyRegisterId > 0)
+    {
+        @Html.EasyUiButton("保存", "submitForm()", new { iconcls = "icon-save" })
+    }
+    else
+    {
+        @Html.EasyUiButton("保存", "submitFormLocal()", new { iconcls = "icon-save" })
+    }
+    @Html.EasyUiButton("取消", "CancelCompanyRegister()", new { iconcls = "icon-cancel" })
+    @Html.EasyUiButton("查看变更记录", "showChangeRecordDetail()")
+</div>

@@ -1,0 +1,227 @@
+@using Wiseonline.Eisp.Domain
+@using Wiseonline.Eisp.Helpers;
+@using Wiseonline.Eisp.Web.Helpers
+@using Wiseonline.Eisp.Web.ViewModel.WorkflowForm;
+@model DeliverInformationViewModel
+@{
+    Layout = "~/Views/Shared/_IframeLayout.cshtml";
+    @*<link href="@Url.Content("~/Content/OfficeWorkFlow.css")" rel="stylesheet" type="text/css" />*@
+}
+<script src="@Url.Content("~/jb/OfficeWorkFlow/WorkFlowCreate.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    function SelectedAcceptInfo(data) {
+        if (data['value'] == "不完整") {
+            $("#FillTimeLabel").css("display", "");
+            $("#FillTimeText").css("display", "");
+        } else {
+            $("#FillTimeLabel").css("display", "none");
+            $("#FillTimeText").css("display", "none");
+        }
+    }
+
+    function showDI(obj, businessnameid) {
+        debugger;
+        if (obj == "其他") {
+            $("#DIElse").css("display", "");
+            $("#DI").css("display", "none");
+        } else {
+            $("#DIElse").css("display", "none");
+            $.ajax({
+                url: '@Url.Action("GetDIsByName", "DeliverInformation")',
+                type: 'post',
+                data: { diname: obj, diid: '@Model.DeliverInformationId', businessnameid: businessnameid },
+            success: function(data) {
+                $("#DI").css("display", "").html(data);
+            }
+        });}
+    }
+
+    function checktoCookie(i, businessnameid) {
+        debugger;
+        if ('@ViewBag.IsSave' == 'True') {
+            $.ajax({
+                url: '@Url.Action("SaveDIs", "DeliverInformation")',
+                type: 'post',
+                data: { diname: i, diid: '@Model.DeliverInformationId', businessnameid: businessnameid },
+                success: function(data) {
+//                $("#DI").css("display", "").html(data);
+                }
+            });
+        } else {
+            alert("请先保存再选择清单!");
+        }
+    }
+
+    $(function() {
+        $.ajax({
+            url: '@Url.Action("GetDIs", "DeliverInformation")',
+            type: 'post',
+            data: { diname: "BusinessName" },
+            success: function(data) {
+                $("div").each(function() {
+                    if ($(this).css("position") == "absolute" && $(this).attr("class") == "panel combo-p") {
+
+                        debugger;
+                        var a = $(this)[0].firstElementChild.firstElementChild.innerHTML;
+                        if (a == "内资企业工商注册") {
+                            $(this)[0].firstElementChild.innerHTML = data;
+                        }
+                    }
+                });
+            }
+        });
+        if ('@Model.AcceptInfo' == '不完整') {
+            $("#FillTimeLabel").css("display", "");
+            $("#FillTimeText").css("display", "");
+        }
+        
+        showDI('@ViewBag.busName', '@ViewBag.businessnameid');
+
+        setTimeout(function () {
+            var corpbaeinfo = '@Model.CorpBaseInfoOther';
+            if (corpbaeinfo.length > 0) {
+                $("#CorpBaseInfoId").combo("setText", corpbaeinfo);
+            }
+        }, 8000);
+    });
+    function submitFormLocal() {
+        var str = $("#CorpBaseInfoId").combo("getText");
+        var n = Number(str);
+        if (!isNaN(n)) {
+            alert("手动输入的公司名称不能为纯数字！");
+            return;
+        } 
+        $("#CorpBaseInfoOther").val($("#CorpBaseInfoId").combo("getText"));
+        submitForm();
+    }
+</script>
+<div class="clear">
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "ff" }))
+{
+    IDictionary<string, object> requiredHtmlAttr = new Dictionary<string, object>();
+    requiredHtmlAttr.Add("class", "easyui-validatebox");
+    requiredHtmlAttr.Add("required", "true");
+    @Html.ValidationSummary(true)
+    <fieldset style="width: 750px">
+        @Html.HiddenFor(m => m.DeliverInformationId)
+        @Html.HiddenFor(m => m.CurrentStatusId)
+        @Html.HiddenFor(m => m.WorkflowId)
+        @Html.HiddenFor(m => m.FormForWorkflowId)
+        @Html.HiddenFor(m => m.ConcreteWorkflowId)
+        @Html.HiddenFor(m => m.Creator)
+        <input id="BusinessNameInput" type="hidden" value ='@Model.BusinessNameId'/>
+        <input id="AcceptInfoInput" type="hidden" value ='@Model.AcceptInfo'/>
+        <table class="mediumLineHeight" style="width: 100%;">
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.SN)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.SN, new { @readonly = "readonly" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CorpBaseInfoId)
+                </td>
+                <td>
+                    @Html.CombogridFor(m => m.CorpBaseInfoId, @Url.Action("GetListByPage", "CorpBaseInfo"), new[] { "CorpBaseInfoId", "Name", "CustomerSn" }, new { @id = "CorpBaseInfoId", @required = "true" }, comboAttrStr: "onSelect:function(rIndex,rData){ $('#Edit').linkbutton('enable')}", width: 350, displayText: Model.CorpBaseInfoName, headerCol: new[] { "公司名称", "公司编号" })
+                    <input id="CorpBaseInfoOther" name="CorpBaseInfoOther" type="hidden"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Creator)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CreatorDisplayName)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CreatedTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.CreatedTime)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.ContractName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ContractName, requiredHtmlAttr)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.ContractPhone)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ContractPhone, requiredHtmlAttr)
+                </td>
+            </tr>
+            <tr>
+                @if (Request.IsVisible(Model.CurrentStatusId, Model.GetType(), "BusinessNameId"))
+                {
+                    IDictionary<string, object> htmlAtrr = new Dictionary<string, object>();
+                    //htmlAtrr.Add("onclick", "showDI()");
+                    string comboAttr = "";
+                    <td>
+                        @Html.LabelFor(m => m.BusinessNameId)
+                    </td>
+                    <td style="width: 32%;">
+                        @Html.ObjectToCombo(m => m.BusinessName, htmlAtrr, comboAttr)
+                    </td>
+                } 
+                <td>
+                    @Html.LabelFor(m => m.KeyWord)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.KeyWord)
+                </td>
+            </tr>
+            <tr>
+                @if (Request.IsVisible(Model.CurrentStatusId, Model.GetType(), "AcceptInfo"))
+                {            
+                    <td id="AcceptInfoLabel">
+                        @Html.LabelFor(m => m.AcceptInfo)
+                    </td>
+                    <td  id="AcceptInfoText">
+                        <select id="AcceptInfo" name="AcceptInfo" class="easyui-combobox" required="true"
+                                data-options="editable:false,                      
+                     onLoadSuccess: function(){
+                           $('#AcceptInfo').combobox('setValue',$('#AcceptInfoInput').val());
+                         },onSelect:function(rIndex,rData){ SelectedAcceptInfo(rIndex);}">
+                            <option value="完整">完整</option>
+                            <option value="不完整">不完整</option>
+                        </select>
+                    </td>
+                }
+                <td id="FillTimeLabel" style="display: none">
+                    @Html.LabelFor(m => m.FillTime)
+                </td>
+                <td id="FillTimeText" style="display: none">
+                    @Html.DateboxFor(m => m.FillTime, requiredHtmlAttr)
+                </td>
+            </tr>
+            <tr id="DIElse" style="display: none;">
+                <td>
+                    @Html.LabelFor(m => m.Remarks)
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(m => m.Remarks, new { style = "width:84%" })
+                </td>
+            </tr>
+        </table>
+        <div>
+            <div id="DI" style="width: 656px; border:1px solid black; display: none;" >
+
+            </div></div>
+            <table class="mediumLineHeight" style="width: 88.5%;">
+            @{
+                ViewDataDictionary vd = new ViewDataDictionary();
+                vd.Add("colspan", 3);
+                 @Html.Partial("../OfficeWorkFlow/TR_Suggestion", Model.ConcreteWorkflowOperations, vd);
+            } 
+            </table>
+        <p id="P_toolbar">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitFormLocal()">保存</a>
+        </p>
+    </fieldset>
+}

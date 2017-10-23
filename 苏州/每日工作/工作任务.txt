@@ -53,6 +53,7 @@
         http://localhost:5834/News/ShowMore?companyId=1&typeID=2
         get方法参数有最大值1024个字节，要改成post方法
         预览时，需要的参数为title和content
+        return PartialView(new HasDoneSearchTenantViewModel());
 
 29050   【会议室管理】，若某个会议室下有日程时，删除该日程时系统还是提示删除成功，
         http://localhost:5834/ConferenceRoom
@@ -75,10 +76,56 @@
         http://localhost:5834/Role/RoleGrid
         我这边测试没问题
 
-（未）29146   【工作流配置--流程配置】，配置处理规则详情中，“传阅对象”保存无效
+（王）29146   【工作流配置--流程配置】，配置处理规则详情中，“传阅对象”保存无效
     http://localhost:5834/WF/WorkflowRule?wfId=5
     http://localhost:5834/WF/WorkflowRule/Edit/65
     C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\WF\Controllers\WorkflowRuleController.cs
     C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\WF\Views\WorkflowRule\Create.cshtml
     保存在表：WorkflowRuleRoles，而项目中没有domain，需要新建domain
     1、C:\work\SuzhouEisp\Wiseonline.Eisp.Data\EispContext.cs 添加映射nvarchar(100)
+
+31204   [一站式]转交材料流程新增功能
+    http://localhost:5834/Question/CreateFlow
+    concreteworkflowid=273  DeliverInformations
+    obj = "内资企业工商注册", businessnameid = "40"
+    C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\WF\Controllers\BusinessWorkflowController.cs
+    (已完成)
+
+
+31306   【一站式】内外资工商注册，进行变更以后，核名、设立、经发备案、执照领取 刻章等记录中的操作备注都会被清空掉。
+        ConsultancyServiceRemarks
+        @Html.HiddenFor(m => m.ConsultancyServiceRemarks)
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\CompanyRegister\ChangeCreate.cshtml    添加105行
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\CompanyRegister\Create.cshtml  添加106行
+        (已完成)
+
+
+31304   【一站式】新增党务工会时客户信息中的公司编号 有去掉，热线受理中公司编号未去掉，建议统一。
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\SCElse\Create.cshtml
+        行数：108
+
+31217   【一站式】内外资工商注册中，查看变更记录，编辑时间建议为年月日时分秒就可以了。
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Dto\WorkflowForm\CompanyRegisterEx.cs    54行
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\ViewModel\WorkflowForm\CompanyRegisterRecordViewModel.cs     24行
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Domain\EispDomain\Question\CompanyRegistersChangeRecord.cs   25行
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Controllers\AdministrativeOffice\CompanyRegisterController.cs
+        已修改
+
+31031   【一站式】服务中心中查询条件中的状态建议去掉，状态和服务中的字段都不匹配，不能查询出任何结果。
+        已修改
+
+31027   【一站式】内外资工商注册信息中，点击弹出框中的取消按钮，未取消，比如打开设立，点击取消，还是设立设置成功。
+        测试没问题，状态已关闭
+
+30837   【一站式】党务/工会中公司编号无数据，如果有数据，建议添加，无数据，建议删除。
+        修改过的
+
+其他：
+        C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\Question\CreateComment.cshtml 112行
+
+转交材料、内外资工商注册、热线受理的公司编号都要去掉
+C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\DeliverInformation\Create.cshtml   127行
+C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Views\CompanyRegister\Create.cshtml  151行
+
+
+31302   【一站式】党务/工会编辑时，修改客户信息，手动输入的客户信息，保存后，客户信息为空。

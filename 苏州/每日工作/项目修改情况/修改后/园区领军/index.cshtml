@@ -1,0 +1,65 @@
+@using Wiseonline.Eisp.Helpers;
+@using Wiseonline.Eisp.Web.Controllers;
+@using Wiseonline.Eisp.Domain;
+@using Wiseonline.Eisp.Web.Helpers
+@model ParkLeader
+@{
+    ViewBag.Title = "园区领军";
+    Layout = "~/Areas/Clm/Views/Shared/_LayoutClm.cshtml";
+    Html.Assets().Scripts.Add(Url.Content("~/Areas/Clm/jb/ParkLeader.js"));
+
+    Html.Assets().Scripts.Add("/jb/wiseonline/ExcelExport.js");
+    const string thisUrl = "/Clm/CorpBaseInfo/GetCorpBaseInfoList?exportExcel=true";
+    const string thisColumn = "Name,Attr,CustomerSn,ContactName,CompanyPhone,CustomerTypeDisplay,CustomerChargerDisplay,CDisplay";
+}
+<style type="text/css">
+    #Searchcondition table td
+    {
+        padding-left: 5px;
+        padding-top: 5px;
+    }
+</style>
+<input type="hidden" id="FuzzyQueryParam" value="@ViewBag.fuzzyQueryParam"/>
+<div class="title_main">
+    ▌园区领军</div>
+@using (Html.BeginForm("GetParkLeaderList", "ParkLeader", null, FormMethod.Post, new { id = "QueryForm" }))
+{
+    <input type="hidden" id="FuzzyQueryParam" value="@ViewBag.fuzzyQueryParam"/>
+    
+    <div id="Searchcondition" class="easyui-panel" collapsible="true" title="查询条件" style="margin-bottom: 10px;">
+        <table class="OverTable">
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CorpBaseInfoId)
+                </td>
+                <td>
+                    @Html.Combogrid("/CorpBaseInfo/GetListByPage", new[] {"CorpBaseInfoId", "Name"}, new {id = "id_CorpBaseInfoId", name = "CorpBaseInfoId", style = "width:180px"})
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CustomerRepresentative)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CustomerRepresentative)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                </td>
+                <td class="alignRight">
+                    <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" onclick="searchRegs();">
+                        查询</a> <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'"
+                            onclick="Reset();">重置</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div  class="easyui-panel" title="结果信息" style="margin-bottom: 10px;">
+        <div id="OperateBar" class="datagrid-toolbar">
+            <a href="@Url.Action("Create", "ParkLeader")" target="_blank" id="thisAddButton" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">新增</a>
+            <a target="_blank" id="thisEditButton" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="edit('@Url.Action("Edit", "ParkLeader")')">编辑</a>
+            <a class="easyui-linkbutton" id="thisDelButton" data-options="plain:true,iconCls:'icon-remove'" onclick="del()">删除</a>
+        </div>
+        <div id="ParkLeaderList">
+        </div>
+    </div>
+}

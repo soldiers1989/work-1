@@ -25,11 +25,9 @@ namespace Wiseonline.Eisp.Domain
         public DateTime? EditTime { get; set; }
 
         [Display(Name = "更改内容")]
-        public string Content { get; set; }
+        public string ContentDetail { get; set; }
 
         [Display(Name = "内外资企业工商注册")]
         public int CompanyRegisterId { get; set; }
-        [ForeignKey("CompanyRegisterId")]
-        public virtual CompanyRegister CompanyRegister { get; set; }
     }
 }

@@ -1,0 +1,148 @@
+@using Wiseonline.Eisp.Helpers;
+@using Wiseonline.Eisp.Web.Controllers;
+@using Wiseonline.Eisp.Domain;
+@using Wiseonline.Eisp.Web.Helpers
+@model ParkLeader
+@{
+    ViewBag.Title = "园区领军";
+    Layout = "~/Areas/Clm/Views/Shared/_LayoutClm.cshtml";
+    Html.Assets().Scripts.Add("/jb/wiseonline/ExcelExport.js");
+}
+
+<script type="text/javascript">
+    function submitFormLocal() {
+        debugger;
+        submitForm();
+    }
+
+    function submitForm(param, hasFile, newPageAfterSaveUrl, afterSubmit, refreshGrid) {
+        GetDatagridJson(refreshGrid); //将MultiSelectGrid数据转为json字符串赋值到相应Input控件
+        GetComplexGridJson();
+        if (hasFile != undefined && hasFile) {
+            var array = param.split('&');
+            $.each(array, function (index, item) {
+
+                if (index > 0) {
+                    var _array = item.split('=');
+                    if ($('#' + _array[0]).length == 0) {
+                        var input = $("<input>")
+                        .attr("type", "hidden")
+                        .attr("id", _array[0])
+                        .attr("name", _array[0]).val(_array[1]);
+                        $('#ff').append($(input));
+                    } else {
+                        $('#' + _array[0]).val(_array[1]);
+                    }
+                }
+            });
+        }
+
+        var submitData = $('#ff').serialize();
+        if (param != undefined) {
+            submitData = submitData + param;
+        }
+        if ($('#ff').form('validate')) {
+            $.ajax({
+                url: $('#ff').attr('action'),
+                type: $('#ff').attr('method'),
+                dataType: "json",
+                data: submitData,
+                success: function (data) {
+                    alert(data.message);
+                    window.close();
+                }
+            });
+        }
+    }
+
+    //将MultiSelectGrid控件的数据转json格式后附加到页面相应input
+    function GetDatagridJson(refreshGrid) {
+        //    refreshGrid = refreshGrid || true;
+        $(document.forms[0]).find('.MultiSelectGrid').each(function () {
+            $(this).datagrid('appendToParam', { form: document.forms[0], fieldName: undefined, refreshState: refreshGrid });
+        });
+    }
+
+    //将ComplexGrid控件的数据转json格式后附加到页面相应input
+    function GetComplexGridJson() {
+        $(document.forms[0]).find('.ComplexGrid').each(function () {
+
+            var name = $(this).ComplexGrid('options').JsonName;
+            if ($('#' + name).length == 0) {
+                var input = $("<input>")
+        .attr("type", "hidden")
+        .attr("id", name)
+        .attr("name", name).val($(this).ComplexGrid('getJsonForChanges'));
+                $(document.forms[0]).append($(input));
+            } else {
+                $('#' + name).val($(this).ComplexGrid('getJsonForChanges'));
+            }
+            $(this).ComplexGrid('CleanChanges');
+        });
+    }
+</script>
+
+
+<div class="title_main">
+    ▌园区领军</div>
+@using (Html.BeginForm("Save", "ParkLeader", FormMethod.Post, new { id = "ff" }))
+{
+    IDictionary<string, object> requiredHtmlAttr = new Dictionary<string, object>();
+    requiredHtmlAttr.Add("class", "easyui-validatebox");
+    requiredHtmlAttr.Add("required", "true");
+    requiredHtmlAttr.Add("style", "width:180px");
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.ParkLeaderId)
+        @Html.HiddenFor(m => m.Creator)
+        @Html.HiddenFor(m => m.CreatedTime)
+    <table class="mediumLineHeight" style="width: 100%;">
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.CorpBaseInfoId)
+            </td>
+            <td>
+                @Html.CombogridFor(m => m.CorpBaseInfoId, @Url.Action("GetListByPage", "CorpBaseInfo"), new[] { "CorpBaseInfoId", "Name" }, new { @id = "CorpBaseInfoId", @required = "true" }, comboAttrStr: "onSelect:function(rIndex,rData){ $('#Edit').linkbutton('enable')}", width: 350, displayText: Model.CorpBaseInfoName, headerCol: new[] { "公司名称" })
+            </td>
+            <td>
+                @Html.LabelFor(m => m.CustomerRepresentative)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.CustomerRepresentative)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Address)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Address)
+            </td>
+            <td>
+                @Html.LabelFor(m => m.RegisterAccount)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.RegisterAccount)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.CompanySize)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.CompanySize)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Remarks)
+            </td>
+            <td colspan="3">
+                @Html.TextAreaFor(m => m.Remarks, new { style = "width:500px;height: 100px;" })
+            </td>
+        </tr>
+    </table>
+}
+
+<div style="margin-top: 20px" align="center">
+    @Html.EasyUiButton("保存", "submitFormLocal()", new { iconcls = "icon-save" })
+</div>

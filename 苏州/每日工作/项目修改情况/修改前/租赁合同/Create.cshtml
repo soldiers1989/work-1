@@ -1,0 +1,375 @@
+@using Wiseonline.Eisp.Helpers
+@using Wiseonline.Eisp.Web.Helpers
+@model   Wiseonline.Eisp.Web.Areas.Clm.ViewModels.TenancyContractViewModel
+@{
+    ViewBag.Title = "租赁合同审批单";
+    Layout = "~/Views/Shared/_IframeLayout.cshtml";
+    Html.Assets().Scripts.Add(Url.AreaContent("jb/TenancyContract/tenancyContract.js"));
+    Html.Assets().Scripts.Add(Url.AreaContent("jb/Common/multiSelectGrid.js"));
+    Html.Assets().Scripts.Add(Url.AreaContent("jb/Common/checkBoxForm.js"));
+    Html.Assets().Scripts.Add("/jb/wiseonline/DataGridExtend.js");
+    Html.Assets().Scripts.Add(Url.Content("~/jb/OfficeWorkFlow/WorkFlowCreate.js"));
+    Html.Assets().Scripts.Add(Url.Content("/jb/FileUpload/swfupload.js"));
+    Html.Assets().Scripts.Add(Url.Content("/jb/FileUpload/FileUpload_Flash_Jquery.js"));
+    Html.Assets().Styles.Add(Url.Content("/Content/FlashUpload-new.css"));
+    Html.Assets().Styles.Add(Url.AreaContent("Content/multiSelectGrid.css"));
+    Html.Assets().Styles.Add(Url.AreaContent("Content/ClmCommon.css"));
+    var hasOriginalRemark = (Model.ContractType.ToString() == "ContractChange" || Model.ContractType.ToString() == "ContractContinueTenancy") ? 1 : 0;
+}
+
+@{
+    var actionname = string.Empty;
+    if (ViewBag.IsModify != null && ViewBag.IsModify)
+    {
+        actionname = "ModifySave";
+    }
+    else
+    {
+        actionname = "Save";
+    }
+
+}
+
+@using (Html.BeginForm(actionname, "TenancyContract", FormMethod.Post, new { id = "ff" }))
+{ 
+   @Html.HiddenFor(m => m.ConcreteWorkflowId) 
+    @Html.HiddenFor(m => m.Formforworkflowid) 
+    @Html.HiddenFor(m => m.SourceTenancyContractId)
+    @Html.HiddenFor(m => m.TenancyContractId, new { id = "BusinessID" }) 
+    @Html.HiddenFor(m => m.OperatorUserName)
+    @Html.HiddenFor(m => m.DepartmentId)
+   
+    @Html.HiddenFor(m => m.Status) 
+    @Html.HiddenFor(m => m.FileCreatedFromTemplate) 
+   
+
+if (ViewBag.WaitEnforce != null)
+{
+    @Html.Hidden("WaitEnforce", (bool)ViewBag.WaitEnforce)
+}
+var showMarginBalance = (Model.ContractType == Wiseonline.Eisp.Domain.ContractType.ContractContinueTenancy ||
+    Model.ContractType == Wiseonline.Eisp.Domain.ContractType.ContractChange) && Model.SourceTenancyContract != null;
+ 
+    <input id="OnlyView" type="hidden" value="0" />
+    <input id ="hasOriginalRemark" type ="hidden" value="@hasOriginalRemark"/>
+    
+    <div class="easyui-panel" title="基本信息" collapsible="true" style="margin-bottom: 10px;">
+        <table id="tenancyInfo">
+            <tr>
+                <td class="labelTD">
+                    @Html.RequiredLabelFor(m => m.ContractNumber)：
+                </td>
+                <td>@Html.CustomTextboxFor(m => m.ContractNumber)
+                </td>
+                <td class="labelTD">
+                    @Html.LabelFor(m => m.ContractType)：
+                </td>
+                <td>
+                    @Html.EnumToRadioButtonList(m => m.ContractType, htmlAttributes: new { disabled = "disabled" })
+                    @Html.HiddenFor(m => m.ContractType)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.RequiredLabelFor(m => m.LandProjectId)：
+                </td>
+                <td>
+                    @Html.CombogridFor(m => m.LandProjectId, "/LandProject/GetListByPage", new[] { "id", "text" }, displayText: (Model.LandProject == null ? "" : Model.LandProject.Name), htmlAttributes: new { id = "LandProjectCombo" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.IsIncubatorObj)：
+                </td>
+                <td>
+                    @Html.EnumToRadioButtonList(m => m.IsIncubatorObj)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.RequiredLabelFor(m => m.TenantId)：
+                </td>
+                <td>
+                    @Html.CombogridFor(m => m.TenantId, "/CorpBaseInfo/GetListByPage", new[] { "CorpBaseInfoId", "Name", "CustomerSn", "CustomerMode" }, new { @id = "TenantId" }, comboAttrStr: "onSelect:function(rIndex,rData){ $('#Edit').linkbutton('enable')}", width: 350, displayText: Model.TenantName, headerCol: new[] { "公司名称", "公司编号", "企业性质" })@*, comboAttrStr： "K：'Wiki',onBeforeLoad：function(param){ alert('onBeforeLoad'); param.q='Wiki'; }"*@
+                    <a href="@Url.Action("Create", "CorpBaseInfo", new { op = "o" })" target="_blank"  class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" title="新增">
+                   
+                    </a><a id="Edit" target="_blank" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'"
+                        onclick="EditComboCorp('o')" title="编辑"></a>
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CalculationMode)：
+                </td>
+                <td>
+                    @Html.EnumToCombo(m => m.CalculationMode, new { id = "CalculationMode" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.RequiredLabelFor(m => m.ProjectOwner)：
+                </td>
+                <td>
+                    @Html.EnumToCombo(m => m.ProjectOwner, null, "", 300)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.DecimalPointKeep)：
+                </td>
+                <td>@Html.EnumToRadioButtonList(m => m.DecimalPointKeep)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.HouseUse)：
+                </td>
+                <td>@Html.EnumToCombo(m => m.HouseUse)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.MarginUnit)：
+                </td>
+                <td>@Html.EnumToCombo(m => m.MarginUnit)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.RequiredLabelFor(m => m.MarginMode)：
+                </td>
+                <td>@Html.TextBoxFor(m => m.MarginMode)
+                </td>
+                <td colspan="2">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.PayMonth)：
+                </td>
+                <td>@Html.EnumToRadioButtonList(m => m.PayMonth)
+                </td>
+                <td>
+                    @Html.RequiredLabelFor(m => m.PayDay)：
+                </td>
+                <td>@Html.TextBoxFor(m => m.PayDay)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.RequiredLabelFor(m => m.SignDate)：
+                </td>
+                <td>@Html.DateboxFor(m => m.SignDate)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.BeginPayDate)：
+                </td>
+                <td>@Html.DateboxFor(m => m.BeginPayDate, new { disabled = "disabled", id = "beginPayDateBox" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.BeginDate)：
+                </td>
+                <td>@Html.DateboxFor(m => m.BeginDate, new { disabled = "disabled", id = "beginDateBox" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.EndDate)：
+                </td>
+                <td>@Html.DateboxFor(m => m.EndDate, new { disabled = "disabled", id = "endDateBox" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.OperatorUserNameDisplay)：
+                </td>
+                <td>@Html.DisplayFor(o => o.OperatorUserNameDisplay)
+                </td>
+                <td>@Html.LabelFor(m => m.DepartmentDisplay)：
+                </td>
+                <td>@Html.DisplayFor(o => o.DepartmentDisplay)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.RequiredLabelFor(m => m.ContractFile)：
+                </td>
+                <td>
+                    <div id="contractFile" name="ContractFile">
+                        @if (Model.ContractFile != null)
+                        { 
+                            <input type="hidden"  class="fileDiv" value="@Model.ContractFile.FileName|@Model.ContractFile.AttachmentId|@Model.ContractFile.MatchCode"/>
+                            
+                        }
+                    </div>
+                </td>
+                <td>
+                    @Html.EasyUiButton("生成合同正文", "TenancyContract.ShowCreateDocDlg()")
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.RelationRoom)：
+                </td>
+                <td>@Html.CustomTextboxFor(m => m.RelationRoom)
+                </td>
+                <td>
+                    <span class="ApprovalTypeLabel">@Html.LabelFor(m => m.ApprovalType)：</span>
+                </td>
+                <td><span class="ApprovalTypeLabel">@Html.EnumToRadioButtonList(m => m.ApprovalType)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="IsStandardContractLabel">@Html.LabelFor(m => m.IsStandardContract)：</span>
+                </td>
+                <td>  <span class="IsStandardContractLabel">@Html.BooleanToRadioButtonList(m => m.IsStandardContract)</span>
+                </td>
+                @if (hasOriginalRemark == 1)
+                {
+            <td>
+                 原租赁合同： 
+            </td>
+                <td>
+                    <a target="_blank" href="/Clm/TenancyContract/Browse/@Model.SourceTenancyContractId">@Model.SourceTenancyContract.ContractNumber</a>
+                </td>
+                }
+                else
+                {
+                <td colspan="2">
+                </td>}
+            </tr>
+            @if (this.CurrentUser().Roles.Any(r => r.RoleName == "ClmSYZSRY"))
+            {
+            <tr>
+                <td>@Html.LabelFor(m => m.IsSquareContract)</td>
+                <td>@Html.EnumToRadioButtonList(m => m.IsSquareContract)</td>
+                <td colspan="2"></td>
+            </tr>
+            }
+        </table>
+    </div>
+    <div class="easyui-panel" title="租赁房源" collapsible="true" border="false" style="margin-bottom: 10px;">
+       <input id="rentRoomDg" type="text" value="@Model.RentRoomJson" />
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(t => t.RentArea)：
+                </td>
+                <td style="width: 31%">
+                    @Html.TextBoxFor(t => t.RentArea, new { @readonly = "readonly" })
+                </td>
+                <td class="splitTd">
+                </td>
+                <td>
+                    @Html.RequiredLabelFor(t => t.PayArea)：
+                </td>
+                <td>
+                    @Html.TextBoxFor(t => t.PayArea)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="easyui-panel" title="租赁日期" collapsible="true" border="false" style="margin-bottom: 10px;">
+        <input id="rentDateDg" class="MultiSelectGrid" type="text" />
+        <table>
+            @if (showMarginBalance)
+            {
+                <tr>
+                    <td width="18%">
+                        历史保证金：
+                    </td>
+                    <td>
+                        <label id="historyMargin">
+                            @Html.DisplayTextFor(t => t.MarginByHistoryContract)
+                            @Html.HiddenFor(t => t.MarginByHistoryContract)
+                            </label>
+
+                    </td>
+                    <td colspan="3">
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td  width="18%">
+                    @Html.RequiredLabelFor(t => t.Margin)：
+                </td>
+                <td>@Html.CustomTextboxFor(m => m.Margin)
+                </td>
+                <td class="splitTd">
+                    @Html.EasyUiButton("计算保证金", "TenancyContract.ComputeMargin()")
+                </td>
+                @if (showMarginBalance)
+                {
+                    <td width="15%">
+                        保证金补差：
+                    </td>
+                    <td>
+                        @Html.CustomTextboxFor(m => m.MarginByCurrentContract, new { @readonly = "readonly" })
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    续租提醒方式：
+                </td>
+                <td>@Html.EnumToCombo(m => m.ReletRemindMode)
+                </td>
+                <td colspan="3">
+                </td>
+            </tr>
+            @if (hasOriginalRemark == 1)
+            {
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.OriginalRemark)
+                    </td>
+                    <td colspan="4">
+                        @Html.TextAreaFor(m => m.OriginalRemark, new { style = "width:90%;margin:0;", disabled = "disabled" })
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>@Html.LabelFor(m => m.Remark)：
+                </td>
+                <td colspan="4">@Html.TextAreaFor(m => m.Remark, new { style = "width:90%;margin:0;" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.RequiredLabelFor(m => m.OperatorUserSuggestion)：
+                </td>
+                <td colspan="4">@Html.TextAreaFor(m => m.OperatorUserSuggestion, new { style = "width:90%;margin:0;", @class = "easyui-validatebox", required = "true" })
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="easyui-panel" collapsible="true"  title="附件" style="margin-bottom:10px;">
+        <div id="uploader">
+            @if (Model.Attachments != null)
+            {
+                foreach (var file in Model.Attachments)
+                {
+                    <input type="hidden"  class="fileDiv" value="@file.FileName|@file.AttachmentId|@file.MatchCode"/>
+                }
+            }
+        </div>
+    </div>
+    
+    @Html.OutputOperationSuggestion(Model.ConcreteWorkflowOperations)
+     
+    
+    <div class="gridsave">
+        <div id="operationPanel" align="center">
+            @if (ViewBag.IsModify != null && ViewBag.IsModify)
+            {
+                @Html.EasyUiButton("保存修改", "TenancyContract.Submit('M')", new { id = "ModifyButton" })
+            }
+            else
+            {
+                @Html.EasyUiButton("暂存", "TenancyContract.Submit()", new { id = "SaveButton1" })
+                @Html.EasyUiButton("保存并新增", "TenancyContract.Submit('N')", new { id = "SaveButton2" })
+            }
+
+        </div>
+    </div>        
+    
+    <div id="templateDlg">
+    </div>
+    
+   <div id="payPeriodDg_tb">
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="TenancyContract.AddPayPeriodRow()">添加</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="TenancyContract.RemovePayPeriodRow()">删除</a></div>
+}

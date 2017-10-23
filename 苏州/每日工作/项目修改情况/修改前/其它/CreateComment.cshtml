@@ -1,0 +1,167 @@
+@using DevExpress.Web.ASPxRoundPanel
+@using Wiseonline.Eisp.Web.Helpers
+@using Wiseonline.Eisp.Domain
+
+@model CustomerComment
+           <script type="text/javascript">
+               function submitForm(param, hasFile, newPageAfterSaveUrl, afterSubmit, refreshGrid) {
+                   GetDatagridJson(refreshGrid); //将MultiSelectGrid数据转为json字符串赋值到相应Input控件
+                   GetComplexGridJson();
+                   if (hasFile != undefined && hasFile) {
+
+                       var array = param.split('&');
+                       $.each(array, function (index, item) {
+
+                           if (index > 0) {
+                               var _array = item.split('=');
+                               if ($('#' + _array[0]).length == 0) {
+                                   var input = $("<input>")
+                        .attr("type", "hidden")
+                        .attr("id", _array[0])
+                        .attr("name", _array[0]).val(_array[1]);
+                                   $('#ff').append($(input));
+                               } else {
+                                   $('#' + _array[0]).val(_array[1]);
+                               }
+                           }
+                       });
+                   }
+
+                   var submitData = $('#ff').serialize();
+                   if (param != undefined) {
+                       submitData = submitData + param;
+                   }
+                   if ($('#ff').form('validate')) {
+                       $.ajax({
+                           url: $('#ff').attr('action'),
+                           type: $('#ff').attr('method'),
+                           dataType: "json",
+                           data: submitData,
+                           success: function (data) {
+                               alert(data.message);
+                               $('#CommentDlg').dialog('close');
+//                               QuerySearch('@Url.Action("SearchComment", "Question")', '#CommentGrid', '#CommentForm');
+                           }
+                       });
+                   }
+               }
+
+               //将MultiSelectGrid控件的数据转json格式后附加到页面相应input
+               function GetDatagridJson(refreshGrid) {
+                   //    refreshGrid = refreshGrid || true;
+                   $(document.forms[0]).find('.MultiSelectGrid').each(function () {
+                       $(this).datagrid('appendToParam', { form: document.forms[0], fieldName: undefined, refreshState: refreshGrid });
+                   });
+               }
+
+               //将ComplexGrid控件的数据转json格式后附加到页面相应input
+               function GetComplexGridJson() {
+                   $(document.forms[0]).find('.ComplexGrid').each(function () {
+
+                       var name = $(this).ComplexGrid('options').JsonName;
+                       if ($('#' + name).length == 0) {
+                           var input = $("<input>")
+        .attr("type", "hidden")
+        .attr("id", name)
+        .attr("name", name).val($(this).ComplexGrid('getJsonForChanges'));
+                           $(document.forms[0]).append($(input));
+                       } else {
+                           $('#' + name).val($(this).ComplexGrid('getJsonForChanges'));
+                       }
+                       $(this).ComplexGrid('CleanChanges');
+                   });
+               }
+</script>
+@{
+    Layout = null;
+}
+
+    @using (Html.BeginForm("CreateComment", "Question", FormMethod.Post, new { id = "ff" }))
+    {
+        IDictionary<string, object> requiredHtmlAttr = new Dictionary<string, object>();
+        requiredHtmlAttr.Add("class", "easyui-validatebox");
+        requiredHtmlAttr.Add("required", "true");
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(m => m.CustomerCommentId)
+        @Html.HiddenFor(m => m.QuestionId)
+        @Html.HiddenFor(m => m.QuestionStatusId)
+        @Html.HiddenFor(m => m.QuestionTypeId)
+        @Html.HiddenFor(m => m.CustomerReviewId)
+        @Html.HiddenFor(m => m.DealName)
+        <table width="100%" border="0px solid">
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.DealName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.DealNameDisplayName)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CreateTime)
+                </td>
+                <td>
+                    @Html.DateboxFor(m => m.CreateTime)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CorpBaseInfoId)
+                </td>
+                <td>
+                    @Html.CombogridFor(m => m.CorpBaseInfoId, @Url.Action("GetListByPage", "CorpBaseInfo"), new[] { "CorpBaseInfoId", "Name", "CustomerSn" }, new { @id = "CorpBaseInfoId", @required = "true" }, comboAttrStr: "onSelect:function(rIndex,rData){ $('#Edit').linkbutton('enable')}", width: 350, displayText: Model.CorpBaseInfoName, headerCol: new[] { "公司名称", "公司编号" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.QuestionId)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.QuestionTitle)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.QuestionTypeId)
+                </td>
+                <td>
+                    @Html.EnumToCombo(m => m.QuestionType, new { style = "width:200px" })
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.QuestionStatusId)
+                </td>
+                <td>
+                    @Html.EnumToCombo(m => m.QuestionStatus, new { style = "width:200px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CustomerName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.CustomerName)
+                </td>
+                <td>
+                    @Html.LabelFor(m => m.CustomerReviewId)
+                </td>
+                <td>
+                    @Html.EnumToCombo(m => m.CustomerReviews, new { style = "width:200px" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CustomerComments)
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(m => m.CustomerComments, new { style = "width: 99%; resize: none;" })
+                </td>
+            </tr>
+        </table>
+                  
+    }
+<div style="margin-top: 100px" align="center" id="showbutton">
+    @*<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>*@
+    @if (Model.CustomerCommentId == 0)
+    {
+        @Html.EasyUiButton("保存", "submitForm()", new {iconcls = "icon-save"})
+    }
+    @Html.EasyUiButton("取消", "CancelComment()", new { iconcls = "icon-cancel" })
+</div>

@@ -1,0 +1,28 @@
+功能：专利情况管理
+    专利情况管理包括：专利申请情况、专利授权情况、PCT专利情况三部分，此三块共用一张表 可专利类型来进行区分，专利类型包括：申请情况、授权情况、PCT专利；
+
+数据库：PatentManages
+字段：
+专利申请情况
+字段名称    字段说明
+专利名称    PatentName
+年份        PatentYear
+发明        Invention
+实用新型    UtilityModel
+外观设计    PatentDesign
+年累计      YearSum
+备注        Remarks
+创建人      Creator
+创建日期    CreatedTime
+修改人      ModifyName
+修改日期    ModifyTime
+类型        Type
+
+页面修改流程：
+    1、添加controller：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Controllers\PatentManageController.cs
+    2、转到index：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\PatentManage\Index.cshtml
+    3、新建domain：C:\work\SuzhouEisp\Wiseonline.Eisp.Domain\ClmDomains\PatentManage\PatentManage.cs
+    4、建立映射：C:\work\SuzhouEisp\Wiseonline.Eisp.Data\EispContext.cs 行数：222
+    5、新建js：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\jb\PatentManage.js
+    6、新建Create页面：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\PatentManage\Create.cshtml
+    7、增删改查的实现

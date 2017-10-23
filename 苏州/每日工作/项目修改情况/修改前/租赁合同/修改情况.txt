@@ -1,0 +1,36 @@
+租赁合同需求
+需求总体概述:租赁合同在现在租赁合同基础上进行修改；
+调整内容如下:
+一、增加字段:1、交房日期 2、特殊条款 3、合同名称  4、变更原因 5、第三方
+二、删除字段:1、孵化器合同 2、租金计算精度 3、保证金单位 4、支付时间 5、支付月前 6、审批类型  7、联系房间 8、保证金月数  9、去掉计算保证金按钮
+三、修改字段:1、 ‘招商合同号’改为‘合同编号’ 2、出租方字段下拉改为数据字典可配置。
+业务逻辑:当合同类型为‘变更合同’时，变更原因字段才可显示。
+
+数据库： 
+删除字段：（暂不删）
+增加字段：
+
+流程：
+
+一、先做删除字段(页面)
+页面：C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Views\TenancyContract\Create.cshtml
+1、孵化器合同 行数：79
+2、租金计算精度 行数：111
+3、保证金单位 行数：123
+4、支付时间 行数：138
+5、支付月前 行数：138
+6、审批类型  行数：209
+7、联系房间 行数：203
+8、保证金月数  行数：129
+9、去掉计算保证金按钮 行数：292
+
+二、修改字段
+1、 ‘招商合同号’改为‘合同编号’  页面：C:\work\SuzhouEisp\Wiseonline.Eisp.Domain\ClmDomains\Contract\TenancyContract.cs 行数：97
+2、出租方字段下拉改为数据字典可配置。
+    修改详情：C:\work\SuzhouEisp\Wiseonline.Eisp.Domain\ClmDomains\Contract\TenancyContract.cs
+            C:\work\SuzhouEisp\Wiseonline.Eisp.Web\Areas\Clm\Dto\TenancyContractEx.cs
+
+
+
+
+
