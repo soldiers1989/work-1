@@ -1,0 +1,34 @@
+-- 2017-12-15 17:25:39 发布脚本
+-- 2017-12-13 09:55:44
+INSERT INTO Menus ( Name, TheUrl, ParentMenuId, OrderId) VALUES ('应收款账单', '/Clm/ReceivablesManage', '13','11');
+insert into Menus (Name,TheUrl) values('热线受理查询','/SCElse/QuerySCElse');
+insert into Menus (Name,TheUrl) values('转交材料查询','/DeliverInformation/QueryDeliverInformation');
+
+-- 2017-12-14 16:14:34 论坛模块
+update ForumBoards set BoardName='合理化建议',BoardManager='石斌' where BoardId =1 ;
+update ForumBoards set BoardName='公司活动',BoardManager='石斌' where BoardId =2 ;
+update ForumBoards set BoardName='技术交流',BoardManager='石斌' where BoardId =3 ;
+update ForumBoards set BoardName='影评书评',BoardManager='石斌' where BoardId =4 ;
+update ForumBoards set BoardName='资源共享',BoardManager='管理员' where BoardId =5 ;
+
+delete from ForumBoards where BoardId in (6,7);
+
+update Menus set Name='公司活动' where MenuId = 83
+
+-- 枚举
+-- SET IDENTITY_INSERT Menus ON; SET IDENTITY_INSERT Menus OFF 
+SET IDENTITY_INSERT CommonEnumObjects ON;
+INSERT INTO CommonEnumObjects (CommonEnumObjectId, DisplayName, ObjectName, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('43', '合同状态', 'Contract', '2017-12-08 14:18:42.873', 'admin', NULL, NULL, NULL, '1');
+INSERT INTO CommonEnumObjects (CommonEnumObjectId, DisplayName, ObjectName, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('44', '计费类型', 'ChargeTypes', '2017-12-08 14:18:42.873', 'admin', NULL, NULL, NULL, '1');
+SET IDENTITY_INSERT CommonEnumObjects OFF;
+
+SET IDENTITY_INSERT CommonEnumFileds ON;
+INSERT INTO CommonEnumFileds (CommonEnumFiledsId, Name, IsValid, BelongCommonEnumObjectId, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('286', '变更合同', '1', '43', '2017-12-11 10:25:15.217', 'admin', NULL, NULL, NULL, '1');
+INSERT INTO CommonEnumFileds (CommonEnumFiledsId, Name, IsValid, BelongCommonEnumObjectId, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('287', '续租合同', '1', '43', '2017-12-11 10:25:15.217', 'admin', NULL, NULL, NULL, '1');
+INSERT INTO CommonEnumFileds (CommonEnumFiledsId, Name, IsValid, BelongCommonEnumObjectId, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('288', '新合同', '1', '43', '2017-12-11 10:25:15.217', 'admin', NULL, NULL, NULL, '1');
+INSERT INTO CommonEnumFileds (CommonEnumFiledsId, Name, IsValid, BelongCommonEnumObjectId, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('289', '免租期', '1', '44', '2017-12-11 10:25:15.217', 'admin', NULL, NULL, NULL, '1');
+INSERT INTO CommonEnumFileds (CommonEnumFiledsId, Name, IsValid, BelongCommonEnumObjectId, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('290', '月单价计费', '1', '44', '2017-12-11 10:25:15.217', 'admin', NULL, NULL, NULL, '1');
+INSERT INTO CommonEnumFileds (CommonEnumFiledsId, Name, IsValid, BelongCommonEnumObjectId, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('291', '整月计费', '1', '44', '2017-12-11 10:25:15.217', 'admin', NULL, NULL, NULL, '1');
+INSERT INTO CommonEnumFileds (CommonEnumFiledsId, Name, IsValid, BelongCommonEnumObjectId, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('292', '提成计费', '1', '44', '2017-12-11 10:25:15.217', 'admin', NULL, NULL, NULL, '1');
+INSERT INTO CommonEnumFileds (CommonEnumFiledsId, Name, IsValid, BelongCommonEnumObjectId, CreatedTime, Creator, GcRecord, ModifiedTime, Modifier, TenantCompanyId) VALUES ('293', '整租计费', '1', '44', '2017-12-11 10:25:15.217', 'admin', NULL, NULL, NULL, '1');
+SET IDENTITY_INSERT CommonEnumFileds OFF;
